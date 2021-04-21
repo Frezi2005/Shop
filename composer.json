@@ -1,0 +1,6 @@
+{
+    "require": {
+        "cakephp/cakephp": "2.10.*",
+        "components/jquery": "^3.5"
+    }
+}
