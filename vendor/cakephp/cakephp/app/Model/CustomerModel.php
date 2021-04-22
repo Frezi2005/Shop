@@ -32,9 +32,9 @@ App::uses('Model', 'Model');
 class CustomerModel extends Model {
 
     /**
-     * @var Int
+     * @var String
      * @Primary
-     * @Column(column="id", length="-", null="false")
+     * @Column(column="id", length="36", null="false")
      */
     public $id;
 
@@ -70,25 +70,25 @@ class CustomerModel extends Model {
 
     /**
      * @var String
-     * @Column(column="country", length="56", null="false")
+     * @Column(column="country", length="56", null="true")
      */
     public $country;
 
     /**
      * @var String
-     * @Column(column="city", length="85", null="false")
+     * @Column(column="city", length="85", null="true")
      */
     public $city;
 
     /**
      * @var String
-     * @Column(column="street", length="75", null="false")
+     * @Column(column="street", length="75", null="true")
      */
     public $street;
 
     /**
      * @var String
-     * @Column(column="house_number", length="5", null="false")
+     * @Column(column="house_number", length="5", null="true")
      */
     public $house_number;
 

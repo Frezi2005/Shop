@@ -79,11 +79,14 @@ class FrontPagesController extends AppController {
 	}
 
 	public function home() {
-		//Loading password hashing function
-		//$this->SecurityUtils = $this->Components->load('PasswordHashing');
+		
 	}
 
 	public function registerPage() {
+
+	}
+
+	public function loginPage() {
 
 	}
 }

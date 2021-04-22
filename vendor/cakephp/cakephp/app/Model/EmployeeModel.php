@@ -30,5 +30,115 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class EmployeeModel extends Model {
-    
+    /**
+     * @var String
+     * @Primary
+     * @Column(column="id", length="36", null="false")
+     */
+    public $id;
+
+    /**
+     * @var String
+     * @Column(column="name", length="50", null="false")
+     */
+    public $name;
+
+    /**
+     * @var String
+     * @Column(column="surname", length="100", null="false")
+     */
+    public $surname;
+
+    /**
+     * @var String
+     * @Column(column="email", length="255", null="false")
+     */
+    public $email;
+
+    /**
+     * @var String
+     * @Column(column="password", length="255", null="false")
+     */
+    public $password;
+
+    /**
+     * @var String
+     * @Column(column="birth_date", length="-", null="false")
+     */
+    public $birth_date;
+
+    /**
+     * @var String
+     * @Column(column="country", length="56", null="true")
+     */
+    public $country;
+
+    /**
+     * @var String
+     * @Column(column="city", length="85", null="true")
+     */
+    public $city;
+
+    /**
+     * @var String
+     * @Column(column="street", length="75", null="true")
+     */
+    public $street;
+
+    /**
+     * @var String
+     * @Column(column="house_number", length="5", null="true")
+     */
+    public $house_number;
+
+    /**
+     * @var String
+     * @Column(column="flat_number", length="5", null="true")
+     */
+    public $flat_number;
+
+    /**
+     * @var String
+     * @Column(column="phone_number", length="15", null="false")
+     */
+    public $phone_number;
+
+    /**
+     * @var String
+     * @Column(column="id_number_and_series", length="9", null="false")
+     */
+    public $id_number_and_series;
+
+    /**
+     * @var Float
+     * @Column(column="salary", length="10", null="false", decimalPoints="2")
+     */
+    public $salary;
+
+    /**
+     * @var Int
+     * @Column(column="internship_length", length="-", null="false")
+     */
+    public $internship_length;
+
+    /**
+     * @var Int
+     * @Column(column="bonus_amount", length="-", null="false")
+     */
+    public $bonus_amount;
+
+    /**
+     * @var Int
+     * @Column(column="holiday_amount", length="-", null="false")
+     */
+    public $holiday_amount;
+
+    /**
+     * @var Int
+     * @Foreign
+     * @Origin(table="shops")
+     * @Column(column="shop_id", length="-", null="true")
+     */
+    public $shop_id;
+
 }

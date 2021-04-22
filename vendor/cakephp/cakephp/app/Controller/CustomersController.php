@@ -37,6 +37,15 @@ class CustomersController extends AppController {
  */
 	public $uses = array();
 
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->loadModel("Customer");
+		//Loading password hashing function
+		//Using $this->SecurityUtils("test12345") results in: 
+		//'3321c186b19869ee1be6a1c6791e669d64f3e56ba053dfdb3431caf06dbd6fb0ec1a7736af0ea45426fefdc4dfdf23bf08e86f75addf5168cad540bddb3cf743'
+		$this->SecurityUtils = $this->Components->load('PasswordHashing');
+	}
+
 /**
  * Displays a view
  *
@@ -79,21 +88,37 @@ class CustomersController extends AppController {
 	}
 
 	public function register() {
-		$this->loadModel("Customer");
-		$customerData = $this->request["data"]["registerUserForm"];
+		$this->autoRender = false;
+		$customerRegisterData = $this->request["data"]["registerUserForm"];
+		$this->Session->write("rememberedFieldsData", $customerRegisterData); 
 
-		$this->Customer->save(array(
-			"id" => null,
-			"name" => $customerData["name"],
-			"surname" => $customerData["surname"],
-			"email" => $customerData["email"],
-			"password" => $customerData["password"],
-			"birth_date" => $customerData["birth_date"],
-			"phone_number" => $customerData["phone_number"],
-			"total_points" => 0
-		));
+		try {
+			$this->Customer->save(array(
+				"id" => null,
+				"name" => $customerRegisterData["name"],
+				"surname" => $customerRegisterData["surname"],
+				"email" => $customerRegisterData["email"],
+				"password" => $this->SecurityUtils->encrypt($customerRegisterData["password"]),
+				"birth_date" => $customerRegisterData["birth_date"],
+				"phone_number" => $customerRegisterData["phone_number"],
+				"total_points" => 0
+			));
+		} catch(Exception $e) {
+			throw new InternalErrorException;
+		}
 		
-		debug($this->Customer->find("all"));
+		$this->redirect("/home");
+	}
 
+	public function login() {
+		$this->autoRender = false;
+		$customerLoginData = $this->request["data"]["loginUserForm"];
+		if(!empty($this->Customer->find("first", array("conditions" => array("email" => $customerLoginData["email"], "password" => $this->SecurityUtils->encrypt($customerLoginData["password"])))))) {
+			echo("You are now logged in!");
+			$this->Session->write("loggedIn", true);
+		} else {
+			echo("User not found.");
+			$this->redirect("/login");
+		}
 	}
 }
