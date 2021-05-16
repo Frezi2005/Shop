@@ -29,6 +29,108 @@ App::uses('Model', 'Model');
  *
  * @package       app.Model
  */
-class OrderModel extends Model {
-    
+class Order extends Model {
+    /**
+     * @var String
+     * @Primary
+     * @Column(column="id", length="36", null="false")
+     */
+    public $id;
+
+    /**
+     * @var String
+     * @Foreign
+     * @Origin(table="customers")
+     * @Column(column="customer_id", length="36", null="true")
+     */
+    public $customer_id;
+
+    /**
+     * @var String
+     * @Column(column="country", length="56", null="true")
+     */
+    public $country;
+
+    /**
+     * @var String
+     * @Column(column="city", length="85", null="true")
+     */
+    public $city;
+
+    /**
+     * @var String
+     * @Column(column="street", length="75", null="true")
+     */
+    public $street;
+
+    /**
+     * @var String
+     * @Column(column="house_number", length="5", null="true")
+     */
+    public $house_number;
+
+    /**
+     * @var String
+     * @Column(column="products", length="255", null="false")
+     */
+    public $products;
+
+    /**
+     * @var String
+     * @Column(column="delivery_type", length="255", null="false")
+     */
+    public $delivery_type;
+
+    /**
+     * @var String
+     * @Column(column="order_date", length="-", null="false")
+     */
+    public $order_date;
+
+    /**
+     * @var String
+     * @Column(column="order_date", length="-", null="false")
+     */
+    public $shipment_date;
+
+    /**
+     * @var Int
+     * @Column(column="total_price", length="-", null="false")
+     */
+    public $total_price;
+
+    /**
+     * @var String
+     * @Column(column="payment_method", length="255", null="false")
+     */
+    public $payment_method;
+
+    /**
+     * @var Int
+     * @Column(column="order_points", length="-", null="false")
+     */
+    public $order_points;
+
+    /**
+     * @var String
+     * @Foreign
+     * @Origin(table="promo_codes")
+     * @Column(column="promo_code_id", length="36", null="true")
+     */
+    public $promo_code_id;
+
+    /**
+     * @var String
+     * @Column(column="currency", length="3", null="false")
+     */
+    public $currency;
+
+    /**
+     * @var String
+     * @Foreign
+     * @Origin(table="shops")
+     * @Column(column="shop_id", length="36", null="true")
+     */
+    public $shop_id;
+
 }

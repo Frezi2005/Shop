@@ -19,7 +19,7 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-App::uses('Model', 'Model');
+App::uses("Model", "Model");
 
 /**
  * Application model for Cake.
@@ -29,7 +29,22 @@ App::uses('Model', 'Model');
  *
  * @package       app.Model
  */
-class CustomerModel extends Model {
+class Customer extends AppModel {
+
+    public $use_table = "customers";
+    public $validate = array(
+        "name" => array(
+            "lettersOnly" => array(
+                "rule" => array("custom", "[a-zA-Z]"),
+                "required" => true,
+                "message" => "Only letters"
+            ),
+            "between" => array(
+                "rule" => array("lengthBetween", 2, 50),
+                "message" => "Between 2 to 50 characters"
+            )
+        )
+    );
 
     /**
      * @var String
@@ -111,7 +126,7 @@ class CustomerModel extends Model {
     public $total_points;
 
     /**
-     * @var Int
+     * @var String
      * @Column(column="codes_used", length="255", null="false")
      */
     public $codes_used;

@@ -29,6 +29,67 @@ App::uses('Model', 'Model');
  *
  * @package       app.Model
  */
-class ProductModel extends Model {
-    
+class Product extends Model {
+    /**
+     * @var String
+     * @Origin
+     * @Column(column="id", length="36", null="false")
+     */
+    public $id;
+
+    /**
+     * @var String
+     * @Column(column="name", length="50", null="false")
+     */
+    public $name;
+
+    /**
+     * @var String
+     * @Column(column="description", length="255", null="false")
+     */
+    public $description;
+
+    /**
+     * @var Float
+     * @Column(column="price", length="10", null="false", decimalPoints="2")
+     */
+    public $price;
+
+    /**
+     * @var String
+     * @Column(column="category_name", length="50", null="false")
+     */
+    public $category_name;
+
+    /**
+     * @var Float
+     * @Column(column="discount_value", length="3", null="false", decimalPoints="2")
+     */
+    public $discount_value;
+
+    /**
+     * @var String
+     * @Foreign
+     * @Origin(table="shops")
+     * @Column(column="shop_id", length="36", null="true")
+     */
+    public $shop_id;
+
+    /**
+     * @var Float
+     * @Column(column="tax", length="3", null="false", decimalPoints="2")
+     */
+    public $tax;
+
+    /**
+     * @var String
+     * @Column(column="image", length="255", null="false")
+     */
+    public $image;
+
+    /**
+     * @var Int
+     * @Column(column="product_count", length="-", null="false")
+     */
+    public $product_count;
 }

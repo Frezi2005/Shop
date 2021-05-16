@@ -19,7 +19,7 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-App::uses('Model', 'Model');
+App::uses("Model", "Model");
 
 /**
  * Application model for Cake.
@@ -29,43 +29,8 @@ App::uses('Model', 'Model');
  *
  * @package       app.Model
  */
-class PromoCode extends Model {
-    /**
-     * @var String
-     * @Origin
-     * @Column(column="id", length="36", null="false")
-     */
-    public $id;
+class Category extends AppModel {
 
-    /**
-     * @var String
-     * @Column(column="code", length="50", null="false")
-     */
-    public $code;
+    public $use_table = "categories";
 
-    /**
-     * @var String
-     * @Column(column="expiration_date", length="-", null="false")
-     */
-    public $expiration_date;
-
-    /**
-     * @var Float
-     * @Column(column="discount_value", length="3", null="false", decimalPoints="2")
-     */
-    public $discount_value;
-
-    /**
-     * @var Int
-     * @Column(column="code_usage_limit", length="-", null="false")
-     */
-    public $code_usage_limit;
-
-    /**
-     * @var String
-     * @Foreign
-     * @Origin(table="customers")
-     * @Column(column="customer_id", length="36", null="true")
-     */
-    public $customer_id;
 }

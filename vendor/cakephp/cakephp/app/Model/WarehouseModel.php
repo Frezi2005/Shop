@@ -29,6 +29,35 @@ App::uses('Model', 'Model');
  *
  * @package       app.Model
  */
-class WarehouseModel extends Model {
-    
+class Warehouse extends Model {
+    /**
+     * @var String
+     * @Primary
+     * @Column(column="id", length="36", null="false")
+     */
+    public $id;
+
+    /**
+     * @var String
+     * @Column(column="country", length="56", null="true")
+     */
+    public $country;
+
+    /**
+     * @var String
+     * @Column(column="city", length="85", null="true")
+     */
+    public $city;
+
+    /**
+     * @var String
+     * @Column(column="street", length="75", null="true")
+     */
+    public $street;
+
+    /**
+     * @var String
+     * @Column(column="house_number", length="5", null="true")
+     */
+    public $house_number;
 }

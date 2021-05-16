@@ -29,7 +29,7 @@ App::uses('Model', 'Model');
  *
  * @package       app.Model
  */
-class EmployeeModel extends Model {
+class Employee extends Model {
     /**
      * @var String
      * @Primary
@@ -134,10 +134,10 @@ class EmployeeModel extends Model {
     public $holiday_amount;
 
     /**
-     * @var Int
+     * @var String
      * @Foreign
      * @Origin(table="shops")
-     * @Column(column="shop_id", length="-", null="true")
+     * @Column(column="shop_id", length="36", null="true")
      */
     public $shop_id;
 

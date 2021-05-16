@@ -37,6 +37,18 @@ class FrontPagesController extends AppController {
  */
 	public $uses = array();
 
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->loadModel("Category");
+		$this->loadModel("SubCategory");
+		$this->set("categories", $this->Category->find("all"));
+		$subCategoriesArray = [];
+		foreach($this->Category->find("all") as $category) {			
+			$subCategoriesArray[$category["Category"]["id"]] = $this->SubCategory->find("all", array("conditions" => array("category_id" => $category["Category"]["id"])));
+		}
+		$this->set("subCategoriesArray", $subCategoriesArray); 
+	}
+
 /**
  * Displays a view
  *

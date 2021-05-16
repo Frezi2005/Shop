@@ -29,6 +29,74 @@ App::uses('Model', 'Model');
  *
  * @package       app.Model
  */
-class ShopModel extends Model {
-    
+class Shop extends Model {
+    /**
+     * @var String
+     * @Primary
+     * @Column(column="id", length="36", null="false")
+     */
+    public $id;
+
+    /**
+     * @var String
+     * @Column(column="name", length="255", null="false")
+     */
+    public $name;
+
+    /**
+     * @var String
+     * @Column(column="country", length="56", null="true")
+     */
+    public $country;
+
+    /**
+     * @var String
+     * @Column(column="city", length="85", null="true")
+     */
+    public $city;
+
+    /**
+     * @var Int
+     * @Column(column="employee_count", length="-", null="false")
+     */
+    public $employee_count;
+
+    /**
+     * @var String
+     * @Column(column="street", length="75", null="true")
+     */
+    public $street;
+
+    /**
+     * @var String
+     * @Column(column="house_number", length="5", null="true")
+     */
+    public $house_number;
+
+    /**
+     * @var Float
+     * @Column(column="budget", length="17", null="false", decimalPoints="2")
+     */
+    public $budget;
+
+    /**
+     * @var Float
+     * @Column(column="income", length="17", null="false", decimalPoints="2")
+     */
+    public $income;
+
+    /**
+     * @var String
+     * @Foreign
+     * @Origin(table="products")
+     * @Column(column="product_id", length="36", null="true")
+     */
+    public $product_id;
+
+    /**
+     * @var Int
+     * @Column(column="product_count", length="-", null="false")
+     */
+    public $product_count;
+
 }

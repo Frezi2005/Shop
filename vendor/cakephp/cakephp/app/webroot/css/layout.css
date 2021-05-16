@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+body {
+    background-image: url("../img/bg-pattern.png");
+}
+
+* {
+    font-family: 'Quicksand', sans-serif;
+}
+
+nav {
+    width: 100%;
+    float: left;
+    height: 75px;
+    background-image: linear-gradient(to right, #bbffc2, #adffb5, #9effa7, #8eff99, #7dfe8a);
+}
+
+nav > * {
+    float: left;
+    line-height: 75px;
+}
+
+nav .logo {
+    margin-left: 10%;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+div.searchBox {
+    position: relative;
+    height: 40px;
+    margin-top: calc((75px - 40px) / 2);
+    margin-left: 250px;
+    width: 450px;
+}
+
+nav input {
+    float: left;
+    width: 100%;
+    height: 100%;
+    border-radius: 27px;
+    border: 1px solid rgb(121, 121, 121);
+    -webkit-box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.75);
+}
+
+nav button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 40px;
+    width: 75px;
+    border: none;
+    border-radius: 27px;
+    background-color: rgb(66, 66, 66);
+    text-align: center;
+    color: white;
+    line-height: 40px;
+    font-size: 20px;
+}
+
+nav .links {
+    width: 400px;
+    float: right;
+    margin-right: 10%;
+}
+
+nav .navLink {
+    float: left;
+    margin: auto 40px;
+    width: calc(400px / 2 - 40px * 2);
+    text-align: center;
+    font-size: 20px;
+}
+
+nav .navLink a {
+    margin-left: 10px;
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
+
+ul.categoriesList {
+    border: 3px solid rgb(41, 255, 22);
+    border-radius: 27px;
+    padding: 10px;
+    padding-left: 30px;
+    margin-top: 40px;
+    float: left;
+    margin-left: 10%;
+    height: 500px;
+    width: 300px;
+    background-color: #fff;
+}
+
+ul.categoriesList li {
+    cursor: pointer;
+}
+
+ul.subCategoriesList {
+    height: 0px;
+    overflow: hidden;
+    transition: all .3s ease-in-out;
+}
+
+ul.subCategoriesList li {
+    height: 25px;
+}
+
+div#footer {
+    height: 50px;
+    width: 100%;
+    text-align: center;
+    line-height: 50px;
+    background-image: linear-gradient(to right, #bbeeff, #a1e2fe, #88d6ff, #72c8ff, #60baff);
+    position: fixed;
+    bottom: 0;
+    font-weight: bold;
+}
+
+
+
+
+
