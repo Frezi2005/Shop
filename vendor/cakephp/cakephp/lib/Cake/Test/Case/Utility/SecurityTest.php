@@ -178,7 +178,7 @@ class SecurityTest extends CakeTestCase {
  */
 	public function testHashBlowfishEmptySalt() {
 		$test = Security::hash('password', 'blowfish');
-		$this->skipIf(strpos($test, '$2a$') === false, 'Blowfish hashes are incorrect.');
+		$this->skipif (strpos($test, '$2a$') === false, 'Blowfish hashes are incorrect.');
 
 		$stored = '';
 		$hash = Security::hash('anything', 'blowfish', $stored);
@@ -198,7 +198,7 @@ class SecurityTest extends CakeTestCase {
  */
 	public function testHashBlowfish() {
 		$test = Security::hash('password', 'blowfish');
-		$this->skipIf(strpos($test, '$2a$') === false, 'Blowfish hashes are incorrect.');
+		$this->skipif (strpos($test, '$2a$') === false, 'Blowfish hashes are incorrect.');
 
 		Security::setCost(10);
 		$_hashType = Security::$hashType;
@@ -284,7 +284,7 @@ class SecurityTest extends CakeTestCase {
  * @return void
  */
 	public function testRijndael() {
-		$this->skipIf(!function_exists('mcrypt_encrypt'));
+		$this->skipif (!function_exists('mcrypt_encrypt'));
 		$txt = 'The quick brown fox jumped over the lazy dog.';
 		$key = 'DYhG93b0qyJfIxfs2guVoUubWwvniR2G0FgaC9mi';
 
@@ -308,7 +308,7 @@ class SecurityTest extends CakeTestCase {
  * @return void
  */
 	public function testRijndaelBackwardCompatibility() {
-		$this->skipIf(!function_exists('mcrypt_encrypt'));
+		$this->skipif (!function_exists('mcrypt_encrypt'));
 
 		$txt = 'The quick brown fox jumped over the lazy dog.';
 		$key = 'DYhG93b0qyJfIxfs2guVoUubWwvniR2G0FgaC9mi';
@@ -348,7 +348,7 @@ class SecurityTest extends CakeTestCase {
  * @return void
  */
 	public function testEncryptDecrypt() {
-		$this->skipIf(!extension_loaded('mcrypt'), 'This test requires mcrypt to be installed');
+		$this->skipif (!extension_loaded('mcrypt'), 'This test requires mcrypt to be installed');
 		$txt = 'The quick brown fox';
 		$key = 'This key is longer than 32 bytes long.';
 		$result = Security::encrypt($txt, $key);
@@ -365,9 +365,9 @@ class SecurityTest extends CakeTestCase {
  * @return void
  */
 	public function testEncryptDecryptCompatibility($txt) {
-		$this->skipIf(!extension_loaded('mcrypt'), 'This test requires mcrypt to be installed');
-		$this->skipIf(!extension_loaded('openssl'), 'This test requires openssl to be installed');
-		$this->skipIf(version_compare(PHP_VERSION, '5.3.3', '<'), 'This test requires PHP 5.3.3 or greater');
+		$this->skipif (!extension_loaded('mcrypt'), 'This test requires mcrypt to be installed');
+		$this->skipif (!extension_loaded('openssl'), 'This test requires openssl to be installed');
+		$this->skipif (version_compare(PHP_VERSION, '5.3.3', '<'), 'This test requires PHP 5.3.3 or greater');
 
 		$key = '12345678901234567890123456789012';
 
@@ -411,7 +411,7 @@ class SecurityTest extends CakeTestCase {
  * @return void
  */
 	public function testDecryptKeyFailure() {
-		$this->skipIf(!extension_loaded('mcrypt'), 'This test requires mcrypt to be installed');
+		$this->skipif (!extension_loaded('mcrypt'), 'This test requires mcrypt to be installed');
 		$txt = 'The quick brown fox';
 		$key = 'This key is longer than 32 bytes long.';
 		Security::encrypt($txt, $key);
@@ -426,7 +426,7 @@ class SecurityTest extends CakeTestCase {
  * @return void
  */
 	public function testDecryptHmacFailure() {
-		$this->skipIf(!extension_loaded('mcrypt'), 'This test requires mcrypt to be installed');
+		$this->skipif (!extension_loaded('mcrypt'), 'This test requires mcrypt to be installed');
 		$txt = 'The quick brown fox';
 		$key = 'This key is quite long and works well.';
 		$salt = 'this is a delicious salt!';
@@ -443,7 +443,7 @@ class SecurityTest extends CakeTestCase {
  * @return void
  */
 	public function testDecryptHmacSaltFailure() {
-		$this->skipIf(!extension_loaded('mcrypt'), 'This test requires mcrypt to be installed');
+		$this->skipif (!extension_loaded('mcrypt'), 'This test requires mcrypt to be installed');
 		$txt = 'The quick brown fox';
 		$key = 'This key is quite long and works well.';
 		$salt = 'this is a delicious salt!';
@@ -472,7 +472,7 @@ class SecurityTest extends CakeTestCase {
  * @return void
  */
 	public function testEncryptDecryptFalseyData() {
-		$this->skipIf(!extension_loaded('mcrypt'), 'This test requires mcrypt to be installed');
+		$this->skipif (!extension_loaded('mcrypt'), 'This test requires mcrypt to be installed');
 		$key = 'This is a key that is long enough to be ok.';
 
 		$result = Security::encrypt('', $key);

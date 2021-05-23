@@ -60,6 +60,20 @@ nav button {
     font-size: 20px;
 }
 
+nav select {
+    height: 40px;
+    margin-top: calc((75px - 40px) / 2);
+    margin-left: 130px;
+    border-radius: 27px;
+    border: 1px solid rgb(121, 121, 121);
+    width: 60px;
+    text-align: center;
+    appearance: none;
+    line-height: 38px;
+    background-image: linear-gradient(to right, #bbeeff, #a1e2fe, #88d6ff, #72c8ff, #60baff);
+    cursor: pointer;
+}
+
 nav .links {
     width: 400px;
     float: right;
@@ -85,7 +99,7 @@ ul.categoriesList {
     border: 3px solid rgb(41, 255, 22);
     border-radius: 27px;
     padding: 10px;
-    padding-left: 30px;
+    padding-left: 20px;
     margin-top: 40px;
     float: left;
     margin-left: 10%;
@@ -94,18 +108,33 @@ ul.categoriesList {
     background-color: #fff;
 }
 
-ul.categoriesList li {
+ul.categoriesList > div > li {
     cursor: pointer;
+    list-style-type: none;
 }
 
-ul.subCategoriesList {
-    height: 0px;
-    overflow: hidden;
-    transition: all .3s ease-in-out;
+div.category {
+    position: relative;
 }
 
-ul.subCategoriesList li {
-    height: 25px;
+div.subCategories {
+    transform: scale(0, 0);
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    left: 150px;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    transition: all .25s ease-in-out;
+    z-index: 10;
+    font-weight: bold;
+    width: 180px;
+}
+
+div.subCategories > span {
+    cursor: pointer;
+    transition: all .5s ease-in-out;
 }
 
 div#footer {

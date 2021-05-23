@@ -119,7 +119,7 @@ abstract class CakeTestCase extends PHPUnit_Framework_TestCase {
  * @param string $message The message to display.
  * @return bool
  */
-	public function skipIf($shouldSkip, $message = '') {
+	public function skipif ($shouldSkip, $message = '') {
 		if ($shouldSkip) {
 			$this->markTestSkipped($message);
 		}

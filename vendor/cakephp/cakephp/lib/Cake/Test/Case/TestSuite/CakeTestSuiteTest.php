@@ -62,7 +62,7 @@ class CakeTestSuiteTest extends CakeTestCase {
  * @return void
  */
 	public function testAddTestDirectoryRecursiveWithHidden() {
-		$this->skipIf(!is_writable(TMP), 'Cant addTestDirectoryRecursiveWithHidden unless the tmp folder is writable.');
+		$this->skipif (!is_writable(TMP), 'Cant addTestDirectoryRecursiveWithHidden unless the tmp folder is writable.');
 
 		$Folder = new Folder(TMP . 'MyTestFolder', true, 0777);
 		mkdir($Folder->path . DS . '.svn', 0777, true);
@@ -86,7 +86,7 @@ class CakeTestSuiteTest extends CakeTestCase {
  * @return void
  */
 	public function testAddTestDirectoryRecursiveWithNonPhp() {
-		$this->skipIf(!is_writable(TMP), 'Cant addTestDirectoryRecursiveWithNonPhp unless the tmp folder is writable.');
+		$this->skipif (!is_writable(TMP), 'Cant addTestDirectoryRecursiveWithNonPhp unless the tmp folder is writable.');
 
 		$Folder = new Folder(TMP . 'MyTestFolder', true, 0777);
 		touch($Folder->path . DS . 'BackupTest.php~');

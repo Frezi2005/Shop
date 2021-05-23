@@ -1,10 +1,5 @@
 <?php 
-    echo $this->Html->script("home");
     echo $this->Html->css("home");
-    
-    echo $this->fetch('meta');
-    echo $this->fetch('css');
-    echo $this->fetch('script');
 ?>
 <div class="boxRight">
     <div class="slider">

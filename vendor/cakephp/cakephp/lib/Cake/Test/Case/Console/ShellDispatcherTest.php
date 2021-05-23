@@ -440,8 +440,8 @@ class ShellDispatcherTest extends CakeTestCase {
  * @return void
  */
 	public function testGetShell() {
-		$this->skipIf(class_exists('SampleShell'), 'SampleShell Class already loaded.');
-		$this->skipIf(class_exists('ExampleShell'), 'ExampleShell Class already loaded.');
+		$this->skipif (class_exists('SampleShell'), 'SampleShell Class already loaded.');
+		$this->skipif (class_exists('ExampleShell'), 'ExampleShell Class already loaded.');
 
 		$Dispatcher = new TestShellDispatcher();
 

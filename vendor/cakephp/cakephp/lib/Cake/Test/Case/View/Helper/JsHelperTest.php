@@ -360,7 +360,7 @@ class JsHelperTest extends CakeTestCase {
  * @return void
  */
 	public function testWriteScriptsInFile() {
-		$this->skipIf(!is_writable(WWW_ROOT . 'js'), 'webroot/js is not Writable, script caching test has been skipped.');
+		$this->skipif (!is_writable(WWW_ROOT . 'js'), 'webroot/js is not Writable, script caching test has been skipped.');
 
 		Configure::write('Cache.disable', false);
 		$this->Js->request->webroot = '/';

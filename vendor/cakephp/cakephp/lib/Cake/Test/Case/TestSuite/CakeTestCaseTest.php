@@ -295,7 +295,7 @@ class CakeTestCaseTest extends CakeTestCase {
  *
  * @return void
  */
-	public function testSkipIf() {
+	public function testSkipif () {
 		$test = new FixturizedTestCase('testSkipIfTrue');
 		$result = $test->run();
 		$this->assertEquals(1, $result->skippedCount());

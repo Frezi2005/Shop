@@ -564,7 +564,7 @@ class CakeSchemaTest extends CakeTestCase {
  */
 	public function testSchemaReadWithOddTablePrefix() {
 		$config = ConnectionManager::getDataSource('test')->config;
-		$this->skipIf(!empty($config['prefix']), 'This test can not be executed with datasource prefix set.');
+		$this->skipif (!empty($config['prefix']), 'This test can not be executed with datasource prefix set.');
 
 		$SchemaPost = ClassRegistry::init('SchemaPost');
 		$SchemaPost->tablePrefix = 'po';
@@ -585,7 +585,7 @@ class CakeSchemaTest extends CakeTestCase {
  */
 	public function testSchemaReadWithTablePrefix() {
 		$config = ConnectionManager::getDataSource('test')->config;
-		$this->skipIf(!empty($config['prefix']), 'This test can not be executed with datasource prefix set.');
+		$this->skipif (!empty($config['prefix']), 'This test can not be executed with datasource prefix set.');
 
 		$Schema = new CakeSchema();
 		$read = $Schema->read(array(
@@ -603,11 +603,11 @@ class CakeSchemaTest extends CakeTestCase {
  * @return void
  */
 	public function testSchemaReadWithConfigPrefix() {
-		$this->skipIf($this->db instanceof Sqlite, 'Cannot open 2 connections to Sqlite');
+		$this->skipif ($this->db instanceof Sqlite, 'Cannot open 2 connections to Sqlite');
 
 		$db = ConnectionManager::getDataSource('test');
 		$config = $db->config;
-		$this->skipIf(!empty($config['prefix']), 'This test can not be executed with datasource prefix set.');
+		$this->skipif (!empty($config['prefix']), 'This test can not be executed with datasource prefix set.');
 
 		$config['prefix'] = 'schema_test_prefix_';
 		ConnectionManager::create('schema_prefix', $config);
@@ -659,7 +659,7 @@ class CakeSchemaTest extends CakeTestCase {
  */
 	public function testSchemaReadWithCrossDatabase() {
 		$config = ConnectionManager::enumConnectionObjects();
-		$this->skipIf(
+		$this->skipif (
 			!isset($config['test']) || !isset($config['test2']),
 			'Primary and secondary test databases not configured, ' .
 			'skipping cross-database join tests. ' .

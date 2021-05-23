@@ -62,12 +62,12 @@ class MemcachedEngineTest extends CakeTestCase {
  */
 	public function setUp() {
 		parent::setUp();
-		$this->skipIf(!class_exists('Memcached'), 'Memcached is not installed or configured properly.');
+		$this->skipif (!class_exists('Memcached'), 'Memcached is not installed or configured properly.');
 
 		// @codingStandardsIgnoreStart
 		$socket = @fsockopen('127.0.0.1', 11211, $errno, $errstr, 1);
 		// @codingStandardsIgnoreEnd
-		$this->skipIf(!$socket, 'Memcached is not running.');
+		$this->skipif (!$socket, 'Memcached is not running.');
 		fclose($socket);
 
 		Cache::config('memcached', array(
@@ -201,7 +201,7 @@ class MemcachedEngineTest extends CakeTestCase {
  * @return void
  */
 	public function testJsonSerializerSetting() {
-		$this->skipIf(
+		$this->skipif (
 			!Memcached::HAVE_JSON,
 			'Memcached extension is not compiled with json support'
 		);
@@ -224,7 +224,7 @@ class MemcachedEngineTest extends CakeTestCase {
  * @return void
  */
 	public function testIgbinarySerializerSetting() {
-		$this->skipIf(
+		$this->skipif (
 			!Memcached::HAVE_IGBINARY,
 			'Memcached extension is not compiled with igbinary support'
 		);
@@ -247,7 +247,7 @@ class MemcachedEngineTest extends CakeTestCase {
  * @return void
  */
 	public function testMsgpackSerializerSetting() {
-		$this->skipIf(
+		$this->skipif (
 			!defined('Memcached::HAVE_MSGPACK') || !Memcached::HAVE_MSGPACK,
 			'Memcached extension is not compiled with msgpack support'
 		);
@@ -270,7 +270,7 @@ class MemcachedEngineTest extends CakeTestCase {
  * @return void
  */
 	public function testJsonSerializerThrowException() {
-		$this->skipIf(
+		$this->skipif (
 			Memcached::HAVE_JSON,
 			'Memcached extension is compiled with json support'
 		);
@@ -295,7 +295,7 @@ class MemcachedEngineTest extends CakeTestCase {
  * @return void
  */
 	public function testMsgpackSerializerThrowException() {
-		$this->skipIf(
+		$this->skipif (
 			defined('Memcached::HAVE_MSGPACK') && Memcached::HAVE_MSGPACK,
 			'Memcached extension is compiled with msgpack support'
 		);
@@ -320,7 +320,7 @@ class MemcachedEngineTest extends CakeTestCase {
  * @return void
  */
 	public function testIgbinarySerializerThrowException() {
-		$this->skipIf(
+		$this->skipif (
 			Memcached::HAVE_IGBINARY,
 			'Memcached extension is compiled with igbinary support'
 		);
@@ -346,7 +346,7 @@ class MemcachedEngineTest extends CakeTestCase {
  * @return void
  */
 	public function testSaslAuthException() {
-		$this->skipIf(version_compare(PHP_VERSION, '7.0.0', '>='));
+		$this->skipif (version_compare(PHP_VERSION, '7.0.0', '>='));
 		$Memcached = new TestMemcachedEngine();
 		$settings = array(
 			'engine' => 'Memcached',
@@ -379,7 +379,7 @@ class MemcachedEngineTest extends CakeTestCase {
 			//@codingStandardsIgnoreEnd
 		}
 
-		$this->skipIf(!$available, 'Need memcached servers at ' . implode(', ', $servers) . ' to run this test.');
+		$this->skipif (!$available, 'Need memcached servers at ' . implode(', ', $servers) . ' to run this test.');
 
 		$Memcached = new MemcachedEngine();
 		$Memcached->init(array('engine' => 'Memcached', 'servers' => $servers));

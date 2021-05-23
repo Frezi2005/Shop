@@ -18,7 +18,7 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-App::uses('AppController', 'Controller');
+App::uses("AppController", "Controller");
 
 /**
  * Static content controller
@@ -41,9 +41,9 @@ class CustomersController extends AppController {
 		parent::beforeFilter();
 		//Loading password hashing function
 		//Using $this->SecurityUtils("test12345") results in: 
-		//'3321c186b19869ee1be6a1c6791e669d64f3e56ba053dfdb3431caf06dbd6fb0ec1a7736af0ea45426fefdc4dfdf23bf08e86f75addf5168cad540bddb3cf743'
-		$this->SecurityUtils = $this->Components->load('PasswordHashing');
-		App::uses('CakeEmail', 'Network/Email');
+		//"3321c186b19869ee1be6a1c6791e669d64f3e56ba053dfdb3431caf06dbd6fb0ec1a7736af0ea45426fefdc4dfdf23bf08e86f75addf5168cad540bddb3cf743"
+		$this->SecurityUtils = $this->Components->load("PasswordHashing");
+		App::uses("CakeEmail", "Network/Email");
 	}
 
 /**
@@ -59,9 +59,9 @@ class CustomersController extends AppController {
 
 		$count = count($path);
 		if (!$count) {
-			return $this->redirect('/');
+			return $this->redirect("/");
 		}
-		if (in_array('..', $path, true) || in_array('.', $path, true)) {
+		if (in_array("..", $path, true) || in_array(".", $path, true)) {
 			throw new ForbiddenException();
 		}
 		$page = $subpage = $title_for_layout = null;
@@ -75,12 +75,12 @@ class CustomersController extends AppController {
 		if (!empty($path[$count - 1])) {
 			$title_for_layout = Inflector::humanize($path[$count - 1]);
 		}
-		$this->set(compact('page', 'subpage', 'title_for_layout'));
+		$this->set(compact("page", "subpage", "title_for_layout"));
 
 		try {
-			$this->render(implode('/', $path));
+			$this->render(implode("/", $path));
 		} catch (MissingViewException $e) {
-			if (Configure::read('debug')) {
+			if (Configure::read("debug")) {
 				throw $e;
 			}
 			throw new NotFoundException();
@@ -97,7 +97,7 @@ class CustomersController extends AppController {
 
 		//debug($this->Customer);
 
-		// if($this->Customer->validates(array("fieldList" => array("name")))) {
+		// if ($this->Customer->validates(array("fieldList" => array("name")))) {
 		// 	debug("validated");
 		// 	die;
 		// } else {
@@ -109,19 +109,19 @@ class CustomersController extends AppController {
 		$email->from(array("internetspam.pl@gmail.com" => "My Site"));
 		$email->to("kamil.wan05@gmail.com");
 		$email->subject("Email");
-		if(!$email->send("Test email message")) {
+		if (!$email->send("Test email message")) {
 			echo "Nie wysłane";
 		} else {
 			echo "Wysłane";
 		}
 		die;
 
-		// $to      = 'krycha120@op.pl';
-		// $subject = 'the subject';
-		// $message = 'hello';
-		// $headers = 'From: kamil.wan05@gmail.com' . "\r\n" .
-		// 	'Reply-To: kamil.wan05@gmail.com' . "\r\n" .
-		// 	'X-Mailer: PHP/' . phpversion();
+		// $to      = "krycha120@op.pl";
+		// $subject = "the subject";
+		// $message = "hello";
+		// $headers = "From: kamil.wan05@gmail.com" . "\r\n" .
+		// 	"Reply-To: kamil.wan05@gmail.com" . "\r\n" .
+		// 	"X-Mailer: PHP/" . phpversion();
 
 		// mail($to, $subject, $message, $headers);
 
@@ -148,7 +148,7 @@ class CustomersController extends AppController {
 	public function login() {
 		$this->autoRender = false;
 		$customerLoginData = $this->request["data"]["loginUserForm"];
-		if(!empty($this->Customer->find("first", array("conditions" => array("email" => $customerLoginData["email"], "password" => $this->SecurityUtils->encrypt($customerLoginData["password"])))))) {
+		if (!empty($this->Customer->find("first", array("conditions" => array("email" => $customerLoginData["email"], "password" => $this->SecurityUtils->encrypt($customerLoginData["password"])))))) {
 			echo("You are now logged in!");
 			$this->Session->write("loggedIn", true);
 		} else {

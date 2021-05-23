@@ -547,7 +547,7 @@ SQL;
  */
 	public function testNestedTransaction() {
 		$this->Dbo->useNestedTransactions = true;
-		$this->skipIf($this->Dbo->nestedTransactionSupported() === false, 'The Sqlite version do not support nested transaction');
+		$this->skipif ($this->Dbo->nestedTransactionSupported() === false, 'The Sqlite version do not support nested transaction');
 
 		$this->loadFixtures('User');
 		$model = new User();

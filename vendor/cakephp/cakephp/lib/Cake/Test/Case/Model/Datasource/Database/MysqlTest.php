@@ -150,11 +150,11 @@ class MysqlTest extends CakeTestCase {
  * @return void
  */
 	public function testLocalizedFloats() {
-		$this->skipIf(DS === '\\', 'The locale is not supported in Windows and affect the others tests.');
+		$this->skipif (DS === '\\', 'The locale is not supported in Windows and affect the others tests.');
 
 		$restore = setlocale(LC_NUMERIC, 0);
 
-		$this->skipIf(setlocale(LC_NUMERIC, 'de_DE') === false, "The German locale isn't available.");
+		$this->skipif (setlocale(LC_NUMERIC, 'de_DE') === false, "The German locale isn't available.");
 
 		$result = $this->Dbo->value(3.141593);
 		$this->assertEquals('3.141593', $result);
@@ -907,7 +907,7 @@ SQL;
  */
 	public function testDescribeHandleCurrentTimestampDatetime() {
 		$mysqlVersion = $this->Dbo->query('SELECT VERSION() as version', array('log' => false));
-		$this->skipIf(version_compare($mysqlVersion[0][0]['version'], '5.6.0', '<'));
+		$this->skipif (version_compare($mysqlVersion[0][0]['version'], '5.6.0', '<'));
 
 		$name = $this->Dbo->fullTableName('timestamp_default_values');
 		$sql = <<<SQL
@@ -4122,7 +4122,7 @@ SQL;
 		$this->Dbo->useNestedTransactions = true;
 		if ($this->Dbo->nestedTransactionSupported() === false) {
 			$this->Dbo->useNestedTransactions = $nested;
-			$this->skipIf(true, 'The MySQL server do not support nested transaction');
+			$this->skipif (true, 'The MySQL server do not support nested transaction');
 		}
 
 		$this->loadFixtures('Inno');

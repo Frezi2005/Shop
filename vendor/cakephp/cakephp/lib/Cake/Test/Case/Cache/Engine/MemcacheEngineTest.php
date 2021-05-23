@@ -56,7 +56,7 @@ class MemcacheEngineTest extends CakeTestCase {
  */
 	public function setUp() {
 		parent::setUp();
-		$this->skipIf(!class_exists('Memcache'), 'Memcache is not installed or configured properly.');
+		$this->skipif (!class_exists('Memcache'), 'Memcache is not installed or configured properly.');
 
 		$this->_cacheDisable = Configure::read('Cache.disable');
 		Configure::write('Cache.disable', false);
@@ -121,7 +121,7 @@ class MemcacheEngineTest extends CakeTestCase {
 			//@codingStandardsIgnoreEnd
 		}
 
-		$this->skipIf(!$available, 'Need memcache servers at ' . implode(', ', $servers) . ' to run this test.');
+		$this->skipif (!$available, 'Need memcache servers at ' . implode(', ', $servers) . ' to run this test.');
 
 		$Memcache = new MemcacheEngine();
 		$Memcache->init(array('engine' => 'Memcache', 'servers' => $servers));

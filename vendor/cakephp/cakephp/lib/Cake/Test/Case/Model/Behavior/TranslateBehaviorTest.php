@@ -1454,7 +1454,7 @@ class TranslateBehaviorTest extends CakeTestCase {
 	}
 
 	public function testBeforeFindAllI18nConditions() {
-		$this->skipIf(!$this->db instanceof Mysql, 'This test is only compatible with Mysql.');
+		$this->skipif (!$this->db instanceof Mysql, 'This test is only compatible with Mysql.');
 		$dbName = $this->db->config['database'];
 
 		$this->loadFixtures('TranslateArticle', 'TranslatedArticle', 'User');
@@ -1538,7 +1538,7 @@ class TranslateBehaviorTest extends CakeTestCase {
 	}
 
 	public function testBeforeFindCountI18nConditions() {
-		$this->skipIf(!$this->db instanceof Mysql, 'This test is only compatible with Mysql.');
+		$this->skipif (!$this->db instanceof Mysql, 'This test is only compatible with Mysql.');
 		$dbName = $this->db->config['database'];
 
 		$this->loadFixtures('TranslateArticle', 'TranslatedArticle', 'User');

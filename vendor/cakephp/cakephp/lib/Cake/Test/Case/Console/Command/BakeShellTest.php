@@ -75,7 +75,7 @@ class BakeShellTest extends CakeTestCase {
 	public function testAllWithModelName() {
 		App::uses('User', 'Model');
 		$userExists = class_exists('User');
-		$this->skipIf($userExists, 'User class exists, cannot test `bake all [param]`.');
+		$this->skipif ($userExists, 'User class exists, cannot test `bake all [param]`.');
 
 		$this->Shell->Model = $this->getMock('ModelTask', array(), array(&$this->Dispatcher));
 		$this->Shell->Controller = $this->getMock('ControllerTask', array(), array(&$this->Dispatcher));

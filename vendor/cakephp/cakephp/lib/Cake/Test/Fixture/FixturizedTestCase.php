@@ -36,7 +36,7 @@ class FixturizedTestCase extends CakeTestCase {
  * @return void
  */
 	public function testSkipIfTrue() {
-		$this->skipIf(true);
+		$this->skipif (true);
 	}
 
 /**
@@ -45,7 +45,7 @@ class FixturizedTestCase extends CakeTestCase {
  * @return void
  */
 	public function testSkipIfFalse() {
-		$this->skipIf(false);
+		$this->skipif (false);
 	}
 
 /**

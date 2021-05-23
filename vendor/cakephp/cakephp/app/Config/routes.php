@@ -21,20 +21,21 @@
  */
  
 /**
- * Here, we are connecting '/' (base path) to controller called 'Pages',
- * its action called 'display', and we pass a param to select the view file
+ * Here, we are connecting "/" (base path) to controller called "Pages",
+ * its action called "display", and we pass a param to select the view file
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
-	Router::connect('/', array('controller' => 'frontPages', 'action' => 'home'));
-	Router::connect('/home', array('controller' => 'frontPages', 'action' => 'home'));
-	Router::connect('/register', array('controller' => 'frontPages', 'action' => 'registerPage'));
-	Router::connect('/register-customer', array('controller' => 'customers', 'action' => 'register'));
-	Router::connect('/login', array('controller' => 'frontPages', 'action' => 'loginPage'));
-	Router::connect('/login-customer', array('controller' => 'customers', 'action' => 'login'));
+	Router::connect("/", array("controller" => "frontPages", "action" => "home"));
+	Router::connect("/home", array("controller" => "frontPages", "action" => "home"));
+	Router::connect("/register", array("controller" => "frontPages", "action" => "registerPage"));
+	Router::connect("/register-customer", array("controller" => "customers", "action" => "register"));
+	Router::connect("/login", array("controller" => "frontPages", "action" => "loginPage"));
+	Router::connect("/login-customer", array("controller" => "customers", "action" => "login"));
+	Router::connect("/get-sub-categories", array("controller" => "frontPages", "action" => "getSubCategories"));
 /**
- * ...and connect the rest of 'Pages' controller's URLs.
+ * ...and connect the rest of "Pages" controller"s URLs.
  */
-	//Router::connect('/frontPages/*', array('controller' => 'frontPages', 'action' => 'display'));
+	//Router::connect("/frontPages/*", array("controller" => "frontPages", "action" => "display"));
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on
@@ -46,4 +47,4 @@
  * Load the CakePHP default routes. Only remove this if you do not want to use
  * the built-in default routes.
  */
-	require CAKE . 'Config' . DS . 'routes.php';
+	require CAKE . "Config" . DS . "routes.php";

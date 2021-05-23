@@ -1399,7 +1399,7 @@ class HashTest extends CakeTestCase {
 		$oldLocale = setlocale(LC_COLLATE, '0');
 
 		$updated = setlocale(LC_COLLATE, 'de_DE.utf8');
-		$this->skipIf($updated === false, 'Could not set locale to de_DE.utf8, skipping test.');
+		$this->skipif ($updated === false, 'Could not set locale to de_DE.utf8, skipping test.');
 
 		$items = array(
 			array('Item' => array('entry' => 'Übergabe')),

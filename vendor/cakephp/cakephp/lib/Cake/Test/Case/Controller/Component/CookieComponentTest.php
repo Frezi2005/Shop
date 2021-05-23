@@ -238,7 +238,7 @@ class CookieComponentTest extends CakeTestCase {
  * @return void
  */
 	public function testWriteWithFalseyValue() {
-		$this->skipIf(!extension_loaded('mcrypt'), 'No Mcrypt, skipping.');
+		$this->skipif (!extension_loaded('mcrypt'), 'No Mcrypt, skipping.');
 		$this->Cookie->type('aes');
 		$this->Cookie->key = 'qSI232qs*&sXOw!adre@34SAv!@*(XSL#$%)asGb$@11~_+!@#HKis~#^';
 

@@ -514,7 +514,7 @@ class CakeEmailTest extends CakeTestCase {
  * @return void
  */
 	public function testFormatAddressJapanese() {
-		$this->skipIf(!function_exists('mb_convert_encoding'));
+		$this->skipif (!function_exists('mb_convert_encoding'));
 
 		$this->CakeEmail->headerCharset = 'ISO-2022-JP';
 		$result = $this->CakeEmail->formatAddress(array('cake@cakephp.org' => '日本語Test'));
@@ -661,7 +661,7 @@ class CakeEmailTest extends CakeTestCase {
  * @return void
  */
 	public function testSubjectJapanese() {
-		$this->skipIf(!function_exists('mb_convert_encoding'));
+		$this->skipif (!function_exists('mb_convert_encoding'));
 		mb_internal_encoding('UTF-8');
 
 		$this->CakeEmail->headerCharset = 'ISO-2022-JP';
@@ -1517,7 +1517,7 @@ class CakeEmailTest extends CakeTestCase {
  * @return void
  */
 	public function testSendRenderJapanese() {
-		$this->skipIf(!function_exists('mb_convert_encoding'));
+		$this->skipif (!function_exists('mb_convert_encoding'));
 
 		$this->CakeEmail->reset();
 		$this->CakeEmail->transport('debug');
@@ -1606,7 +1606,7 @@ class CakeEmailTest extends CakeTestCase {
  * @return void
  */
 	public function testSendRenderWithVarsJapanese() {
-		$this->skipIf(!function_exists('mb_convert_encoding'));
+		$this->skipif (!function_exists('mb_convert_encoding'));
 		$this->CakeEmail->reset();
 		$this->CakeEmail->transport('debug');
 
@@ -2129,7 +2129,7 @@ class CakeEmailTest extends CakeTestCase {
  * @return void
  */
 	public function testHeaderEncoding() {
-		$this->skipIf(!function_exists('mb_convert_encoding'));
+		$this->skipif (!function_exists('mb_convert_encoding'));
 		$email = new CakeEmail(array('headerCharset' => 'iso-2022-jp-ms', 'transport' => 'Debug'));
 		$email->subject('あれ？もしかしての前と');
 		$headers = $email->getHeaders(array('subject'));
@@ -2147,7 +2147,7 @@ class CakeEmailTest extends CakeTestCase {
  * @return void
  */
 	public function testBodyEncoding() {
-		$this->skipIf(!function_exists('mb_convert_encoding'));
+		$this->skipif (!function_exists('mb_convert_encoding'));
 		$email = new CakeEmail(array(
 			'charset' => 'iso-2022-jp',
 			'headerCharset' => 'iso-2022-jp-ms',
@@ -2170,7 +2170,7 @@ class CakeEmailTest extends CakeTestCase {
  * @return void
  */
 	public function testBodyEncodingIso2022Jp() {
-		$this->skipIf(!function_exists('mb_convert_encoding'));
+		$this->skipif (!function_exists('mb_convert_encoding'));
 		$email = new CakeEmail(array(
 			'charset' => 'iso-2022-jp',
 			'headerCharset' => 'iso-2022-jp',
@@ -2194,7 +2194,7 @@ class CakeEmailTest extends CakeTestCase {
  * @return void
  */
 	public function testBodyEncodingIso2022JpMs() {
-		$this->skipIf(!function_exists('mb_convert_encoding'));
+		$this->skipif (!function_exists('mb_convert_encoding'));
 		$email = new CakeEmail(array(
 			'charset' => 'iso-2022-jp-ms',
 			'headerCharset' => 'iso-2022-jp-ms',
@@ -2245,7 +2245,7 @@ class CakeEmailTest extends CakeTestCase {
  * @return void
  */
 	public function testEncode() {
-		$this->skipIf(!function_exists('mb_convert_encoding'));
+		$this->skipif (!function_exists('mb_convert_encoding'));
 
 		$this->CakeEmail->headerCharset = 'ISO-2022-JP';
 		$result = $this->CakeEmail->encode('日本語');
@@ -2300,7 +2300,7 @@ class CakeEmailTest extends CakeTestCase {
  * @return void
  */
 	public function testCharsetsCompatible() {
-		$this->skipIf(!function_exists('mb_convert_encoding'));
+		$this->skipif (!function_exists('mb_convert_encoding'));
 
 		$checkHeaders = array(
 			'from' => true,
@@ -2499,7 +2499,7 @@ HTML;
  * @return void
  */
 	public function testWrapForJapaneseEncoding() {
-		$this->skipIf(!function_exists('mb_convert_encoding'));
+		$this->skipif (!function_exists('mb_convert_encoding'));
 
 		$message = mb_convert_encoding('受け付けました', 'iso-2022-jp', 'UTF-8');
 

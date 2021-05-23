@@ -629,7 +629,7 @@ HTMLBLOC;
  * @return void
  */
 	public function testEncodeSettingInternalCharset() {
-		$this->skipIf(!function_exists('mb_internal_encoding'), 'Missing mb_* functions, cannot run test.');
+		$this->skipif (!function_exists('mb_internal_encoding'), 'Missing mb_* functions, cannot run test.');
 
 		$restore = mb_internal_encoding();
 		mb_internal_encoding('ISO-8859-1');

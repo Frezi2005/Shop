@@ -18,7 +18,7 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-App::uses('AppController', 'Controller');
+App::uses("AppController", "Controller");
 
 /**
  * Static content controller
@@ -40,13 +40,7 @@ class FrontPagesController extends AppController {
 	public function beforeFilter() {
 		parent::beforeFilter();
 		$this->loadModel("Category");
-		$this->loadModel("SubCategory");
 		$this->set("categories", $this->Category->find("all"));
-		$subCategoriesArray = [];
-		foreach($this->Category->find("all") as $category) {			
-			$subCategoriesArray[$category["Category"]["id"]] = $this->SubCategory->find("all", array("conditions" => array("category_id" => $category["Category"]["id"])));
-		}
-		$this->set("subCategoriesArray", $subCategoriesArray); 
 	}
 
 /**
@@ -62,9 +56,9 @@ class FrontPagesController extends AppController {
 
 		$count = count($path);
 		if (!$count) {
-			return $this->redirect('/');
+			return $this->redirect("/");
 		}
-		if (in_array('..', $path, true) || in_array('.', $path, true)) {
+		if (in_array("..", $path, true) || in_array(".", $path, true)) {
 			throw new ForbiddenException();
 		}
 		$page = $subpage = $title_for_layout = null;
@@ -78,27 +72,39 @@ class FrontPagesController extends AppController {
 		if (!empty($path[$count - 1])) {
 			$title_for_layout = Inflector::humanize($path[$count - 1]);
 		}
-		$this->set(compact('page', 'subpage', 'title_for_layout'));
+		$this->set(compact("page", "subpage", "title_for_layout"));
 
 		try {
-			$this->render(implode('/', $path));
+			$this->render(implode("/", $path));
 		} catch (MissingViewException $e) {
-			if (Configure::read('debug')) {
+			if (Configure::read("debug")) {
 				throw $e;
 			}
 			throw new NotFoundException();
 		}
 	}
 
-	public function home() {
+	public function home() 
+	{
 		
 	}
 
-	public function registerPage() {
+	public function registerPage() 
+	{
 
 	}
 
-	public function loginPage() {
+	public function loginPage() 
+	{
 
+	}
+
+	public function getSubCategories()
+	{
+		$this->autoRender = false;
+		$this->loadModel("SubCategory");
+		$subCategories = [];
+		$subCategories[$this->params["url"]["category-id"]] = $this->SubCategory->find("all", array("conditions" => array("category_id" => $this->params["url"]["category-id"])));
+		return json_encode($subCategories);
 	}
 }

@@ -40,10 +40,10 @@ class ApcEngineTest extends CakeTestCase {
 	public function setUp() {
 		parent::setUp();
 		$hasApc = extension_loaded('apc') || extension_loaded('apcu');
-		$this->skipIf(!$hasApc, 'Apc is not installed or configured properly.');
+		$this->skipif (!$hasApc, 'Apc is not installed or configured properly.');
 
 		if (PHP_SAPI === 'cli') {
-			$this->skipIf(!ini_get('apc.enable_cli'), 'APC is not enabled for the CLI.');
+			$this->skipif (!ini_get('apc.enable_cli'), 'APC is not enabled for the CLI.');
 		}
 
 		if (extension_loaded('apcu')) {
@@ -160,7 +160,7 @@ class ApcEngineTest extends CakeTestCase {
  */
 	public function testDecrement() {
 		$hasSupport = function_exists('apc_dec') || function_exists('apcu_dec');
-		$this->skipIf(!$hasSupport, 'No apc_dec()/apcu_dec() function, cannot test decrement().');
+		$this->skipif (!$hasSupport, 'No apc_dec()/apcu_dec() function, cannot test decrement().');
 
 		$result = Cache::write('test_decrement', 5, 'apc');
 		$this->assertTrue($result);
@@ -185,7 +185,7 @@ class ApcEngineTest extends CakeTestCase {
  */
 	public function testIncrement() {
 		$hasSupport = function_exists('apc_inc') || function_exists('apcu_inc');
-		$this->skipIf(!function_exists('apc_inc'), 'No apc_inc()/apcu_inc() function, cannot test increment().');
+		$this->skipif (!function_exists('apc_inc'), 'No apc_inc()/apcu_inc() function, cannot test increment().');
 
 		$result = Cache::write('test_increment', 5, 'apc');
 		$this->assertTrue($result);

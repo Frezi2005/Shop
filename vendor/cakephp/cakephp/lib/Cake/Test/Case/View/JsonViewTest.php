@@ -200,7 +200,7 @@ class JsonViewTest extends CakeTestCase {
  * @return void
  */
 	public function testRenderWithoutViewJsonOptions() {
-		$this->skipIf(!version_compare(PHP_VERSION, '5.3.0', '>='), 'Needs PHP5.3+ for these constants to be tested');
+		$this->skipif (!version_compare(PHP_VERSION, '5.3.0', '>='), 'Needs PHP5.3+ for these constants to be tested');
 
 		$Request = new CakeRequest();
 		$Response = new CakeResponse();

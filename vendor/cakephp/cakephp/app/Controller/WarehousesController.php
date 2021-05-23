@@ -18,7 +18,7 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-App::uses('AppController', 'Controller');
+App::uses("AppController", "Controller");
 
 /**
  * Static content controller
@@ -50,9 +50,9 @@ class WarehousesController extends AppController {
 
 		$count = count($path);
 		if (!$count) {
-			return $this->redirect('/');
+			return $this->redirect("/");
 		}
-		if (in_array('..', $path, true) || in_array('.', $path, true)) {
+		if (in_array("..", $path, true) || in_array(".", $path, true)) {
 			throw new ForbiddenException();
 		}
 		$page = $subpage = $title_for_layout = null;
@@ -66,12 +66,12 @@ class WarehousesController extends AppController {
 		if (!empty($path[$count - 1])) {
 			$title_for_layout = Inflector::humanize($path[$count - 1]);
 		}
-		$this->set(compact('page', 'subpage', 'title_for_layout'));
+		$this->set(compact("page", "subpage", "title_for_layout"));
 
 		try {
-			$this->render(implode('/', $path));
+			$this->render(implode("/", $path));
 		} catch (MissingViewException $e) {
-			if (Configure::read('debug')) {
+			if (Configure::read("debug")) {
 				throw $e;
 			}
 			throw new NotFoundException();

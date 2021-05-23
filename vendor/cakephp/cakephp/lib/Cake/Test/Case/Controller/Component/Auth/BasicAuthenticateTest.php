@@ -320,7 +320,7 @@ class BasicAuthenticateTest extends CakeTestCase {
  */
 	public function testAuthenticateWithBlowfish() {
 		$hash = Security::hash('password', 'blowfish');
-		$this->skipIf(strpos($hash, '$2a$') === false, 'Skipping blowfish tests as hashing is not working');
+		$this->skipif (strpos($hash, '$2a$') === false, 'Skipping blowfish tests as hashing is not working');
 
 		$request = new CakeRequest('posts/index', false);
 		$request->addParams(array('pass' => array(), 'named' => array()));

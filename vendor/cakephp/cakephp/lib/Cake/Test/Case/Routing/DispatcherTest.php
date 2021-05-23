@@ -1124,7 +1124,7 @@ class DispatcherTest extends CakeTestCase {
  */
 	public function testPluginShortCutUrlsWithControllerThatNeedsToBeLoaded() {
 		$loaded = class_exists('TestPluginController', false);
-		$this->skipIf($loaded, 'TestPluginController already loaded.');
+		$this->skipif ($loaded, 'TestPluginController already loaded.');
 
 		Router::reload();
 		App::build(array(

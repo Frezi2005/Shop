@@ -230,7 +230,7 @@ class CakeEventManagerTest extends CakeTestCase {
  * @triggers fake.event
  */
 	public function testDispatchReturnValue() {
-		$this->skipIf(
+		$this->skipif (
 			version_compare(PHPUnit_Runner_Version::id(), '3.7', '<'),
 			'These tests fail in PHPUnit 3.6'
 		);
@@ -258,7 +258,7 @@ class CakeEventManagerTest extends CakeTestCase {
  * @triggers fake.event
  */
 	public function testDispatchFalseStopsEvent() {
-		$this->skipIf(
+		$this->skipif (
 			version_compare(PHPUnit_Runner_Version::id(), '3.7', '<'),
 			'These tests fail in PHPUnit 3.6'
 		);

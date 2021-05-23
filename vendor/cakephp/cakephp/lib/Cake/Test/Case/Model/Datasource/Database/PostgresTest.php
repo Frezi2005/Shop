@@ -218,7 +218,7 @@ class PostgresTest extends CakeTestCase {
 		parent::setUp();
 		Configure::write('Cache.disable', true);
 		$this->Dbo = ConnectionManager::getDataSource('test');
-		$this->skipIf(!($this->Dbo instanceof Postgres));
+		$this->skipif (!($this->Dbo instanceof Postgres));
 		$this->Dbo2 = new DboPostgresTestDb($this->Dbo->config, false);
 		$this->model = new PostgresTestModel();
 	}
@@ -351,7 +351,7 @@ class PostgresTest extends CakeTestCase {
 	public function testLocalizedFloats() {
 		$restore = setlocale(LC_NUMERIC, 0);
 
-		$this->skipIf(setlocale(LC_NUMERIC, 'de_DE') === false, "The German locale isn't available.");
+		$this->skipif (setlocale(LC_NUMERIC, 'de_DE') === false, "The German locale isn't available.");
 
 		$result = $this->db->value(3.141593, 'float');
 		$this->assertEquals("3.141593", $result);
@@ -1054,7 +1054,7 @@ class PostgresTest extends CakeTestCase {
  */
 	public function testNestedTransaction() {
 		$this->Dbo->useNestedTransactions = true;
-		$this->skipIf($this->Dbo->nestedTransactionSupported() === false, 'The Postgres server do not support nested transaction');
+		$this->skipif ($this->Dbo->nestedTransactionSupported() === false, 'The Postgres server do not support nested transaction');
 
 		$this->loadFixtures('Article');
 		$model = new Article();
@@ -1106,7 +1106,7 @@ class PostgresTest extends CakeTestCase {
 	public function testSettings() {
 		Configure::write('Cache.disable', true);
 		$this->Dbo = ConnectionManager::getDataSource('test');
-		$this->skipIf(!($this->Dbo instanceof Postgres));
+		$this->skipif (!($this->Dbo instanceof Postgres));
 
 		$config2 = $this->Dbo->config;
 		$config2['settings']['datestyle'] = 'sql, dmy';

@@ -250,7 +250,7 @@ class FolderTest extends CakeTestCase {
  * @return void
  */
 	public function testRecursiveCreateFailure() {
-		$this->skipIf(DIRECTORY_SEPARATOR === '\\', 'Cant perform operations using permissions on Windows.');
+		$this->skipif (DIRECTORY_SEPARATOR === '\\', 'Cant perform operations using permissions on Windows.');
 
 		$path = TMP . 'tests' . DS . 'one';
 		mkdir($path);
@@ -345,7 +345,7 @@ class FolderTest extends CakeTestCase {
  * @return void
  */
 	public function testChmod() {
-		$this->skipIf(DIRECTORY_SEPARATOR === '\\', 'Folder permissions tests not supported on Windows.');
+		$this->skipif (DIRECTORY_SEPARATOR === '\\', 'Folder permissions tests not supported on Windows.');
 
 		$path = TMP;
 		$Folder = new Folder($path);
@@ -462,7 +462,7 @@ class FolderTest extends CakeTestCase {
  * @return void
  */
 	public function testFolderReadWithHiddenFiles() {
-		$this->skipIf(!is_writable(TMP), 'Cant test Folder::read with hidden files unless the tmp folder is writable.');
+		$this->skipif (!is_writable(TMP), 'Cant test Folder::read with hidden files unless the tmp folder is writable.');
 
 		$Folder = new Folder(TMP . 'folder_tree_hidden', true, 0777);
 		mkdir($Folder->path . DS . '.svn');
@@ -545,7 +545,7 @@ class FolderTest extends CakeTestCase {
  * @return void
  */
 	public function testFolderTreeWithHiddenFiles() {
-		$this->skipIf(!is_writable(TMP), 'Can\'t test Folder::tree with hidden files unless the tmp folder is writable.');
+		$this->skipif (!is_writable(TMP), 'Can\'t test Folder::tree with hidden files unless the tmp folder is writable.');
 
 		$Folder = new Folder(TMP . 'folder_tree_hidden', true, 0777);
 		mkdir($Folder->path . DS . '.svn', 0777, true);

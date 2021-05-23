@@ -68,8 +68,8 @@ class ModelCrossSchemaHabtmTest extends BaseModelTest {
  */
 	protected function _checkConfigs() {
 		$config = ConnectionManager::enumConnectionObjects();
-		$this->skipIf($this->db instanceof Sqlite, 'This test is not compatible with Sqlite.');
-		$this->skipIf(
+		$this->skipif ($this->db instanceof Sqlite, 'This test is not compatible with Sqlite.');
+		$this->skipif (
 			!isset($config['test']) || !isset($config['test2']),
 			'Primary and secondary test databases not configured, ' .
 			'skipping cross-database join tests.' .
@@ -179,7 +179,7 @@ class ModelCrossSchemaHabtmTest extends BaseModelTest {
  */
 	public function testHabtmWithThreeDatabases() {
 		$config = ConnectionManager::enumConnectionObjects();
-		$this->skipIf(
+		$this->skipif (
 			!isset($config['test']) || !isset($config['test2']) || !isset($config['test_database_three']),
 			'Primary, secondary, and tertiary test databases not configured,' .
 			' skipping test. To run these tests, you must define ' .

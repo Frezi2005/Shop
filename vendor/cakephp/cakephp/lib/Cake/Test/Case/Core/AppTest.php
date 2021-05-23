@@ -368,7 +368,7 @@ class AppTest extends CakeTestCase {
 	public function testListObjectsIgnoreDotDirectories() {
 		$path = CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS;
 
-		$this->skipIf(!is_writable($path), $path . ' is not writable.');
+		$this->skipif (!is_writable($path), $path . ' is not writable.');
 
 		App::build(array(
 			'plugins' => array($path)
@@ -836,7 +836,7 @@ class AppTest extends CakeTestCase {
  * @return void
  */
 	public function testIncreaseMemoryLimit($memoryLimit, $additionalKb, $expected) {
-		$this->skipIf(!function_exists('ini_set'));
+		$this->skipif (!function_exists('ini_set'));
 
 		$originalMemoryLimit = ini_get('memory_limit');
 
