@@ -5,17 +5,17 @@ div.boxRight {
 }
 
 div.slider {
-    border: 3px solid rgb(41, 255, 22);
+    border: 3px solid #29ff16;
     border-radius: 27px;
     height: 350px;
     width: 1100px;
-    background-color: #fff;
+    background-color: #ffffff;
 }
 
-div.slider div.arrow {
+div.slider div.sliderArrow {
     height: 40px;
     width: 40px;
-    background-color: rgb(230, 230, 230);
+    background-color: #e6e6e6;
     border-radius: 20px;
     text-align: center;
     line-height: 40px;
@@ -24,22 +24,22 @@ div.slider div.arrow {
     transition: all .5s ease-in-out;
 }
 
-div.slider div.arrow:hover {
-    background-color: rgb(207, 207, 207);
+div.slider div.sliderArrow:hover {
+    background-color: #cfcfcf;
 } 
 
-div.leftArrow {
+div.sliderLeftArrow {
     float: left;
     margin-left: -20px;
 }
 
-div.rightArrow {
+div.sliderRightArrow {
     float: right;
     margin-right: -20px;
 }
 
 div.productsList {
-    border-top: 1px solid rgb(121, 121, 121);
+    border-top: 1px solid #797979;
     height: 290px;
     width: 1100px;
     background-color: transparent;
@@ -54,29 +54,29 @@ div.products {
     margin-top: 30px;
 }
 
-div.product {
-    border: 3px solid rgb(96,186,255);
+div.productOnMainPage {
+    border: 3px solid#60b0ff;
     border-radius: 27px;
     margin-right: 99px;
     width: calc((1100px / 4) - (99px * 3) / 4);
     height: calc((1100px / 4) - (99px * 3) / 4);
     float: left;
-    background-color: #fff;
+    background-color: #ffffff;
     line-height: calc((1100px / 4) - (99px * 3) / 4);
     text-align: center;
     font-size: 30px;
 }
 
-div.product:last-of-type {
+div.productOnMainPage:last-of-type {
     margin-right: 0px !important;
 }
 
 div.contact {
-    border: 3px solid rgb(41, 255, 22);
+    border: 3px solid #29ff16;
     border-radius: 27px;
     float: left;
     margin-left: 10%;
     height: 150px;
     width: 300px;
-    background-color: #fff;
+    background-color: #ffffff;
 }

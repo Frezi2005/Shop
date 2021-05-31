@@ -32,6 +32,7 @@
 	Router::connect("/login", array("controller" => "frontPages", "action" => "loginPage"));
 	Router::connect("/login-customer", array("controller" => "customers", "action" => "login"));
 	Router::connect("/get-sub-categories", array("controller" => "frontPages", "action" => "getSubCategories"));
+	ROuter::connect("/activate-customer-account", array("controller" => "customers", "action" => "activateCustomerAccount"));
 /**
  * ...and connect the rest of "Pages" controller"s URLs.
  */

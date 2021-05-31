@@ -3,20 +3,26 @@
 ?>
 <div class="boxRight">
     <div class="slider">
-        <div class="leftArrow arrow"><</div>
-        <div class="rightArrow arrow">></div>
+        <div class="sliderLeftArrow sliderArrow"><</div>
+        <div class="sliderRightArrow sliderArrow">></div>
     </div>
     <div class="productsList">
         <h2>Today's Deals</h2>
         <div class="products">
-            <div class="product"><p>Product</p></div>
-            <div class="product"><p>Product</p></div>
-            <div class="product"><p>Product</p></div>
-            <div class="product"><p>Product</p></div>
+            <div class="productOnMainPage"><p>Product</p></div>
+            <div class="productOnMainPage"><p>Product</p></div>
+            <div class="productOnMainPage"><p>Product</p></div>
+            <div class="productOnMainPage"><p>Product</p></div>
         </div>
     </div>
 </div>
 <div class="contact"></div>
+<?php
+if ($this->Session->read("verified") == true) {
+    echo "<script>Swal.fire({icon: \"success\",text: \"Your account has been verified! You can login now.\",showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
+    $_SESSION["verified"] = false;
+}
+?>
 
 <!-- <h1>Home page</h1>
 <h4><a href="register">Register Page</a></h4>

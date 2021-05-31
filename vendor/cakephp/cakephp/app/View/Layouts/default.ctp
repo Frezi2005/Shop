@@ -34,6 +34,11 @@
 					<div class="logInLink navLink">
 						<i class="fas fa-user"></i>
 						<a href="">Log in</a>
+						<div class="logInModal">
+							<a href="login">Log In</a>
+							<hr>
+							<a href="register">Register</a>
+						</div>
 					</div>
 					<div class="cartLink navLink">
 						<i class="fas fa-shopping-cart"></i>
@@ -54,9 +59,34 @@
 				</ul>
 				<?php echo $this->fetch("content"); ?>
 			</div>
-			<div id="footer">
-				Kamil Waniczek <?= date("Y"); ?> &copy; All rights reserved.
-			</div>
+			<footer class="text-center justify-content-center">
+				<p class="col-lg-12 h-20">Kamil Waniczek <?= date("Y"); ?> &copy; All rights reserved.</p>
+				<div class="col-lg-10 h-80 mx-auto">
+					<div class="col-lg-3 float-start">
+						<ul class="footerUsefulLinks1">
+							<li><span>Useful links</span></li>
+							<li><a href="">About us</a></li>
+							<li><a href="">Cooperation</a></li>
+							<li><a href="">Contact</a></li>
+						</ul>
+					</div>
+					<div class="col-lg-3 float-start mt-50">
+						<ul class="footerUsefulLinks2">
+							<li><a href="">Partnership</a></li>
+							<li><a href="">Terms of Service</a></li>
+							<li><a href="">Privacy policy & Cookies</a></li>
+						</ul>
+					</div>
+					<div class="col-lg-6 float-start">
+						<ul class="socialMedia">
+							<!-- <li><a href=""><i class="fab fa-youtube"></i></a></li> -->
+							<li><a href=""><i class="fab fa-twitter"></i> - Twitter </a></li>
+							<li><a href=""><i class="fab fa-facebook-f"></i> - Facebook </a></li>
+							<li><a href=""><i class="fab fa-instagram"></i> - Instagram </a></li>
+						</ul>
+					</div>
+				</div>
+			</footer>
 		</div>
 	</body>
 </html>

@@ -39,10 +39,10 @@ nav input {
     width: 100%;
     height: 100%;
     border-radius: 27px;
-    border: 1px solid rgb(121, 121, 121);
-    -webkit-box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.75);
+    border: 1px solid #797979;
+    -webkit-box-shadow: 0px 2px 6px 0px #000000cc;
+    -moz-box-shadow: 0px 2px 6px 0px #000000cc;
+    box-shadow: 0px 2px 6px 0px #000000cc;
 }
 
 nav button {
@@ -53,7 +53,7 @@ nav button {
     width: 75px;
     border: none;
     border-radius: 27px;
-    background-color: rgb(66, 66, 66);
+    background-color: #424242;
     text-align: center;
     color: white;
     line-height: 40px;
@@ -65,7 +65,7 @@ nav select {
     margin-top: calc((75px - 40px) / 2);
     margin-left: 130px;
     border-radius: 27px;
-    border: 1px solid rgb(121, 121, 121);
+    border: 1px solid #797979;
     width: 60px;
     text-align: center;
     appearance: none;
@@ -95,8 +95,52 @@ nav .navLink a {
     font-weight: 500;
 }
 
+div.logInLink {
+    position: relative;
+}
+
+div.logInLink > div.logInModal {
+    display: none;
+    width: 200px;
+    height: 150px;
+    background-color: #ffffff;
+    position: absolute;
+    top: 61px;
+    left: -1px;
+    border: 1px solid #b4b4b4;
+    border-radius: 0 5px 5px 5px;
+    text-align: center;
+}
+
+div.logInModal a {
+    height: 74px;
+    line-height: 74px;
+    display: inline-block;
+}
+
+div.logInModal hr {
+    height: 2px;
+    margin: 0;
+    padding: 0;
+}
+
+div.logInLink:hover {
+    border: 1px solid #b4b4b4;   
+    border-bottom: 1px solid #ffffff; 
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
+    height: 65px;
+    margin-top: 4px;
+    line-height: 65px;
+    background-color: #ffffff;
+}
+
+div.logInLink:hover div.logInModal {
+    display: block;
+}
+
 ul.categoriesList {
-    border: 3px solid rgb(41, 255, 22);
+    border: 3px solid #29ff16;
     border-radius: 27px;
     padding: 10px;
     padding-left: 20px;
@@ -137,16 +181,41 @@ div.subCategories > span {
     transition: all .5s ease-in-out;
 }
 
-div#footer {
-    height: 50px;
+footer {
+    height: 300px;
     width: 100%;
     text-align: center;
     line-height: 50px;
     background-image: linear-gradient(to right, #bbeeff, #a1e2fe, #88d6ff, #72c8ff, #60baff);
-    position: fixed;
-    bottom: 0;
+    font-weight: bold;
+    position: absolute;
+    bottom: -250px;
+}
+
+footer a {
+    text-decoration: none;
+    color: black;
+}
+
+footer span {
+    font-size: 30px;
     font-weight: bold;
 }
+
+footer ul {
+    list-style-type: none;
+    text-align: left;
+}
+
+footer ul.footerUsefulLinks2 {
+    margin-top: 50px;
+}
+
+footer ul.socialMedia {
+    text-align: center;
+}
+
+
 
 
 

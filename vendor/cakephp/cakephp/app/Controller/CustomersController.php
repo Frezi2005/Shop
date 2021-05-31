@@ -39,6 +39,7 @@ class CustomersController extends AppController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
+		App::uses('CakeText', 'Utility');
 		//Loading password hashing function
 		//Using $this->SecurityUtils("test12345") results in: 
 		//"3321c186b19869ee1be6a1c6791e669d64f3e56ba053dfdb3431caf06dbd6fb0ec1a7736af0ea45426fefdc4dfdf23bf08e86f75addf5168cad540bddb3cf743"
@@ -92,68 +93,51 @@ class CustomersController extends AppController {
 		$this->autoRender = false;
 		$customerRegisterData = $this->request["data"]["registerUserForm"];
 		$this->Session->write("rememberedFieldsData", $customerRegisterData); 
-
 		$this->Customer->set($customerRegisterData);
+		$userUUID = CakeText::uuid();
 
-		//debug($this->Customer);
-
-		// if ($this->Customer->validates(array("fieldList" => array("name")))) {
-		// 	debug("validated");
-		// 	die;
-		// } else {
-		// 	debug($this->Customer->validationErrors);
-		// 	die;
-		// }
-
-		$email = new CakeEmail();
+		$email = new CakeEmail("default");
 		$email->from(array("internetspam.pl@gmail.com" => "My Site"));
-		$email->to("kamil.wan05@gmail.com");
+		$email->to($customerRegisterData["email"]);
 		$email->subject("Email");
-		if (!$email->send("Test email message")) {
-			echo "Nie wysłane";
-		} else {
-			echo "Wysłane";
-		}
-		die;
-
-		// $to      = "krycha120@op.pl";
-		// $subject = "the subject";
-		// $message = "hello";
-		// $headers = "From: kamil.wan05@gmail.com" . "\r\n" .
-		// 	"Reply-To: kamil.wan05@gmail.com" . "\r\n" .
-		// 	"X-Mailer: PHP/" . phpversion();
-
-		// mail($to, $subject, $message, $headers);
-
+		$email->send("http://localhost/Shop/vendor/cakephp/cakephp/activate-customer-account?userUUID=".$userUUID);
 		try {
-			// $this->Customer->save(array(
-			// 	"id" => null,
-			// 	"name" => $customerRegisterData["name"],
-			// 	"surname" => $customerRegisterData["surname"],
-			// 	"email" => $customerRegisterData["email"],
-			// 	"password" => $this->SecurityUtils->encrypt($customerRegisterData["password"]),
-			// 	"birth_date" => $customerRegisterData["birth_date"],
-			// 	"phone_number" => $customerRegisterData["phone_number"],
-			// 	"total_points" => 0
-			// ));
-			
-		} catch(Exception $e) {
+			$this->Customer->save(array(
+				"id" => $userUUID,
+				"name" => $customerRegisterData["name"],
+				"surname" => $customerRegisterData["surname"],
+				"email" => $customerRegisterData["email"],
+				"password" => $this->SecurityUtils->encrypt($customerRegisterData["password"]),
+				"birth_date" => $customerRegisterData["birthDate"],
+				"phone_number" => $customerRegisterData["phoneNumber"],
+				"total_points" => 0,
+				"verified" => 0
+			));
+		} catch (Exception $e) {
 			$this->Log($e);
-			die;
-			//throw new InternalErrorException;
 		}
-		//$this->redirect("/home");
+		$this->redirect("/home");
 	}
 
-	public function login() {
+	public function login() 
+	{
 		$this->autoRender = false;
 		$customerLoginData = $this->request["data"]["loginUserForm"];
 		if (!empty($this->Customer->find("first", array("conditions" => array("email" => $customerLoginData["email"], "password" => $this->SecurityUtils->encrypt($customerLoginData["password"])))))) {
-			echo("You are now logged in!");
-			$this->Session->write("loggedIn", true);
+			echo "You are now logged in!";
+			debug($this->Customer->find("first", array("conditions" => array("email" => $customerLoginData["email"], "password" => $this->SecurityUtils->encrypt($customerLoginData["password"])))));
+			//$this->Session->write("loggedIn", true);
 		} else {
 			echo("User not found.");
 			$this->redirect("/login");
 		}
+	}
+
+	public function activateCustomerAccount() {
+		$this->autoRender = false;
+		$this->Customer->id = $this->params["url"]["userUUID"];
+		$this->Customer->saveField("verified", 1);
+		$this->Session->write("verified", true);
+		$this->redirect("/home");
 	}
 }

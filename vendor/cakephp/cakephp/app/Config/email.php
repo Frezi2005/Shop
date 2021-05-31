@@ -40,6 +40,7 @@ class EmailConfig {
 		'host' => 'ssl://smtp.gmail.com',
 		'port' => 465,
 		'username' => 'internetspam.pl@gmail.com',
-		'password' => 'internetspam.pl'	
+		'password' => 'internetspam.pl',
+        'transport' => 'Smtp'
 	);	
 }
