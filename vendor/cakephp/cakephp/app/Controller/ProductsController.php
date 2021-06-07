@@ -37,6 +37,11 @@ class ProductsController extends AppController {
  */
 	public $uses = array();
 
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->loadModel("Products");
+	}
+
 /**
  * Displays a view
  *
@@ -76,5 +81,40 @@ class ProductsController extends AppController {
 			}
 			throw new NotFoundException();
 		}
+	}
+
+	public function search() {
+		$this->autoRender = false;
+		$products = $this->Product->find("all", array("fields" => array("name")));
+		$words = [];
+		$results = [];
+		$index = 0;
+		foreach (explode(" ", $this->params["url"]["q"]) as $word) {
+			array_push($words, $word);
+		}
+		foreach ($products as $product) {
+			$wordsInProductName = [];
+			$productScore = 0;
+			$productName = $product["Product"]["name"];
+			foreach (explode(" ", $productName) as $productWord) {
+				array_push($wordsInProductName, $productWord);
+			}
+			for ($i = 0; $i < count($words); $i++) {
+				$bestWordSimPerc = 0;
+				for ($j = 0; $j < count($wordsInProductName); $j++) {
+					$wordSim = similar_text(strtolower($wordsInProductName[$j]), strtolower($words[$i]), $wordSimPerc);
+					if ($wordSimPerc > $bestWordSimPerc) $bestWordSimPerc = $wordSimPerc;
+				}
+				if (strpos(strtolower($productName), strtolower($words[$i])) !== false) {
+					$productScore++;
+				}
+			}
+			// if($productScore == 0) continue;
+			$sim = similar_text(strtolower($this->params["url"]["q"]), strtolower($productName), $perc);
+			$totalScore = intval($productScore)+intval(ceil(floatval($perc)))+intval(ceil(floatval($bestWordSimPerc)));
+			$results["product$index"] = ["name" => $productName, "totalScore" => $totalScore];
+			$index++;
+		}
+		return json_encode($results);
 	}
 }

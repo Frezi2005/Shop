@@ -32,7 +32,13 @@
 	Router::connect("/login", array("controller" => "frontPages", "action" => "loginPage"));
 	Router::connect("/login-customer", array("controller" => "customers", "action" => "login"));
 	Router::connect("/get-sub-categories", array("controller" => "frontPages", "action" => "getSubCategories"));
-	ROuter::connect("/activate-customer-account", array("controller" => "customers", "action" => "activateCustomerAccount"));
+	Router::connect("/activate-customer-account", array("controller" => "customers", "action" => "activateCustomerAccount"));
+	Router::connect("/change-language", array("controller" => "frontPages", "action" => "changeLanguage"));
+	Router::connect("/logout", array("controller" => "customers", "action" => "logout"));
+	Router::connect("/settings", array("controller" => "customers", "action" => "settings"));
+	Router::connect("/change-password", array("controller" => "customers", "action" => "changePassword"));
+	Router::connect("/search", array("controller" => "products", "action" => "search"));
+
 /**
  * ...and connect the rest of "Pages" controller"s URLs.
  */

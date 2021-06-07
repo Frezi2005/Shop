@@ -26,18 +26,33 @@
 					<input class="searchInput" type="search">
 					<button class="searchBtn"><i class="fas fa-search"></i></button>
 				</div>
-				<select>
-					<option value="eng">ENG</option>
-					<option value="pol">POL</option>
+				<select class="languageSelect">
+					<?php
+						if ($this->Session->read("language") == "eng") {
+							echo "<option value=\"eng\">ENG</option>";
+							echo "<option value=\"pol\">POL</option>";
+						} else {
+							echo "<option value=\"pol\">POL</option>";
+							echo "<option value=\"eng\">ENG</option>";
+						}
+					?>
 				</select>
 				<div class="links">
 					<div class="logInLink navLink">
 						<i class="fas fa-user"></i>
-						<a href="">Log in</a>
+						<a href=""><?php echo ($this->Session->read("loggedIn") == true) ? "Profile" : "Log in"?></a>
 						<div class="logInModal">
-							<a href="login">Log In</a>
-							<hr>
-							<a href="register">Register</a>
+							<?php
+								if ($this->Session->read("loggedIn") != true) {
+									echo "<a href=\"login\">Log In</a>";
+									echo "<hr>";
+									echo "<a href=\"register\">Register</a>";
+								} else {
+									echo "<a href=\"profile\">Profile</a>";
+									echo "<hr>";
+									echo "<a href=\"settings\">Settings</a>";
+								}
+							?>
 						</div>
 					</div>
 					<div class="cartLink navLink">
@@ -47,7 +62,7 @@
 				</div>
 			</nav>
 			<div id="content">
-				<ul class="categoriesList">
+				<ul class="categoriesList col-lg-2 col-md-2">
 					<?php 
 						foreach ($categories as $category) {
 							echo "<div class=\"category\">";

@@ -7,7 +7,7 @@
         <div class="sliderRightArrow sliderArrow">></div>
     </div>
     <div class="productsList">
-        <h2>Today's Deals</h2>
+        <h2><?php echo __("test");?></h2>
         <div class="products">
             <div class="productOnMainPage"><p>Product</p></div>
             <div class="productOnMainPage"><p>Product</p></div>
@@ -21,6 +21,12 @@
 if ($this->Session->read("verified") == true) {
     echo "<script>Swal.fire({icon: \"success\",text: \"Your account has been verified! You can login now.\",showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
     $_SESSION["verified"] = false;
+} else if ($this->Session->read("loggedModal") == true) {
+    echo "<script>Swal.fire({icon: \"success\",text: \"You have been logged in!\",showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
+    $_SESSION["loggedModal"] = false;
+} else if ($this->Session->read("loggedModal") == true) {
+    echo "<script>Swal.fire({icon: \"success\",text: \"You have been logged in!\",showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
+    $_SESSION["loggedModal"] = false;
 }
 ?>
 

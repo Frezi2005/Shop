@@ -40,6 +40,7 @@ class CustomersController extends AppController {
 	public function beforeFilter() {
 		parent::beforeFilter();
 		App::uses('CakeText', 'Utility');
+		$this->loadModel("Customer");
 		//Loading password hashing function
 		//Using $this->SecurityUtils("test12345") results in: 
 		//"3321c186b19869ee1be6a1c6791e669d64f3e56ba053dfdb3431caf06dbd6fb0ec1a7736af0ea45426fefdc4dfdf23bf08e86f75addf5168cad540bddb3cf743"
@@ -89,7 +90,6 @@ class CustomersController extends AppController {
 	}
 
 	public function register() {
-		$this->loadModel("Customer");
 		$this->autoRender = false;
 		$customerRegisterData = $this->request["data"]["registerUserForm"];
 		$this->Session->write("rememberedFieldsData", $customerRegisterData); 
@@ -119,16 +119,14 @@ class CustomersController extends AppController {
 		$this->redirect("/home");
 	}
 
-	public function login() 
-	{
+	public function login() {
 		$this->autoRender = false;
 		$customerLoginData = $this->request["data"]["loginUserForm"];
 		if (!empty($this->Customer->find("first", array("conditions" => array("email" => $customerLoginData["email"], "password" => $this->SecurityUtils->encrypt($customerLoginData["password"])))))) {
-			echo "You are now logged in!";
-			debug($this->Customer->find("first", array("conditions" => array("email" => $customerLoginData["email"], "password" => $this->SecurityUtils->encrypt($customerLoginData["password"])))));
-			//$this->Session->write("loggedIn", true);
+			$this->Session->write("loggedIn", true);
+			$this->Session->write("loggedModal", true);
+			$this->redirect("/home");
 		} else {
-			echo("User not found.");
 			$this->redirect("/login");
 		}
 	}
@@ -139,5 +137,27 @@ class CustomersController extends AppController {
 		$this->Customer->saveField("verified", 1);
 		$this->Session->write("verified", true);
 		$this->redirect("/home");
+	}
+
+	public function logout() {
+		$this->autoRender = false;
+		$this->Session->write("loggedIn", false);
+		$this->redirect("/home");
+	}
+
+	public function settings() {
+		
+	}
+
+	public function changePassword() {
+		$this->autoRender = false;
+		$changePasswordData = $this->request["data"]["changePasswordForm"];
+		if ($changePasswordData["newPasswordConfirm"] == $changePasswordData["newPassword"]) {
+			$this->Customer->password = $this->SecurityUtils->encrypt($changePasswordData["currentPassword"]);
+			$this->Customer->saveField("password", $this->SecurityUtils->encrypt($changePasswordData["newPassword"]));
+			$this->Session->write("changePassword", true);
+			$this->redirect("/logout");
+		}
+		
 	}
 }

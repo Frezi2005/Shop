@@ -31,4 +31,14 @@ App::uses('Controller', 'Controller');
  * @link		https://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+    public function beforeFilter() {
+        parent::beforeFilter();
+        Configure::write("Config.language", $this->Session->read("language"));
+		$locale = Configure::read('Config.language');
+		if ($locale && file_exists(APP . 'View' . DS . $locale . DS . $this->viewPath . DS . $this->view . $this->ext)) {
+			$this->viewPath = $locale . DS . $this->viewPath;
+		}
+        $this->loadModel("Category");
+		$this->set("categories", $this->Category->find("all"));
+    }
 }

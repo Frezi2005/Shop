@@ -105,11 +105,12 @@ div.logInLink > div.logInModal {
     height: 150px;
     background-color: #ffffff;
     position: absolute;
-    top: 61px;
+    top: 60px;
     left: -1px;
     border: 1px solid #b4b4b4;
     border-radius: 0 5px 5px 5px;
     text-align: center;
+    z-index: -1px;
 }
 
 div.logInModal a {
@@ -148,7 +149,6 @@ ul.categoriesList {
     float: left;
     margin-left: 10%;
     height: 500px;
-    width: 300px;
     background-color: #fff;
 }
 
@@ -166,11 +166,10 @@ div.subCategories {
     background-color: #fff;
     position: absolute;
     top: 0;
-    left: 150px;
+    left: 180px;
     padding: 10px;
     border: 1px solid #000;
     border-radius: 10px;
-    transition: all .25s ease-in-out;
     z-index: 10;
     font-weight: bold;
     width: 180px;

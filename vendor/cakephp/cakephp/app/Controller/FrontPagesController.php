@@ -39,8 +39,6 @@ class FrontPagesController extends AppController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->loadModel("Category");
-		$this->set("categories", $this->Category->find("all"));
 	}
 
 /**
@@ -94,17 +92,20 @@ class FrontPagesController extends AppController {
 
 	}
 
-	public function loginPage() 
-	{
+	public function loginPage() {
 
 	}
 
-	public function getSubCategories()
-	{
+	public function getSubCategories() {
 		$this->autoRender = false;
 		$this->loadModel("SubCategory");
 		$subCategories = [];
 		$subCategories[$this->params["url"]["category-id"]] = $this->SubCategory->find("all", array("conditions" => array("category_id" => $this->params["url"]["category-id"])));
 		return json_encode($subCategories);
+	}
+
+	public function changeLanguage() {
+		$this->autoRender = false;
+		$this->Session->write("language", $this->params["url"]["lang"]);
 	}
 }
