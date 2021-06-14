@@ -38,6 +38,8 @@
 	Router::connect("/settings", array("controller" => "customers", "action" => "settings"));
 	Router::connect("/change-password", array("controller" => "customers", "action" => "changePassword"));
 	Router::connect("/search", array("controller" => "products", "action" => "search"));
+	Router::connect("/product", array("controller" => "products", "action" => "product"));
+	Router::connect("/cart", array("controller" => "customers", "action" => "cart"));
 
 /**
  * ...and connect the rest of "Pages" controller"s URLs.

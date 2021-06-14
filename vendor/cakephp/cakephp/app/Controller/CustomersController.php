@@ -158,6 +158,9 @@ class CustomersController extends AppController {
 			$this->Session->write("changePassword", true);
 			$this->redirect("/logout");
 		}
+	}
+
+	public function cart() {
 		
 	}
 }

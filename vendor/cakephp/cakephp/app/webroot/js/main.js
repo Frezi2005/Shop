@@ -43,7 +43,7 @@ $(function() {
     }
 
     $("input.searchInput").on("keyup", function() {
-        console.clear();
+        $("div.searchResults").empty();
         $.getJSON("http://localhost/Shop/vendor/cakephp/cakephp/search?q="+$(this).val(), function(data) {
             var len = Object.keys(data).length;
             for (var i = 0; i < len; i++) {
@@ -55,8 +55,9 @@ $(function() {
                     }
                 }
             }
+            $("div.searchResults").css("display", "block");
             for(var i = 0; i < Object.keys(data).length; i++) {
-                console.log(data["product"+i].name+": "+data["product"+i].totalScore);
+                $("div.searchResults").append("<p><a href='product?product_id="+data["product"+i].id+"' target='_blank'>"+data["product"+i].name+"</a></p>");
             }
       });
     });

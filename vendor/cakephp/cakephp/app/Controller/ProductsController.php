@@ -85,7 +85,7 @@ class ProductsController extends AppController {
 
 	public function search() {
 		$this->autoRender = false;
-		$products = $this->Product->find("all", array("fields" => array("name")));
+		$products = $this->Product->find("all", array("fields" => array("name", "id")));
 		$words = [];
 		$results = [];
 		$index = 0;
@@ -112,9 +112,19 @@ class ProductsController extends AppController {
 			// if($productScore == 0) continue;
 			$sim = similar_text(strtolower($this->params["url"]["q"]), strtolower($productName), $perc);
 			$totalScore = intval($productScore)+intval(ceil(floatval($perc)))+intval(ceil(floatval($bestWordSimPerc)));
-			$results["product$index"] = ["name" => $productName, "totalScore" => $totalScore];
+			$results["product$index"] = ["name" => $productName, "totalScore" => $totalScore, "id" => $product["Product"]["id"]];
 			$index++;
 		}
 		return json_encode($results);
+	}
+
+	public function product() {
+		$product = $this->Product->find("first", array("conditions" => array("id" => $this->params["url"]["product_id"])))["Product"];
+		$this->set("product", $product);
+		// $this->set("name", $product["name"]);
+		// $this->set("description", $product["description"]);
+		// $this->set("price", $product["price"]);
+		// $this->set("image", $product["image"]);
+		// $this->set("product_count", $product["product_count"]);
 	}
 }

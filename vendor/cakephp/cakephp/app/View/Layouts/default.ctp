@@ -25,6 +25,7 @@
 				<div class="searchBox">
 					<input class="searchInput" type="search">
 					<button class="searchBtn"><i class="fas fa-search"></i></button>
+					<div class="searchResults"></div>
 				</div>
 				<select class="languageSelect">
 					<?php

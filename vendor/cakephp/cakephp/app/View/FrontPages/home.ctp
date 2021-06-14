@@ -9,7 +9,7 @@
     <div class="productsList">
         <h2><?php echo __("test");?></h2>
         <div class="products">
-            <div class="productOnMainPage"><p>Product</p></div>
+            <div class="productOnMainPage"><p><a href="product?product_id=639adc99-c700-11eb-a8c6-9822efb9cbff" target="_blank">Product</a></p></div>
             <div class="productOnMainPage"><p>Product</p></div>
             <div class="productOnMainPage"><p>Product</p></div>
             <div class="productOnMainPage"><p>Product</p></div>
