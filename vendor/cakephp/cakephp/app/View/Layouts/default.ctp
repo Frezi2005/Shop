@@ -59,6 +59,8 @@
 					<div class="cartLink navLink">
 						<i class="fas fa-shopping-cart"></i>
 						<a href="">Cart</a>
+						<span id="cartProductsAmount"></span>
+						<div class="cartModal"></div>
 					</div>
 				</div>
 			</nav>
@@ -75,7 +77,7 @@
 				</ul>
 				<?php echo $this->fetch("content"); ?>
 			</div>
-			<footer class="text-center justify-content-center">
+			<!-- <footer class="text-center justify-content-center">
 				<p class="col-lg-12 h-20">Kamil Waniczek <?= date("Y"); ?> &copy; All rights reserved.</p>
 				<div class="col-lg-10 h-80 mx-auto">
 					<div class="col-lg-3 float-start">
@@ -95,14 +97,13 @@
 					</div>
 					<div class="col-lg-6 float-start">
 						<ul class="socialMedia">
-							<!-- <li><a href=""><i class="fab fa-youtube"></i></a></li> -->
 							<li><a href=""><i class="fab fa-twitter"></i> - Twitter </a></li>
 							<li><a href=""><i class="fab fa-facebook-f"></i> - Facebook </a></li>
 							<li><a href=""><i class="fab fa-instagram"></i> - Instagram </a></li>
 						</ul>
 					</div>
 				</div>
-			</footer>
+			</footer> -->
 		</div>
 	</body>
 </html>
