@@ -40,6 +40,7 @@ class ProductsController extends AppController {
 	public function beforeFilter() {
 		parent::beforeFilter();
 		$this->loadModel("Products");
+		App::uses('CakeText', 'Utility');
 	}
 
 /**
@@ -121,10 +122,33 @@ class ProductsController extends AppController {
 	public function product() {
 		$product = $this->Product->find("first", array("conditions" => array("id" => $this->params["url"]["product_id"])))["Product"];
 		$this->set("product", $product);
-		// $this->set("name", $product["name"]);
-		// $this->set("description", $product["description"]);
-		// $this->set("price", $product["price"]);
-		// $this->set("image", $product["image"]);
-		// $this->set("product_count", $product["product_count"]);
+	}
+
+	public function productsList() {
+		$this->loadModel("SubCategory");
+		$subCategoryId = $this->SubCategory->find("first", array("conditions" => array("sub_category_name" => $this->params["url"]["sub_category"]), "fields" => "id"))["SubCategory"]["id"];
+		$this->set("products", $this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategoryId))));
+	}
+
+	public function addProductToDatabase() {
+		$productData = $this->request["data"]["addProductForm"];
+		if(!empty($productData)) {
+			$this->Product->save(array(
+				"id" => CakeText::uuid(),
+				"name" => $productData["name"],
+				"description" => $productData["description"],
+				"price" => $productData["price"],
+				"discount_value" => 0.00,
+				"shop_id" => NULL,
+				"tax" => $productData["price"] * 0.23,
+				"image" => "",
+				"product_count" => rand(1, 1000),
+				"sub_category_id" => $productData["subCategoryId"]
+			));
+		}
+	}
+
+	public function cart() {
+		
 	}
 }

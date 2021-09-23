@@ -24,6 +24,12 @@ nav .logo {
     margin-left: 10%;
     font-size: 30px;
     font-weight: bold;
+    
+}
+
+nav .logo a {
+    color: black;
+    text-decoration: none;
 }
 
 div.searchBox {
@@ -89,13 +95,14 @@ nav select {
     margin-top: calc((75px - 40px) / 2);
     margin-left: 130px;
     border-radius: 27px;
-    border: 1px solid #797979;
+    border: 1px solid #000000;
     width: 60px;
     text-align: center;
     appearance: none;
     line-height: 38px;
     background-image: linear-gradient(to right, #bbeeff, #a1e2fe, #88d6ff, #72c8ff, #60baff);
     cursor: pointer;
+    font-weight: bold;
 }
 
 nav .links {
@@ -208,7 +215,7 @@ div.logInLink:hover div.logInModal,  div.cartLink:hover div.cartModal {
 }
 
 ul.categoriesList {
-    border: 3px solid #29ff16;
+    border: 3px solid #b0ffb8;
     border-radius: 27px;
     padding: 10px;
     padding-left: 20px;
@@ -217,11 +224,18 @@ ul.categoriesList {
     margin-left: 10%;
     height: 500px;
     background-color: #fff;
+    font-weight: bold;
 }
 
 ul.categoriesList > div > li {
     cursor: pointer;
     list-style-type: none;
+}
+
+ul.categoriesList > hr {
+    margin: 12px 0;
+    background-color: #60baff;
+    height: 2px;
 }
 
 div.category {
@@ -238,8 +252,8 @@ div.subCategories {
     border: 1px solid #000;
     border-radius: 10px;
     z-index: 10;
-    font-weight: bold;
     width: 180px;
+    font-weight: 400;
 }
 
 div.subCategories > span {
@@ -279,6 +293,10 @@ footer ul.footerUsefulLinks2 {
 
 footer ul.socialMedia {
     text-align: center;
+}
+
+footer div.socialMediaDiv {
+    margin-top: 50px;
 }
 
 

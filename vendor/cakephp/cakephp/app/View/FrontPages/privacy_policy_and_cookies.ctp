@@ -1,0 +1,1 @@
+<h1>Privacy Policy and Cookies</h1>

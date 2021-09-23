@@ -14,9 +14,14 @@ $(function() {
                 categories.not(currElement.parent()).children("div").text("");
                 if (currElement.next().text() == "") {
                     JSON.parse(result)[category].forEach(function(subCategory) {
-                        currElement.next().append("<span>"+subCategory["SubCategory"]["sub_category_name"] + "</span><br />");
+                        currElement.next().append("<span class='subCategory'>"+subCategory["SubCategory"]["sub_category_name"] + "</span><br />");
                     });
                     currElement.next().css("transform", "scale(1,1)");
+                    $("span.subCategory").each(function() {
+                        $(this).click(function() {
+                            location.replace("http://localhost/Shop/vendor/cakephp/cakephp/products-list?sub_category="+$(this).text());    
+                        }); 
+                    });
                 } else {
                     currElement.next().css("transform", "scale(0,0)");
                     setTimeout(function() {
@@ -57,8 +62,8 @@ $(function() {
             }
             $("div.searchResults").css("display", "block");
             for(var i = 0; i < Object.keys(data).length; i++) {
-                $("div.searchResults").append("<p><a href='product?product_id="+data["product"+i].id+"' target='_blank'>"+data["product"+i].name+"</a></p>");
+                $("div.searchResults").append("<p><a href='product?product_id="+data["product"+i].id+"'>"+data["product"+i].name+"</a></p>");
             }
-      });
+        });
     });
 });

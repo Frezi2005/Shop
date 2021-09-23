@@ -39,7 +39,17 @@
 	Router::connect("/change-password", array("controller" => "customers", "action" => "changePassword"));
 	Router::connect("/search", array("controller" => "products", "action" => "search"));
 	Router::connect("/product", array("controller" => "products", "action" => "product"));
-	Router::connect("/cart", array("controller" => "customers", "action" => "cart"));
+	Router::connect("/products-list", array("controller" => "products", "action" => "productsList"));
+	Router::connect("/add-product-to-database", array("controller" => "products", "action" => "addProductToDatabase"));
+	Router::connect("/cart", array("controller" => "products", "action" => "cart"));
+
+	Router::connect("/about-us", array("controller" => "frontPages", "action" => "aboutUs"));
+	Router::connect("/cooperation", array("controller" => "frontPages", "action" => "cooperation"));
+	Router::connect("/contact", array("controller" => "frontPages", "action" => "contact"));
+	Router::connect("/partnership", array("controller" => "frontPages", "action" => "partnership"));
+	Router::connect("/terms-of-service", array("controller" => "frontPages", "action" => "termsOfService"));
+	Router::connect("/privacy-policy-and-cookies", array("controller" => "frontPages", "action" => "privacyPolicyAndCookies"));
+
 
 /**
  * ...and connect the rest of "Pages" controller"s URLs.

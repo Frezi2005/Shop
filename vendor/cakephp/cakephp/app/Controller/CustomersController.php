@@ -159,8 +159,4 @@ class CustomersController extends AppController {
 			$this->redirect("/logout");
 		}
 	}
-
-	public function cart() {
-		
-	}
 }

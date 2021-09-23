@@ -108,4 +108,28 @@ class FrontPagesController extends AppController {
 		$this->autoRender = false;
 		$this->Session->write("language", $this->params["url"]["lang"]);
 	}
+
+	public function aboutUs() {
+
+	}
+
+	public function cooperation() {
+
+	}
+
+	public function contact() {
+	
+	}
+
+	public function partnership() {
+
+	}
+
+	public function termsOfService() {
+
+	}
+
+	public function privacyPolicyAndCookies() {
+		
+	} 
 }
