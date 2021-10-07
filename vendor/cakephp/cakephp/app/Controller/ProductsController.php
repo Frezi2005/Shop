@@ -126,8 +126,38 @@ class ProductsController extends AppController {
 
 	public function productsList() {
 		$this->loadModel("SubCategory");
+		$this->loadModel("Filter");
+		$sort = (isset($this->params["url"]["sort_by"])) ? $this->params["url"]["sort_by"] : "";
+		switch($sort) {
+			case "price_asc":
+				$sort_by = "price ASC";
+				break;
+			case "price_desc":
+				$sort_by = "price DESC";
+				break;
+			case "name_asc":
+				$sort_by = "name ASC";
+				break;
+			case "name_desc":
+				$sort_by = "name DESC";
+				break;
+			default:
+				$sort_by = "";
+				break;
+		}
 		$subCategoryId = $this->SubCategory->find("first", array("conditions" => array("sub_category_name" => $this->params["url"]["sub_category"]), "fields" => "id"))["SubCategory"]["id"];
-		$this->set("products", $this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategoryId))));
+		$products = $this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategoryId), "order" => array($sort_by)));
+		$this->set("products", $products);
+		//TODO LATER, FIGURE OUT HOW TO CONNECT SPECS AND SHOWING CORRECT PRODUCTS
+		// $specsList = json_decode($products[0]["Product"]["specs"]);
+		// $index = 0;
+		// foreach($specsList[0] as $spec => $val) {
+        //     $filters[$index] = [$spec => json_decode($this->Filter->find("first", array("conditions" => array("name" => strtolower($spec))))["Filter"]["filter_values"])[0]];
+		// 	$index++;
+		// }
+		// debug($specsList);
+		// $this->set("productsSpecs", $specsList);
+		// $this->set("filters", $filters);
 	}
 
 	public function addProductToDatabase() {
@@ -137,6 +167,7 @@ class ProductsController extends AppController {
 				"id" => CakeText::uuid(),
 				"name" => $productData["name"],
 				"description" => $productData["description"],
+				"specs" => $productData["specs"],
 				"price" => $productData["price"],
 				"discount_value" => 0.00,
 				"shop_id" => NULL,

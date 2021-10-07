@@ -12,4 +12,12 @@
     <input type="number" name="productAmount" id="productAmount" value="1" min="1" max="<?php echo $product["product_count"];?>">
     <button id="addToCartBtn">Add to cart</button>
     <button id="buyNowBtn">Buy now</button>
+    <ul>
+    <?php 
+        $specs = json_decode($product["specs"], true)[0];
+        foreach($specs as $spec => $val) {
+            echo "<li>".$spec.": ".$val."</li>";
+        }
+    ?>
+    </ul>
 </div>

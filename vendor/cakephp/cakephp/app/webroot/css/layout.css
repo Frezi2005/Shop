@@ -242,7 +242,7 @@ div.category {
     position: relative;
 }
 
-div.subCategories {
+/* div.subCategories {
     transform: scale(0, 0);
     background-color: #fff;
     position: absolute;
@@ -254,9 +254,12 @@ div.subCategories {
     z-index: 10;
     width: 180px;
     font-weight: 400;
-}
+} */
 
-div.subCategories > span {
+div.subCategories > a {
+    text-decoration: none;
+    color: black;
+    font-weight: normal;
     cursor: pointer;
     transition: all .5s ease-in-out;
 }

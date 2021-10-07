@@ -1,8 +1,14 @@
 $(function() {
     var categories = $(".categoriesList > div");
     categories.each(function() {
-        $(this).hover(function() {
+        console.log($(this))
+        $(this).mouseover(function() {
             getSubCategories($(this).children("li").attr("data-category-id"), $(this).children("li"));
+        });
+        $(this).mouseout(function() {
+            $(".category").css("height", "24px").css("display", "block");
+            $("hr").css("display", "block");
+            $(".category").find("div.subCategories").text("");
         });
     });
 
@@ -10,24 +16,35 @@ $(function() {
         $.ajax({
             url: "http://localhost/Shop/vendor/cakephp/cakephp/get-sub-categories?category-id="+category,
             success: function(result) {
-                categories.not(currElement.parent()).children("div").css("transform", "scale(0,0)");
-                categories.not(currElement.parent()).children("div").text("");
-                if (currElement.next().text() == "") {
-                    JSON.parse(result)[category].forEach(function(subCategory) {
-                        currElement.next().append("<span class='subCategory'>"+subCategory["SubCategory"]["sub_category_name"] + "</span><br />");
-                    });
-                    currElement.next().css("transform", "scale(1,1)");
-                    $("span.subCategory").each(function() {
-                        $(this).click(function() {
-                            location.replace("http://localhost/Shop/vendor/cakephp/cakephp/products-list?sub_category="+$(this).text());    
-                        }); 
-                    });
-                } else {
-                    currElement.next().css("transform", "scale(0,0)");
-                    setTimeout(function() {
-                        currElement.next().text("");
-                    }, 250);
-                }
+                //CLEARING MENU
+                categories.not(currElement.parent()).css("display", "none");
+                categories.siblings().not(currElement.parent()).css("display", "none");
+                currElement.parent().css("height", "100%");
+
+                //INSERTING SUB CATEGORIES
+                JSON.parse(result)[category].forEach(function(subCategory) {
+                    currElement.next().append("<a class='subCategory' href='products-list?sub_category=" + subCategory["SubCategory"]["sub_category_name"] + "'>" + subCategory["SubCategory"]["sub_category_name"] + "</a><br />");
+                });
+
+                //OLD MODAL CODE
+                // categories.not(currElement.parent()).children("div").css("transform", "scale(0,0)");
+                // categories.not(currElement.parent()).children("div").text("");
+                // if (currElement.next().text() == "") {
+                //     JSON.parse(result)[category].forEach(function(subCategory) {
+                //         currElement.next().append("<span class='subCategory'>"+subCategory["SubCategory"]["sub_category_name"] + "</span><br />");
+                //     });
+                //     currElement.next().css("transform", "scale(1,1)");
+                //     $("span.subCategory").each(function() {
+                //         $(this).click(function() {
+                //             location.replace("http://localhost/Shop/vendor/cakephp/cakephp/products-list?sub_category="+$(this).text());    
+                //         }); 
+                //     });
+                // } else {
+                //     currElement.next().css("transform", "scale(0,0)");
+                //     setTimeout(function() {
+                //         currElement.next().text("");
+                //     }, 250);
+                // }
             }
         })
     }
