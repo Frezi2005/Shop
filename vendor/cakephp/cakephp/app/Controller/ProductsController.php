@@ -148,14 +148,24 @@ class ProductsController extends AppController {
 		$subCategoryId = $this->SubCategory->find("first", array("conditions" => array("sub_category_name" => $this->params["url"]["sub_category"]), "fields" => "id"))["SubCategory"]["id"];
 		$products = $this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategoryId), "order" => array($sort_by)));
 		$this->set("products", $products);
-		//TODO LATER, FIGURE OUT HOW TO CONNECT SPECS AND SHOWING CORRECT PRODUCTS
-		// $specsList = json_decode($products[0]["Product"]["specs"]);
+		//TODO LATER, FIGURE OUT HOW TO SEARCH PRODUCTS BY JSON
+		// $specsList = json_decode($products[0]["Product"]["specs"], true);
 		// $index = 0;
 		// foreach($specsList[0] as $spec => $val) {
-        //     $filters[$index] = [$spec => json_decode($this->Filter->find("first", array("conditions" => array("name" => strtolower($spec))))["Filter"]["filter_values"])[0]];
+        //     $filters[$index] = [$spec => json_decode($this->Filter->find("first", array("conditions" => array("name" => strtolower($spec))))["Filter"]["filter_values"], true)[0]];
 		// 	$index++;
 		// }
 		// debug($specsList);
+		// for($i = 0; $i < count($filters); $i++) {
+		// 	$filter = $filters[$i][$this->params["url"]["filters"]][$this->params["url"]["filtersValues"]];
+		// 	if($filter) {
+		// 		if(str_contains($filter, "-")) {
+		// 			$start = explode("-", $filter)[0];
+		// 			$end = explode("-", $filter)[1];
+		// 			$finalProducts = $this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategoryId, ""), "order" => array($sort_by)));
+		// 		}
+		// 	}
+		// }
 		// $this->set("productsSpecs", $specsList);
 		// $this->set("filters", $filters);
 	}

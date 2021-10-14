@@ -96,11 +96,11 @@ class CustomersController extends AppController {
 		$this->Customer->set($customerRegisterData);
 		$userUUID = CakeText::uuid();
 
-		$email = new CakeEmail("default");
-		$email->from(array("internetspam.pl@gmail.com" => "My Site"));
-		$email->to($customerRegisterData["email"]);
-		$email->subject("Email");
-		$email->send("http://localhost/Shop/vendor/cakephp/cakephp/activate-customer-account?userUUID=".$userUUID);
+		// $email = new CakeEmail("default");
+		// $email->from(array("internetspam.pl@gmail.com" => "My Site"));
+		// $email->to($customerRegisterData["email"]);
+		// $email->subject("Email");
+		// $email->send("http://localhost/Shop/vendor/cakephp/cakephp/activate-customer-account?userUUID=".$userUUID);
 		try {
 			$this->Customer->save(array(
 				"id" => $userUUID,
@@ -111,8 +111,10 @@ class CustomersController extends AppController {
 				"birth_date" => $customerRegisterData["birthDate"],
 				"phone_number" => $customerRegisterData["phoneNumber"],
 				"total_points" => 0,
-				"verified" => 0
+				"verified" => 0,
+				"creation_date" => null
 			));
+			$this->Session->write("registeredModal", true);
 		} catch (Exception $e) {
 			$this->Log($e);
 		}
@@ -122,9 +124,11 @@ class CustomersController extends AppController {
 	public function login() {
 		$this->autoRender = false;
 		$customerLoginData = $this->request["data"]["loginUserForm"];
-		if (!empty($this->Customer->find("first", array("conditions" => array("email" => $customerLoginData["email"], "password" => $this->SecurityUtils->encrypt($customerLoginData["password"])))))) {
+		$user = $this->Customer->find("first", array("conditions" => array("email" => $customerLoginData["email"], "password" => $this->SecurityUtils->encrypt($customerLoginData["password"]))));
+		if (!empty($user)) {
 			$this->Session->write("loggedIn", true);
 			$this->Session->write("loggedModal", true);
+			$this->Session->write("userUUID", $user["Customer"]["id"]);
 			$this->redirect("/home");
 		} else {
 			$this->redirect("/login");

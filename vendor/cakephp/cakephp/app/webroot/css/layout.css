@@ -24,7 +24,12 @@ nav .logo {
     margin-left: 10%;
     font-size: 30px;
     font-weight: bold;
-    
+}
+
+.logo img {
+    mix-blend-mode: multiply;
+    height: 60px;
+    line-height: 75px;
 }
 
 nav .logo a {
@@ -36,7 +41,7 @@ div.searchBox {
     position: relative;
     height: 40px;
     margin-top: calc((75px - 40px) / 2);
-    margin-left: 250px;
+    margin-left: 285px;
     width: 450px;
 }
 
@@ -93,7 +98,6 @@ nav button {
 nav select {
     height: 40px;
     margin-top: calc((75px - 40px) / 2);
-    margin-left: 130px;
     border-radius: 27px;
     border: 1px solid #000000;
     width: 60px;
@@ -108,12 +112,12 @@ nav select {
 nav .links {
     width: 400px;
     float: right;
-    margin-right: 10%;
+    margin-right: 100px;
 }
 
 nav .navLink {
     float: left;
-    margin: auto 40px;
+    margin: auto 0;
     width: calc(400px / 2 - 40px * 2);
     text-align: center;
     font-size: 20px;
@@ -212,18 +216,23 @@ div.logInLink:hover {
 
 div.logInLink:hover div.logInModal,  div.cartLink:hover div.cartModal {
     display: block;
+    z-index: 10;
 }
 
-ul.categoriesList {
+div.categories {
     border: 3px solid #b0ffb8;
     border-radius: 27px;
-    padding: 10px;
-    padding-left: 20px;
     margin-top: 40px;
     float: left;
     margin-left: 10%;
     height: 500px;
     background-color: #fff;
+}
+
+ul.categoriesList {
+    padding: 10px;
+    padding-left: 20px;
+    width: 100%;
     font-weight: bold;
 }
 

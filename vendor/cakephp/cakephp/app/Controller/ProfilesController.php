@@ -28,7 +28,7 @@ App::uses("AppController", "Controller");
  * @package       app.Controller
  * @link https://book.cakephp.org/2.0/en/controllers/pages-controller.html
  */
-class FrontPagesController extends AppController {
+class ProfilesController extends AppController {
 
 /**
  * This controller does not use a model
@@ -39,6 +39,7 @@ class FrontPagesController extends AppController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
+		$this->loadModel("Customer");
 	}
 
 /**
@@ -82,54 +83,14 @@ class FrontPagesController extends AppController {
 		}
 	}
 
-	public function home() {
-		// $this->SecurityUtils = $this->Components->load("PasswordHashing");
-		// debug($this->SecurityUtils->encrypt("test12345"));
+	public function profile() {
+		$user = $this->Customer->find("first", array("conditions" => array("id" => $this->Session->read("userUUID"))))["Customer"];
+		$this->set("creation_date", $user["creation_date"]);
+		$this->set("total_points", $user["total_points"]);
 	}
 
-	public function registerPage() 
-	{
-
+	public function changeAddress() {
+		$user = $this->Customer->find("first", array("conditions" => array("id" => $this->Session->read("userUUID"))))["Customer"];
+		$this->set("user", $user);
 	}
-
-	public function loginPage() {
-
-	}
-
-	public function getSubCategories() {
-		$this->autoRender = false;
-		$this->loadModel("SubCategory");
-		$subCategories = [];
-		$subCategories[$this->params["url"]["category-id"]] = $this->SubCategory->find("all", array("conditions" => array("category_id" => $this->params["url"]["category-id"])));
-		return json_encode($subCategories);
-	}
-
-	public function changeLanguage() {
-		$this->autoRender = false;
-		$this->Session->write("language", $this->params["url"]["lang"]);
-	}
-
-	public function aboutUs() {
-
-	}
-
-	public function cooperation() {
-
-	}
-
-	public function contact() {
-	
-	}
-
-	public function partnership() {
-
-	}
-
-	public function termsOfService() {
-
-	}
-
-	public function privacyPolicyAndCookies() {
-		
-	} 
 }

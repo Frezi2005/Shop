@@ -1,11 +1,10 @@
 $(function() {
     var categories = $(".categoriesList > div");
     categories.each(function() {
-        console.log($(this))
-        $(this).mouseover(function() {
+        $(this).mouseenter(function() {
             getSubCategories($(this).children("li").attr("data-category-id"), $(this).children("li"));
         });
-        $(this).mouseout(function() {
+        $("div.categories").mouseleave(function() {
             $(".category").css("height", "24px").css("display", "block");
             $("hr").css("display", "block");
             $(".category").find("div.subCategories").text("");

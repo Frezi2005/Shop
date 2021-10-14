@@ -42,6 +42,8 @@
 	Router::connect("/products-list", array("controller" => "products", "action" => "productsList"));
 	Router::connect("/add-product-to-database", array("controller" => "products", "action" => "addProductToDatabase"));
 	Router::connect("/cart", array("controller" => "products", "action" => "cart"));
+	Router::connect("/profile", array("controller" => "profiles", "action" => "profile"));
+	Router::connect("/change-address", array("controller" => "profiles", "action" => "changeAddress"));
 
 	Router::connect("/about-us", array("controller" => "frontPages", "action" => "aboutUs"));
 	Router::connect("/cooperation", array("controller" => "frontPages", "action" => "cooperation"));

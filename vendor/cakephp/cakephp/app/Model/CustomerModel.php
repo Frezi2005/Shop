@@ -32,19 +32,6 @@ App::uses("Model", "Model");
 class Customer extends AppModel {
 
     public $use_table = "customers";
-    public $validate = array(
-        "name" => array(
-            "lettersOnly" => array(
-                "rule" => array("custom", "[a-zA-Z]"),
-                "required" => true,
-                "message" => "Only letters"
-            ),
-            "between" => array(
-                "rule" => array("lengthBetween", 2, 50),
-                "message" => "Between 2 to 50 characters"
-            )
-        )
-    );
 
     /**
      * @var String

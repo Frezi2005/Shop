@@ -7,8 +7,8 @@
 			echo $this->Html->script("../../../components/jquery/jquery.min");
 			echo $this->Html->script("//cdn.jsdelivr.net/npm/sweetalert2@10");
 			echo $this->Html->script("https://unpkg.com/@popperjs/core@2");
-			echo $this->Html->script("https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js");
-			echo $this->Html->css("https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css");
+			echo $this->Html->script("https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js");
+			echo $this->Html->css("https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css");
 			echo $this->Html->script("https://kit.fontawesome.com/b7d5b9359e.js");
 			echo $this->Html->css("layout");
 			echo $this->Html->script("product");
@@ -22,24 +22,25 @@
 	<body>
 		<div id="container">
 			<nav>
-				<p class="logo"><a href="home">LOGO</a></p>
+				<p class="logo"><a href="home"><?= $this->Html->image("logo.png");?></a></p>
 				<div class="searchBox">
 					<input class="searchInput" type="search">
 					<button class="searchBtn"><i class="fas fa-search"></i></button>
 					<div class="searchResults"></div>
 				</div>
-				<select class="languageSelect">
-					<?php
-						if ($this->Session->read("language") == "eng") {
-							echo "<option value=\"eng\">ENG</option>";
-							echo "<option value=\"pol\">POL</option>";
-						} else {
-							echo "<option value=\"pol\">POL</option>";
-							echo "<option value=\"eng\">ENG</option>";
-						}
-					?>
-				</select>
+				
 				<div class="links">
+					<select class="languageSelect">
+						<?php
+							if ($this->Session->read("language") == "eng") {
+								echo "<option value=\"eng\">ENG</option>";
+								echo "<option value=\"pol\">POL</option>";
+							} else {
+								echo "<option value=\"pol\">POL</option>";
+								echo "<option value=\"eng\">ENG</option>";
+							}
+						?>
+					</select>
 					<div class="logInLink navLink">
 						<i class="fas fa-user"></i>
 						<a href=""><?php echo ($this->Session->read("loggedIn") == true) ? "Profile" : "Log in"?></a>
@@ -66,21 +67,23 @@
 				</div>
 			</nav>
 			<div id="content">
-				<ul class="categoriesList col-lg-2 col-md-2">
-					<?php 
-						$index = 0;
-						foreach ($categories as $category) {
-							echo "<div class=\"category\">";
-							echo "<li data-category-id=".$category["Category"]["id"].">".$category["Category"]["category_name"]."</li>";
-							echo "<div class=\"subCategories\"></div>";
-							echo "</div>";
-							if ($index != count($categories) - 1) {
-								echo "<hr />";
+				<div class="categories col-lg-2 col-md-2">			
+					<ul class="categoriesList">
+						<?php 
+							$index = 0;
+							foreach ($categories as $category) {
+								echo "<div class=\"category\">";
+								echo "<li data-category-id=".$category["Category"]["id"].">".$category["Category"]["category_name"]."</li>";
+								echo "<div class=\"subCategories\"></div>";
+								echo "</div>";
+								if ($index != count($categories) - 1) {
+									echo "<hr />";
+								}
+								$index++;
 							}
-							$index++;
-						}
-					?>
-				</ul>
+						?>
+					</ul>
+				</div>
 				<?php echo $this->fetch("content"); ?>
 			</div>
 			<footer class="text-center justify-content-center">

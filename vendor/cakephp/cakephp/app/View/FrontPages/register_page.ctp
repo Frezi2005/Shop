@@ -12,7 +12,7 @@
         echo $this->Form->input("phoneNumber", array("type" => "text", "label" => "", "placeholder" => "Phone number input"));
         echo $this->Form->input("password", array("type" => "password", "label" => "", "placeholder" => "Password input"));
         echo $this->Form->input("passwordConfirm", array("type" => "password", "label" => "", "placeholder" => "Confirm password input"));
-        echo $this->Form->input("birthDate", array("type" => "text", "label" => "", "placeholder" => "Format: DD/MM/YYYY"));
+        echo $this->Form->input("birthDate", array("type" => "text", "label" => "", "placeholder" => "Format: YYYY-MM-DD"));
 
         echo $this->Form->end("submit");
     ?>

@@ -2,7 +2,6 @@ $(function() {
     var form = $("form#registerUserFormRegisterPageForm");
 
     form.submit(function(e) {
-        e.preventDefault();
         var name = $("input#registerUserFormName").val();
         var surname = $("input#registerUserFormSurname").val();
         var email = $("input#registerUserFormEmail").val();
@@ -10,20 +9,19 @@ $(function() {
         var password = $("input#registerUserFormPassword").val();
         var passwordConfirm = $("input#registerUserFormPasswordConfirm").val();
         var birthDate = $("input#registerUserFormBirthDate").val();
-        
+    
         if (
-            text_validation(name, 3, 40) &&
-            text_validation(surname, 2, 50) &&
-            email_validation(email) && 
-            phone_number_validation(phoneNumber) && 
-            password_validation(password) && 
-            date_validation(birthDate) &&
-            passwordConfirm == password
+            !text_validation(name, 3, 40) ||
+            !text_validation(surname, 2, 50) ||
+            !email_validation(email) || 
+            !phone_number_validation(phoneNumber) || 
+            !password_validation(password) ||
+            !date_validation(birthDate) ||
+            passwordConfirm != password
         ) {
-            console.log("Validated");
-        } else {
-            console.log("Not validated");
+            e.preventDefault();
         }
+
     });
 
     function text_validation(name, min, max) {
@@ -46,12 +44,11 @@ $(function() {
 
     function password_validation(password) {
         var regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
-        regex.test(password);
+        return regex.test(password);
     }
 
     function date_validation(date) {
-        var regex = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+        var regex = /^\d{4}-\d{2}-\d{2}$/;
         return regex.test(date);
     }
-    
 });
