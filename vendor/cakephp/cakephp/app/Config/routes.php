@@ -25,34 +25,39 @@
  * its action called "display", and we pass a param to select the view file
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
-	Router::connect("/", array("controller" => "frontPages", "action" => "home"));
-	Router::connect("/home", array("controller" => "frontPages", "action" => "home"));
-	Router::connect("/register", array("controller" => "frontPages", "action" => "registerPage"));
-	Router::connect("/register-customer", array("controller" => "customers", "action" => "register"));
-	Router::connect("/login", array("controller" => "frontPages", "action" => "loginPage"));
-	Router::connect("/login-customer", array("controller" => "customers", "action" => "login"));
-	Router::connect("/get-sub-categories", array("controller" => "frontPages", "action" => "getSubCategories"));
-	Router::connect("/activate-customer-account", array("controller" => "customers", "action" => "activateCustomerAccount"));
-	Router::connect("/change-language", array("controller" => "frontPages", "action" => "changeLanguage"));
-	Router::connect("/logout", array("controller" => "customers", "action" => "logout"));
-	Router::connect("/settings", array("controller" => "customers", "action" => "settings"));
-	Router::connect("/change-password", array("controller" => "customers", "action" => "changePassword"));
+		
 	Router::connect("/search", array("controller" => "products", "action" => "search"));
 	Router::connect("/product", array("controller" => "products", "action" => "product"));
-	Router::connect("/products-list", array("controller" => "products", "action" => "productsList"));
-	Router::connect("/add-product-to-database", array("controller" => "products", "action" => "addProductToDatabase"));
-	Router::connect("/cart", array("controller" => "products", "action" => "cart"));
-	Router::connect("/profile", array("controller" => "profiles", "action" => "profile"));
-	Router::connect("/change-address", array("controller" => "profiles", "action" => "changeAddress"));
+	Router::connect("/products-list",              array("controller" => "products", "action" => "productsList"));
+	Router::connect("/add-product-to-database",    array("controller" => "products", "action" => "addProductToDatabase"));
+	Router::connect("/cart",                       array("controller" => "products", "action" => "cart"));
 
-	Router::connect("/about-us", array("controller" => "frontPages", "action" => "aboutUs"));
-	Router::connect("/cooperation", array("controller" => "frontPages", "action" => "cooperation"));
-	Router::connect("/contact", array("controller" => "frontPages", "action" => "contact"));
-	Router::connect("/partnership", array("controller" => "frontPages", "action" => "partnership"));
-	Router::connect("/terms-of-service", array("controller" => "frontPages", "action" => "termsOfService"));
+	Router::connect("/profile",                    array("controller" => "profiles", "action" => "profile"));
+	Router::connect("/change-address",             array("controller" => "profiles", "action" => "changeAddress"));
+	Router::connect("/change-email-form",          array("controller" => "profiles", "action" => "changeEmailForm"));
+	Router::connect("/send-change-email",          array("controller" => "profiles", "action" => "sendChangeEmail"));
+	Router::connect("/change-email",          	   array("controller" => "profiles", "action" => "changeEmail"));
+
+	Router::connect("/about-us", 				   array("controller" => "frontPages", "action" => "aboutUs"));
+	Router::connect("/cooperation",                array("controller" => "frontPages", "action" => "cooperation"));
+	Router::connect("/contact",                    array("controller" => "frontPages", "action" => "contact"));
+	Router::connect("/partnership",                array("controller" => "frontPages", "action" => "partnership"));
+	Router::connect("/terms-of-service",           array("controller" => "frontPages", "action" => "termsOfService"));
 	Router::connect("/privacy-policy-and-cookies", array("controller" => "frontPages", "action" => "privacyPolicyAndCookies"));
+	Router::connect("/generate-hashed-password",   array("controller" => "frontPages", "action" => "generateHashedPassword"));
+	Router::connect("/change-language",            array("controller" => "frontPages", "action" => "changeLanguage"));
+	Router::connect("/get-sub-categories",         array("controller" => "frontPages", "action" => "getSubCategories"));
+	Router::connect("/",                           array("controller" => "frontPages", "action" => "home"));
+	Router::connect("/home", 					   array("controller" => "frontPages", "action" => "home"));
+	Router::connect("/register", 				   array("controller" => "frontPages", "action" => "registerPage"));
+	Router::connect("/login", 					   array("controller" => "frontPages", "action" => "loginPage"));
 
-
+	Router::connect("/logout", 					   array("controller" => "customers", "action" => "logout"));
+	Router::connect("/settings", 				   array("controller" => "customers", "action" => "settings"));
+	Router::connect("/change-password", 		   array("controller" => "customers", "action" => "changePassword"));
+	Router::connect("/login-customer", 			   array("controller" => "customers", "action" => "login"));
+	Router::connect("/activate-customer-account",  array("controller" => "customers", "action" => "activateCustomerAccount"));
+	Router::connect("/register-customer", 		   array("controller" => "customers", "action" => "register"));
 /**
  * ...and connect the rest of "Pages" controller"s URLs.
  */

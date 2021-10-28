@@ -40,7 +40,7 @@ class CustomersController extends AppController {
 	public function beforeFilter() {
 		parent::beforeFilter();
 		App::uses('CakeText', 'Utility');
-		$this->loadModel("Customer");
+		$this->loadModel("User");
 		//Loading password hashing function
 		//Using $this->SecurityUtils("test12345") results in: 
 		//"3321c186b19869ee1be6a1c6791e669d64f3e56ba053dfdb3431caf06dbd6fb0ec1a7736af0ea45426fefdc4dfdf23bf08e86f75addf5168cad540bddb3cf743"
@@ -93,7 +93,7 @@ class CustomersController extends AppController {
 		$this->autoRender = false;
 		$customerRegisterData = $this->request["data"]["registerUserForm"];
 		$this->Session->write("rememberedFieldsData", $customerRegisterData); 
-		$this->Customer->set($customerRegisterData);
+		$this->User->set($customerRegisterData);
 		$userUUID = CakeText::uuid();
 
 		// $email = new CakeEmail("default");
@@ -102,7 +102,7 @@ class CustomersController extends AppController {
 		// $email->subject("Email");
 		// $email->send("http://localhost/Shop/vendor/cakephp/cakephp/activate-customer-account?userUUID=".$userUUID);
 		try {
-			$this->Customer->save(array(
+			$this->User->save(array(
 				"id" => $userUUID,
 				"name" => $customerRegisterData["name"],
 				"surname" => $customerRegisterData["surname"],
@@ -112,7 +112,8 @@ class CustomersController extends AppController {
 				"phone_number" => $customerRegisterData["phoneNumber"],
 				"total_points" => 0,
 				"verified" => 0,
-				"creation_date" => null
+				"creation_date" => null,
+				"is_employee" => 0
 			));
 			$this->Session->write("registeredModal", true);
 		} catch (Exception $e) {
@@ -124,11 +125,11 @@ class CustomersController extends AppController {
 	public function login() {
 		$this->autoRender = false;
 		$customerLoginData = $this->request["data"]["loginUserForm"];
-		$user = $this->Customer->find("first", array("conditions" => array("email" => $customerLoginData["email"], "password" => $this->SecurityUtils->encrypt($customerLoginData["password"]))));
+		$user = $this->User->find("first", array("conditions" => array("email" => $customerLoginData["email"], "password" => $this->SecurityUtils->encrypt($customerLoginData["password"]))));
 		if (!empty($user)) {
 			$this->Session->write("loggedIn", true);
 			$this->Session->write("loggedModal", true);
-			$this->Session->write("userUUID", $user["Customer"]["id"]);
+			$this->Session->write("userUUID", $user["User"]["id"]);
 			$this->redirect("/home");
 		} else {
 			$this->redirect("/login");
@@ -137,8 +138,8 @@ class CustomersController extends AppController {
 
 	public function activateCustomerAccount() {
 		$this->autoRender = false;
-		$this->Customer->id = $this->params["url"]["userUUID"];
-		$this->Customer->saveField("verified", 1);
+		$this->User->id = $this->params["url"]["userUUID"];
+		$this->User->saveField("verified", 1);
 		$this->Session->write("verified", true);
 		$this->redirect("/home");
 	}
@@ -157,8 +158,8 @@ class CustomersController extends AppController {
 		$this->autoRender = false;
 		$changePasswordData = $this->request["data"]["changePasswordForm"];
 		if ($changePasswordData["newPasswordConfirm"] == $changePasswordData["newPassword"]) {
-			$this->Customer->password = $this->SecurityUtils->encrypt($changePasswordData["currentPassword"]);
-			$this->Customer->saveField("password", $this->SecurityUtils->encrypt($changePasswordData["newPassword"]));
+			$this->User->password = $this->SecurityUtils->encrypt($changePasswordData["currentPassword"]);
+			$this->User->saveField("password", $this->SecurityUtils->encrypt($changePasswordData["newPassword"]));
 			$this->Session->write("changePassword", true);
 			$this->redirect("/logout");
 		}

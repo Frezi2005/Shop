@@ -1,6 +1,7 @@
 {
     "require": {
         "cakephp/cakephp": "2.10.*",
-        "components/jquery": "^3.5"
+        "components/jquery": "^3.5",
+        "swiftmailer/swiftmailer": "^6.0"
     }
 }

@@ -1,5 +1,6 @@
 <?php 
     echo $this->Html->css("home");
+	echo $this->Html->script("//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js");
 ?>
 <div class="boxRight">
 	<div class="slider carousel slide" data-bs-ride="carousel">
@@ -46,10 +47,9 @@ if ($this->Session->read("verified") == true) {
 } else if ($this->Session->read("registeredModal") == true) {
     echo "<script>Swal.fire({icon: \"success\",text: \"Your account has been created!\",showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
     $_SESSION["registeredModal"] = false;
+} else if ($this->Session->read("changeEmailSent") == true) {
+    echo "<script>Swal.fire({icon: \"success\",text: \"Email has been sent!\",showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
+    $_SESSION["changeEmailSent"] = false;
 }
 ?>
-
-<!-- <h1>Home page</h1>
-<h4><a href="register">Register Page</a></h4>
-<h4><a href="login">Login Page</a></h4> -->
 

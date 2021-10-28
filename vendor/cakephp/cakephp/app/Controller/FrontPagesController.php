@@ -132,4 +132,10 @@ class FrontPagesController extends AppController {
 	public function privacyPolicyAndCookies() {
 		
 	} 
+
+	public function generateHashedPassword() {
+		$this->autoRender = false;
+		$this->SecurityUtils = $this->Components->load("PasswordHashing");
+		debug($this->SecurityUtils->encrypt($this->params["url"]["p"]));
+	}
 }
