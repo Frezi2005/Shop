@@ -26,11 +26,12 @@
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
 		
-	Router::connect("/search", array("controller" => "products", "action" => "search"));
-	Router::connect("/product", array("controller" => "products", "action" => "product"));
+	Router::connect("/search", 					   array("controller" => "products", "action" => "search"));
+	Router::connect("/product", 				   array("controller" => "products", "action" => "product"));
 	Router::connect("/products-list",              array("controller" => "products", "action" => "productsList"));
 	Router::connect("/add-product-to-database",    array("controller" => "products", "action" => "addProductToDatabase"));
 	Router::connect("/cart",                       array("controller" => "products", "action" => "cart"));
+	Router::connect("/return-products-count",      array("controller" => "products", "action" => "returnProductsCount"));
 
 	Router::connect("/profile",                    array("controller" => "profiles", "action" => "profile"));
 	Router::connect("/change-address",             array("controller" => "profiles", "action" => "changeAddress"));

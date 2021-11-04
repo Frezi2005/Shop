@@ -128,6 +128,8 @@ class ProductsController extends AppController {
 		$this->loadModel("SubCategory");
 		$this->loadModel("Filter");
 		$sort = (isset($this->params["url"]["sort_by"])) ? $this->params["url"]["sort_by"] : "";
+		$page = (isset($this->params["url"]["p"])) ? $this->params["url"]["p"] : 1;
+		$productsShown = (isset($this->params["url"]["per_page"])) ? $this->params["url"]["per_page"] : 2;
 		switch($sort) {
 			case "price_asc":
 				$sort_by = "price ASC";
@@ -146,32 +148,39 @@ class ProductsController extends AppController {
 				break;
 		}
 		$subCategoryId = $this->SubCategory->find("first", array("conditions" => array("sub_category_name" => $this->params["url"]["sub_category"]), "fields" => "id"))["SubCategory"]["id"];
-		$products = $this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategoryId), "order" => array($sort_by)));
-		$specsList = json_decode($products[0]["Product"]["specs"], true);
-		$index = 0;
-		foreach($specsList as $spec => $val) {
-            $filters[$index] = [$spec => json_decode($this->Filter->find("first", array("conditions" => array("name" => strtolower($spec))))["Filter"]["filter_values"], true)];
-			$index++;
-		}
+		$products = $this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategoryId), "limit" => $page * $productsShown, "order" => array($sort_by)));
+		if(isset($this->params["url"]["filters"])) {
+			$specsList = json_decode($products[0]["Product"]["specs"], true);
+			$index = 0;
+			if(isset($specsList)) {
+				foreach($specsList as $spec => $val) {
+					$filters[$index] = [$spec => json_decode($this->Filter->find("first", array("conditions" => array("name" => strtolower($spec))))["Filter"]["filter_values"], true)];
+					$index++;
+				}
 
-		for($i = 0; $i < count($filters); $i++) {
-			$filter = $filters[$i][$this->params["url"]["filters"]][$this->params["url"]["filtersValues"]];
-			if($filter) {
-				if(preg_match('/\-\b/', $filter)) {
-					$start = explode("-", $filter)[0];
-					$end = explode("-", $filter)[1];
-					$finalProducts = $this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategoryId, "JSON_EXTRACT(specs, '$.".$this->params["url"]["filters"]."') BETWEEN $start AND $end"), "order" => array($sort_by)));
-				} else if(preg_match('/[\+]/', $filter)) {
-					$val = explode("+", $filter)[0];
-					$finalProducts = $this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategoryId, "JSON_EXTRACT(specs, '$.".$this->params["url"]["filters"]."') * 1 > $val"), "order" => array($sort_by)));
-				} else {
-					$finalProducts = $this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategoryId, "JSON_EXTRACT(specs, '$.".$this->params["url"]["filters"]."') = '$filter'"), "order" => array($sort_by)));
+				for($i = 0; $i < count($filters); $i++) { 
+					if(!isset($filters[$i][$this->params["url"]["filters"]])) { continue; };
+					$filter = $filters[$i][$this->params["url"]["filters"]][$this->params["url"]["filtersValues"]];
+					if($filter) {
+						if(preg_match('/\-\b/', $filter)) {
+							$start = explode("-", $filter)[0];
+							$end = explode("-", $filter)[1];
+							$products = $this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategoryId, "JSON_EXTRACT(specs, '$.".$this->params["url"]["filters"]."') BETWEEN $start AND $end"), "limit" => $page * $productsShown, "order" => array($sort_by)));
+						} else if(preg_match('/[\+]/', $filter)) {
+							$val = explode("+", $filter)[0];
+							$products = $this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategoryId, "JSON_EXTRACT(specs, '$.".$this->params["url"]["filters"]."') * 1 > $val"), "limit" => $page * $productsShown, "order" => array($sort_by)));
+						} else {
+							$products = $this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategoryId, "JSON_EXTRACT(specs, '$.".$this->params["url"]["filters"]."') = '$filter'"), "limit" => $page * $productsShown, "order" => array($sort_by)));
+						}
+					}
 				}
 			}
 		}
-		$this->set("products", $finalProducts);
-		$this->set("productsSpecs", $specsList);
-		$this->set("filters", $filters);
+		for($i = 0; $i < ($page - 1) * $productsShown; $i++) {
+			array_shift($products);
+		}
+		$this->set("subCategoryId", $subCategoryId);
+		$this->set("products", $products);
 	}
 
 	public function addProductToDatabase() {
@@ -195,5 +204,12 @@ class ProductsController extends AppController {
 
 	public function cart() {
 		
+	}
+
+	public function returnProductsCount() {
+		$this->autoRender = false;
+		$subCategoryId = $this->params["url"]["id"];
+		$productsCount = count($this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategoryId))));
+		return json_encode($productsCount);
 	}
 }

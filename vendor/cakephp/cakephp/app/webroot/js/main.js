@@ -22,7 +22,7 @@ $(function() {
 
                 //INSERTING SUB CATEGORIES
                 JSON.parse(result)[category].forEach(function(subCategory) {
-                    currElement.next().append("<a class='subCategory' href='products-list?sub_category=" + subCategory["SubCategory"]["sub_category_name"] + "'>" + subCategory["SubCategory"]["sub_category_name"] + "</a><br />");
+                    currElement.next().append("<hr></hr><a class='subCategory' href='products-list?sub_category=" + subCategory["SubCategory"]["sub_category_name"] + "'>" + subCategory["SubCategory"]["sub_category_name"] + "</a>");
                 });
 
                 //OLD MODAL CODE
@@ -82,4 +82,31 @@ $(function() {
             }
         });
     });
+
+    //NUMBER BUTTONS PAGE CHANGING SYSTEM
+
+    // per_page = parseInt((per_page != null) ? per_page : 10);
+    // page = parseInt((page != null) ? page : 1);
+
+    // console.log(queryString);
+    // console.log(per_page);
+    // console.log(page);
+
+    // $.ajax({
+    //     url: "http://localhost/Shop/vendor/cakephp/cakephp/return-products-count?id="+$("input#subCategoryId").val(),
+    //     success: function(result) {
+    //         console.log(result);
+    //     }
+    // });
+
+    var queryString = window.location.search;
+    var urlParams = new URLSearchParams(queryString);
+    var page = parseInt((urlParams.get("p") != null) ? urlParams.get("p") : 1);
+    var newUrl;
+
+    $("button.page-change").click(function() {
+        newUrl = queryString.replace(/&p=\d{1,}/, "") + "&p=" + (((page + parseInt($(this).data("page-change"))) > 0) ? (page + parseInt($(this).data("page-change"))) : 1);
+        location.replace("http://localhost/Shop/vendor/cakephp/cakephp/products-list"+newUrl);
+    })
+
 });

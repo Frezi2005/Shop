@@ -234,6 +234,8 @@ ul.categoriesList {
     padding-left: 20px;
     width: 100%;
     font-weight: bold;
+    overflow: scroll;
+    height: 500px;
 }
 
 ul.categoriesList > div > li {
@@ -241,8 +243,8 @@ ul.categoriesList > div > li {
     list-style-type: none;
 }
 
-ul.categoriesList > hr {
-    margin: 12px 0;
+ul.categoriesList > hr, div.subCategories > hr {
+    margin: 11px 0;
     background-color: #60baff;
     height: 2px;
 }
@@ -268,9 +270,11 @@ div.category {
 div.subCategories > a {
     text-decoration: none;
     color: black;
-    font-weight: normal;
+    font-weight: bold;
     cursor: pointer;
     transition: all .5s ease-in-out;
+    height: 20px;
+    display: inline-block;
 }
 
 footer {
@@ -300,7 +304,7 @@ footer ul {
 }
 
 footer ul.footerUsefulLinks2 {
-    margin-top: 50px;
+    margin-top: 56px;
 }
 
 footer ul.socialMedia {
@@ -308,7 +312,7 @@ footer ul.socialMedia {
 }
 
 footer div.socialMediaDiv {
-    margin-top: 50px;
+    margin-top: 56px;
 }
 
 
