@@ -64,7 +64,7 @@ $(function() {
     }
 
     $("input.searchInput").on("keyup", function() {
-        $("div.searchResults").empty();
+        $("div.innerSearchResults").empty();
         $.getJSON("http://localhost/Shop/vendor/cakephp/cakephp/search?q="+$(this).val(), function(data) {
             var len = Object.keys(data).length;
             for (var i = 0; i < len; i++) {
@@ -78,7 +78,7 @@ $(function() {
             }
             $("div.searchResults").css("display", "block");
             for(var i = 0; i < Object.keys(data).length; i++) {
-                $("div.searchResults").append("<p><a href='product?product_id="+data["product"+i].id+"'>"+data["product"+i].name+"</a></p>");
+                $("div.innerSearchResults").append("<p><a href='product?product_id="+data["product"+i].id+"'>"+data["product"+i].name+"</a></p>");
             }
         });
     });
@@ -98,15 +98,5 @@ $(function() {
     //         console.log(result);
     //     }
     // });
-
-    var queryString = window.location.search;
-    var urlParams = new URLSearchParams(queryString);
-    var page = parseInt((urlParams.get("p") != null) ? urlParams.get("p") : 1);
-    var newUrl;
-
-    $("button.page-change").click(function() {
-        newUrl = queryString.replace(/&p=\d{1,}/, "") + "&p=" + (((page + parseInt($(this).data("page-change"))) > 0) ? (page + parseInt($(this).data("page-change"))) : 1);
-        location.replace("http://localhost/Shop/vendor/cakephp/cakephp/products-list"+newUrl);
-    })
 
 });

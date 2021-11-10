@@ -63,16 +63,24 @@ div.searchResults {
     height: 200px;
     width: 450px;
     background-color: #fff;
-    border-radius: 27px;
+    border-radius: 15px;
     -webkit-box-shadow: 0px 2px 6px 0px #000000cc;
     -moz-box-shadow: 0px 2px 6px 0px #000000cc;
     box-shadow: 0px 2px 6px 0px #000000cc;
     display: none;
-    overflow-y: scroll;
     z-index: 10;
 }
 
-div.searchResults > p {
+div.innerSearchResults {
+    margin-top: 10px;
+    height: 180px;
+    width: 450px;
+    overflow: auto;
+    border-radius: 27px;
+}
+
+
+div.innerSearchResults > p {
     line-height: calc(200px / 3);
     height: calc(200px / 3);
     font-size: 14px;

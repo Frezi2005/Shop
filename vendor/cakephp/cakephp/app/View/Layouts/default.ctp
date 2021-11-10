@@ -26,7 +26,9 @@
 				<div class="searchBox">
 					<input class="searchInput" type="search">
 					<button class="searchBtn"><i class="fas fa-search"></i></button>
-					<div class="searchResults"></div>
+					<div class="searchResults">
+						<div class="innerSearchResults"></div>
+					</div>
 				</div>
 				
 				<div class="links">

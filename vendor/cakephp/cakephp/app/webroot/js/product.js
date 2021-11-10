@@ -8,6 +8,26 @@ $(function (){
     $("#addToCartBtn").click(function() {
         addToCart();
     });
+
+    var queryString = window.location.search;
+    var urlParams = new URLSearchParams(queryString);
+    var page = parseInt((urlParams.get("p") != null) ? urlParams.get("p") : 1);
+    var newUrl;
+
+    $("select#sort").find("[value='" + urlParams.get("sort_by") + "']").attr("selected", true);
+    //console.log(urlParams.get("sort_by"));
+
+    $("button.page-change").click(function() {
+        newUrl = queryString.replace(/&p=\d{1,}/, "") + "&p=" + (((page + parseInt($(this).data("page-change"))) > 0) ? (page + parseInt($(this).data("page-change"))) : 1);
+        location.replace("http://localhost/Shop/vendor/cakephp/cakephp/products-list"+newUrl);
+    })
+
+    $("select#sort").change(function() {
+        newUrl = queryString.replace("&sort_by="+urlParams.get("sort_by"), "&sort_by=" + $(this).val());
+        //$(this).find("[value='" + $(this).val() + "']").attr("selected", true);
+        location.replace("http://localhost/Shop/vendor/cakephp/cakephp/products-list"+newUrl);
+    })
+    
 });
 
 var items = (JSON.parse(localStorage.getItem("cart")) == null) ? [] : JSON.parse(localStorage.getItem("cart"));

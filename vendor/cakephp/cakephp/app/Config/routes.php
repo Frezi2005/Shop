@@ -32,6 +32,7 @@
 	Router::connect("/add-product-to-database",    array("controller" => "products", "action" => "addProductToDatabase"));
 	Router::connect("/cart",                       array("controller" => "products", "action" => "cart"));
 	Router::connect("/return-products-count",      array("controller" => "products", "action" => "returnProductsCount"));
+	Router::connect("/inventory",      			   array("controller" => "products", "action" => "inventory"));
 
 	Router::connect("/profile",                    array("controller" => "profiles", "action" => "profile"));
 	Router::connect("/change-address",             array("controller" => "profiles", "action" => "changeAddress"));
@@ -59,6 +60,9 @@
 	Router::connect("/login-customer", 			   array("controller" => "customers", "action" => "login"));
 	Router::connect("/activate-customer-account",  array("controller" => "customers", "action" => "activateCustomerAccount"));
 	Router::connect("/register-customer", 		   array("controller" => "customers", "action" => "register"));
+	Router::connect("/register-employee-page", 	   array("controller" => "frontPages", "action" => "registerEmployeePage"));
+	Router::connect("/register-employee", 	   array("controller" => "customers", "action" => "registerEmployee"));
+	
 /**
  * ...and connect the rest of "Pages" controller"s URLs.
  */

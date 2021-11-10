@@ -1,6 +1,12 @@
 <?php
     echo $this->Html->css("products_list");
 ?>
+<select id="sort">
+    <option value="price_asc">Price ascending</option>
+    <option value="price_desc">Price descending</option>
+    <option value="name_asc">Name ascending</option>
+    <option value="name_desc">Name descending</option>
+</select>
 <div class="productsList col-lg-5 col-md-5">
     <?php 
         foreach ($products as $product) {

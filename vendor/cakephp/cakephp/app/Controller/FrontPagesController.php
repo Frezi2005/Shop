@@ -85,6 +85,8 @@ class FrontPagesController extends AppController {
 	public function home() {
 		// $this->SecurityUtils = $this->Components->load("PasswordHashing");
 		// debug($this->SecurityUtils->encrypt("test12345"));
+		$this->loadModel("Product");
+		$this->set("randomProducts", $this->Product->find("all", array("order" => "rand()", "limit" => 4, "fields" => array("id", "name"))));
 	}
 
 	public function registerPage() 
@@ -137,5 +139,9 @@ class FrontPagesController extends AppController {
 		$this->autoRender = false;
 		$this->SecurityUtils = $this->Components->load("PasswordHashing");
 		debug($this->SecurityUtils->encrypt($this->params["url"]["p"]));
+	}
+
+	public function registerEmployeePage() {
+
 	}
 }

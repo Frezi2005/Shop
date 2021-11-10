@@ -1,6 +1,7 @@
 <?php 
     echo $this->Html->css("home");
 	echo $this->Html->script("//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js");
+
 ?>
 <div class="boxRight">
 	<div class="slider carousel slide" data-bs-ride="carousel">
@@ -19,16 +20,16 @@
 	<div class="productsList">
 		<div class="products">
 			<div class="productOnMainPage">
-				<p><a href="product?product_id=639adc99-c700-11eb-a8c6-9822efb9cbff" target="_blank">Product</a></p>
+				<p><a href=<?="product?product_id=".$randomProducts[0]["Product"]["id"]?> target="_blank"><?=$randomProducts[0]["Product"]["name"]?></a></p>
 			</div>
 			<div class="productOnMainPage">
-				<p>Product</p>
+				<p><a href=<?="product?product_id=".$randomProducts[1]["Product"]["id"]?> target="_blank"><?=$randomProducts[1]["Product"]["name"]?></a></p>
 			</div>
 			<div class="productOnMainPage">
-				<p>Product</p>
+				<p><a href=<?="product?product_id=".$randomProducts[2]["Product"]["id"]?> target="_blank"><?=$randomProducts[2]["Product"]["name"]?></a></p>
 			</div>
 			<div class="productOnMainPage">
-				<p>Product</p>
+				<p><a href=<?="product?product_id=".$randomProducts[3]["Product"]["id"]?> target="_blank"><?=$randomProducts[3]["Product"]["name"]?></a></p>
 			</div>
 		</div>
 	</div>

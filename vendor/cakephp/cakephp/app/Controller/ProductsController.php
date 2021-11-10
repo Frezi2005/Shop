@@ -212,4 +212,13 @@ class ProductsController extends AppController {
 		$productsCount = count($this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategoryId))));
 		return json_encode($productsCount);
 	}
+
+	public function inventory() {
+		$this->loadModel("User");
+		$isEmployee = $this->User->find("first", array("conditions" => array("id" => $this->Session->read("userUUID")), "fields" => "is_employee"))["User"]["is_employee"];
+		if(!$isEmployee) {
+			throw new UnauthorizedException();
+		}
+		$this->set("products", $this->Product->find("all"));
+	}
 }

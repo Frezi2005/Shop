@@ -147,6 +147,7 @@ class CustomersController extends AppController {
 	public function logout() {
 		$this->autoRender = false;
 		$this->Session->write("loggedIn", false);
+		$this->Session->write("userUUID", "");
 		$this->redirect("/home");
 	}
 
@@ -163,5 +164,43 @@ class CustomersController extends AppController {
 			$this->Session->write("changePassword", true);
 			$this->redirect("/logout");
 		}
+	}
+
+	public function registerEmployee() {
+		$employee = $this->request["data"]["registerEmployeeForm"];
+		$userUUID = CakeText::uuid();
+		$randomPassword = "";
+		for($i = 0; $i < 6; $i++) {
+			$randomPassword .= rand(0, 9);
+		}
+		// debug($employee);
+		// die;
+		$this->User->save(array(
+			"id" => $userUUID,
+			"name" => $employee["name"],
+			"surname" => $employee["surname"],
+			"email" => $employee["email"],
+			"password" => $this->SecurityUtils->encrypt($randomPassword),
+			"birth_date" => $employee["birthDate"],
+			"country" => $employee["country"],
+			"city" => $employee["city"],
+			"street" => $employee["street"],
+			"house_number" => $employee["houseNumber"],
+			"flat_number" => $employee["flatNumber"],
+			"phone_number" => $employee["phoneNumber"],
+			"total_points" => 0,
+			"verified" => 0,
+			"creation_date" => date("Y-m-d H:i:s"),
+			"id_number_and_series" => $employee["idNumberAndSeries"],
+			"salary" => $employee["salary"],
+			"internship_length" => $employee["internshipLength"],
+			"bonus_amount" => $employee["bonusAmount"],
+			"holiday_amount" => $employee["holidayAmount"],
+			"is_employee" => 1,
+			"shop_id" => null,
+			"email_change_creation_date" => null,
+			"email_change_expiration_date" => null
+		));
+		die;
 	}
 }
