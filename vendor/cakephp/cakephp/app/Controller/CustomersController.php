@@ -201,6 +201,6 @@ class CustomersController extends AppController {
 			"email_change_creation_date" => null,
 			"email_change_expiration_date" => null
 		));
-		die;
+		$this->redirect("/home");
 	}
 }
