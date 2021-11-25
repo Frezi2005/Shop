@@ -84,13 +84,13 @@ class ProfilesController extends AppController {
 	}
 
 	public function profile() {
-		$user = $this->Customer->find("first", array("conditions" => array("id" => $this->Session->read("userUUID"))))["Customer"];
+		$user = $this->User->find("first", array("conditions" => array("id" => $this->Session->read("userUUID"))))["User"];
 		$this->set("creation_date", $user["creation_date"]);
 		$this->set("total_points", $user["total_points"]);
 	}
 
 	public function changeAddress() {
-		$user = $this->Customer->find("first", array("conditions" => array("id" => $this->Session->read("userUUID"))))["Customer"];
+		$user = $this->User->find("first", array("conditions" => array("id" => $this->Session->read("userUUID"))))["User"];
 		$this->set("user", $user);
 	}
 

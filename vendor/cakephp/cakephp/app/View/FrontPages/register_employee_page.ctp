@@ -1,4 +1,7 @@
 <?php
+
+    echo $this->Html->script("register_employee");
+
     echo $this->Form->create("registerEmployeeForm", array("url" => "/register-employee"));
     echo $this->Form->input("name", array("type" => "text", "label" => "", "placeholder" => "Name"));
     echo $this->Form->input("surname", array("type" => "text", "label" => "", "placeholder" => "Surname"));

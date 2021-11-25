@@ -34,7 +34,10 @@
 		</div>
 	</div>
 </div>
-<div class="contact"></div>
+<div class="contact">
+	<a href="contact">Contact</a>
+	<a href="site-map">Site Map</a>
+</div>
 <?php
 if ($this->Session->read("verified") == true) {
     echo "<script>Swal.fire({icon: \"success\",text: \"Your account has been verified! You can login now.\",showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";

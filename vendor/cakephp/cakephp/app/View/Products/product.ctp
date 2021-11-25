@@ -4,7 +4,7 @@
 ?>
 <div class="productContainer w-auto">
     <h3 id="productName"><?php echo $product["name"]; ?></h3>
-    <?php echo $this->Html->image($product["name"].".jpg", array("alt" => "Product image")); ?>
+    <div id="productImg"></div>
     <p id="description">Description: <?php echo $product["description"];?></p>
     <p id="priceWithoutTax">Netto: <span id="productPrice"><?php echo $product["price"] ?></span></p>
     <p id="priceWithTax"><sup>Brutto: <?php echo $product["price"] + $product["tax"]; ?></sup></p>

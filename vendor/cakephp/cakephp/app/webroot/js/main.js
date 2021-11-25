@@ -99,4 +99,17 @@ $(function() {
     //     }
     // });
 
+    // $("button#denie").click(() => {
+    //     window.history.back();
+    // })
+
+    // $("button#accept").click(() => {
+    //     $.get("create-rodo-cookie", (data) => {
+    //         alert(data);
+    //     });
+    //     $("div#rodo").css("display", "none");
+    // });
+
+    // console.log(document.cookie[document.cookie.length - 1]);
+
 });

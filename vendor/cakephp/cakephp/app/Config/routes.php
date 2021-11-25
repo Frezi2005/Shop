@@ -53,6 +53,9 @@
 	Router::connect("/home", 					   array("controller" => "frontPages", "action" => "home"));
 	Router::connect("/register", 				   array("controller" => "frontPages", "action" => "registerPage"));
 	Router::connect("/login", 					   array("controller" => "frontPages", "action" => "loginPage"));
+	Router::connect("/register-employee-page", 	   array("controller" => "frontPages", "action" => "registerEmployeePage"));
+	Router::connect("/site-map", 				   array("controller" => "frontPages", "action" => "siteMap"));
+	Router::connect("/create-rodo-cookie", 		   array("controller" => "frontPages", "action" => "createRodoCookie"));
 
 	Router::connect("/logout", 					   array("controller" => "customers", "action" => "logout"));
 	Router::connect("/settings", 				   array("controller" => "customers", "action" => "settings"));
@@ -60,8 +63,9 @@
 	Router::connect("/login-customer", 			   array("controller" => "customers", "action" => "login"));
 	Router::connect("/activate-customer-account",  array("controller" => "customers", "action" => "activateCustomerAccount"));
 	Router::connect("/register-customer", 		   array("controller" => "customers", "action" => "register"));
-	Router::connect("/register-employee-page", 	   array("controller" => "frontPages", "action" => "registerEmployeePage"));
-	Router::connect("/register-employee", 	   array("controller" => "customers", "action" => "registerEmployee"));
+	Router::connect("/register-employee", 	   	   array("controller" => "customers", "action" => "registerEmployee"));
+
+	Router::connect("/send-email-from-customer",   array("controller" => "mails", "action" => "sendEmailFromCustomer"));
 	
 /**
  * ...and connect the rest of "Pages" controller"s URLs.

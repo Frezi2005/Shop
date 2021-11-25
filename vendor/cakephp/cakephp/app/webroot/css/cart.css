@@ -7,11 +7,16 @@ div.cartContainer {
     padding: 40px;
     max-width: 60% !important;
     height: 600px;
+}
+
+div.products {
     overflow-y: scroll;
+    height: 100%;
+    width: 100%;
 }
 
 .product {
-    width: 100%;
+    width: 90%;
     height: 150px;
     background-color: #ffffff;
     padding: 40px;

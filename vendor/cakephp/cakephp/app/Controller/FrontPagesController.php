@@ -35,6 +35,8 @@ class FrontPagesController extends AppController {
  *
  * @var array
  */
+	public $components = array("Cookie");
+
 	public $uses = array();
 
 	public function beforeFilter() {
@@ -143,5 +145,15 @@ class FrontPagesController extends AppController {
 
 	public function registerEmployeePage() {
 
+	}
+
+	public function siteMap() {
+		
+	}
+
+	public function createRodoCookie() {
+		$this->autoRender = false;
+		$this->Cookie->write("rodo_accepted", true, false, "6 months");
+		//$this->set("rodoCookie", $this->Cookie->read("rodo_accepted"));
 	}
 }

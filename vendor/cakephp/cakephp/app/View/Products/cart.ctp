@@ -4,5 +4,5 @@
     echo $this->Html->script("product");
 ?>
 <div class="cartContainer">
-    
+    <div class="products"></div>
 </div>

@@ -26,8 +26,21 @@ $(function (){
         newUrl = queryString.replace("&sort_by="+urlParams.get("sort_by"), "&sort_by=" + $(this).val());
         //$(this).find("[value='" + $(this).val() + "']").attr("selected", true);
         location.replace("http://localhost/Shop/vendor/cakephp/cakephp/products-list"+newUrl);
-    })
-    
+    });
+
+    $.ajax({
+        type: "GET",
+        url: "http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/"+$("#productName").text()+".jpg",
+        success: function(data) {
+            $("div#productImg").append("<img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/"+$("#productName").text()+".jpg" + "'/>")
+        },
+        error: function(e) {
+            $("div#productImg").append("<img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/noimg.jpg'/>")
+        }
+    });
+
+    displayAmount(items);
+    displayItemsInCartGUI(items);
 });
 
 var items = (JSON.parse(localStorage.getItem("cart")) == null) ? [] : JSON.parse(localStorage.getItem("cart"));

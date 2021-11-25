@@ -184,7 +184,16 @@ class ProductsController extends AppController {
 	}
 
 	public function addProductToDatabase() {
+		$this->loadModel("SubCategory");
 		$productData = $this->request["data"]["addProductForm"];
+		$subCategoriesIds = $this->SubCategory->find("all", array("fields" => array("id", "sub_category_name")));
+
+		$formatted = array();
+
+		for($i = 0; $i < count($subCategoriesIds); $i++) {
+			$formatted[] = [$subCategoriesIds[$i]["SubCategory"]["id"] => $subCategoriesIds[$i]["SubCategory"]["sub_category_name"]];
+		}
+
 		if(!empty($productData)) {
 			$this->Product->save(array(
 				"id" => CakeText::uuid(),
@@ -200,6 +209,7 @@ class ProductsController extends AppController {
 				"sub_category_id" => $productData["subCategoryId"]
 			));
 		}
+		$this->set("subCategoriesIds", $formatted);
 	}
 
 	public function cart() {

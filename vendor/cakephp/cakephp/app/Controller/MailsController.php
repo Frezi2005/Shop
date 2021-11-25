@@ -36,6 +36,11 @@ class MailsController extends AppController {
  * @var array
  */
 	public $uses = array();
+	
+	public function beforeFilter() {
+		parent::beforeFilter();
+		App::uses("CakeEmail", "Network/Email");
+	}
 
 /**
  * Displays a view
@@ -76,5 +81,26 @@ class MailsController extends AppController {
 			}
 			throw new NotFoundException();
 		}
+	}
+
+	public function sendEmailFromCustomer() {
+		$this->autoRender = false;
+		$contactInfo = $this->request["data"]["contactForm"];
+		$types = array("Opinion", "Complaint", "Cooperative offer", "Media contact", "Other");
+		if(!in_array($contactInfo["messageType"], $types)) {
+			$this->redirect("/contact");
+		}
+		$email = new CakeEmail("default");
+		$email->from(array("internetspam.pl@gmail.com" => "AlphaTech"));
+		$email->to("kamil.wan05@gmail.com");
+		$email->subject($contactInfo["messageType"]." from: ".$contactInfo["from"]);
+
+		try {
+			$email->send($contactInfo["message"]);
+			$this->Session->write("contactEmailSent", true);
+		} catch (Exception $e) {
+			$this->Session->write("contactEmailSent", false);
+		}
+		$this->redirect("/contact");
 	}
 }

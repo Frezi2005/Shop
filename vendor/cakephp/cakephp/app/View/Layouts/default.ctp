@@ -20,6 +20,11 @@
 		?>
 	</head>
 	<body>
+		<!-- <div id="rodo">
+			<span>RODO</span>
+			<button id="accept">Accept</button>
+			<button id="denie">Denie</button>
+		</div> -->
 		<div id="container">
 			<nav>
 				<p class="logo"><a href="home"><?= $this->Html->image("logo.png");?></a></p>
