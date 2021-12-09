@@ -67,7 +67,7 @@
 					</div>
 					<div class="cartLink navLink">
 						<i class="fas fa-shopping-cart"></i>
-						<a href="">Cart</a>
+						<a href="cart">Cart</a>
 						<span id="cartProductsAmount"></span>
 						<div class="cartModal"></div>
 					</div>

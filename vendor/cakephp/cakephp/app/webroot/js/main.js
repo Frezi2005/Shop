@@ -24,26 +24,6 @@ $(function() {
                 JSON.parse(result)[category].forEach(function(subCategory) {
                     currElement.next().append("<hr></hr><a class='subCategory' href='products-list?sub_category=" + subCategory["SubCategory"]["sub_category_name"] + "'>" + subCategory["SubCategory"]["sub_category_name"] + "</a>");
                 });
-
-                //OLD MODAL CODE
-                // categories.not(currElement.parent()).children("div").css("transform", "scale(0,0)");
-                // categories.not(currElement.parent()).children("div").text("");
-                // if (currElement.next().text() == "") {
-                //     JSON.parse(result)[category].forEach(function(subCategory) {
-                //         currElement.next().append("<span class='subCategory'>"+subCategory["SubCategory"]["sub_category_name"] + "</span><br />");
-                //     });
-                //     currElement.next().css("transform", "scale(1,1)");
-                //     $("span.subCategory").each(function() {
-                //         $(this).click(function() {
-                //             location.replace("http://localhost/Shop/vendor/cakephp/cakephp/products-list?sub_category="+$(this).text());    
-                //         }); 
-                //     });
-                // } else {
-                //     currElement.next().css("transform", "scale(0,0)");
-                //     setTimeout(function() {
-                //         currElement.next().text("");
-                //     }, 250);
-                // }
             }
         })
     }
@@ -82,6 +62,23 @@ $(function() {
             }
         });
     });
+
+    $(".productOnMainPage").each(function() {
+        var cur = $(this);
+        $.ajax({
+            type: "GET",
+            url: "http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/"+cur.find("a").text()+".jpg",
+            success: function(data) {
+                console.log(cur);
+                cur.prepend("<img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/"+cur.find("a").text()+".jpg" + "'/>")
+            },
+            error: function(e) {
+                console.log(cur);
+                cur.prepend("<img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/noimg.jpg'/>")
+            }
+        });
+    });
+    
 
     //NUMBER BUTTONS PAGE CHANGING SYSTEM
 

@@ -6,3 +6,4 @@
 <div class="cartContainer">
     <div class="products"></div>
 </div>
+<button id="order">Order</button>

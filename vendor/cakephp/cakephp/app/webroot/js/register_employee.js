@@ -11,16 +11,9 @@ $(function() {
         var street = $("input#registerEmployeeFormStreet").val();
         var id = $("input#registerEmployeeFormIdNumberAndSeries").val();
     
-        if (
-            !text_validation(name, 3, 40) ||
-            !text_validation(surname, 2, 50) ||
-            !email_validation(email) || 
-            !phone_number_validation(phoneNumber) || 
-            !date_validation(birthDate) ||
-            !aplha_validation(country) ||
-            !aplha_validation(city) ||
-            !aplha_validation(street) ||
-            !/\d/.test(id)
+        if (!text_validation(name, 3, 40) || !text_validation(surname, 2, 50) || !email_validation(email) ||  
+            !phone_number_validation(phoneNumber) || !date_validation(birthDate) || !aplha_validation(country) ||
+            !aplha_validation(city) || !aplha_validation(street) || !/\d/.test(id)
         ) {
             e.preventDefault();
         }
@@ -29,7 +22,7 @@ $(function() {
 
     function text_validation(text, min, max) {
         var len = text.length;
-        if (len == 0 || len > max || len < min) {
+        if (len == 0 || len > max || len < min) { //usunac len == 0
             return false;
         }
         return true;
@@ -51,6 +44,6 @@ $(function() {
     }
 
     function aplha_validation(text) {
-        return /[a-zA-Z]/.test(text);
+        return /[a-zA-Z\-]/.test(text);
     }
 });

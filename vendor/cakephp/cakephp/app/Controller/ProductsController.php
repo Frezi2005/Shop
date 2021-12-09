@@ -190,11 +190,13 @@ class ProductsController extends AppController {
 
 		$formatted = array();
 
-		for($i = 0; $i < count($subCategoriesIds); $i++) {
-			$formatted[] = [$subCategoriesIds[$i]["SubCategory"]["id"] => $subCategoriesIds[$i]["SubCategory"]["sub_category_name"]];
+		for ($i = 0; $i < count($subCategoriesIds); $i++) {
+			foreach($subCategoriesIds[$i] as $key => $value) {
+				$formatted[$value["id"]] = $value["sub_category_name"];
+			}
 		}
-
-		if(!empty($productData)) {
+		
+		if (!empty($productData)) {
 			$this->Product->save(array(
 				"id" => CakeText::uuid(),
 				"name" => $productData["name"],
@@ -230,5 +232,13 @@ class ProductsController extends AppController {
 			throw new UnauthorizedException();
 		}
 		$this->set("products", $this->Product->find("all"));
+	}
+
+	public function order() {
+		
+	}
+
+	public function insertOrderToDB() {
+		
 	}
 }

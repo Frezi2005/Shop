@@ -203,4 +203,21 @@ class CustomersController extends AppController {
 		));
 		$this->redirect("/home");
 	}
+
+	public function listEmployees() {
+		$this->autoRender = false;
+		debug($this->User->find("all", array("conditions" => array("is_employee" => 1))));
+	}
+
+	public function adminPanel() {
+		$employees = $this->User->find("all", array("conditions" => array("is_employee" => 1)));
+		
+		$this->set("employees", $employees);
+	}
+
+	public function grantAdminPrivileges() {
+		$this->autoRender = false;
+		$userId = $this->params["url"]["id"];
+		$this->User->updateAll(array("is_employee" => (isset($this->params["url"]["employee"])) ? 1 : 0, "is_admin" => (isset($this->params["url"]["admin"])) ? 1 : 0), array("id" => $userId));
+	}
 }
