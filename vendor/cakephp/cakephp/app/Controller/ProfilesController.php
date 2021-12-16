@@ -39,7 +39,7 @@ class ProfilesController extends AppController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->loadModel("Customer");
+		$this->loadModel("User");
 	}
 
 /**

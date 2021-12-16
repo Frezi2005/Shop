@@ -14,16 +14,12 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 ?>
-<h2><?php echo $message; ?></h2>
-<p class="error">
-	<strong><?php echo __d('cake', 'Error'); ?>: </strong>
-	<?php printf(
-		__d('cake', 'The requested address %s was not found on this server.'),
-		"<strong>'{$url}'</strong>"
-	); ?>
-</p>
 <?php
-if (Configure::read('debug') > 0):
-	echo $this->element('exception_stack_trace');
-endif;
+
+	echo $this->Html->css("error400");
+	$this->layout = "";
+
 ?>
+<h1>Page is missing...</h1>
+<p>We searched through our website but it looks like page that you are trying to view does not exist or exists under different address.</p>
+<a href="home">Home page</a>

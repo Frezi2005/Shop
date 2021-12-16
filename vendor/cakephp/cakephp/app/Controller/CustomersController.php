@@ -37,15 +37,19 @@ class CustomersController extends AppController {
  */
 	public $uses = array();
 
+	/**
+	 * beforeFilter loads all necessary models, components and other areas that provide certain functionalities.
+	 */
 	public function beforeFilter() {
 		parent::beforeFilter();
 		App::uses('CakeText', 'Utility');
 		$this->loadModel("User");
-		//Loading password hashing function
-		//Using $this->SecurityUtils("test12345") results in: 
-		//"3321c186b19869ee1be6a1c6791e669d64f3e56ba053dfdb3431caf06dbd6fb0ec1a7736af0ea45426fefdc4dfdf23bf08e86f75addf5168cad540bddb3cf743"
 		$this->SecurityUtils = $this->Components->load("PasswordHashing");
+		//$this->CheckPrivileges = $this->Components->load("CheckPrivileges");
 		App::uses("CakeEmail", "Network/Email");
+		// if(!$this->CheckPrivileges->check($_SERVER["REQUEST_URI"], $this->Session->read("userUUID"))) {
+		// 	throw new ForbiddenException();
+		// }
 	}
 
 /**

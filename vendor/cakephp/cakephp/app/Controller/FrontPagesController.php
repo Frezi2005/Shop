@@ -156,4 +156,9 @@ class FrontPagesController extends AppController {
 		$this->Cookie->write("rodo_accepted", true, false, "6 months");
 		//$this->set("rodoCookie", $this->Cookie->read("rodo_accepted"));
 	}
+
+	public function errorTest() {
+		$this->autoRender = false;
+		throw new ForbiddenException();
+	}
 }

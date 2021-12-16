@@ -58,6 +58,7 @@
 	Router::connect("/register-employee-page", 	   array("controller" => "frontPages", "action" => "registerEmployeePage"));
 	Router::connect("/site-map", 				   array("controller" => "frontPages", "action" => "siteMap"));
 	Router::connect("/create-rodo-cookie", 		   array("controller" => "frontPages", "action" => "createRodoCookie"));
+	Router::connect("/error-test", 		   		   array("controller" => "frontPages", "action" => "errorTest"));
 
 	Router::connect("/logout", 					   array("controller" => "customers", "action" => "logout"));
 	Router::connect("/settings", 				   array("controller" => "customers", "action" => "settings"));

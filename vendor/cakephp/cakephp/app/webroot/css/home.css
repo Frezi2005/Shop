@@ -5,7 +5,7 @@ div.boxRight {
 }
 
 div.slider {
-    border: 3px solid #29ff16;
+    border: 3px solid #b0ffb8;
     border-radius: 27px;
     height: 350px;
     width: 1100px;
@@ -65,7 +65,7 @@ div.productOnMainPage:last-of-type {
 }
 
 div.contact {
-    border: 3px solid #29ff16;
+    border: 3px solid #b0ffb8;
     border-radius: 27px;
     float: left;
     margin-left: 10%;
@@ -73,4 +73,18 @@ div.contact {
     width: 306px;
     background-color: #ffffff;
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+div.contact a {
+    display: flex;
+    flex: 1;
+    flex-direction: row;   
+    line-height: 72px;
+    font-size: 20px; 
+    text-decoration: none;
+    color: black;
 }

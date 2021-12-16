@@ -35,6 +35,7 @@ Configure::write('Config.language', "");
  * In development mode, you need to click the flash message to continue.
  */
 	Configure::write('debug', 2);
+	Configure::write("hierarchy", array("admin-panel" => 5, "list-employees" => 4, "inventory" => 1));
 
 /**
  * Configure the Error handler used to handle errors for your application. By default

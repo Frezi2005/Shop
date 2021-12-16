@@ -1,0 +1,27 @@
+* {
+    font-family: sans-serif;
+}
+
+h1 {
+    text-align: center;
+    width: 100%;
+    font-size: 60px;
+    margin-top: 400px;
+}
+
+p {
+    margin: auto;
+    text-align: center;
+    width: 600px;
+    font-size: 30px;
+}
+
+a {
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    width: 100%;
+    margin: auto;
+    margin-top: 20px;
+}

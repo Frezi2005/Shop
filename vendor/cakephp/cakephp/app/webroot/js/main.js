@@ -108,5 +108,4 @@ $(function() {
     // });
 
     // console.log(document.cookie[document.cookie.length - 1]);
-
 });
