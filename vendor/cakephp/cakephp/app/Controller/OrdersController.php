@@ -77,4 +77,30 @@ class OrdersController extends AppController {
 			throw new NotFoundException();
 		}
 	}
+
+	public function orderProducts() {
+		$data = $this->request["data"]["orderForm"];
+		$this->loadModel("Orders");
+		$this->loadModel("Users");
+		$user = $this->Users->find("first", array("conditions" => array("id" => $this->Session->read("userUUID")), "fields" => array("total_points")));
+		$this->Users->updateAll(array("total_points" => intval($user["Users"]["total_points"]) + intval($data["price"])), array("id" => $this->Session->read("userUUID")));
+		$this->Orders->save(array(
+			"user_id" => $this->Session->read("userUUID"),
+			"country" => $data["country"],
+			"city" => $data["city"],
+			"street" => $data["street"],
+			"house_number" => $data["house_number"],
+			"products" => str_replace("]", "}", str_replace("[", "{", $data["cart"])),
+			"delivery_type" => $data["deliveryType"],
+			"order_date" => date("Y-m-d H:i:s"),
+			"shipment_date" => date("Y-m-d H:i:s", strtotime(date("Y-m-d H:i:s") . " + 3 days")),
+			"total_price" => intval($data["price"]),
+			"payment_method" => $data["paymentMethod"],
+			"payment_date" => date("Y-m-d H:i:s", strtotime(date("Y-m-d H:i:s") . " + 1 days")),
+			"order_points" => 0,
+			"promo_code_id" => null,
+			"currency" => "USD",
+			"shop_id" => null
+		));
+	}
 }

@@ -1,22 +1,25 @@
 <?php
 
-    echo $this->Html->script("order")
+    echo $this->Html->script("order");
+    echo $this->Html->css("form")
 
 ?>
 
 <span id="sum"></span>
-Payment method: 
-<select id="paymentMethod">
-    <option value="credit-card">Credit card</option>
-    <option value="bank-transfer">Bank transfer</option>
-    <option value="paypal">PayPal</option>
-    <option value="paysafecard">PaySafeCard</option>
-    <option value="blik">BLIK</option>
-</select>
-Delivery type
-<select id="deliveryType">
-    <option value="courier">Courier</option>
-    <option value="pickup-point">Pickup point</option>
-    <option value="parcel-locker">Parcel locker</option>
-</select>
-<button id="buy">Buy</button>
+<div id="main">
+    <h1>Order page</h1>
+    <div id="orderForm">
+        <?php
+            echo $this->Form->create("orderForm", array("url" => "/order-products"));
+            echo $this->Form->input("country", array("type" => "text", "label" => "", "placeholder" => "Country"));
+            echo $this->Form->input("city", array("type" => "text", "label" => "", "placeholder" => "City"));
+            echo $this->Form->input("street", array("type" => "text", "label" => "", "placeholder" => "Street"));
+            echo $this->Form->input("house_number", array("type" => "text", "label" => "", "placeholder" => "House number"));
+            echo $this->Form->input("paymentMethod", array("options" => array("Credit card" => "Credit card", "Bank transfer" => "Bank transfer", "PayPal" => "PayPal", "PaySafeCard" => "PaySafeCard", "BLIK" => "BLIK")));
+            echo $this->Form->input("deliveryType", array("options" => array("Courier" => "Courier", "Pickup point" => "Pickup point", "Parcel locker" => "Parcel locker")));
+            echo $this->Form->hidden("cart");
+            echo $this->Form->hidden("price");
+            echo $this->Form->end("submit");
+        ?>
+    </div>
+</div>

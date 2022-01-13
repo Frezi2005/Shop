@@ -93,7 +93,7 @@
 				</div>
 				<?php echo $this->fetch("content"); ?>
 			</div>
-			<footer class="text-center justify-content-center">
+			<!-- <footer class="text-center justify-content-center">
 				<p class="col-lg-12 h-20">Kamil Waniczek <?= date("Y"); ?> &copy; All rights reserved.</p>
 				<div class="col-lg-10 h-80 mx-auto">
 					<div class="col-lg-3 float-start">
@@ -119,7 +119,7 @@
 						</ul>
 					</div>
 				</div>
-			</footer>
+			</footer> -->
 		</div>
 	</body>
 </html>

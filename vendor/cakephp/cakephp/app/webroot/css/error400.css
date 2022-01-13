@@ -16,7 +16,7 @@ p {
     font-size: 30px;
 }
 
-a {
+a, a:visited {
     display: inline-block;
     text-align: center;
     text-decoration: none;
@@ -24,4 +24,6 @@ a {
     width: 100%;
     margin: auto;
     margin-top: 20px;
+    color: blue;
 }
+

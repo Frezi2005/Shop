@@ -5,6 +5,8 @@ $(function() {
         sum += cart[i].count * cart[i].price;
     }
     $("#sum").text("Sum: " + sum + "$");
+    $("input#orderFormCart").val(JSON.stringify(cart));
+    $("input#orderFormPrice").val(sum);
 
     $("button#buy").click(function() {
         $.ajax({

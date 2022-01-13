@@ -22,4 +22,4 @@
 ?>
 <h1>Page is missing...</h1>
 <p>We searched through our website but it looks like page that you are trying to view does not exist or exists under different address.</p>
-<a href="home">Home page</a>
+<a href="home">> Home page <</a>

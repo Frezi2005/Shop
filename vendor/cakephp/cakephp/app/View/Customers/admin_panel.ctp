@@ -1,11 +1,12 @@
 <?php
 
     echo $this->Html->script("admin_panel");
+    echo $this->Html->css("admin_panel");
 
 ?>
-<ul>
-    <li><a href="list-employees" target="_blank">Employees list</a></li>
-    <li><a href="inventory" target="_blank">Products List</a></li>
+<div id="main">
+    <a href="list-employees" target="_blank">Employees list</a>
+    <a href="inventory" target="_blank">Products List</a>
     <select id="usersSelect">
         <?php
             for($i = 0; $i < count($employees); $i++) {
@@ -14,4 +15,4 @@
         ?>
     </select>
     <button id="grantAdmin">Grant admin privileges</button>
-</ul>
+</div>

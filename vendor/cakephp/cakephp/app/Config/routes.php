@@ -70,8 +70,11 @@
 	Router::connect("/list-employees", 	   	   	   array("controller" => "customers", "action" => "listEmployees"));
 	Router::connect("/admin-panel", 	   	   	   array("controller" => "customers", "action" => "adminPanel"));
 	Router::connect("/grant-admin-privileges", 	   array("controller" => "customers", "action" => "grantAdminPrivileges"));
+	Router::connect("/order-history", 	   		   array("controller" => "customers", "action" => "orderHistory"));
 
 	Router::connect("/send-email-from-customer",   array("controller" => "mails", "action" => "sendEmailFromCustomer"));
+
+	Router::connect("/order-products",   		   array("controller" => "orders", "action" => "orderProducts"));
 	
 /**
  * ...and connect the rest of "Pages" controller"s URLs.

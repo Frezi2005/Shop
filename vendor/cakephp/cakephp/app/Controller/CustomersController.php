@@ -224,4 +224,9 @@ class CustomersController extends AppController {
 		$userId = $this->params["url"]["id"];
 		$this->User->updateAll(array("is_employee" => (isset($this->params["url"]["employee"])) ? 1 : 0, "is_admin" => (isset($this->params["url"]["admin"])) ? 1 : 0), array("id" => $userId));
 	}
+
+	public function orderHistory() {
+		$this->loadModel("Orders");
+		$this->set("orders", $this->Orders->find("all", array("conditions" => array("user_id" => $this->Session->read("userUUID")), "fields" => array("products", "delivery_type", "order_date", "shipment_date", "total_price", "payment_method", "order_points", "currency"))));
+	}
 }
