@@ -37,6 +37,11 @@ class OrdersController extends AppController {
  */
 	public $uses = array();
 
+	public function beforeFilter() {
+		parent::beforeFilter();
+		App::uses('CakeText', 'Utility');
+	}
+
 /**
  * Displays a view
  *
@@ -79,28 +84,76 @@ class OrdersController extends AppController {
 	}
 
 	public function orderProducts() {
+		$this->autoRender = false;
 		$data = $this->request["data"]["orderForm"];
 		$this->loadModel("Orders");
 		$this->loadModel("Users");
-		$user = $this->Users->find("first", array("conditions" => array("id" => $this->Session->read("userUUID")), "fields" => array("total_points")));
-		$this->Users->updateAll(array("total_points" => intval($user["Users"]["total_points"]) + intval($data["price"])), array("id" => $this->Session->read("userUUID")));
+		$this->loadModel("Products");
+		if(!empty($this->Session->read("userUUID"))) {
+			$user = $this->Users->find("first", array("conditions" => array("id" => $this->Session->read("userUUID")), "fields" => array("total_points")));
+			$this->Users->updateAll(array("total_points" => intval($user["Users"]["total_points"]) + round(intval($data["price"]) / 100)), array("id" => $this->Session->read("userUUID")));
+		}
+		$products = json_decode($data["cart"], true);
+		for($i = 0; $i < count($products); $i++) {
+			$count = $this->Products->find("first", array("conditions" => array("id" => $products[$i]["id"])));
+			$this->Products->updateAll(array("product_count" => intval($count["Products"]["product_count"]) - 1), array("id" => $products[$i]["id"]));
+		}
+
+		$userUUID = CakeText::uuid();
+
+		if(preg_match('/[^a-zA-Z\s]+/i', $data["country"]) || preg_match('/[^a-zA-Z\s]+/i', $data["city"]) || preg_match('/[^a-zA-Z\s]+/i', $data["street"]) || preg_match('/[^0-9\s]+/i', $data["house_number"])) {
+			$this->redirect("/order");
+		}
+
+		if(empty($this->Session->read("userUUID"))) {
+			$this->Users->save(array(
+				"id" => $userUUID,
+				"name" => null,
+				"surname" => null,
+				"email" => null,
+				"password" => null,
+				"birth_date" => null,
+				"country" => null,
+				"city" => null,
+				"street" => null,
+				"house_number" => null,
+				"flat_number" => null,
+				"phone_number" => null,
+				"total_points" => 0,
+				"verified" => 0,
+				"creation_date" => date("Y-m-d H:i:s"),
+				"id_number_and_series" => null,
+				"salary" => null,
+				"internship_length" => null,
+				"bonus_amount" => null,
+				"holiday_amount" => null,
+				"is_employee" => 0,
+				"shop_id" => null,
+				"email_change_creation_date" => null,
+				"email_change_expiration_date" => null,
+				"is_admin" => 0
+			));
+		}
+		
 		$this->Orders->save(array(
-			"user_id" => $this->Session->read("userUUID"),
+			"user_id" => (empty($this->Session->read("userUUID"))) ? $userUUID : $this->Session->read("userUUID"),
 			"country" => $data["country"],
 			"city" => $data["city"],
 			"street" => $data["street"],
 			"house_number" => $data["house_number"],
-			"products" => str_replace("]", "}", str_replace("[", "{", $data["cart"])),
+			"products" => json_encode($products),
 			"delivery_type" => $data["deliveryType"],
 			"order_date" => date("Y-m-d H:i:s"),
 			"shipment_date" => date("Y-m-d H:i:s", strtotime(date("Y-m-d H:i:s") . " + 3 days")),
 			"total_price" => intval($data["price"]),
 			"payment_method" => $data["paymentMethod"],
 			"payment_date" => date("Y-m-d H:i:s", strtotime(date("Y-m-d H:i:s") . " + 1 days")),
-			"order_points" => 0,
+			"order_points" => floor(intval($data["price"]) / 100),
 			"promo_code_id" => null,
 			"currency" => "USD",
 			"shop_id" => null
 		));
+		$this->Session->write("orderedModal", true);
+		$this->redirect("/home");
 	}
 }

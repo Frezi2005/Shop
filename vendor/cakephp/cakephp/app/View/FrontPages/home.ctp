@@ -45,15 +45,15 @@ if ($this->Session->read("verified") == true) {
 } else if ($this->Session->read("loggedModal") == true) {
     echo "<script>Swal.fire({icon: \"success\",text: \"You have been logged in!\",showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
     $_SESSION["loggedModal"] = false;
-} else if ($this->Session->read("loggedModal") == true) {
-    echo "<script>Swal.fire({icon: \"success\",text: \"You have been logged in!\",showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
-    $_SESSION["loggedModal"] = false;
 } else if ($this->Session->read("registeredModal") == true) {
     echo "<script>Swal.fire({icon: \"success\",text: \"Your account has been created!\",showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
     $_SESSION["registeredModal"] = false;
 } else if ($this->Session->read("changeEmailSent") == true) {
     echo "<script>Swal.fire({icon: \"success\",text: \"Email has been sent!\",showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
     $_SESSION["changeEmailSent"] = false;
+} else if ($this->Session->read("orderedModal") == true) {
+    echo "<script>Swal.fire({icon: \"success\",text: \"Thank you for using our service! Your order will be processed soon!\",showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
+    $_SESSION["orderedModal"] = false;
 }
 ?>
 

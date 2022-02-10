@@ -35,9 +35,14 @@
 	Router::connect("/inventory",      			   array("controller" => "products", "action" => "inventory"));
 	Router::connect("/order",      			   	   array("controller" => "products", "action" => "order"));
 	Router::connect("/insert-order-to-db",         array("controller" => "products", "action" => "insertOrderToDB"));
+	Router::connect("/delivery-form",         	   array("controller" => "products", "action" => "deliveryForm"));
+	Router::connect("/add-products-from-delivery", array("controller" => "products", "action" => "addProductsFromDelivery"));
+	Router::connect("/remove-products-form", 	   array("controller" => "products", "action" => "removeProductsForm"));
+	Router::connect("/remove-products", 	   	   array("controller" => "products", "action" => "removeProducts"));
+	Router::connect("/update-image-form", 	   	   array("controller" => "products", "action" => "updateImageForm"));
+	Router::connect("/update-image", 	   	   	   array("controller" => "products", "action" => "updateImage"));
 
 	Router::connect("/profile",                    array("controller" => "profiles", "action" => "profile"));
-	Router::connect("/change-address",             array("controller" => "profiles", "action" => "changeAddress"));
 	Router::connect("/change-email-form",          array("controller" => "profiles", "action" => "changeEmailForm"));
 	Router::connect("/send-change-email",          array("controller" => "profiles", "action" => "sendChangeEmail"));
 	Router::connect("/change-email",          	   array("controller" => "profiles", "action" => "changeEmail"));
@@ -59,6 +64,7 @@
 	Router::connect("/site-map", 				   array("controller" => "frontPages", "action" => "siteMap"));
 	Router::connect("/create-rodo-cookie", 		   array("controller" => "frontPages", "action" => "createRodoCookie"));
 	Router::connect("/error-test", 		   		   array("controller" => "frontPages", "action" => "errorTest"));
+	Router::connect("/gifts-catalog", 		   	   array("controller" => "frontPages", "action" => "giftsCatalog"));
 
 	Router::connect("/logout", 					   array("controller" => "customers", "action" => "logout"));
 	Router::connect("/settings", 				   array("controller" => "customers", "action" => "settings"));
@@ -71,6 +77,7 @@
 	Router::connect("/admin-panel", 	   	   	   array("controller" => "customers", "action" => "adminPanel"));
 	Router::connect("/grant-admin-privileges", 	   array("controller" => "customers", "action" => "grantAdminPrivileges"));
 	Router::connect("/order-history", 	   		   array("controller" => "customers", "action" => "orderHistory"));
+	Router::connect("/delete-account", 	   		   array("controller" => "customers", "action" => "deleteAccount"));
 
 	Router::connect("/send-email-from-customer",   array("controller" => "mails", "action" => "sendEmailFromCustomer"));
 

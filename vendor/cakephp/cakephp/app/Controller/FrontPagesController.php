@@ -161,4 +161,8 @@ class FrontPagesController extends AppController {
 		$this->autoRender = false;
 		throw new ForbiddenException();
 	}
+
+	public function giftsCatalog() {
+		
+	}
 }

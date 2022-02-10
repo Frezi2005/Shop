@@ -22,7 +22,7 @@ $(function() {
 
     function text_validation(text, min, max) {
         var len = text.length;
-        if (len == 0 || len > max || len < min) { //usunac len == 0
+        if (len > max || len < min) {
             return false;
         }
         return true;

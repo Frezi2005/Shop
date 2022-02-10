@@ -65,16 +65,15 @@ $(function() {
 
     $(".productOnMainPage").each(function() {
         var cur = $(this);
+        console.log(cur.find("a").attr("href"));
         $.ajax({
             type: "GET",
             url: "http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/"+cur.find("a").text()+".jpg",
             success: function(data) {
-                console.log(cur);
-                cur.prepend("<img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/"+cur.find("a").text()+".jpg" + "'/>")
+                cur.prepend("<a href='" + cur.find("a").attr("href") + "' target='_blank'><img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/"+cur.find("a").text()+".jpg" + "'/></a>")
             },
             error: function(e) {
-                console.log(cur);
-                cur.prepend("<img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/noimg.jpg'/>")
+                cur.prepend("<a href='" + cur.find("a").attr("href") + "' target='_blank'><img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/noimg.jpg'/></a>")
             }
         });
     });

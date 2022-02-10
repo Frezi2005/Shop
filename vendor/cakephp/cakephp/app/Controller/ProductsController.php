@@ -185,7 +185,33 @@ class ProductsController extends AppController {
 
 	public function addProductToDatabase() {
 		$this->loadModel("SubCategory");
-		$productData = $this->request["data"]["addProductForm"];
+		if (isset($this->request["data"]["addProductForm"])) {
+			$productData = $this->request["data"]["addProductForm"];
+
+			if (!empty($productData)) {
+				if ($productData["image"]["size"] > 2048000) {
+					$this->Session->write("sizeError", true);
+				} else if (!preg_match('/\d/', $productData["price"])) {
+					$this->Session->write("priceError", true);
+				} else {
+					move_uploaded_file($productData["image"]["tmp_name"], WWW_ROOT."img/".$productData["name"].".jpg");
+					$this->Product->save(array(
+						"id" => CakeText::uuid(),
+						"name" => $productData["name"],
+						"description" => $productData["description"],
+						"specs" => $productData["specs"],
+						"price" => $productData["price"],
+						"discount_value" => 0.00,
+						"shop_id" => NULL,
+						"tax" => $productData["price"] * 0.23,
+						"image" => "",
+						"product_count" => rand(1, 1000),
+						"sub_category_id" => $productData["subCategoryId"]
+					));
+				}
+			}
+		}
+
 		$subCategoriesIds = $this->SubCategory->find("all", array("fields" => array("id", "sub_category_name")));
 
 		$formatted = array();
@@ -195,22 +221,7 @@ class ProductsController extends AppController {
 				$formatted[$value["id"]] = $value["sub_category_name"];
 			}
 		}
-		
-		if (!empty($productData)) {
-			$this->Product->save(array(
-				"id" => CakeText::uuid(),
-				"name" => $productData["name"],
-				"description" => $productData["description"],
-				"specs" => $productData["specs"],
-				"price" => $productData["price"],
-				"discount_value" => 0.00,
-				"shop_id" => NULL,
-				"tax" => $productData["price"] * 0.23,
-				"image" => "",
-				"product_count" => rand(1, 1000),
-				"sub_category_id" => $productData["subCategoryId"]
-			));
-		}
+
 		$this->set("subCategoriesIds", $formatted);
 	}
 
@@ -240,5 +251,59 @@ class ProductsController extends AppController {
 
 	public function insertOrderToDB() {
 		
+	}
+
+	public function deliveryForm() {
+		$arr = [];
+		$products = $this->Products->find("all", array("fields" => array("id", "name"))); 
+		for($i = 0; $i < count($products); $i++) {
+			$arr[$products[$i]["Products"]["id"]] = $products[$i]["Products"]["name"];
+		}
+		$this->set("products", $arr);
+	}
+
+	public function addProductsFromDelivery() {
+		$this->autoRender = false;
+		$data = $this->request["data"]["deliveryForm"];
+		if(preg_match('/\d/', $data["count"])) {
+			for($i = 0; $i < count($data["products"]); $i++) {
+				$count = $this->Products->find("first", array("conditions" => array("id" => $data["products"][$i]), "fields" => array("product_count")));
+				$this->Products->updateAll(array("product_count" => intval($count["Products"]["product_count"]) + $data["count"]), array("id" => $data["products"][$i]));
+			}
+		} else {
+			$this->Session->write("priceError", true);
+		}
+		$this->redirect("/delivery-form");
+	}
+
+	public function removeProductsForm() {
+		$arr = [];
+		$products = $this->Products->find("all", array("fields" => array("id", "name"))); 
+		for($i = 0; $i < count($products); $i++) {
+			$arr[$products[$i]["Products"]["id"]] = $products[$i]["Products"]["name"];
+		}
+		$this->set("products", $arr);
+	}
+
+	public function removeProducts() {
+		$this->autoRender = false;
+		$data = $this->request["data"]["removeProductsForm"];
+		$this->Products->deleteAll(array("id in" => $data["products"]));
+		$this->redirect("/remove-products-form");
+	}
+
+	public function updateImageForm() {
+
+	}
+
+	public function updateImage() {
+		$this->autoRender = false;
+		$data = $this->request["data"]["updateProductForm"];
+		if ($data["image"]["size"] < 2048000) {
+			$product = $this->Products->find("first", array("conditions" => array("id" => $data["id"]), "fields" => array("name")));
+			debug(WWW_ROOT."img/".$product["Product"]["name"].".jpg");
+			die;
+			move_uploaded_file($data["image"]["tmp_name"], WWW_ROOT."img/".$product["Product"]["name"].".jpg");
+		}
 	}
 }

@@ -177,8 +177,7 @@ class CustomersController extends AppController {
 		for($i = 0; $i < 6; $i++) {
 			$randomPassword .= rand(0, 9);
 		}
-		// debug($employee);
-		// die;
+
 		$this->User->save(array(
 			"id" => $userUUID,
 			"name" => $employee["name"],
@@ -228,5 +227,10 @@ class CustomersController extends AppController {
 	public function orderHistory() {
 		$this->loadModel("Orders");
 		$this->set("orders", $this->Orders->find("all", array("conditions" => array("user_id" => $this->Session->read("userUUID")), "fields" => array("products", "delivery_type", "order_date", "shipment_date", "total_price", "payment_method", "order_points", "currency"))));
+	}
+
+	public function deleteAccount() {
+		$this->User->deleteAll(array("id" => $this->Session->read("userUUID")), true);
+		echo $this->element('sql_dump');
 	}
 }

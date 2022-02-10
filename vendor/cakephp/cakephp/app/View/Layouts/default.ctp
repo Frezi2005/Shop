@@ -61,6 +61,8 @@
 									echo "<a href=\"profile\">Profile</a>";
 									echo "<hr>";
 									echo "<a href=\"settings\">Settings</a>";
+									echo "<hr>";
+									echo "<a href=\"logout\">Logout</a>";
 								}
 							?>
 						</div>

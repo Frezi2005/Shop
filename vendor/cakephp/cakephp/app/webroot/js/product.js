@@ -9,6 +9,18 @@ $(function (){
         addToCart();
     });
 
+    $("#buyNowBtn").click(function() {
+        var amount = $("input#productAmount").val();    
+        var item = [{
+            id: $("#productId").val(),
+            name: $("#productName").text(),
+            price: $("#productPrice").text(),
+            count: parseInt(amount)
+        }];
+        localStorage.setItem("buyNow", JSON.stringify(item));
+        location.replace("http://localhost/Shop/vendor/cakephp/cakephp/order");
+    });
+
     var queryString = window.location.search;
     var urlParams = new URLSearchParams(queryString);
     var page = parseInt((urlParams.get("p") != null) ? urlParams.get("p") : 1);
@@ -24,7 +36,6 @@ $(function (){
 
     $("select#sort").change(function() {
         newUrl = queryString.replace("&sort_by="+urlParams.get("sort_by"), "&sort_by=" + $(this).val());
-        //$(this).find("[value='" + $(this).val() + "']").attr("selected", true);
         location.replace("http://localhost/Shop/vendor/cakephp/cakephp/products-list"+newUrl);
     });
 

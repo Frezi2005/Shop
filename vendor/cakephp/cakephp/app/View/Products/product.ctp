@@ -14,10 +14,14 @@
     <button id="buyNowBtn">Buy now</button>
     <ul>
     <?php 
-        $specs = json_decode($product["specs"], true)[0];
-        foreach($specs as $spec => $val) {
-            echo "<li>".$spec.": ".$val."</li>";
+
+        if(is_array($product["specs"])) {
+            $specs = json_decode($product["specs"], true)[0];
+            foreach($specs as $spec => $val) {
+                echo "<li>".$spec.": ".$val."</li>";
+            }
         }
+
     ?>
     </ul>
 </div>

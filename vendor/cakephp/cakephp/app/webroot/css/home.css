@@ -87,4 +87,17 @@ div.contact a {
     font-size: 20px; 
     text-decoration: none;
     color: black;
+    position: relative;
+}
+
+div.contact a:first-of-type::after {
+    content: "";
+    border-bottom: 2px solid #60baff;
+    height: 0px;
+    width: 350%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    opacity: 0.25;
 }

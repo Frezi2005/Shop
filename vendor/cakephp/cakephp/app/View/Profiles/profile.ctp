@@ -15,5 +15,6 @@
             echo "<a href=\"admin-panel\">Admin Panel</a>";
         }
     ?>
-    <a href="error-test">punkty</a>
+    <a href="error-test">error test</a>
+    <p><a href="delete-account">Delete account</a></p>
 </div>
