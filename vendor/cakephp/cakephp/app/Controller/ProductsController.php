@@ -129,7 +129,8 @@ class ProductsController extends AppController {
 		$this->loadModel("Filter");
 		$sort = (isset($this->params["url"]["sort_by"])) ? $this->params["url"]["sort_by"] : "";
 		$page = (isset($this->params["url"]["p"])) ? $this->params["url"]["p"] : 1;
-		$productsShown = (isset($this->params["url"]["per_page"])) ? $this->params["url"]["per_page"] : 2;
+		$productsShown = (isset($this->params["url"]["per_page"])) ? $this->params["url"]["per_page"] : 8;
+		$priceRange = (isset($this->params["url"]["price_range"])) ? " BETWEEN ".explode("-", $this->params["url"]["price_range"])[0]." AND ".explode("-", $this->params["url"]["price_range"])[1] : "";
 		switch($sort) {
 			case "price_asc":
 				$sort_by = "price ASC";
@@ -147,8 +148,8 @@ class ProductsController extends AppController {
 				$sort_by = "";
 				break;
 		}
-		$subCategoryId = $this->SubCategory->find("first", array("conditions" => array("sub_category_name" => $this->params["url"]["sub_category"]), "fields" => "id"))["SubCategory"]["id"];
-		$products = $this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategoryId), "limit" => $page * $productsShown, "order" => array($sort_by)));
+		$subCategoryId = $this->SubCategory->find("first", array("conditions" => array("id" => $this->params["url"]["sub_category"]), "fields" => "id"))["SubCategory"]["id"];
+		$products = $this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategoryId, "price $priceRange"), "limit" => $page * $productsShown, "order" => array($sort_by)));
 		if(isset($this->params["url"]["filters"])) {
 			$specsList = json_decode($products[0]["Product"]["specs"], true);
 			$index = 0;
@@ -165,20 +166,22 @@ class ProductsController extends AppController {
 						if(preg_match('/\-\b/', $filter)) {
 							$start = explode("-", $filter)[0];
 							$end = explode("-", $filter)[1];
-							$products = $this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategoryId, "JSON_EXTRACT(specs, '$.".$this->params["url"]["filters"]."') BETWEEN $start AND $end"), "limit" => $page * $productsShown, "order" => array($sort_by)));
+							$products = $this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategoryId, "JSON_EXTRACT(specs, '$.".$this->params["url"]["filters"]."') BETWEEN $start AND $end AND price $priceRange"), "limit" => $page * $productsShown, "order" => array($sort_by)));
 						} else if(preg_match('/[\+]/', $filter)) {
 							$val = explode("+", $filter)[0];
-							$products = $this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategoryId, "JSON_EXTRACT(specs, '$.".$this->params["url"]["filters"]."') * 1 > $val"), "limit" => $page * $productsShown, "order" => array($sort_by)));
+							$products = $this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategoryId, "JSON_EXTRACT(specs, '$.".$this->params["url"]["filters"]."') * 1 > $val AND price $priceRange"), "limit" => $page * $productsShown, "order" => array($sort_by)));
 						} else {
-							$products = $this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategoryId, "JSON_EXTRACT(specs, '$.".$this->params["url"]["filters"]."') = '$filter'"), "limit" => $page * $productsShown, "order" => array($sort_by)));
+							$products = $this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategoryId, "JSON_EXTRACT(specs, '$.".$this->params["url"]["filters"]."') = '$filter' AND price $priceRange"), "limit" => $page * $productsShown, "order" => array($sort_by)));
 						}
 					}
 				}
 			}
 		}
-		for($i = 0; $i < ($page - 1) * $productsShown; $i++) {
+
+		for ($i = 0; $i < ($page - 1) * $productsShown; $i++) {
 			array_shift($products);
 		}
+
 		$this->set("subCategoryId", $subCategoryId);
 		$this->set("products", $products);
 	}
@@ -187,7 +190,6 @@ class ProductsController extends AppController {
 		$this->loadModel("SubCategory");
 		if (isset($this->request["data"]["addProductForm"])) {
 			$productData = $this->request["data"]["addProductForm"];
-
 			if (!empty($productData)) {
 				if ($productData["image"]["size"] > 2048000) {
 					$this->Session->write("sizeError", true);
@@ -246,7 +248,23 @@ class ProductsController extends AppController {
 	}
 
 	public function order() {
-		
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_URL, "http://country.io/names.json");
+		$result = curl_exec($ch);
+		curl_close($ch);
+
+		$countries = array();
+		$obj = json_decode($result, true);
+		foreach($obj as $k => $v) {
+			if($v != "Russia") {
+				$countries[$v] = $v;
+			}
+		}
+		ksort($countries);
+		$countries = array("None" => "Select") + $countries;
+		$this->set("countries", $countries);
 	}
 
 	public function insertOrderToDB() {

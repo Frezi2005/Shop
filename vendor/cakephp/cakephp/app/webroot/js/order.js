@@ -10,11 +10,17 @@ $(function() {
         isCart = true;
         cart = JSON.parse(localStorage.getItem('cart'))
     }
+
     var sum = 0;
     for(var i = 0; i < cart.length; i++) {
         sum += cart[i].count * cart[i].price;
     }
-    $('#sum').text('Sum: ' + sum + '$');
+
+    if(!sum) {
+        history.back();
+    }
+
+    $('#sum').text('Sum: ' + (Math.round((sum + Number.EPSILON) * 100) / 100) + '$');
     $('input#orderFormCart').val(JSON.stringify(cart));
     $('input#orderFormPrice').val(sum);
 
@@ -25,6 +31,38 @@ $(function() {
         } else if(isBuyNow) {
             localStorage.setItem('buyNow', '[]');            
         }
-    }); 
+    });
+
+    changePaymentInfo($('select#orderFormPaymentMethod'));
+    
+    $('select#orderFormPaymentMethod').change(function() {
+        changePaymentInfo($(this));
+    });
+
+    function changePaymentInfo(select) {
+        switch (select.val()) {
+            case 'Credit card':
+                $('div#info').html(`<input type='text' id='cardNumber' placeholder="Credit card number" pattern='^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\\d{3})\\d{11})$'><input type='number' id='cvv' placeholder="CVV"><input type='month' id='expirationDate' placeholder="Expiration date"/><input type='text' id='name' placeholder="Name"><input type='text' id='surname' placeholder="Surname">`);
+                $('input#expirationDate').datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    minDate: new Date(Date.now()),
+                    maxDate: `+4y +${12 - (new Date(Date.now()).getMonth() + 1)}m`,
+                    dateFormat: 'MM yy',
+                    startView: true,
+                    onClose: function(dateText, inst) { 
+                        $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
+                    }
+                  });
+                break;
+            case 'PayPal':
+                $('div#info').html(`<input type='text' id='paypalEmail' placeholder="PayPal email">`);
+                break;
+            case 'BLIK':
+                $('div#info').html(`<input type='text' id='blikCode' placeholder="BLIK code">`);
+                break;
+        }
+    }
+
 
 });

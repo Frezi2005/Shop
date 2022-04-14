@@ -47,6 +47,7 @@ div.searchBox {
 }
 
 nav input {
+    padding-left: 20px;
     float: left;
     width: 100%;
     height: 100%;
@@ -87,6 +88,19 @@ div.innerSearchResults > p {
     font-size: 14px;
     margin-bottom: 0;
     margin-left: 20px;
+    overflow-x: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+    width: 400px;
+}
+
+div.innerSearchResults > p > a {
+    color: black;
+    text-decoration: none;
+}
+
+div.innerSearchResults > p > a > img {
+    height: 40px !important;
 }
 
 nav button {
@@ -116,6 +130,8 @@ nav select {
     background-image: linear-gradient(to right, #bbeeff, #a1e2fe, #88d6ff, #72c8ff, #60baff);
     cursor: pointer;
     font-weight: bold;
+    padding: 0;
+    margin-bottom: 0;
 }
 
 nav .links {
@@ -146,7 +162,7 @@ div.logInLink, div.cartLink {
 div.logInLink > div.logInModal, div.cartLink > div.cartModal {
     display: none;
     width: 200px;
-    height: 150px;
+    height: auto;
     background-color: #ffffff;
     position: absolute;
     top: 60px;
@@ -168,7 +184,7 @@ div.cartLink > div.cartModal > div {
     position: relative;
 }
 
-div.cartLink > div.cartModal > div > p {
+div.cartLink > div.cartModal > div > a {
     display: inline-block;
     overflow: hidden;
     width: 250px;
@@ -204,6 +220,7 @@ div.logInModal a {
     height: 74px;
     line-height: 74px;
     display: inline-block;
+    width: 100%;
 }
 
 div.logInModal hr {
@@ -242,27 +259,72 @@ ul.categoriesList {
     padding: 10px;
     padding-left: 20px;
     width: 100%;
-    font-weight: bold;
-    overflow: scroll;
+    overflow: none;
     height: 500px;
-}
-
-ul.categoriesList > div > li {
-    cursor: pointer;
-    list-style-type: none;
-}
-
-ul.categoriesList > hr, div.subCategories > hr {
-    margin: 11px 0;
-    background-color: #60baff;
-    height: 2px;
+    font-size: 18px;
 }
 
 div.category {
     position: relative;
 }
 
-/* div.subCategories {
+#category-name {
+    list-style-type: none;
+    display: block;
+    padding: 9px 0;
+    transition: all 0.2s ease-in-out;
+}
+
+#category-name:hover {
+    font-weight: bold;
+}
+
+div.category > .subCategories {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    display: none;
+    opacity: 0;
+    transition: all .2s ease-in-out;
+    z-index: 20;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    -webkit-box-shadow: 0px 0px 19px -6px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 19px -6px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 19px -6px rgba(0,0,0,0.75);
+    height: 300px;
+    overflow-y: scroll;
+}
+
+ul.categoriesList > div > div > li {
+    cursor: pointer;
+    list-style-type: none;
+    margin: 5px;
+    transition: all .2s ease-in-out;
+}
+
+ul.categoriesList > div > div > li:hover {
+    font-weight: bold;
+}
+
+ul.categoriesList > div > div > li > a {
+    color: black;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+ul.categoriesList hr {
+    margin: 0;
+    background-color: #60baff;
+    height: 2px;
+}
+
+/*div.category {
+    position: relative;
+}
+
+div.subCategories {
     transform: scale(0, 0);
     background-color: #fff;
     position: absolute;
@@ -332,7 +394,8 @@ div#rodo {
     width: 100%;
     height: 100%;
     background-color: #fff;
-    font-size: 200px;
+    font-size: 30px;
+    display: none;
 }
 
 

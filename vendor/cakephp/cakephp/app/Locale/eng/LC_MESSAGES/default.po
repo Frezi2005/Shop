@@ -1,2 +1,248 @@
-msgid "test"
-msgstr "Hello"
+msgid "computers_and_laptops"
+msgstr "Computer and Laptops"
+
+msgid "peripherals"
+msgstr "Peripherals"
+
+msgid "phones_and_tablets"
+msgstr "Phones and Tablets"
+
+msgid "tv"
+msgstr "TV"
+
+msgid "audio_sets"
+msgstr "Audio Sets"
+
+msgid "for_gamers"
+msgstr "For Gamers"
+
+msgid "car_accessories"
+msgstr "Car Accessories"
+
+msgid "appliances"
+msgstr "Appliances"
+
+msgid "lighting"
+msgstr "Lighting"
+
+msgid "cameras"
+msgstr "Cameras"
+
+msgid "floor_lamps"
+msgstr "Floor Lamps"	
+
+msgid "hanging_lamps"
+msgstr "Hanging Lamps"
+	
+msgid "led_strips"
+msgstr "LED Strips"
+	
+msgid "lightbulbs"
+msgstr "Lightbulbs"
+	
+msgid "tvs"
+msgstr "TVs"
+	
+msgid "smarttvs"
+msgstr "Smart TVs"
+	
+msgid "remotes"
+msgstr "Remotes"
+	
+msgid "wall_mounts"
+msgstr "Wall Mounts"
+	
+msgid "projectors"
+msgstr "Projectors"
+	
+msgid "microphones"
+msgstr "Microphones"
+	
+msgid "displays"
+msgstr "Displays"
+	
+msgid "keyboards"
+msgstr "Keyboards"
+	
+msgid "mice"
+msgstr "Mice"
+	
+msgid "mouse_pads"
+msgstr "Mouse Pads"
+	
+msgid "headphones"
+msgstr "Headphones"
+	
+msgid "speakers"
+msgstr "Speakers"
+	
+msgid "printers"
+msgstr "Printers"
+	
+msgid "web_cams"
+msgstr "Web Cams"
+	
+msgid "cpus"
+msgstr "CPUs"
+	
+msgid "cpu_coolers"
+msgstr "CPU Coolers"
+	
+msgid "gpus"
+msgstr "GPUs"
+	
+msgid "memory"
+msgstr "Memory"
+	
+msgid "storage"
+msgstr "Storage"
+	
+msgid "case"
+msgstr "Case"
+	
+msgid "power_supply"
+msgstr "Power Supply"
+	
+msgid "case_fans"
+msgstr "Case Fans"
+	
+msgid "network_cards"
+msgstr "Network Cards"
+	
+msgid "sound_cards"
+msgstr "Sound Cards"
+	
+msgid "car_chargers"
+msgstr "Car Chargers"
+	
+msgid "gps"
+msgstr "GPS"
+	
+msgid "recorders"
+msgstr "Recorders"
+	
+msgid "parking_sensors"
+msgstr "Parking Sensors"
+	
+msgid "stereo"
+msgstr "Stereo"
+	
+msgid "computers"
+msgstr "Computers"
+	
+msgid "laptops"
+msgstr "Laptops"
+	
+msgid "motherboards"
+msgstr "Motherboards"
+	
+msgid "slr_cameras"
+msgstr "SLR Cameras"
+	
+msgid "digital_cameras"
+msgstr "Digital Cameras"
+	
+msgid "compact_cameras"
+msgstr "Compact Cameras"
+	
+msgid "polaroids"
+msgstr "Polaroids"
+	
+msgid "tripods"
+msgstr "Tripods"
+	
+msgid "monitoring_cameras"
+msgstr "Monitoring Cameras"
+	
+msgid "column_speakers"
+msgstr "Column Speakers"
+	
+msgid "speakers"
+msgstr "Speakers"
+	
+msgid "home_theater"
+msgstr "Home Theater"
+	
+msgid "amplifiers"
+msgstr "Amplifiers"
+	
+msgid "soundbars"
+msgstr "Soundbars"
+	
+msgid "smartphones"
+msgstr "Smartphones"
+	
+msgid "phones"
+msgstr "Phones"
+	
+msgid "tablets"
+msgstr "Tablets"
+	
+msgid "memory_cards"
+msgstr "Memory Cards"
+	
+msgid "chargers"
+msgstr "Chargers"
+	
+msgid "protection_kits"
+msgstr "Protection Kits"
+	
+msgid "accessories"
+msgstr "Accessories"
+	
+msgid "refrigerators"
+msgstr "Refrigerators"
+	
+msgid "ovens"
+msgstr "Ovens"
+	
+msgid "induction_plates"
+msgstr "Induction Plates"
+	
+msgid "mixers"
+msgstr "Mixers"
+	
+msgid "food_processors"
+msgstr "Food Processors"
+	
+msgid "vacuums"
+msgstr "Vacuums"
+	
+msgid "air_purifiers"
+msgstr "Air Purifiers"
+	
+msgid "ionizers"
+msgstr "Ionizers"
+	
+msgid "dryers"
+msgstr "Dryers"
+	
+msgid "washing_machines"
+msgstr "Washing Machines"
+	
+msgid "coffee_makers"
+msgstr "Coffee Makers"
+	
+msgid "controllers"
+msgstr "Controllers"
+	
+msgid "3d_sensors"
+msgstr "3D Sensors"
+	
+msgid "capturing_devices"
+msgstr "Capturing Devices"
+	
+msgid "vr"
+msgstr "VR"
+	
+msgid "games"
+msgstr "Games"
+	
+msgid "consoles"
+msgstr "Consoles"
+	
+msgid "portable_consoles"
+msgstr "Portable Consoles"
+	
+msgid "steering_wheels"
+msgstr "Steering Wheels"

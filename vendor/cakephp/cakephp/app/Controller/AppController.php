@@ -33,12 +33,34 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
     public function beforeFilter() {
         parent::beforeFilter();
+        $this->loadModel("Category");
+        $this->loadModel("SubCategory");
         Configure::write("Config.language", $this->Session->read("language"));
 		$locale = Configure::read('Config.language');
 		if ($locale && file_exists(APP . 'View' . DS . $locale . DS . $this->viewPath . DS . $this->view . $this->ext)) {
 			$this->viewPath = $locale . DS . $this->viewPath;
 		}
-        $this->loadModel("Category");
-		$this->set("categories", $this->Category->find("all"));
+        $categories = $this->Category->find("all");
+        $subCategories = [];
+        $allCategories = [];
+        foreach($categories as $category) {
+            $sc = $this->SubCategory->find("all", array(
+                "conditions" => array(
+                    "SubCategory.category_id" => $category["Category"]["id"]
+                )
+            ));
+            for($i = 0; $i < count($sc); $i++) {
+                $subCategories[$i] = [
+                    "id" => $sc[$i]["SubCategory"]["id"],
+                    "sub_category_name" => $sc[$i]["SubCategory"]["sub_category_name"]
+                ];
+            }
+            $allCategories[$category["Category"]["category_name"]] = [
+                "category_id" => $category["Category"]["id"],
+                "sub_categories" => $subCategories
+            ];
+            $subCategories = [];
+        }
+		$this->set("categories", $allCategories);
     }
 }

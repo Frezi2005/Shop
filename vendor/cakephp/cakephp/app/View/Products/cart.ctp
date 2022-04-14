@@ -5,5 +5,5 @@
 ?>
 <div class="cartContainer">
     <div class="products"></div>
+    <button id="order">Order</button>
 </div>
-<button id="order">Order</button>

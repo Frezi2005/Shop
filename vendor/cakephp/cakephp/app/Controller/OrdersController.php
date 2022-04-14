@@ -40,6 +40,7 @@ class OrdersController extends AppController {
 	public function beforeFilter() {
 		parent::beforeFilter();
 		App::uses('CakeText', 'Utility');
+		$this->loadModel("Orders");
 	}
 
 /**
@@ -89,19 +90,10 @@ class OrdersController extends AppController {
 		$this->loadModel("Orders");
 		$this->loadModel("Users");
 		$this->loadModel("Products");
-		if(!empty($this->Session->read("userUUID"))) {
-			$user = $this->Users->find("first", array("conditions" => array("id" => $this->Session->read("userUUID")), "fields" => array("total_points")));
-			$this->Users->updateAll(array("total_points" => intval($user["Users"]["total_points"]) + round(intval($data["price"]) / 100)), array("id" => $this->Session->read("userUUID")));
-		}
-		$products = json_decode($data["cart"], true);
-		for($i = 0; $i < count($products); $i++) {
-			$count = $this->Products->find("first", array("conditions" => array("id" => $products[$i]["id"])));
-			$this->Products->updateAll(array("product_count" => intval($count["Products"]["product_count"]) - 1), array("id" => $products[$i]["id"]));
-		}
 
 		$userUUID = CakeText::uuid();
 
-		if(preg_match('/[^a-zA-Z\s]+/i', $data["country"]) || preg_match('/[^a-zA-Z\s]+/i', $data["city"]) || preg_match('/[^a-zA-Z\s]+/i', $data["street"]) || preg_match('/[^0-9\s]+/i', $data["house_number"])) {
+		if(preg_match('/[^a-zA-Z\s]+/i', $data["countries"]) || preg_match('/[^a-zA-Z\s]+/i', $data["city"]) || preg_match('/[^a-zA-Z\s]+/i', $data["street"]) || !preg_match('/(\d+[a-z]|\d+)/i', $data["house_number"])) {
 			$this->redirect("/order");
 		}
 
@@ -129,17 +121,24 @@ class OrdersController extends AppController {
 				"holiday_amount" => null,
 				"is_employee" => 0,
 				"shop_id" => null,
+				"role" => null,
+				"department" => null,
 				"email_change_creation_date" => null,
 				"email_change_expiration_date" => null,
-				"is_admin" => 0
+				"is_admin" => 0,
+				"is_deleted" => 0
 			));
 		}
+
+		$products = json_decode($data["cart"], true);
 		
 		$this->Orders->save(array(
 			"user_id" => (empty($this->Session->read("userUUID"))) ? $userUUID : $this->Session->read("userUUID"),
-			"country" => $data["country"],
+			"email" => $data["email"],
+			"country" => $data["countries"],
 			"city" => $data["city"],
 			"street" => $data["street"],
+			"flat_number" => $data["flat_number"],
 			"house_number" => $data["house_number"],
 			"products" => json_encode($products),
 			"delivery_type" => $data["deliveryType"],
@@ -148,12 +147,32 @@ class OrdersController extends AppController {
 			"total_price" => intval($data["price"]),
 			"payment_method" => $data["paymentMethod"],
 			"payment_date" => date("Y-m-d H:i:s", strtotime(date("Y-m-d H:i:s") . " + 1 days")),
-			"order_points" => floor(intval($data["price"]) / 100),
+			"order_points" => (empty($this->Session->read("userUUID"))) ? 0 : floor(intval($data["price"]) / 100),
 			"promo_code_id" => null,
 			"currency" => "USD",
 			"shop_id" => null
 		));
+
+		if(!empty($this->Session->read("userUUID"))) {
+			$user = $this->Users->find("first", array("conditions" => array("id" => $this->Session->read("userUUID")), "fields" => array("total_points")));
+			$this->Users->updateAll(array("total_points" => intval($user["Users"]["total_points"]) + round(intval($data["price"]) / 100)), array("id" => $this->Session->read("userUUID")));
+		}
+	
+		for($i = 0; $i < count($products); $i++) {
+			$count = $this->Products->find("first", array("conditions" => array("id" => $products[$i]["id"])));
+			$this->Products->updateAll(array("product_count" => intval($count["Products"]["product_count"]) - 1), array("id" => $products[$i]["id"]));
+		}
+
 		$this->Session->write("orderedModal", true);
+		if(empty($this->Session->read("userUUID"))) {
+			$this->redirect("/ask-for-account");
+		}
 		$this->redirect("/home");
+	}
+
+	public function getOrders() {
+		$this->autoRender = false;
+		$orders = $this->Orders->find("all", array("conditions" => array("total_price BETWEEN ".$this->params["url"]["min"]." AND ".$this->params["url"]["max"])));
+		return json_encode($orders);
 	}
 }

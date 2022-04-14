@@ -113,11 +113,28 @@ class CustomersController extends AppController {
 				"email" => $customerRegisterData["email"],
 				"password" => $this->SecurityUtils->encrypt($customerRegisterData["password"]),
 				"birth_date" => $customerRegisterData["birthDate"],
+				"country" => null,
+				"city" => null,
+				"street" => null,
+				"house_number" => null,
+				"flat_number" => null,
 				"phone_number" => $customerRegisterData["phoneNumber"],
 				"total_points" => 0,
 				"verified" => 0,
 				"creation_date" => null,
-				"is_employee" => 0
+				"id_number_and_series" => null,
+				"salary" => null,
+				"internship_length" => null,
+				"bonus_amount" => null,
+				"holiday_amount" => null,
+				"is_employee" => 0,
+				"shop_id" => null,
+				"role" => null,
+				"department" => null,
+				"email_change_creation_date" => null,
+				"email_change_expiration_date" => null,
+				"is_admin" => 0,
+				"is_deleted" => 0
 			));
 			$this->Session->write("registeredModal", true);
 		} catch (Exception $e) {
@@ -156,7 +173,11 @@ class CustomersController extends AppController {
 	}
 
 	public function settings() {
-		
+		$user = $this->User->find("first", array("conditions" => array("id" => $this->Session->read("userUUID"))))["User"];
+		$this->set("is_admin", 0);
+		if($user["is_admin"]) {
+			$this->set("is_admin", 1);
+		} 
 	}
 
 	public function changePassword() {
@@ -201,8 +222,11 @@ class CustomersController extends AppController {
 			"holiday_amount" => $employee["holidayAmount"],
 			"is_employee" => 1,
 			"shop_id" => null,
+			"role" => null,
+			"department" => null,
 			"email_change_creation_date" => null,
-			"email_change_expiration_date" => null
+			"email_change_expiration_date" => null,
+			"is_deleted" => 0
 		));
 		$this->redirect("/home");
 	}
@@ -225,12 +249,42 @@ class CustomersController extends AppController {
 	}
 
 	public function orderHistory() {
+		$this->layout = false;
 		$this->loadModel("Orders");
-		$this->set("orders", $this->Orders->find("all", array("conditions" => array("user_id" => $this->Session->read("userUUID")), "fields" => array("products", "delivery_type", "order_date", "shipment_date", "total_price", "payment_method", "order_points", "currency"))));
+		$this->set("orders", $this->Orders->find("all", array("conditions" => array("user_id" => $this->Session->read("userUUID")))));
 	}
 
 	public function deleteAccount() {
-		$this->User->deleteAll(array("id" => $this->Session->read("userUUID")), true);
-		echo $this->element('sql_dump');
+		$this->User->delete(array("id" => $this->Session->read("userUUID")));
+		$this->redirect("/logout");
+	}
+
+	public function removeEmployee() {
+		$this->autoRender = false;
+		$data = $this->request["data"]["removeEmployeesForm"];
+		$this->User->updateAll(array("is_deleted" => 1), array("id" => $data["employees"]));
+		$this->redirect("/remove-employee-page");
+	}
+
+	public function ordersReport() {
+
+	}
+
+	public function updatePasswordPage() {
+		$id = base64_decode($this->params["url"]["id"]);
+		$user = $this->User->find("first", array("conditions" => array("id" => $id)));
+		if (count($user) == 0) {
+			throw new InternalErrorException();
+		}
+		$this->set("id", $id);
+	}
+
+	public function updatePassword() {
+		$this->autoRender = false;
+		$data = $this->request["data"]["updatePasswordForm"];
+		if($data["password"] == $data["passwordConfirm"]) {
+			$this->User->updateAll(array("password" => "'".$this->SecurityUtils->encrypt($data["password"])."'"), array("id" => $data["id"]));
+			$this->session->write("changePassword", true);
+		}
 	}
 }

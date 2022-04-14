@@ -5,8 +5,9 @@
 			//Setting charset, loading scipts, libraries and styles
 			echo $this->Html->charset();
 			echo $this->Html->script("../../../components/jquery/jquery.min");
+			echo $this->Html->css("../../../components/jqueryui/jquery-ui.min");
+			echo $this->Html->script("../../../components/jqueryui/jquery-ui");
 			echo $this->Html->script("//cdn.jsdelivr.net/npm/sweetalert2@10");
-			echo $this->Html->script("https://unpkg.com/@popperjs/core@2");
 			echo $this->Html->script("https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js");
 			echo $this->Html->css("https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css");
 			echo $this->Html->script("https://kit.fontawesome.com/b7d5b9359e.js");
@@ -20,11 +21,11 @@
 		?>
 	</head>
 	<body>
-		<!-- <div id="rodo">
+		<div id="rodo">
 			<span>RODO</span>
 			<button id="accept">Accept</button>
 			<button id="denie">Denie</button>
-		</div> -->
+		</div>
 		<div id="container">
 			<nav>
 				<p class="logo"><a href="home"><?= $this->Html->image("logo.png");?></a></p>
@@ -50,7 +51,7 @@
 					</select>
 					<div class="logInLink navLink">
 						<i class="fas fa-user"></i>
-						<a href=""><?php echo ($this->Session->read("loggedIn") == true) ? "Profile" : "Log in"?></a>
+						<span><?php echo ($this->Session->read("loggedIn") == true) ? "Profile" : "Log in"?></span>
 						<div class="logInModal">
 							<?php
 								if ($this->Session->read("loggedIn") != true) {
@@ -68,32 +69,26 @@
 						</div>
 					</div>
 					<div class="cartLink navLink">
-						<i class="fas fa-shopping-cart"></i>
-						<a href="cart">Cart</a>
-						<span id="cartProductsAmount"></span>
+						<span id="linkOuter">
+							<i class="fas fa-shopping-cart"></i>
+							<a href="cart">Cart</a>
+							<span id="cartProductsAmount"></span>
+						</span>
 						<div class="cartModal"></div>
 					</div>
 				</div>
 			</nav>
+			<?php 
+				if ($_SERVER["REDIRECT_URL"] !== "/Shop/vendor/cakephp/cakephp/app/webroot/home") {
+					echo "<a id=\"back\" href=\"#\">Go back</a>";
+				} 
+			?>
+			
 			<div id="content">
-				<div class="categories col-lg-2 col-md-2">			
-					<ul class="categoriesList">
-						<?php 
-							$index = 0;
-							foreach ($categories as $category) {
-								echo "<div class=\"category\">";
-								echo "<li data-category-id=".$category["Category"]["id"].">".$category["Category"]["category_name"]."</li>";
-								echo "<div class=\"subCategories\"></div>";
-								echo "</div>";
-								if ($index != count($categories) - 1) {
-									echo "<hr />";
-								}
-								$index++;
-							}
-						?>
-					</ul>
-				</div>
-				<?php echo $this->fetch("content"); ?>
+				<?php
+					echo $this->element("side_menu");
+					echo $this->fetch("content");
+				?>
 			</div>
 			<!-- <footer class="text-center justify-content-center">
 				<p class="col-lg-12 h-20">Kamil Waniczek <?= date("Y"); ?> &copy; All rights reserved.</p>

@@ -1,32 +1,46 @@
 $(function() {
-    var categories = $(".categoriesList > div");
-    categories.each(function() {
-        $(this).mouseenter(function() {
-            getSubCategories($(this).children("li").attr("data-category-id"), $(this).children("li"));
+
+    $("button#denie").click(() => {
+        window.history.back();
+    })
+
+    $("button#accept").click(() => {
+        $.get("create-rodo-cookie");
+        $("div#rodo").css("display", "none");
+    });
+
+    if(document.cookie.indexOf("[rodo_accepted]=1") != -1) {
+        $("div#rodo").css("display", "none");
+    } else {
+        $("div#rodo").css("display", "block");
+    }
+
+    $(".categoriesList > .category").each(function() {
+        var categoriesDiv = $(this).children().next();
+        $(this).mouseover(function() {
+            categoriesDiv.css("opacity", "1");
+            categoriesDiv.css("display", "block");
         });
-        $("div.categories").mouseleave(function() {
-            $(".category").css("height", "24px").css("display", "block");
-            $("hr").css("display", "block");
-            $(".category").find("div.subCategories").text("");
+
+        categoriesDiv.mouseover(function() {
+            categoriesDiv.css("opacity", "1");
+            categoriesDiv.css("display", "block");
+        });
+
+        $(this).mouseout(function() {
+            categoriesDiv.css("opacity", "0");
+            categoriesDiv.css("display", "none");
+        });
+
+        categoriesDiv.mouseout(function() {
+            categoriesDiv.css("opacity", "0");
+            categoriesDiv.css("display", "none");
         });
     });
 
-    function getSubCategories(category, currElement) {
-        $.ajax({
-            url: "http://localhost/Shop/vendor/cakephp/cakephp/get-sub-categories?category-id="+category,
-            success: function(result) {
-                //CLEARING MENU
-                categories.not(currElement.parent()).css("display", "none");
-                categories.siblings().not(currElement.parent()).css("display", "none");
-                currElement.parent().css("height", "100%");
-
-                //INSERTING SUB CATEGORIES
-                JSON.parse(result)[category].forEach(function(subCategory) {
-                    currElement.next().append("<hr></hr><a class='subCategory' href='products-list?sub_category=" + subCategory["SubCategory"]["sub_category_name"] + "'>" + subCategory["SubCategory"]["sub_category_name"] + "</a>");
-                });
-            }
-        })
-    }
+    $("#linkOuter").click(function() {
+        location.replace("http://localhost/Shop/vendor/cakephp/cakephp/cart");
+    });
 
     var languageSelect = $("select.languageSelect");
 
@@ -36,19 +50,19 @@ $(function() {
 
     function changeLanguage(lang) {
         $.ajax({
-            url: "http://localhost/Shop/vendor/cakephp/cakephp/change-language?lang="+lang,
+            url: "http://localhost/Shop/vendor/cakephp/cakephp/change-language?lang=" + lang,
             success: function(result) {
                 location.reload();
             }
         });
     }
 
-    $("input.searchInput").on("keyup", function() {
+    $("input.searchInput").bind("keyup focus", function() {
         $("div.innerSearchResults").empty();
-        $.getJSON("http://localhost/Shop/vendor/cakephp/cakephp/search?q="+$(this).val(), function(data) {
-            var len = Object.keys(data).length;
-            for (var i = 0; i < len; i++) {
-                for (var j = 0; j < len - i - 1; j++) { 
+        $.getJSON("http://localhost/Shop/vendor/cakephp/cakephp/search?q=" + $(this).val(), function(data) {
+            var len = 10; //Object.keys(data).length;
+            for (var i = 0; i < Object.keys(data).length; i++) {
+                for (var j = 0; j < Object.keys(data).length - i - 1; j++) { 
                     if (data["product"+j].totalScore < data["product"+(j+1)].totalScore) {
                         var temp = data["product"+j];
                         data["product"+j] = data["product"+(j+1)];
@@ -57,27 +71,59 @@ $(function() {
                 }
             }
             $("div.searchResults").css("display", "block");
-            for(var i = 0; i < Object.keys(data).length; i++) {
-                $("div.innerSearchResults").append("<p><a href='product?product_id="+data["product"+i].id+"'>"+data["product"+i].name+"</a></p>");
+            for(var i = 0; i < len; i++) {
+                $("div.innerSearchResults").append("<p><a href='product?product_id="+data["product"+i].id+"'>"+data["product"+i].name+"<img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/" + checkImage(data["product"+i].id) + ".jpg'/></a></p>");
             }
         });
     });
 
+    $("input.searchInput").focusout(function() {
+        setTimeout(function() {
+            $("div.searchResults").css("display", "none");
+        }, 120)
+    });
+
     $(".productOnMainPage").each(function() {
         var cur = $(this);
-        console.log(cur.find("a").attr("href"));
         $.ajax({
             type: "GET",
             url: "http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/"+cur.find("a").text()+".jpg",
             success: function(data) {
-                cur.prepend("<a href='" + cur.find("a").attr("href") + "' target='_blank'><img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/"+cur.find("a").text()+".jpg" + "'/></a>")
+                cur.prepend("<a href='" + cur.find("a").attr("href") + "'><img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/"+cur.find("a").text()+".jpg" + "'/></a>")
             },
             error: function(e) {
-                cur.prepend("<a href='" + cur.find("a").attr("href") + "' target='_blank'><img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/noimg.jpg'/></a>")
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/"+cur.find("a").attr("href").replace("product?product_id=", "")+".jpg",
+                    success: function(data) {
+                        cur.prepend("<a href='" + cur.find("a").attr("href") + "'><img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/"+cur.find("a").attr("href").replace("product?product_id=", "")+".jpg" + "'/></a>")
+                    },
+                    error: function(e) {
+                        cur.prepend("<a href='" + cur.find("a").attr("href") + "'><img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/noimg.jpg'/></a>")
+                    }
+                });
             }
         });
     });
-    
+
+    var img;
+
+    function checkImage(productId) {
+        img = null;
+        $.ajax({
+            async: false,
+            url: "http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/"+productId+".jpg",
+            error: function(request, status, error){
+                img = status; 
+            }
+        });
+        return img == "error" ? "noimg" : productId;
+    }
+
+
+    $("#back").click(() => {
+        history.back()
+    });
 
     //NUMBER BUTTONS PAGE CHANGING SYSTEM
 
@@ -94,17 +140,4 @@ $(function() {
     //         console.log(result);
     //     }
     // });
-
-    // $("button#denie").click(() => {
-    //     window.history.back();
-    // })
-
-    // $("button#accept").click(() => {
-    //     $.get("create-rodo-cookie", (data) => {
-    //         alert(data);
-    //     });
-    //     $("div#rodo").css("display", "none");
-    // });
-
-    // console.log(document.cookie[document.cookie.length - 1]);
 });

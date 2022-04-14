@@ -2,6 +2,7 @@
     float: left;
     margin-left: 50px;
     margin-top: 40px;
+    width: 800px;
 }
 
 .productsList .product {
@@ -14,13 +15,15 @@
     -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
     margin: 0 0 50px 0;
+    width: 45%;
+    margin: 2.5%;
 }
 
 .product img {
     height: 100%;
-    transition: all .5s ease-in-out;
-    mix-blend-mode: multiply;
     border: 1px solid transparent;
+    transition: all .5s ease-in-out;
+    border-radius: 25px;
 }
 
 .product img:hover {
@@ -40,14 +43,17 @@
     float: left;
 }
 
-div.first, div.details, div.image {
+div.image, div.namePriceAmount {
     height: 150px;
     float: left;
+    width: 50%;
 }
 
-div.namePriceAmount {
-    height: 150px;
+div.first, div.details {
+    height: 50%;
+    width: 100%;
 }
+
 
 .product a {
     display: inline-block;
@@ -57,19 +63,17 @@ div.namePriceAmount {
     white-space: nowrap;
     overflow: hidden;
     width: 95%;
-    margin: 2.5%;
-    margin-top: 60px;
+    line-height: 75px;
 }
 
 .product .price {
     display: block;
-    float: right;
+    float: left;
     margin-right: 20px;
-    margin-top: 80px;
 }
 
 .product .count {
-    float: right;
+    float: left;
     display: block;
     margin-right: 20px;
     font-size: 12px;

@@ -5,8 +5,11 @@ div.cartContainer {
     border: 3px solid #b0ffb8;
     border-radius: 27px;
     padding: 40px;
-    max-width: 60% !important;
-    height: 600px;
+    width: 40%;
+    max-width: 80% !important;
+    height: auto;
+    max-height: 600px;
+    overflow-y: scroll;
 }
 
 div.products {
@@ -32,4 +35,12 @@ div.products {
 .trashIcon {
     float: right;
     cursor: pointer;
+}
+
+button {
+    width: 70px;
+    outline: none;
+    border: 2px solid #000000;
+    background-color: #ffffff;
+    border-radius: 5px;
 }

@@ -2,7 +2,7 @@ h1 {
     margin: 40px 0 0 70px;
 }
 
-form {
+form, div#info {
     padding: 20px;
     border: 3px solid #b0ffb8;
     border-radius: 27px;
@@ -14,7 +14,7 @@ form {
     float: left;
 }
 
-form input:not(input[type=submit]) {
+div#info input:not(input[type=submit]), form input:not(input[type=submit]) {
     resize: none;
     padding: 5px;
     outline: none;
@@ -24,7 +24,7 @@ form input:not(input[type=submit]) {
     margin-bottom: 20px;
 }
 
-form input[type=submit] {
+div#info form input[type=submit], form input[type=submit] {
     width: 70px;
     outline: none;
     border: 2px solid #000000;

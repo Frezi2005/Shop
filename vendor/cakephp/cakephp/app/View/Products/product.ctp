@@ -7,9 +7,9 @@
     <div id="productImg"></div>
     <p id="description">Description: <?php echo $product["description"];?></p>
     <p id="priceWithoutTax">Netto: <span id="productPrice"><?php echo $product["price"] ?></span></p>
-    <p id="priceWithTax"><sup>Brutto: <?php echo $product["price"] + $product["tax"]; ?></sup></p>
+    <p id="priceWithTax"><sup>Brutto: <span id="productTaxPrice"><?php echo $product["price"] + $product["tax"]; ?></span></sup></p>
     <input type="hidden" id="productId" value="<?php echo $product["id"];?>">
-    <input type="number" name="productAmount" id="productAmount" value="1" min="1" max="<?php echo $product["product_count"];?>">
+    <input type="number" name="productAmount" id="productAmount" placeholder="Max amount: <?php echo $product["product_count"];?>" value="1" min="1" max="<?php echo $product["product_count"];?>">
     <button id="addToCartBtn">Add to cart</button>
     <button id="buyNowBtn">Buy now</button>
     <ul>

@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'fff5a2e7dea65c00912a2b47934dbd3069b1a454',
+    'reference' => '797b1db0f5dc08f3768b46d5387bd26d24e020e6',
     'name' => '__root__',
   ),
   'versions' => 
@@ -41,7 +41,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'fff5a2e7dea65c00912a2b47934dbd3069b1a454',
+      'reference' => '797b1db0f5dc08f3768b46d5387bd26d24e020e6',
     ),
     'cakephp/cakephp' => 
     array (
@@ -132,6 +132,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '9a142215a36a3888e30d0a9eeea9766764e96976',
+    ),
+    'tecnickcom/tcpdf' => 
+    array (
+      'pretty_version' => '6.4.4',
+      'version' => '6.4.4.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '42cd0f9786af7e5db4fcedaa66f717b0d0032320',
     ),
   ),
 );

@@ -103,4 +103,33 @@ class MailsController extends AppController {
 		}
 		$this->redirect("/contact");
 	}
+
+	public function sendForgotPasswordEmail() {
+		$this->loadModel("User");
+		$this->autoRender = false;
+		$email = new CakeEmail("default");
+		$email->from(array("internetspam.pl@gmail.com" => "AlphaTech"));
+		//$email->to($this->request["data"]["forgotPasswordForm"]["email"]);
+		$email->to("kamil.wan05@gmail.com");
+		$email->subject("Forgot password from AlphaTech");
+		$user = $this->User->find("first", array(
+			"conditions" => array(
+				"User.email" => $this->request["data"]["forgotPasswordForm"]["email"]
+			)
+		));
+		if(count($user)) {
+			$userId = base64_encode($user["User"]["id"]);
+			try {
+				$email->send("http://localhost/Shop/vendor/cakephp/cakephp/forgot-password?id=".$userId);
+			} catch (Exception $e) {
+				debug($e);
+			}
+		}
+		// try {
+		// 	$email->send("Forgot password");
+		// } catch (Exception $e) {
+		// 	debug($e);
+		// }
+		// $this->redirect("/login");
+	}
 }

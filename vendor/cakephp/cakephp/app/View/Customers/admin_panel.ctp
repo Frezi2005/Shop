@@ -7,6 +7,8 @@
 <div id="main">
     <a href="list-employees" target="_blank">Employees list</a>
     <a href="inventory" target="_blank">Products List</a>
+    <a href="remove-employee-page" target="_blank">Remove employee</a>
+    <a href="orders-report">Orders report</a>
     <select id="usersSelect">
         <?php
             for($i = 0; $i < count($employees); $i++) {

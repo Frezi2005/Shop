@@ -1,4 +1,5 @@
 $(function (){
+
     $("#productAmount").on("input", function() {
         if (parseInt($(this).val()) > parseInt($(this).attr("max"))) {
             $(this).val($(this).attr("max"));
@@ -6,7 +7,7 @@ $(function (){
     });
         
     $("#addToCartBtn").click(function() {
-        addToCart();
+        updateCart($("input#productAmount").val(), $("#productId").val(), $("#productName").text(), $("#productTaxPrice").text());
     });
 
     $("#buyNowBtn").click(function() {
@@ -14,7 +15,7 @@ $(function (){
         var item = [{
             id: $("#productId").val(),
             name: $("#productName").text(),
-            price: $("#productPrice").text(),
+            price: $("#productTaxPrice").text(),
             count: parseInt(amount)
         }];
         localStorage.setItem("buyNow", JSON.stringify(item));
@@ -39,16 +40,27 @@ $(function (){
         location.replace("http://localhost/Shop/vendor/cakephp/cakephp/products-list"+newUrl);
     });
 
-    $.ajax({
-        type: "GET",
-        url: "http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/"+$("#productName").text()+".jpg",
-        success: function(data) {
-            $("div#productImg").append("<img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/"+$("#productName").text()+".jpg" + "'/>")
-        },
-        error: function(e) {
-            $("div#productImg").append("<img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/noimg.jpg'/>")
-        }
-    });
+    if($("#productName").length > 0) {
+        $.ajax({
+            type: "GET",
+            url: "http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/"+name+".jpg",
+            success: function(data) {
+                $("div#productImg").append("<img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/"+name+".jpg" + "'/>")
+            },
+            error: function(e) {
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/"+id+".jpg",
+                    success: function(data) {
+                        $("div#productImg").append("<img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/"+id+".jpg" + "'/>")
+                    },
+                    error: function(e) {
+                        $("div#productImg").append("<img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/noimg.jpg'/>")
+                    }
+                });
+            }
+        });
+    }
 
     displayAmount(items);
     displayItemsInCartGUI(items);
@@ -56,8 +68,7 @@ $(function (){
 
 var items = (JSON.parse(localStorage.getItem("cart")) == null) ? [] : JSON.parse(localStorage.getItem("cart"));
 
-function addToCart() {
-    var amount = $("input#productAmount").val();
+function updateCart(amount, id, name, price, add = true, modal = true) {
     if (amount.match(/^[1-9][0-9]{0,}$|^[1-9][0-9]{0,}$/gm)) {
         var existsInCart;
         if (JSON.parse(localStorage.getItem("cart")) == null) {
@@ -65,17 +76,17 @@ function addToCart() {
         }
         if (items.length == 0) {
             items.push({
-                    id: $("#productId").val(),
-                    name: $("#productName").text(),
-                    price: $("#productPrice").text(),
+                    id: id,
+                    name: name,
+                    price: price,
                     count: parseInt(amount)
                 }
             );
         } else {
             for (var i = 0; i < items.length; i++) {
-                if ($("#productId").val() == items[i].id) {
+                if (id == items[i].id) {
                     existsInCart = true;
-                    items[items.findIndex(x => x.id == $("#productId").val())].count += parseInt(amount);
+                    items[items.findIndex(x => x.id == id)].count += (add) ? parseInt(amount) : -1 * parseInt(amount);
                     break;
                 } else {
                     existsInCart = false;
@@ -83,21 +94,23 @@ function addToCart() {
             }
             if(!existsInCart) {
                 items.push({
-                        id: $("#productId").val(),
-                        name: $("#productName").text(),
-                        price: $("#productPrice").text(),
+                        id: id,
+                        name: name,
+                        price: price,
                         count: parseInt(amount)
                     }
                 );
             }
         }
-        Swal.fire({
-            icon: "success",
-            text: "This item has been successfully added to your cart: " + $("#productName").text(),
-            showConfirmButton: false,
-            timer: 5000,
-            timerProgressBar: true
-        });
+        if(modal) {
+            Swal.fire({
+                icon: "success",
+                text: "This item has been successfully added to your cart: " + name,
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true
+            });
+        }
         localStorage.setItem("cart", JSON.stringify(items));
         displayAmount(items);
         displayItemsInCartGUI(items);
@@ -135,11 +148,38 @@ function displayItemsInCartGUI(cart) {
     if (cart.length > 0 || cart != null) {
         for (var i = 0; i < cart.length; i++) {
             sum += parseInt(cart[i].count) * parseFloat(cart[i].price); 
-            $(".cartModal").append("<div><p title='"+cart[i].name+"'>"+cart[i].name+"</p><br/><span>"+cart[i].count+"</span><span>"+cart[i].price+"USD</span></div>");
+            $(".cartModal").append("<div><a title='"+cart[i].name+"' href='product?product_id="+cart[i].id+"'>"+cart[i].name+"</a><br/><span class='amount'>"+cart[i].count+"</span><i class='fas fa-minus substractProduct'></i><i class='fas fa-plus addProduct'></i><span class='price'>"+cart[i].price+"USD</span><i class='fas fa-trash-alt deleteProduct' data-product-id='" + cart[i].id + "'></i></div>");
         }
-
-        $(".cartModal").append("<span>Total: "+sum+"USD</span>");
+        $(".cartModal").append("<span>Total: "+(Math.round((sum + Number.EPSILON) * 100) / 100)+"USD</span>");
     }
+
+    $(".deleteProduct").each(function () {
+        $(this).click(function () {
+            removeFromCart($(this).data("product-id"));
+            $(this).parent().remove();
+            location.reload();
+        });
+    });
+
+    $(".addProduct").each(function () {
+        $(this).click(function () {
+            var children = $(this).parent();
+            var price = children.find('span.price').text().replaceAll('USD', '');
+            var name = children.find('a').attr('title');
+            var id = children.find('a').attr('href').replaceAll('product?product_id=', '');
+            updateCart('1', id, name, price, true, false);
+        });
+    });
+
+    $(".substractProduct").each(function () {
+        $(this).click(function () {
+            var children = $(this).parent();
+            var price = children.find('span.price').text().replaceAll('USD', '');
+            var name = children.find('a').attr('title');
+            var id = children.find('a').attr('href').replaceAll('product?product_id=', '');
+            updateCart('1', id, name, price, false, false);
+        });
+    });
 }
 
 displayItemsInCartGUI(items);

@@ -1,6 +1,12 @@
 $(function() {
     var form = $("form#registerUserFormRegisterPageForm");
 
+    $("input#registerUserFormBirthDate").datepicker({
+        dateFormat: "yy-mm-dd",
+        changeMonth: true,
+        changeYear: true
+    });
+
     form.submit(function(e) {
         var name = $("input#registerUserFormName").val();
         var surname = $("input#registerUserFormSurname").val();
@@ -38,7 +44,7 @@ $(function() {
     }
 
     function phone_number_validation(phoneNumber) {
-        var regex = /\d/g;
+        var regex = /^(?:\+\d{1,3}|0\d{1,3}|00\d{1,2})?(?:\s?\(\d+\))?(?:[-\/\s.]|\d)+$/gi;
         return regex.test(phoneNumber);
     }
 

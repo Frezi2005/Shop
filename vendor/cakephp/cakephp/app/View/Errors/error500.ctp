@@ -14,13 +14,12 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 ?>
-<h2><?php echo $message; ?></h2>
-<p class="error">
-	<strong><?php echo __d('cake', 'Error'); ?>: </strong>
-	<?php echo __d('cake', 'An Internal Error Has Occurred.'); ?>
-</p>
 <?php
-if (Configure::read('debug') > 0):
-	echo $this->element('exception_stack_trace');
-endif;
+
+	echo $this->Html->css("error400");
+	$this->layout = "";
+
 ?>
+<h1>Server error has occured...</h1>
+<p>Please try again in few minutes or contact page owner to report this bug.</p>
+<a href="home">> Home page <</a>

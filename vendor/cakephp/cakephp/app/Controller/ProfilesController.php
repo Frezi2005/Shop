@@ -85,10 +85,6 @@ class ProfilesController extends AppController {
 
 	public function profile() {
 		$user = $this->User->find("first", array("conditions" => array("id" => $this->Session->read("userUUID"))))["User"];
-		$this->set("is_admin", 0);
-		if($user["is_admin"]) {
-			$this->set("is_admin", 1);
-		} 
 		$this->set("creation_date", $user["creation_date"]);
 		$this->set("total_points", $user["total_points"]);
 	}

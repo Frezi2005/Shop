@@ -26,6 +26,7 @@
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
 		
+	Router::parseExtensions();
 	Router::connect("/search", 					   array("controller" => "products", "action" => "search"));
 	Router::connect("/product", 				   array("controller" => "products", "action" => "product"));
 	Router::connect("/products-list",              array("controller" => "products", "action" => "productsList"));
@@ -65,6 +66,9 @@
 	Router::connect("/create-rodo-cookie", 		   array("controller" => "frontPages", "action" => "createRodoCookie"));
 	Router::connect("/error-test", 		   		   array("controller" => "frontPages", "action" => "errorTest"));
 	Router::connect("/gifts-catalog", 		   	   array("controller" => "frontPages", "action" => "giftsCatalog"));
+	Router::connect("/remove-employee-page", 	   array("controller" => "frontPages", "action" => "removeEmployeePage"));
+	Router::connect("/ask-for-account", 	   	   array("controller" => "frontPages", "action" => "askForAccount"));
+	Router::connect("/forgot-password-page", 	   array("controller" => "frontPages", "action" => "forgotPasswordPage"));
 
 	Router::connect("/logout", 					   array("controller" => "customers", "action" => "logout"));
 	Router::connect("/settings", 				   array("controller" => "customers", "action" => "settings"));
@@ -78,10 +82,17 @@
 	Router::connect("/grant-admin-privileges", 	   array("controller" => "customers", "action" => "grantAdminPrivileges"));
 	Router::connect("/order-history", 	   		   array("controller" => "customers", "action" => "orderHistory"));
 	Router::connect("/delete-account", 	   		   array("controller" => "customers", "action" => "deleteAccount"));
+	Router::connect("/remove-employee", 	   	   array("controller" => "customers", "action" => "removeEmployee"));
+	Router::connect("/orders-report", 	   	   	   array("controller" => "customers", "action" => "ordersReport"));
+	Router::connect("/forgot-password", 	   	   array("controller" => "customers", "action" => "forgotPassword"));
+	Router::connect("/update-password-page", 	   array("controller" => "customers", "action" => "updatePasswordPage"));
+	Router::connect("/update-password", 	   	   array("controller" => "customers", "action" => "updatePassword"));
 
 	Router::connect("/send-email-from-customer",   array("controller" => "mails", "action" => "sendEmailFromCustomer"));
+	Router::connect("/send-forgot-password-email", array("controller" => "mails", "action" => "sendForgotPasswordEmail"));
 
 	Router::connect("/order-products",   		   array("controller" => "orders", "action" => "orderProducts"));
+	Router::connect("/get-orders",   		   	   array("controller" => "orders", "action" => "getOrders"));
 	
 /**
  * ...and connect the rest of "Pages" controller"s URLs.
