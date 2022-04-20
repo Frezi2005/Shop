@@ -30,7 +30,7 @@
 			<nav>
 				<p class="logo"><a href="home"><?= $this->Html->image("logo.png");?></a></p>
 				<div class="searchBox">
-					<input class="searchInput" type="search">
+					<input class="searchInput" type="search" placeholder="Search...">
 					<button class="searchBtn"><i class="fas fa-search"></i></button>
 					<div class="searchResults">
 						<div class="innerSearchResults"></div>

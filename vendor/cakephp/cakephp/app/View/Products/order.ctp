@@ -17,7 +17,7 @@
             echo $this->Form->input("house_number", array("type" => "text", "label" => "", "placeholder" => "House number", "required" => true, "pattern" => "(([1-9])([0-9]*)[a-z]|([1-9])([0-9]*))"));
             echo $this->Form->input("flat_number", array("type" => "text", "label" => "", "placeholder" => "Flat number", "required" => true, "pattern" => "([1-9])([0-9]*)"));
             echo $this->Form->input("email", array("type" => "email", "label" => "", "placeholder" => "Email address", "required" => true, "pattern" => "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"));
-            echo $this->Form->input("paymentMethod", array("options" => array("None" => "Select", "Credit card" => "Credit card", "Bank transfer" => "Bank transfer", "PayPal" => "PayPal", "PaySafeCard" => "PaySafeCard", "BLIK" => "BLIK")));
+            echo $this->Form->input("paymentMethod", array("options" => array("None" => "Select", "Credit card" => "Credit card", "Bank transfer" => "Bank transfer", "PayPal" => "PayPal", "BLIK" => "BLIK")));
             echo $this->Form->input("deliveryType", array("options" => array("None" => "Select", "Courier" => "Courier", "Pickup point" => "Pickup point", "Parcel locker" => "Parcel locker")));
             echo $this->Form->input("rules", array("type" => "checkbox", "label" => "I accept the <a href=\"rules\" target=\"_blank\">terms of service</a>", "required" => true));
             echo $this->Form->hidden("cart");

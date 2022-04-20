@@ -1,2 +1,248 @@
-msgid "test"
-msgstr "Cześć"
+msgid "computers_and_laptops"
+msgstr "Komputery i laptopy"
+
+msgid "peripherals"
+msgstr "Peryferia"
+
+msgid "phones_and_tablets"
+msgstr "Telefony i tablety"
+
+msgid "tv"
+msgstr "TV"
+
+msgid "audio_sets"
+msgstr "Zestawy audio"
+
+msgid "for_gamers"
+msgstr "Dla graczy"
+
+msgid "car_accessories"
+msgstr "Akcesoria do samochodów"
+
+msgid "appliances"
+msgstr "AGD"
+
+msgid "lighting"
+msgstr "Oświetlenie"
+
+msgid "cameras"
+msgstr "Aparaty fotograficzne"
+
+msgid "floor_lamps"
+msgstr "Lampy podłogowe"	
+
+msgid "hanging_lamps"
+msgstr "Lampy wiszące"
+	
+msgid "led_strips"
+msgstr "Paski LED"
+	
+msgid "lightbulbs"
+msgstr "Żarówki"
+	
+msgid "tvs"
+msgstr "Telewizory"
+	
+msgid "smarttvs"
+msgstr "Smart TV"
+	
+msgid "remotes"
+msgstr "Piloty"
+	
+msgid "wall_mounts"
+msgstr "Uchwyty ścienne"
+	
+msgid "projectors"
+msgstr "Projektory"
+	
+msgid "microphones"
+msgstr "Mikrofony"
+	
+msgid "displays"
+msgstr "Monitory"
+	
+msgid "keyboards"
+msgstr "Klawiatury"
+	
+msgid "mice"
+msgstr "Myszki"
+	
+msgid "mouse_pads"
+msgstr "Podkładki do myszy"
+	
+msgid "headphones"
+msgstr "Słuchawki"
+	
+msgid "speakers"
+msgstr "Głośniki"
+	
+msgid "printers"
+msgstr "Drukarki"
+	
+msgid "web_cams"
+msgstr "Kamerki internetowe"
+	
+msgid "cpus"
+msgstr "Procesory"
+	
+msgid "cpu_coolers"
+msgstr "Chłodzenie procesorów"
+	
+msgid "gpus"
+msgstr "Karty graficzne"
+	
+msgid "memory"
+msgstr "Kości pamięci"
+	
+msgid "storage"
+msgstr "Dyski HDD\\SSD"
+	
+msgid "case"
+msgstr "Obudowy"
+	
+msgid "power_supply"
+msgstr "Zasilacze"
+	
+msgid "case_fans"
+msgstr "Chłodzenie obudowy"
+	
+msgid "network_cards"
+msgstr "Karty sieciowe"
+	
+msgid "sound_cards"
+msgstr "Karty dźwiękowe"
+	
+msgid "car_chargers"
+msgstr "Ładowarki samochodowe"
+	
+msgid "gps"
+msgstr "Nawigacja"
+	
+msgid "recorders"
+msgstr "Nagrywarki"
+	
+msgid "parking_sensors"
+msgstr "Czujniki parkowania"
+	
+msgid "stereo"
+msgstr "Stereo"
+	
+msgid "computers"
+msgstr "Komputery"
+	
+msgid "laptops"
+msgstr "Laptopy"
+	
+msgid "motherboards"
+msgstr "Płyty główne"
+	
+msgid "slr_cameras"
+msgstr "Lustrzanki"
+	
+msgid "digital_cameras"
+msgstr "Aparaty cyfrowe"
+	
+msgid "compact_cameras"
+msgstr "Aparaty kompaktowe"
+	
+msgid "polaroids"
+msgstr "Polaroidy"
+	
+msgid "tripods"
+msgstr "Tripody"
+	
+msgid "monitoring_cameras"
+msgstr "Kamery monitorujące"
+	
+msgid "column_speakers"
+msgstr "Głośniki kolumnowe"
+	
+msgid "speakers"
+msgstr "Głośniki"
+	
+msgid "home_theater"
+msgstr "Kino domowe"
+	
+msgid "amplifiers"
+msgstr "Wzmacniacze"
+	
+msgid "soundbars"
+msgstr "Soundbary"
+	
+msgid "smartphones"
+msgstr "Smartfony"
+	
+msgid "phones"
+msgstr "Telefony"
+	
+msgid "tablets"
+msgstr "Tablety"
+	
+msgid "memory_cards"
+msgstr "Karty pamięci"
+	
+msgid "chargers"
+msgstr "Ładowarki"
+	
+msgid "protection_kits"
+msgstr "Pakiety ochrony"
+	
+msgid "accessories"
+msgstr "Akcesoria"
+	
+msgid "refrigerators"
+msgstr "Lodówki"
+	
+msgid "ovens"
+msgstr "Piekarniki"
+	
+msgid "induction_plates"
+msgstr "Płyty indukcyjne"
+	
+msgid "mixers"
+msgstr "Miksery"
+	
+msgid "food_processors"
+msgstr "Procesory jedzenia"
+	
+msgid "vacuums"
+msgstr "Odkurzacze"
+	
+msgid "air_purifiers"
+msgstr "Oczyszczacze powietrza"
+	
+msgid "ionizers"
+msgstr "Ionizatory"
+	
+msgid "dryers"
+msgstr "Suszarki"
+	
+msgid "washing_machines"
+msgstr "Pralki"
+	
+msgid "coffee_makers"
+msgstr "Ekspresy do kawy"
+	
+msgid "controllers"
+msgstr "Kontrolery"
+	
+msgid "3d_sensors"
+msgstr "Czujniki 3D"
+	
+msgid "capturing_devices"
+msgstr "Urządzenia przechwytujące"
+	
+msgid "vr"
+msgstr "VR"
+	
+msgid "games"
+msgstr "Gry"
+	
+msgid "consoles"
+msgstr "Konsole"
+	
+msgid "portable_consoles"
+msgstr "Konsole przenośne"
+	
+msgid "steering_wheels"
+msgstr "Kierownice"

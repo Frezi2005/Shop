@@ -17,7 +17,7 @@
         if ($this->Session->read("contactEmailSent") === true) {
             echo "<script>Swal.fire({icon: \"success\",text: \"Your message has been sent. We'll reply in 2-3 work days.\",showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
             $_SESSION["contactEmailSent"] = null;
-        } else if($this->Session->read("contactEmailSent") === false) {
+        } else if ($this->Session->read("contactEmailSent") === false) {
             echo "<script>Swal.fire({icon: \"error\",text: \"Your message couldn't be sent. Try again later.\",showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
             $_SESSION["contactEmailSent"] = null;
         }

@@ -11,7 +11,7 @@
     <a href="orders-report">Orders report</a>
     <select id="usersSelect">
         <?php
-            for($i = 0; $i < count($employees); $i++) {
+            for ($i = 0; $i < count($employees); $i++) {
                 echo "<option value='".$employees[$i]["User"]["id"]."'>".$employees[$i]["User"]["name"]." ".$employees[$i]["User"]["surname"].": ".$employees[$i]["User"]["email"]."</option>";
             }   
         ?>

@@ -2,7 +2,7 @@ $(function() {
     var cart;
     var isCart = false;
     var isBuyNow = false;
-    if(JSON.parse(localStorage.getItem('buyNow')).length == 1) { 
+    if (JSON.parse(localStorage.getItem('buyNow')).length == 1) { 
         cart = JSON.parse(localStorage.getItem('buyNow')) 
         isBuyNow = true;
         localStorage.setItem('buyNow', '[]');
@@ -12,11 +12,11 @@ $(function() {
     }
 
     var sum = 0;
-    for(var i = 0; i < cart.length; i++) {
+    for (var i = 0; i < cart.length; i++) {
         sum += cart[i].count * cart[i].price;
     }
 
-    if(!sum) {
+    if (!sum) {
         history.back();
     }
 
@@ -25,10 +25,10 @@ $(function() {
     $('input#orderFormPrice').val(sum);
 
     $('input[type=submit]').click(function() {
-        if(isCart) {
+        if (isCart) {
             localStorage.setItem('buyNow', '[]');
             localStorage.setItem('cart', '[]');
-        } else if(isBuyNow) {
+        } else if (isBuyNow) {
             localStorage.setItem('buyNow', '[]');            
         }
     });
@@ -61,6 +61,8 @@ $(function() {
             case 'BLIK':
                 $('div#info').html(`<input type='text' id='blikCode' placeholder="BLIK code">`);
                 break;
+            case 'Bank transfer':
+                $('div#info').html(`<div id='imgGrid'><img src='app/webroot/img/ing.jpg'/><img src='app/webroot/img/mbank.jpg'/><img src='app/webroot/img/pko.jpg'/><img src='app/webroot/img/santander.jpg'/></div>`);
         }
     }
 

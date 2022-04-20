@@ -47,7 +47,7 @@ class CustomersController extends AppController {
 		$this->SecurityUtils = $this->Components->load("PasswordHashing");
 		//$this->CheckPrivileges = $this->Components->load("CheckPrivileges");
 		App::uses("CakeEmail", "Network/Email");
-		// if(!$this->CheckPrivileges->check($_SERVER["REQUEST_URI"], $this->Session->read("userUUID"))) {
+		// if (!$this->CheckPrivileges->check($_SERVER["REQUEST_URI"], $this->Session->read("userUUID"))) {
 		// 	throw new ForbiddenException();
 		// }
 	}
@@ -175,7 +175,7 @@ class CustomersController extends AppController {
 	public function settings() {
 		$user = $this->User->find("first", array("conditions" => array("id" => $this->Session->read("userUUID"))))["User"];
 		$this->set("is_admin", 0);
-		if($user["is_admin"]) {
+		if ($user["is_admin"]) {
 			$this->set("is_admin", 1);
 		} 
 	}
@@ -195,7 +195,7 @@ class CustomersController extends AppController {
 		$employee = $this->request["data"]["registerEmployeeForm"];
 		$userUUID = CakeText::uuid();
 		$randomPassword = "";
-		for($i = 0; $i < 6; $i++) {
+		for ($i = 0; $i < 6; $i++) {
 			$randomPassword .= rand(0, 9);
 		}
 
@@ -282,7 +282,7 @@ class CustomersController extends AppController {
 	public function updatePassword() {
 		$this->autoRender = false;
 		$data = $this->request["data"]["updatePasswordForm"];
-		if($data["password"] == $data["passwordConfirm"]) {
+		if ($data["password"] == $data["passwordConfirm"]) {
 			$this->User->updateAll(array("password" => "'".$this->SecurityUtils->encrypt($data["password"])."'"), array("id" => $data["id"]));
 			$this->session->write("changePassword", true);
 		}

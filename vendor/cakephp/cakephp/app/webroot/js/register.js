@@ -16,15 +16,66 @@ $(function() {
         var passwordConfirm = $("input#registerUserFormPasswordConfirm").val();
         var birthDate = $("input#registerUserFormBirthDate").val();
     
-        if (
-            !text_validation(name, 3, 40) ||
-            !text_validation(surname, 2, 50) ||
-            !email_validation(email) || 
-            !phone_number_validation(phoneNumber) || 
-            !password_validation(password) ||
-            !date_validation(birthDate) ||
-            passwordConfirm != password
-        ) {
+        if (!text_validation(name, 3, 40)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Name must be between 3 and 40 characters long!'
+            });
+            e.preventDefault();
+        }
+
+        if (!text_validation(surname, 2, 50)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Surname must be between 2 and 50 characters long!'
+            });
+            e.preventDefault();
+        }
+
+        if (!email_validation(email)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Email is not valid!'
+            });
+            e.preventDefault();
+        }
+
+        if (!phone_number_validation(phoneNumber)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Phone number is not valid!'
+            });
+            e.preventDefault();
+        }
+
+        if (!date_validation(birthDate)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Birth date is not valid!'
+            });
+            e.preventDefault();
+        }
+
+        if (password_validation(password)) {
+            if (password !== passwordConfirm) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Passwords do not match!'
+                });
+                e.preventDefault();
+            }
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Password has to be at least 8 characters long, include only letters and number and at least one uppercase letter!'
+            });
             e.preventDefault();
         }
 

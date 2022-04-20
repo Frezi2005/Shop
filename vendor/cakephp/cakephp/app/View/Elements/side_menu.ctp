@@ -1,4 +1,4 @@
-<div class="categories col-lg-2 col-md-2">			
+<div class="categories col-xl-2 col-lg-3 col-md-5 col-sm-5">			
     <ul class="categoriesList">
         <?php 
             $index = 0;

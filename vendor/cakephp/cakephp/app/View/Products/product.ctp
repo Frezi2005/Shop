@@ -15,9 +15,9 @@
     <ul>
     <?php 
 
-        if(is_array($product["specs"])) {
+        if (is_array($product["specs"])) {
             $specs = json_decode($product["specs"], true)[0];
-            foreach($specs as $spec => $val) {
+            foreach ($specs as $spec => $val) {
                 echo "<li>".$spec.": ".$val."</li>";
             }
         }

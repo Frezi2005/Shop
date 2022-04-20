@@ -1,23 +1,23 @@
 msgid "computers_and_laptops"
-msgstr "Computer and Laptops"
+msgstr "Computer and laptops"
 
 msgid "peripherals"
 msgstr "Peripherals"
 
 msgid "phones_and_tablets"
-msgstr "Phones and Tablets"
+msgstr "Phones and tablets"
 
 msgid "tv"
 msgstr "TV"
 
 msgid "audio_sets"
-msgstr "Audio Sets"
+msgstr "Audio sets"
 
 msgid "for_gamers"
-msgstr "For Gamers"
+msgstr "For gamers"
 
 msgid "car_accessories"
-msgstr "Car Accessories"
+msgstr "Car accessories"
 
 msgid "appliances"
 msgstr "Appliances"
@@ -29,13 +29,13 @@ msgid "cameras"
 msgstr "Cameras"
 
 msgid "floor_lamps"
-msgstr "Floor Lamps"	
+msgstr "Floor lamps"	
 
 msgid "hanging_lamps"
-msgstr "Hanging Lamps"
+msgstr "Hanging lamps"
 	
 msgid "led_strips"
-msgstr "LED Strips"
+msgstr "LED strips"
 	
 msgid "lightbulbs"
 msgstr "Lightbulbs"
@@ -50,7 +50,7 @@ msgid "remotes"
 msgstr "Remotes"
 	
 msgid "wall_mounts"
-msgstr "Wall Mounts"
+msgstr "Wall mounts"
 	
 msgid "projectors"
 msgstr "Projectors"
@@ -68,7 +68,7 @@ msgid "mice"
 msgstr "Mice"
 	
 msgid "mouse_pads"
-msgstr "Mouse Pads"
+msgstr "Mouse pads"
 	
 msgid "headphones"
 msgstr "Headphones"
@@ -80,13 +80,13 @@ msgid "printers"
 msgstr "Printers"
 	
 msgid "web_cams"
-msgstr "Web Cams"
+msgstr "Web cams"
 	
 msgid "cpus"
 msgstr "CPUs"
 	
 msgid "cpu_coolers"
-msgstr "CPU Coolers"
+msgstr "CPU coolers"
 	
 msgid "gpus"
 msgstr "GPUs"
@@ -101,19 +101,19 @@ msgid "case"
 msgstr "Case"
 	
 msgid "power_supply"
-msgstr "Power Supply"
+msgstr "Power supply"
 	
 msgid "case_fans"
-msgstr "Case Fans"
+msgstr "Case fans"
 	
 msgid "network_cards"
-msgstr "Network Cards"
+msgstr "Network cards"
 	
 msgid "sound_cards"
-msgstr "Sound Cards"
+msgstr "Sound cards"
 	
 msgid "car_chargers"
-msgstr "Car Chargers"
+msgstr "Car chargers"
 	
 msgid "gps"
 msgstr "GPS"
@@ -122,7 +122,7 @@ msgid "recorders"
 msgstr "Recorders"
 	
 msgid "parking_sensors"
-msgstr "Parking Sensors"
+msgstr "Parking sensors"
 	
 msgid "stereo"
 msgstr "Stereo"
@@ -137,13 +137,13 @@ msgid "motherboards"
 msgstr "Motherboards"
 	
 msgid "slr_cameras"
-msgstr "SLR Cameras"
+msgstr "SLR cameras"
 	
 msgid "digital_cameras"
-msgstr "Digital Cameras"
+msgstr "Digital cameras"
 	
 msgid "compact_cameras"
-msgstr "Compact Cameras"
+msgstr "Compact cameras"
 	
 msgid "polaroids"
 msgstr "Polaroids"
@@ -152,16 +152,16 @@ msgid "tripods"
 msgstr "Tripods"
 	
 msgid "monitoring_cameras"
-msgstr "Monitoring Cameras"
+msgstr "Monitoring cameras"
 	
 msgid "column_speakers"
-msgstr "Column Speakers"
+msgstr "Column speakers"
 	
 msgid "speakers"
 msgstr "Speakers"
 	
 msgid "home_theater"
-msgstr "Home Theater"
+msgstr "Home theater"
 	
 msgid "amplifiers"
 msgstr "Amplifiers"
@@ -179,13 +179,13 @@ msgid "tablets"
 msgstr "Tablets"
 	
 msgid "memory_cards"
-msgstr "Memory Cards"
+msgstr "Memory cards"
 	
 msgid "chargers"
 msgstr "Chargers"
 	
 msgid "protection_kits"
-msgstr "Protection Kits"
+msgstr "Protection kits"
 	
 msgid "accessories"
 msgstr "Accessories"
@@ -197,19 +197,19 @@ msgid "ovens"
 msgstr "Ovens"
 	
 msgid "induction_plates"
-msgstr "Induction Plates"
+msgstr "Induction plates"
 	
 msgid "mixers"
 msgstr "Mixers"
 	
 msgid "food_processors"
-msgstr "Food Processors"
+msgstr "Food processors"
 	
 msgid "vacuums"
 msgstr "Vacuums"
 	
 msgid "air_purifiers"
-msgstr "Air Purifiers"
+msgstr "Air purifiers"
 	
 msgid "ionizers"
 msgstr "Ionizers"
@@ -218,19 +218,19 @@ msgid "dryers"
 msgstr "Dryers"
 	
 msgid "washing_machines"
-msgstr "Washing Machines"
+msgstr "Washing machines"
 	
 msgid "coffee_makers"
-msgstr "Coffee Makers"
+msgstr "Coffee makers"
 	
 msgid "controllers"
 msgstr "Controllers"
 	
 msgid "3d_sensors"
-msgstr "3D Sensors"
+msgstr "3D sensors"
 	
 msgid "capturing_devices"
-msgstr "Capturing Devices"
+msgstr "Capturing devices"
 	
 msgid "vr"
 msgstr "VR"
@@ -242,7 +242,7 @@ msgid "consoles"
 msgstr "Consoles"
 	
 msgid "portable_consoles"
-msgstr "Portable Consoles"
+msgstr "Portable consoles"
 	
 msgid "steering_wheels"
-msgstr "Steering Wheels"
+msgstr "Steering wheels"

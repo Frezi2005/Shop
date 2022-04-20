@@ -43,13 +43,13 @@ class AppController extends Controller {
         $categories = $this->Category->find("all");
         $subCategories = [];
         $allCategories = [];
-        foreach($categories as $category) {
+        foreach ($categories as $category) {
             $sc = $this->SubCategory->find("all", array(
                 "conditions" => array(
                     "SubCategory.category_id" => $category["Category"]["id"]
                 )
             ));
-            for($i = 0; $i < count($sc); $i++) {
+            for ($i = 0; $i < count($sc); $i++) {
                 $subCategories[$i] = [
                     "id" => $sc[$i]["SubCategory"]["id"],
                     "sub_category_name" => $sc[$i]["SubCategory"]["sub_category_name"]

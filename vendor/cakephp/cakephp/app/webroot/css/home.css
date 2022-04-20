@@ -29,7 +29,7 @@ div.products {
 }
 
 div.productOnMainPage {
-    border: 3px solid#60b0ff;
+    border: 3px solid #97cbff;
     border-radius: 27px;
     margin-right: 99px;
     width: calc((100% / 4) - (99px * 3) / 4);

@@ -7,7 +7,7 @@ $(function() {
         $(".products").append("<div class='product'><p class='productName' title='" + cart[i].name + "'><i class='fas fa-trash-alt trashIcon' data-product-id='" + cart[i].id + "'></i>" + cart[i].name + "</p><br/><span class='productCount'>" + cart[i].count + "</span><span class='productPrice'>" + cart[i].price + "USD</span></div>");
     }
 
-    if(!sum) {
+    if (!sum) {
         history.back();
     }
 

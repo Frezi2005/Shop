@@ -107,7 +107,7 @@ class ProfilesController extends AppController {
 		$user = $this->Users->find("first", array("conditions" => array("email" => $changeEmailData["currentEmail"], "password" => $this->SecurityUtils->encrypt($changeEmailData["password"]))));
 		$this->Users->updateAll(array("email_change_creation_date" => "'".date("Y-m-d H:i:s")."'", "email_change_expiration_date" => "'".date("Y-m-d H:i:s", strtotime("+1 hours"))."'", "new_email" => "'".$changeEmailData["newEmail"]."'"), array("password" => $this->SecurityUtils->encrypt($changeEmailData["password"])));
 		
-		if($user) {
+		if ($user) {
 			$transport = (new Swift_SmtpTransport('ssl://smtp.gmail.com', 465))
 				->setUsername('internetspam.pl@gmail.com')
 				->setPassword('internetspam.pl');
@@ -119,7 +119,7 @@ class ProfilesController extends AppController {
 				->setTo(['kamil.wan05@gmail.com'])
 				->setBody('');
 	
-			if($mailer->send($message)) {
+			if ($mailer->send($message)) {
 				$this->Session->write("changeEmailSent", true);
 				$this->redirect("/logout");
 			}

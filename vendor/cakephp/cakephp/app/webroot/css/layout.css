@@ -161,7 +161,6 @@ div.logInLink, div.cartLink {
 
 div.logInLink > div.logInModal, div.cartLink > div.cartModal {
     display: none;
-    width: 200px;
     height: auto;
     background-color: #ffffff;
     position: absolute;
@@ -173,47 +172,43 @@ div.logInLink > div.logInModal, div.cartLink > div.cartModal {
     z-index: -1px;
 }
 
-div.cartLink > div.cartModal {
+div.logInModal { 
+    width: 200px;
+}
+
+div.cartModal {
     border-radius: 5px;
     height: auto;
     line-height: 0;
     width: 300px
 }
 
-div.cartLink > div.cartModal > div {
-    position: relative;
-}
-
-div.cartLink > div.cartModal > div > a {
+div.cartModal > div > a {
     display: inline-block;
-    overflow: hidden;
     width: 250px;
     text-overflow: ellipsis;
     white-space: nowrap;
     font-size: 15px;
-    height: 100px;
-    line-height: 100px;
+    height: 50px;
+    line-height: 50px;
     margin: 0;
     padding: 0;
 }
 
-div.cartLink > div.cartModal > div > span {
-    top: 80px;
-    position: absolute;
+div.cartModal div.grid {
+    display: grid;
+    grid-template-columns: 10% 8% 8% 59% 15%;
+    grid-template-rows: 40px;
 }
 
-div.cartLink > div.cartModal > div > span:nth-of-type(odd) {
-    left: 25px;
-}
-
-div.cartLink > div.cartModal > div > span:nth-of-type(even) {
-    right: 25px;
-}
-
-div.cartLink > div.cartModal > span {
+div.cartModal > span {
     height: 30px;
     display: block;
     margin: 20px 0 0 0;
+}
+
+div.grid * {
+    line-height: 40px !important;
 }
 
 div.logInModal a {
@@ -240,7 +235,7 @@ div.logInLink:hover {
     background-color: #ffffff;
 }
 
-div.logInLink:hover div.logInModal,  div.cartLink:hover div.cartModal {
+div.logInLink:hover div.logInModal, div.cartLink:hover div.cartModal {
     display: block;
     z-index: 10;
 }

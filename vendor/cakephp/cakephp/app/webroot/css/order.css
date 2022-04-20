@@ -18,3 +18,17 @@ div#paymentInfo input {
     margin: auto;
     display: block;
 }
+
+div#info img {
+    width: 50px;
+    display: block;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+div#info div#imgGrid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+    grid-gap: 10px;
+}

@@ -87,7 +87,7 @@ class MailsController extends AppController {
 		$this->autoRender = false;
 		$contactInfo = $this->request["data"]["contactForm"];
 		$types = array("Opinion", "Complaint", "Cooperative offer", "Media contact", "Other");
-		if(!in_array($contactInfo["messageType"], $types)) {
+		if (!in_array($contactInfo["messageType"], $types)) {
 			$this->redirect("/contact");
 		}
 		$email = new CakeEmail("default");
@@ -117,19 +117,13 @@ class MailsController extends AppController {
 				"User.email" => $this->request["data"]["forgotPasswordForm"]["email"]
 			)
 		));
-		if(count($user)) {
+		if (count($user)) {
 			$userId = base64_encode($user["User"]["id"]);
 			try {
-				$email->send("http://localhost/Shop/vendor/cakephp/cakephp/forgot-password?id=".$userId);
+				$email->send("http://localhost/Shop/vendor/cakephp/cakephp/update-password-page?id=".$userId);
 			} catch (Exception $e) {
 				debug($e);
 			}
 		}
-		// try {
-		// 	$email->send("Forgot password");
-		// } catch (Exception $e) {
-		// 	debug($e);
-		// }
-		// $this->redirect("/login");
 	}
 }

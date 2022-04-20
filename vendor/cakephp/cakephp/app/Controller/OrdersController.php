@@ -93,11 +93,11 @@ class OrdersController extends AppController {
 
 		$userUUID = CakeText::uuid();
 
-		if(preg_match('/[^a-zA-Z\s]+/i', $data["countries"]) || preg_match('/[^a-zA-Z\s]+/i', $data["city"]) || preg_match('/[^a-zA-Z\s]+/i', $data["street"]) || !preg_match('/(\d+[a-z]|\d+)/i', $data["house_number"])) {
+		if (preg_match('/[^a-zA-Z\s]+/i', $data["countries"]) || preg_match('/[^a-zA-Z\s]+/i', $data["city"]) || preg_match('/[^a-zA-Z\s]+/i', $data["street"]) || !preg_match('/(\d+[a-z]|\d+)/i', $data["house_number"])) {
 			$this->redirect("/order");
 		}
 
-		if(empty($this->Session->read("userUUID"))) {
+		if (empty($this->Session->read("userUUID"))) {
 			$this->Users->save(array(
 				"id" => $userUUID,
 				"name" => null,
@@ -153,18 +153,18 @@ class OrdersController extends AppController {
 			"shop_id" => null
 		));
 
-		if(!empty($this->Session->read("userUUID"))) {
+		if (!empty($this->Session->read("userUUID"))) {
 			$user = $this->Users->find("first", array("conditions" => array("id" => $this->Session->read("userUUID")), "fields" => array("total_points")));
 			$this->Users->updateAll(array("total_points" => intval($user["Users"]["total_points"]) + round(intval($data["price"]) / 100)), array("id" => $this->Session->read("userUUID")));
 		}
 	
-		for($i = 0; $i < count($products); $i++) {
+		for ($i = 0; $i < count($products); $i++) {
 			$count = $this->Products->find("first", array("conditions" => array("id" => $products[$i]["id"])));
 			$this->Products->updateAll(array("product_count" => intval($count["Products"]["product_count"]) - 1), array("id" => $products[$i]["id"]));
 		}
 
 		$this->Session->write("orderedModal", true);
-		if(empty($this->Session->read("userUUID"))) {
+		if (empty($this->Session->read("userUUID"))) {
 			$this->redirect("/ask-for-account");
 		}
 		$this->redirect("/home");
@@ -172,7 +172,10 @@ class OrdersController extends AppController {
 
 	public function getOrders() {
 		$this->autoRender = false;
-		$orders = $this->Orders->find("all", array("conditions" => array("total_price BETWEEN ".$this->params["url"]["min"]." AND ".$this->params["url"]["max"])));
+		$price = (isset($this->params["url"]["min"]) && isset($this->params["url"]["max"])) ? "total_price BETWEEN {$this->params["url"]["min"]} AND {$this->params["url"]["max"]}" : "";
+		$payment = (isset($this->params["url"]["payment"])) ? "payment_method = '{$this->params["url"]["payment"]}'" : "";
+		$currency = (isset($this->params["url"]["currency"])) ? "currency = '{$this->params["url"]["currency"]}'" : "";
+		$orders = $this->Orders->find("all", array("conditions" => array($price, $payment, $currency)));
 		return json_encode($orders);
 	}
 }

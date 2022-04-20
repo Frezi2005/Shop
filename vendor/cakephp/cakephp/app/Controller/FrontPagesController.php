@@ -170,7 +170,7 @@ class FrontPagesController extends AppController {
 		$this->loadModel("Users");
 		$employees = $this->Users->find("all", array("conditions" => array("is_employee" => 1, "is_deleted" => 0, "is_admin" => 0), "fields" => array("id", "name", "surname", "email")));
 		$arr = [];
-		for($i = 0; $i < count($employees); $i++) {
+		for ($i = 0; $i < count($employees); $i++) {
 			$arr[$employees[$i]["Users"]["id"]] = $employees[$i]["Users"]["name"]." ".$employees[$i]["Users"]["surname"]." - ".$employees[$i]["Users"]["email"];
 		}
 		$this->set("employees", $arr);
