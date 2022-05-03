@@ -249,7 +249,6 @@ class CustomersController extends AppController {
 	}
 
 	public function orderHistory() {
-		$this->layout = false;
 		$this->loadModel("Orders");
 		$this->set("orders", $this->Orders->find("all", array("conditions" => array("user_id" => $this->Session->read("userUUID")))));
 	}

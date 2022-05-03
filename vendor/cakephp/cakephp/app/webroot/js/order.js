@@ -16,9 +16,9 @@ $(function() {
         sum += cart[i].count * cart[i].price;
     }
 
-    if (!sum) {
-        history.back();
-    }
+    // if (!sum) {
+    //     history.back();
+    // }
 
     $('#sum').text('Sum: ' + (Math.round((sum + Number.EPSILON) * 100) / 100) + '$');
     $('input#orderFormCart').val(JSON.stringify(cart));
@@ -39,9 +39,26 @@ $(function() {
         changePaymentInfo($(this));
     });
 
+    function changeNoneSelected(select) {
+        if (select.val() == 'None') {
+            select.css('color', 'grey');
+        } else {
+            select.css('color', '#000000');
+        }
+    }
+
+    var selects = $('select');
+    selects.each(function() {
+        changeNoneSelected($(this));
+        $(this).change(function() {
+            changeNoneSelected($(this));
+        });
+    });
+
     function changePaymentInfo(select) {
         switch (select.val()) {
             case 'Credit card':
+                $('div#paymentInfo').css('display', 'block');
                 $('div#info').html(`<input type='text' id='cardNumber' placeholder="Credit card number" pattern='^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\\d{3})\\d{11})$'><input type='number' id='cvv' placeholder="CVV"><input type='month' id='expirationDate' placeholder="Expiration date"/><input type='text' id='name' placeholder="Name"><input type='text' id='surname' placeholder="Surname">`);
                 $('input#expirationDate').datepicker({
                     changeMonth: true,
@@ -56,13 +73,20 @@ $(function() {
                   });
                 break;
             case 'PayPal':
+                $('div#paymentInfo').css('display', 'block');
                 $('div#info').html(`<input type='text' id='paypalEmail' placeholder="PayPal email">`);
                 break;
             case 'BLIK':
+                $('div#paymentInfo').css('display', 'block');
                 $('div#info').html(`<input type='text' id='blikCode' placeholder="BLIK code">`);
                 break;
             case 'Bank transfer':
+                $('div#paymentInfo').css('display', 'block');
                 $('div#info').html(`<div id='imgGrid'><img src='app/webroot/img/ing.jpg'/><img src='app/webroot/img/mbank.jpg'/><img src='app/webroot/img/pko.jpg'/><img src='app/webroot/img/santander.jpg'/></div>`);
+                break;
+            case 'None':
+                $('div#paymentInfo').css('display', 'none');
+                break;
         }
     }
 

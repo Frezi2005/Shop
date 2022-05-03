@@ -9,8 +9,8 @@
     <div id="loginForm">
         <?php
             echo $this->Form->create("loginUserForm", array("url" => "/login-customer"));
-            echo $this->Form->input("email", array("type" => "email", "label" => "", "placeholder" => "Email input"));
-            echo $this->Form->input("password", array("type" => "password", "label" => "", "placeholder" => "Password input"));
+            echo $this->Form->input("email", array("type" => "email", "label" => "", "placeholder" => "Email"));
+            echo $this->Form->input("password", array("type" => "password", "label" => "", "placeholder" => "Password"));
             echo "<a href='forgot-password-page'>Forgot password</a>";
             echo $this->Form->end("submit");
         ?>

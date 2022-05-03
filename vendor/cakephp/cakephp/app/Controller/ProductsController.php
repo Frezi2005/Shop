@@ -100,7 +100,7 @@ class ProductsController extends AppController {
 		$this->loadModel("Filter");
 		$sort = (isset($this->params["url"]["sort_by"])) ? $this->params["url"]["sort_by"] : "";
 		$page = (isset($this->params["url"]["p"])) ? $this->params["url"]["p"] : 1;
-		$productsShown = (isset($this->params["url"]["per_page"])) ? $this->params["url"]["per_page"] : 8;
+		$productsShown = (isset($this->params["url"]["per_page"])) ? $this->params["url"]["per_page"] : Configure::read("Config.max_per_page");
 		$priceRange = (isset($this->params["url"]["price_range"])) ? " BETWEEN ".explode("-", $this->params["url"]["price_range"])[0]." AND ".explode("-", $this->params["url"]["price_range"])[1] : "";
 		switch ($sort) {
 			case "price_asc":
@@ -158,6 +158,7 @@ class ProductsController extends AppController {
 			array_shift($products);
 		}
 
+		$this->set("productsShown", $productsShown);
 		$this->set("subCategoryId", $subCategoryId);
 		$this->set("products", $products);
 	}

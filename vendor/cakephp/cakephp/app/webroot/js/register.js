@@ -6,7 +6,6 @@ $(function() {
         changeMonth: true,
         changeYear: true
     });
-
     form.submit(function(e) {
         var name = $("input#registerUserFormName").val();
         var surname = $("input#registerUserFormSurname").val();
@@ -16,6 +15,28 @@ $(function() {
         var passwordConfirm = $("input#registerUserFormPasswordConfirm").val();
         var birthDate = $("input#registerUserFormBirthDate").val();
     
+        if (grecaptcha.getResponse().length == 0) {
+            e.preventDefault();
+        }
+
+        if (password_validation(password)) {
+            if (password !== passwordConfirm) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Passwords do not match!'
+                });
+                e.preventDefault();
+            }
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Password has to be at least 8 characters long, include only letters and number and at least one uppercase letter!'
+            });
+            e.preventDefault();
+        }
+
         if (!text_validation(name, 3, 40)) {
             Swal.fire({
                 icon: 'error',
@@ -60,25 +81,6 @@ $(function() {
             });
             e.preventDefault();
         }
-
-        if (password_validation(password)) {
-            if (password !== passwordConfirm) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Passwords do not match!'
-                });
-                e.preventDefault();
-            }
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Password has to be at least 8 characters long, include only letters and number and at least one uppercase letter!'
-            });
-            e.preventDefault();
-        }
-
     });
 
     function text_validation(name, min, max) {

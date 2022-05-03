@@ -1,8 +1,8 @@
 $(function() {
 
-    $("button#denie").click(() => {
-        window.history.back();
-    })
+    // $("button#denie").click(() => {
+    //     window.history.back();
+    // })
 
     $("button#accept").click(() => {
         $.get("create-rodo-cookie");
@@ -39,7 +39,9 @@ $(function() {
     });
 
     $("#linkOuter").click(function() {
-        location.replace("http://localhost/Shop/vendor/cakephp/cakephp/cart");
+        if(!localStorage.getItem("cart").length) {
+            location.replace("http://localhost/Shop/vendor/cakephp/cakephp/cart");
+        }
     });
 
     var languageSelect = $("select.languageSelect");
@@ -114,14 +116,13 @@ $(function() {
         history.back()
     });
 
-    $("div.cartLink").hover(function() {
-        var cart = JSON.parse(localStorage.getItem("cart"));
-        if (cart.length == 0) {
-            $("div.cartModal").css("display", "none");
-        } else {
-            $("div.cartModal").css("display", "block");
-        }
-    });
+    // $("div.cartLink").hover(function() {
+    //     $("div.cartModal").css("display", "block");
+    //     var cart = JSON.parse(localStorage.getItem("cart"));
+    //     if (cart.length == 0) {
+    //         $("div.cartModal").css("display", "none");
+    //     }
+    //});
 
     $(".searchBtn").click(function() {
         window.location.replace("http://localhost/Shop/vendor/cakephp/cakephp/products-list?q=" + $("input.searchInput").val());

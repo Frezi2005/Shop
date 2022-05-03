@@ -27,9 +27,9 @@ div#info input:not(input[type=submit]), form input:not(input[type=submit]) {
 div#info form input[type=submit], form input[type=submit] {
     width: 70px;
     outline: none;
-    border: 2px solid #000000;
+    border: 2px solid #b0ffb8;
     background-color: #ffffff;
-    border-radius: 5px;
+    border-radius: 15px;
 }
 
 select {

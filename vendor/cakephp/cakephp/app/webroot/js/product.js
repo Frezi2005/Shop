@@ -32,8 +32,10 @@ $(function (){
 
     $("button.page-change").click(function() {
         newUrl = queryString.replace(/&p=\d{1,}/, "") + "&p=" + (((page + parseInt($(this).data("page-change"))) > 0) ? (page + parseInt($(this).data("page-change"))) : 1);
-        location.replace("http://localhost/Shop/vendor/cakephp/cakephp/products-list"+newUrl);
-    })
+        if ($(".product").length == $(".productsShown").val() && parseInt($(this).data("page-change")) == 1 || parseInt($(this).data("page-change")) == -1) {
+            location.replace("http://localhost/Shop/vendor/cakephp/cakephp/products-list"+newUrl);
+        } 
+    });
 
     $("select#sort").change(function() {
         newUrl = queryString.replace("&sort_by="+urlParams.get("sort_by"), "&sort_by=" + $(this).val());

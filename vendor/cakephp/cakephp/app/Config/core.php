@@ -20,6 +20,7 @@
 
 //setLocale(LC_ALL, 'deu');
 Configure::write('Config.language', "");
+Configure::write('Config.max_per_page', 8);
 
 /**
  * CakePHP Debug Level:
