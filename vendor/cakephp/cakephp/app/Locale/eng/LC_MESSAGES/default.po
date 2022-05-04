@@ -246,3 +246,39 @@ msgstr "Portable consoles"
 	
 msgid "steering_wheels"
 msgstr "Steering wheels"
+
+msgid "registration_form"
+msgstr "Registration form"
+
+msgid "login_form"
+msgstr "Login form"
+
+msgid "name"
+msgstr "Name"
+
+msgid "surname"
+msgstr "Surname"
+
+msgid "phone_number"
+msgstr "Phone number"
+
+msgid "email"
+msgstr "Email"
+
+msgid "password"
+msgstr "Password"
+
+msgid "password_confirm"
+msgstr "Confirm password"
+
+msgid "birth_date"
+msgstr "Birth date"
+
+msgid "tos"
+msgstr "I accept the <a href=\"terms-of-service\" target=\"_blank\">terms of service</a>"
+
+msgid "register"
+msgstr "Register"
+
+msgid "login"
+msgstr "Login"

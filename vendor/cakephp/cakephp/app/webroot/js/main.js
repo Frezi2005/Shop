@@ -59,7 +59,12 @@ $(function() {
         });
     }
 
-    $("input.searchInput").bind("keyup focus", function() {
+    $("input.searchInput").bind("keyup focus", function(e) {
+        if ((e.which == 27)) {
+            setTimeout(function() {
+                $("div.searchResults").css("display", "none");
+            }, 120);
+        };
         $("div.innerSearchResults").empty();
         $.ajax({
             url: "http://localhost/Shop/vendor/cakephp/cakephp/search?q=" + $(this).val(),
@@ -68,7 +73,7 @@ $(function() {
             success: function(data) {
                 $("div.searchResults").css("display", "block");
                 for (product of data) {
-                    $("div.innerSearchResults").append(`<p title='${product["Products"].name}'><a href='product?product_id=${product["Products"].id}'><img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/${checkImage(product["Products"].id)}.jpg'/>${product["Products"].name}</a></p>`);
+                    $("div.innerSearchResults").append(`<p title='${product["Products"].name}'><a href='product?product_id=${product["Products"].id}'><img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/${(product["Products"].imgExists) ? product["Products"].id : 'noimg'}.jpg'/>${product["Products"].name}</a></p>`);
                 }
             },
             error: function(result) {
@@ -105,12 +110,6 @@ $(function() {
             }
         });
     });
-
-    function checkImage(id) {
-        var img = new Image();
-        img.src = `http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/${id}.jpg`;
-        return (img.height != 0) ? id : 'noimg';
-    }
 
     $("#back").click(() => {
         history.back()

@@ -2,7 +2,7 @@ msgid "computers_and_laptops"
 msgstr "Komputery i laptopy"
 
 msgid "peripherals"
-msgstr "Peryferia"
+msgstr "Urządzenia peryferyjne" 
 
 msgid "phones_and_tablets"
 msgstr "Telefony i tablety"
@@ -246,3 +246,39 @@ msgstr "Konsole przenośne"
 	
 msgid "steering_wheels"
 msgstr "Kierownice"
+
+msgid "registration_form"
+msgstr "Formularz rejestracji"
+
+msgid "login_form"
+msgstr "Formularz logowania"
+
+msgid "name"
+msgstr "Imię"
+
+msgid "surname"
+msgstr "Nazwisko"
+
+msgid "phone_number"
+msgstr "Numer telefonu"
+
+msgid "email"
+msgstr "E-mail"
+
+msgid "password"
+msgstr "Hasło"
+
+msgid "password_confirm"
+msgstr "Potwierdź hasło"
+
+msgid "birth_date"
+msgstr "Data urodzenia"
+
+msgid "tos"
+msgstr "Akceptuje <a href=\"terms-of-service\" target=\"_blank\">warunki korzystania z serwisu</a>"
+
+msgid "register"
+msgstr "Zarejestruj się"
+
+msgid "login"
+msgstr "Zaloguj się"

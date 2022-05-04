@@ -86,7 +86,9 @@
 			
 			<div id="content">
 				<?php
-					echo $this->element("side_menu");
+					if (strpos($_SERVER["REDIRECT_URL"], "login") === false && strpos($_SERVER["REDIRECT_URL"], "register") === false) {
+						echo $this->element("side_menu");
+					}
 					echo $this->fetch("content");
 				?>
 			</div>

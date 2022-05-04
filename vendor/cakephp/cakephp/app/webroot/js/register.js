@@ -4,7 +4,8 @@ $(function() {
     $("input#registerUserFormBirthDate").datepicker({
         dateFormat: "yy-mm-dd",
         changeMonth: true,
-        changeYear: true
+        changeYear: true,
+        maxDate: '-16y',
     });
     form.submit(function(e) {
         var name = $("input#registerUserFormName").val();

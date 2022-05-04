@@ -87,7 +87,16 @@ class ProductsController extends AppController {
 	public function search() {
 		$this->autoRender = false;
 		$products = $this->Products->find("all", array("fields" => array("id", "name", "description"), "order" => "MATCH (`name`, `description`) AGAINST ('{$this->params["url"]["q"]}') DESC", "conditions" => array("MATCH (`name`, `description`) AGAINST ('{$this->params["url"]["q"]}') > 0")));
-		return json_encode($products);
+		$result = [];
+		foreach ($products as $product) {
+			if (file_exists(WWW_ROOT."img/{$product["Products"]["id"]}.jpg")) {
+				$product["Products"]["imgExists"] = true;
+			} else {
+				$product["Products"]["imgExists"] = false;
+			}
+			array_push($result, $product);
+		}
+		return json_encode($result);
 	}
 
 	public function product() {
@@ -300,5 +309,9 @@ class ProductsController extends AppController {
 			die;
 			move_uploaded_file($data["image"]["tmp_name"], WWW_ROOT."img/".$product["Product"]["name"].".jpg");
 		}
+	}
+
+	public function invoice() {
+		$this->layout = false;
 	}
 }

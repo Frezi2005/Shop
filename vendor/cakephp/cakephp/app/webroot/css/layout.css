@@ -218,7 +218,7 @@ div.logInModal a {
 }
 
 div.logInModal hr {
-    height: 2px;
+    height: 1px;
     margin: 0;
     padding: 0;
 }
@@ -242,7 +242,7 @@ div.logInLink:hover div.logInModal, div.cartLink:hover div.cartModal {
 div.categories {
     border: 3px solid #b0ffb8;
     border-radius: 27px;
-    margin-top: 40px;
+    margin-top: 20px;
     float: left;
     margin-left: 10%;
     height: 500px;

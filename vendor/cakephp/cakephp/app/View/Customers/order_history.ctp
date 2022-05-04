@@ -37,7 +37,8 @@
                 array_push($ids, $product["id"]);
             }
             $ids = json_encode($ids);
-            echo "<div class='order'><input type='hidden' value='{$ids}'/><span class='images'></span><span>{$order["Orders"]["delivery_type"]}</span><span>{$order["Orders"]["order_date"]}</span><span>{$order["Orders"]["total_price"]}</span><span>{$order["Orders"]["currency"]}</span><span><i class='fas fa-search'></i><i class='fas fa-file-invoice'></i></span></div>";       
+            $fields = json_encode($order);
+            echo "<div class='order'><input type='hidden' value='{$ids}'/><input type='hidden' value='{$fields}' class='fields'/><span class='images'></span><span>{$order["Orders"]["delivery_type"]}</span><span>{$order["Orders"]["order_date"]}</span><span>{$order["Orders"]["total_price"]}</span><span>{$order["Orders"]["currency"]}</span><span><i class='fas fa-search'></i><a href='invoice' target='_blank'><i class='fas fa-file-invoice'></i></a></span></div>";       
         }
     ?>
 </div>
