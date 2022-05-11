@@ -132,6 +132,7 @@ class ProductsController extends AppController {
 			$subCategoryId = $this->SubCategory->find("first", array("conditions" => array("id" => $this->params["url"]["sub_category"]), "fields" => "id"))["SubCategory"]["id"];
 			$products = $this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategoryId, "price $priceRange"), "limit" => $page * $productsShown, "order" => array($sort_by)));
 			if (isset($this->params["url"]["filters"])) {
+				$filterCondition = "";
 				$specsList = json_decode($products[0]["Product"]["specs"], true);
 				$index = 0;
 				if (isset($specsList)) {
@@ -147,15 +148,16 @@ class ProductsController extends AppController {
 							if (preg_match('/\-\b/', $filter)) {
 								$start = explode("-", $filter)[0];
 								$end = explode("-", $filter)[1];
-								$products = $this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategoryId, "JSON_EXTRACT(specs, '$.".$this->params["url"]["filters"]."') BETWEEN $start AND $end AND price $priceRange"), "limit" => $page * $productsShown, "order" => array($sort_by)));
+								$filterCondition = "JSON_EXTRACT(specs, '$.".$this->params["url"]["filters"]."') BETWEEN $start AND $end AND price $priceRange";
 							} else if (preg_match('/[\+]/', $filter)) {
 								$val = explode("+", $filter)[0];
-								$products = $this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategoryId, "JSON_EXTRACT(specs, '$.".$this->params["url"]["filters"]."') * 1 > $val AND price $priceRange"), "limit" => $page * $productsShown, "order" => array($sort_by)));
+								$filterCondition = "JSON_EXTRACT(specs, '$.".$this->params["url"]["filters"]."') * 1 > $val AND price $priceRange";
 							} else {
-								$products = $this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategoryId, "JSON_EXTRACT(specs, '$.".$this->params["url"]["filters"]."') = '$filter' AND price $priceRange"), "limit" => $page * $productsShown, "order" => array($sort_by)));
+								$filterCondition = "JSON_EXTRACT(specs, '$.".$this->params["url"]["filters"]."') = '$filter' AND price $priceRange";
 							}
 						}
 					}
+					$products = $this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategoryId, $filterCondition), "limit" => $page * $productsShown, "order" => array($sort_by)));
 				}
 			}
 		} else {

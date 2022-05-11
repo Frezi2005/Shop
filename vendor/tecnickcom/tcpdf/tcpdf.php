@@ -24048,7 +24048,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 						$aspectY = 'YMid';
 						$fit = 'meet';
 						if (isset($attribs['preserveAspectRatio'])) {
-							if($attribs['preserveAspectRatio'] == 'none') {
+							if ($attribs['preserveAspectRatio'] == 'none') {
 								$fit = 'none';
 							} else {
 								preg_match_all('/[a-zA-Z]+/', $attribs['preserveAspectRatio'], $tmp);

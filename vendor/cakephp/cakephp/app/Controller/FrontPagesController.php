@@ -163,7 +163,8 @@ class FrontPagesController extends AppController {
 	}
 
 	public function giftsCatalog() {
-		
+		$this->loadModel("Gifts");
+		$this->set("gifts", $this->Gifts->find("all"));
 	}
 
 	public function removeEmployeePage() {

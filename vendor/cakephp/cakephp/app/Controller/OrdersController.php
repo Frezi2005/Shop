@@ -172,10 +172,11 @@ class OrdersController extends AppController {
 
 	public function getOrders() {
 		$this->autoRender = false;
-		$price = (isset($this->params["url"]["min"]) && isset($this->params["url"]["max"])) ? "total_price BETWEEN {$this->params["url"]["min"]} AND {$this->params["url"]["max"]}" : "";
+		$price = (isset($this->params["url"]["priceMin"]) && isset($this->params["url"]["priceMax"])) ? "total_price BETWEEN {$this->params["url"]["priceMin"]} AND {$this->params["url"]["priceMax"]}" : "";
+		$date = (isset($this->params["url"]["dateMin"]) && isset($this->params["url"]["dateMax"])) ? "order_date BETWEEN '{$this->params["url"]["dateMin"]}' AND '{$this->params["url"]["dateMax"]}'" : "";
 		$payment = (isset($this->params["url"]["payment"])) ? "payment_method = '{$this->params["url"]["payment"]}'" : "";
 		$currency = (isset($this->params["url"]["currency"])) ? "currency = '{$this->params["url"]["currency"]}'" : "";
-		$orders = $this->Orders->find("all", array("conditions" => array($price, $payment, $currency)));
+		$orders = $this->Orders->find("all", array("conditions" => array($price, $payment, $currency, $date)));
 		return json_encode($orders);
 	}
 }

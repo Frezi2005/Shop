@@ -123,7 +123,7 @@ nav select {
     margin-top: calc((75px - 40px) / 2);
     border-radius: 27px;
     border: 1px solid #000000;
-    width: 60px;
+    width: 140px;
     text-align: center;
     appearance: none;
     line-height: 38px;
@@ -314,24 +314,6 @@ ul.categoriesList hr {
     height: 2px;
 }
 
-/*div.category {
-    position: relative;
-}
-
-div.subCategories {
-    transform: scale(0, 0);
-    background-color: #fff;
-    position: absolute;
-    top: 0;
-    left: 180px;
-    padding: 10px;
-    border: 1px solid #000;
-    border-radius: 10px;
-    z-index: 10;
-    width: 180px;
-    font-weight: 400;
-} */
-
 div.subCategories > a {
     text-decoration: none;
     color: black;
@@ -392,6 +374,29 @@ div#rodo {
     display: none;
 }
 
+a#back {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 31px;
+    background-color: #aaffb277;
+    width: 50px;
+    aspect-ratio: 1;
+    display: block;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 15px;
+    position: absolute;
+    top: 10%;
+    left: 2.5%;
+    transition: all .3s ease-in-out;
+}
+
+a#back:hover {
+    background-color: #aaffb2cd;
+    transform: scale(1.1);
+}
 
 
 

@@ -85,6 +85,9 @@ class ProfilesController extends AppController {
 
 	public function profile() {
 		$user = $this->User->find("first", array("conditions" => array("id" => $this->Session->read("userUUID"))))["User"];
+		$this->set("name", $user["name"]);
+		$this->set("surname", $user["surname"]);
+		$this->set("email", $user["email"]);
 		$this->set("creation_date", $user["creation_date"]);
 		$this->set("total_points", $user["total_points"]);
 	}

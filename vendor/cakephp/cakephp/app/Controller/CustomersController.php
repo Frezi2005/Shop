@@ -45,11 +45,8 @@ class CustomersController extends AppController {
 		App::uses('CakeText', 'Utility');
 		$this->loadModel("User");
 		$this->SecurityUtils = $this->Components->load("PasswordHashing");
-		//$this->CheckPrivileges = $this->Components->load("CheckPrivileges");
+		$this->CheckPrivileges = $this->Components->load("CheckPrivileges");
 		App::uses("CakeEmail", "Network/Email");
-		// if (!$this->CheckPrivileges->check($_SERVER["REQUEST_URI"], $this->Session->read("userUUID"))) {
-		// 	throw new ForbiddenException();
-		// }
 	}
 
 /**
@@ -233,12 +230,24 @@ class CustomersController extends AppController {
 
 	public function listEmployees() {
 		$this->autoRender = false;
+		if (!$this->CheckPrivileges->check($_SERVER["REQUEST_URI"], $this->Session->read("userUUID"))) {
+			throw new ForbiddenException();
+		}
 		debug($this->User->find("all", array("conditions" => array("is_employee" => 1))));
 	}
 
 	public function adminPanel() {
+		if (!$this->CheckPrivileges->check($_SERVER["REQUEST_URI"], $this->Session->read("userUUID"))) {
+			throw new ForbiddenException();
+		}
 		$employees = $this->User->find("all", array("conditions" => array("is_employee" => 1)));
 		
+		$this->set("privileges", [
+			"ksiegowosc" => $this->CheckPrivileges->check("ksiegowosc", $this->Session->read("userUUID")),
+			"kadry" => $this->CheckPrivileges->check("kadry", $this->Session->read("userUUID")),
+			"kierownictwo" => $this->CheckPrivileges->check("kierownictwo", $this->Session->read("userUUID")),
+			"pracownicy" => $this->CheckPrivileges->check("pracownicy", $this->Session->read("userUUID"))
+		]);
 		$this->set("employees", $employees);
 	}
 
@@ -250,7 +259,25 @@ class CustomersController extends AppController {
 
 	public function orderHistory() {
 		$this->loadModel("Orders");
-		$this->set("orders", $this->Orders->find("all", array("conditions" => array("user_id" => $this->Session->read("userUUID")))));
+		$sort = (isset($this->params["url"]["sort_by"])) ? $this->params["url"]["sort_by"] : "";
+		switch ($sort) {
+			case "price_asc":
+				$sort_by = "price ASC";
+				break;
+			case "price_desc":
+				$sort_by = "price DESC";
+				break;
+			case "dater_asc":
+				$sort_by = "order_date ASC";
+				break;
+			case "date_desc":
+				$sort_by = "order_date DESC";
+				break;
+			default:
+				$sort_by = "";
+				break;
+		}
+		$this->set("orders", $this->Orders->find("all", array("conditions" => array("user_id" => $this->Session->read("userUUID"), "order_date > now() - INTERVAL 2 year;"), "order" => array($sort_by))));
 	}
 
 	public function deleteAccount() {

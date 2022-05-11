@@ -94,6 +94,8 @@
 
 	Router::connect("/order-products",   		   array("controller" => "orders", "action" => "orderProducts"));
 	Router::connect("/get-orders",   		   	   array("controller" => "orders", "action" => "getOrders"));
+
+	Router::connect("/buy-gift",   		   	   	   array("controller" => "gifts", "action" => "buyGift"));
 	
 /**
  * ...and connect the rest of "Pages" controller"s URLs.

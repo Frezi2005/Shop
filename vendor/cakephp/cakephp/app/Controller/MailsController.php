@@ -85,6 +85,7 @@ class MailsController extends AppController {
 
 	public function sendEmailFromCustomer() {
 		$this->autoRender = false;
+		$this->loadModel("User");
 		$contactInfo = $this->request["data"]["contactForm"];
 		$types = array("Opinion", "Complaint", "Cooperative offer", "Media contact", "Other");
 		if (!in_array($contactInfo["messageType"], $types)) {
@@ -93,7 +94,12 @@ class MailsController extends AppController {
 		$email = new CakeEmail("default");
 		$email->from(array("internetspam.pl@gmail.com" => "AlphaTech"));
 		$email->to("kamil.wan05@gmail.com");
-		$email->subject($contactInfo["messageType"]." from: ".$contactInfo["from"]);
+		if (!$this->Session->read("loggedIn")) {
+			$email->subject($contactInfo["messageType"]." from: ".$contactInfo["from"]);
+		} else {
+			$user = $this->User->find("first", array("conditions" => array("id" => $this->Session->read("userUUID")), "fields" => array("email")));
+			$email->subject($contactInfo["messageType"]." from: ".$user["User"]["email"]);
+		}
 
 		try {
 			$email->send($contactInfo["message"]);

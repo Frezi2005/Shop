@@ -29,6 +29,12 @@
 
 ?>
 <div id="orders">
+    <select id="sortHistory">
+        <option value="price_asc">Price ascending</option>
+        <option value="price_desc">Price descending</option>
+        <option value="date_asc">Date ascending</option>
+        <option value="date_desc">Date descending</option>
+    </select>
     <?php
         foreach ($orders as $order) {
             $products = json_decode($order["Orders"]["products"], true);

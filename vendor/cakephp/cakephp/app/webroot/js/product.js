@@ -76,7 +76,7 @@ function updateCart(amount, id, name, price, add = true, modal = true) {
             for (var i = 0; i < items.length; i++) {
                 if (id == items[i].id) {
                     existsInCart = true;
-                    if(!add && items[items.findIndex(x => x.id == id)].count <= 1) {
+                    if (!add && items[items.findIndex(x => x.id == id)].count <= 1) {
                         removeFromCart(id);
                         return;
                     }

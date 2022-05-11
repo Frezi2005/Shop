@@ -1,5 +1,8 @@
 $(() => {
     $("form").submit((e) => {
+        if (grecaptcha.getResponse().length == 0) {
+            e.preventDefault();
+        }
         $("span#emailError").empty();
         $("span#messageError").empty();
         

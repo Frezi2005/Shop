@@ -14,7 +14,25 @@
             for ($i = 0; $i < count($employees); $i++) {
                 echo "<option value='".$employees[$i]["User"]["id"]."'>".$employees[$i]["User"]["name"]." ".$employees[$i]["User"]["surname"].": ".$employees[$i]["User"]["email"]."</option>";
             }   
+            
         ?>
     </select>
     <button id="grantAdmin">Grant admin privileges</button>
+    <?php
+        if ($privileges["ksiegowosc"]) {
+            echo "<a href='ksiegowosc'>Księgowość</a>";
+        }
+
+        if ($privileges["kadry"]) {
+            echo "<a href='kadry'>Kadry</a>";
+        }
+
+        if ($privileges["kierownictwo"]) {
+            echo "<a href='kierownictwo'>Kierownictwo</a>";
+        }
+
+        if ($privileges["pracownicy"]) {
+            echo "<a href='pracownicy'>Pracownicy szeregowi</a>";
+        }
+    ?>
 </div>

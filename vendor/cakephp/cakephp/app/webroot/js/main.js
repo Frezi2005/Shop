@@ -39,7 +39,7 @@ $(function() {
     });
 
     $("#linkOuter").click(function() {
-        if(!localStorage.getItem("cart").length) {
+        if (!localStorage.getItem("cart").length) {
             location.replace("http://localhost/Shop/vendor/cakephp/cakephp/cart");
         }
     });

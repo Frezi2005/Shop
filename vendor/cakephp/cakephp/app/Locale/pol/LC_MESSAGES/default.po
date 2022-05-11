@@ -282,3 +282,9 @@ msgstr "Zarejestruj się"
 
 msgid "login"
 msgstr "Zaloguj się"
+
+msgid "eng"
+msgstr "ANG (Angielski)"
+
+msgid "pol"
+msgstr "POL (Polski)"

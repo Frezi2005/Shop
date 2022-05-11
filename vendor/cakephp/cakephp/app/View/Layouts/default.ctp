@@ -41,11 +41,11 @@
 					<select class="languageSelect">
 						<?php
 							if ($this->Session->read("language") == "eng") {
-								echo "<option value=\"eng\">ENG</option>";
-								echo "<option value=\"pol\">POL</option>";
+								echo "<option value='eng'>".__("eng")."</option>";
+								echo "<option value='pol'>".__("pol")."</option>";
 							} else {
-								echo "<option value=\"pol\">POL</option>";
-								echo "<option value=\"eng\">ENG</option>";
+								echo "<option value='pol'>".__("pol")."</option>";
+								echo "<option value='eng'>".__("eng")."</option>";
 							}
 						?>
 					</select>
@@ -55,15 +55,15 @@
 						<div class="logInModal">
 							<?php
 								if ($this->Session->read("loggedIn") != true) {
-									echo "<a href=\"login\">Log In</a>";
+									echo "<a href='login'>Log In</a>";
 									echo "<hr>";
-									echo "<a href=\"register\">Register</a>";
+									echo "<a href='register'>Register</a>";
 								} else {
-									echo "<a href=\"profile\">Profile</a>";
+									echo "<a href='profile'>Profile</a>";
 									echo "<hr>";
-									echo "<a href=\"settings\">Settings</a>";
+									echo "<a href='settings'>Settings</a>";
 									echo "<hr>";
-									echo "<a href=\"logout\">Logout</a>";
+									echo "<a href='logout'>Logout</a>";
 								}
 							?>
 						</div>
@@ -80,13 +80,13 @@
 			</nav>
 			<?php 
 				if ($_SERVER["REDIRECT_URL"] !== "/Shop/vendor/cakephp/cakephp/app/webroot/home") {
-					echo "<a id=\"back\" href=\"#\">Go back</a>";
+					echo "<a id='back' href='#'><i class='fas fa-arrow-left'></i></a>";
 				} 
 			?>
 			
 			<div id="content">
 				<?php
-					if (strpos($_SERVER["REDIRECT_URL"], "login") === false && strpos($_SERVER["REDIRECT_URL"], "register") === false) {
+					if (strpos($_SERVER["REDIRECT_URL"], "login") === false && strpos($_SERVER["REDIRECT_URL"], "register") === false && strpos($_SERVER["REDIRECT_URL"], "contact") === false) {
 						echo $this->element("side_menu");
 					}
 					echo $this->fetch("content");

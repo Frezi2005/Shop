@@ -6,6 +6,8 @@
 <button id="generate">Generate CSV</button>
 <input type="number" id="priceMin">
 <input type="number" id="priceMax">
+<input type="date" id="dateMin">
+<input type="date" id="dateMax">
 <select id="paymentMethod">
     <option value="Credit card">Credit card</option>
     <option value="Bank transfer">Bank transfer</option>
@@ -17,4 +19,4 @@
     <option value="USD">USD</option>
     <option value="GBP">GBP</option>
     <option value="PLN">PLN</option>
-<select>
+</select>
