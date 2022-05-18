@@ -241,6 +241,7 @@ class CustomersController extends AppController {
 			throw new ForbiddenException();
 		}
 		$employees = $this->User->find("all", array("conditions" => array("is_employee" => 1)));
+		$customers = $this->User->find("all", array("conditions" => array("is_employee" => 0)));
 		
 		$this->set("privileges", [
 			"ksiegowosc" => $this->CheckPrivileges->check("ksiegowosc", $this->Session->read("userUUID")),
@@ -249,6 +250,7 @@ class CustomersController extends AppController {
 			"pracownicy" => $this->CheckPrivileges->check("pracownicy", $this->Session->read("userUUID"))
 		]);
 		$this->set("employees", $employees);
+		$this->set("customers", $customers);
 	}
 
 	public function grantAdminPrivileges() {

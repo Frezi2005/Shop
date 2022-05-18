@@ -88,7 +88,7 @@ class FrontPagesController extends AppController {
 		// $this->SecurityUtils = $this->Components->load("PasswordHashing");
 		// debug($this->SecurityUtils->encrypt("test12345"));
 		$this->loadModel("Product");
-		$this->set("randomProducts", $this->Product->find("all", array("order" => "rand()", "limit" => 4, "fields" => array("id", "name"))));
+		$this->set("randomProducts", $this->Product->find("all", array("order" => "rand()", "limit" => 4, "fields" => array("id", "name", "price"))));
 	}
 
 	public function registerPage() 

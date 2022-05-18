@@ -65,21 +65,25 @@ $(function() {
                 $("div.searchResults").css("display", "none");
             }, 120);
         };
-        $("div.innerSearchResults").empty();
-        $.ajax({
-            url: "http://localhost/Shop/vendor/cakephp/cakephp/search?q=" + $(this).val(),
-            dataType: "json",
-            async: false,
-            success: function(data) {
-                $("div.searchResults").css("display", "block");
-                for (product of data) {
-                    $("div.innerSearchResults").append(`<p title='${product["Products"].name}'><a href='product?product_id=${product["Products"].id}'><img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/${(product["Products"].imgExists) ? product["Products"].id : 'noimg'}.jpg'/>${product["Products"].name}</a></p>`);
+        if($(this).val().length > 0) {
+            $("div.innerSearchResults").empty();
+            $.ajax({
+                url: "http://localhost/Shop/vendor/cakephp/cakephp/search?q=" + $(this).val(),
+                dataType: "json",
+                async: false,
+                success: function(data) {
+                    $("div.searchResults").css("display", "block");
+                    for (product of data) {
+                        $("div.innerSearchResults").append(`<p title='${product["Products"].name}'><a href='product?product_id=${product["Products"].id}'><img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/${(product["Products"].imgExists) ? product["Products"].id : 'noimg'}.jpg'/>${product["Products"].name}</a></p>`);
+                    }
+                },
+                error: function(result) {
+                    console.log(result);
                 }
-            },
-            error: function(result) {
-                console.log(result);
-            }
-        })
+            });
+        } else {
+            $("div.searchResults").css("display", "none");
+        }
     });
 
     $("input.searchInput").focusout(function() {
@@ -110,6 +114,10 @@ $(function() {
             }
         });
     });
+
+    if(window.history.length == 1) {
+        $("#back").css("display", "none");
+    }
 
     $("#back").click(() => {
         history.back()

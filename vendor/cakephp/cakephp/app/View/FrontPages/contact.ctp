@@ -12,7 +12,7 @@
 
         echo $this->Form->create("contactForm", array("url" => "/send-email-from-customer"));
         echo $this->Form->input("messageType", array("options" => array("Opinion" => "Opinion", "Complaint" => "Complaint", "Cooperative offer" => "Cooperative offer", "Media contact" => "Media contact", "Other" => "Other")));
-        if (!$_SESSION["loggedIn"]) {
+        if (!isset($_SESSION["loggedIn"])) {
             echo $this->Form->input("from", array("type" => "email", "label" => false, "placeholder" => "From"));
         }
         echo $this->Form->input("message", array("type" => "textarea", "label" => false, "placeholder" => "message"));

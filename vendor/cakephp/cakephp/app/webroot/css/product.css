@@ -38,3 +38,14 @@ input[type=number] {
 	display: inline-block;
 	margin-left: 40px;
 }
+
+div.ad {
+    background-color: #ff6f6f;
+    height: 400px;
+    float: right;
+    margin-top: 20px;
+    font-size: 40px;
+    line-height: 400px;
+    text-align: center;
+    margin-right: 20px;
+}

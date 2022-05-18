@@ -82,7 +82,7 @@ $(function() {
                 break;
             case 'Bank transfer':
                 $('div#paymentInfo').css('display', 'block');
-                $('div#info').html(`<div id='imgGrid'><img src='app/webroot/img/ing.jpg'/><img src='app/webroot/img/mbank.jpg'/><img src='app/webroot/img/pko.jpg'/><img src='app/webroot/img/santander.jpg'/></div>`);
+                $('div#info').html(`<div id='imgGrid'><img src='app/webroot/img/ing.jpg'/><img src='app/webroot/img/mbank.jpg'/><img src='app/webroot/img/pko.jpg'/><img src='app/webroot/img/santander.jpg'/><img src='app/webroot/img/credit_agricole.jpg'/><img src='app/webroot/img/millenium.jpg'/><img src='app/webroot/img/bnp_paribas.jpg'/><img src='app/webroot/img/deutsche_bank.jpg'/><img src='app/webroot/img/toyota_bank.jpg'/><img src='app/webroot/img/getin_bank.jpg'/><img src='app/webroot/img/alior_bank.jpg'/><img src='app/webroot/img/noble_bank.jpg'/><img src='app/webroot/img/pko_sa.jpg'/><img src='app/webroot/img/bos_bank.jpg'/></div>`);
                 break;
             case 'None':
                 $('div#paymentInfo').css('display', 'none');

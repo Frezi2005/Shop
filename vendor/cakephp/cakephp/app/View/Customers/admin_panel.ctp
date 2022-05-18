@@ -9,6 +9,8 @@
     <a href="inventory" target="_blank">Products List</a>
     <a href="remove-employee-page" target="_blank">Remove employee</a>
     <a href="orders-report">Orders report</a>
+    <a href="add-product-to-database">Add product to DB</a>
+    <a href="delivery-form">Products delivery</a>
     <select id="usersSelect">
         <?php
             for ($i = 0; $i < count($employees); $i++) {
@@ -18,6 +20,14 @@
         ?>
     </select>
     <button id="grantAdmin">Grant admin privileges</button>
+    <select id="customersSelect">
+        <?php
+            for ($i = 0; $i < count($customers); $i++) {
+                echo "<option value='".$customers[$i]["User"]["id"]."'>".$customers[$i]["User"]["name"]." ".$customers[$i]["User"]["surname"].": ".$customers[$i]["User"]["email"]."</option>";
+            }   
+        ?>
+    </select>
+    <button id="deleteCustomer">Delete customer</button>
     <?php
         if ($privileges["ksiegowosc"]) {
             echo "<a href='ksiegowosc'>Księgowość</a>";

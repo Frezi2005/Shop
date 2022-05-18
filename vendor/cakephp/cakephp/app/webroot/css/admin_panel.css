@@ -10,3 +10,8 @@
     display: block;
     margin: 20px;
 }
+
+a {
+    color: #000;
+    text-decoration: none;
+}

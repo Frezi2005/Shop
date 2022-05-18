@@ -271,6 +271,12 @@ div.category {
 
 #category-name:hover {
     font-weight: bold;
+    cursor: pointer;
+}
+
+#category-name i {
+    width: 30px;
+    text-align: center;
 }
 
 div.category > .subCategories {

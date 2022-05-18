@@ -4,8 +4,8 @@
 
 ?>
 <button id="generate">Generate CSV</button>
-<input type="number" id="priceMin">
-<input type="number" id="priceMax">
+<input type="number" id="priceMin" placeholder="price min">
+<input type="number" id="priceMax" placeholder="price max">
 <input type="date" id="dateMin">
 <input type="date" id="dateMax">
 <select id="paymentMethod">

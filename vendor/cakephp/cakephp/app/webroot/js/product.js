@@ -111,7 +111,7 @@ function updateCart(amount, id, name, price, add = true, modal = true) {
     } else {
         Swal.fire({
             icon: "error",
-            text: "Products amount can't have letters, be empty or be 0!",
+            text: "Products amount can't have letters, be empty or be equal or less than 0!",
             showConfirmButton: false,
             timer: 5000,
             timerProgressBar: true

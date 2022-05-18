@@ -40,3 +40,7 @@ select {
     background: transparent;
     margin-bottom: 20px;
 }
+
+input[type=checkbox] {
+    margin-right: 10px;
+}

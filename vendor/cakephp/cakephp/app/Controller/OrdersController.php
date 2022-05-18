@@ -160,7 +160,7 @@ class OrdersController extends AppController {
 	
 		for ($i = 0; $i < count($products); $i++) {
 			$count = $this->Products->find("first", array("conditions" => array("id" => $products[$i]["id"])));
-			$this->Products->updateAll(array("product_count" => intval($count["Products"]["product_count"]) - 1), array("id" => $products[$i]["id"]));
+			$this->Products->updateAll(array("product_count" => intval($count["Products"]["product_count"]) - intval($products[0]["count"])), array("id" => $products[$i]["id"]));
 		}
 
 		$this->Session->write("orderedModal", true);

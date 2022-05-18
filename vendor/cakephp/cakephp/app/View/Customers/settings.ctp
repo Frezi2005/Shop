@@ -1,6 +1,7 @@
 <?php 
 
     echo $this->Html->css("form");
+    echo $this->Html->css("settings");
     echo $this->Html->script("settings");
 
 ?>

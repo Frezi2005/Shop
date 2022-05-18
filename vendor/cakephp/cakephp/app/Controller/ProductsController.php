@@ -86,7 +86,20 @@ class ProductsController extends AppController {
 
 	public function search() {
 		$this->autoRender = false;
-		$products = $this->Products->find("all", array("fields" => array("id", "name", "description"), "order" => "MATCH (`name`, `description`) AGAINST ('{$this->params["url"]["q"]}') DESC", "conditions" => array("MATCH (`name`, `description`) AGAINST ('{$this->params["url"]["q"]}') > 0")));
+		if(strlen($this->params["url"]["q"]) <= 3) {
+			$products = $this->Products->find("all", array(
+				"fields" => array("id", "name", "description"),
+				"conditions" => array(
+					"OR" => array(
+						"name LIKE" => "%".$this->params["url"]["q"]."%",
+						"description LIKE" => "%".$this->params["url"]["q"]."%"
+					)
+				),
+				"limit" => 15
+			));
+		} else {
+			$products = $this->Products->find("all", array("fields" => array("id", "name", "description"), "order" => "MATCH (`name`, `description`) AGAINST ('{$this->params["url"]["q"]}') DESC", "conditions" => array("MATCH (`name`, `description`) AGAINST ('{$this->params["url"]["q"]}') > 0")));
+		}
 		$result = [];
 		foreach ($products as $product) {
 			if (file_exists(WWW_ROOT."img/{$product["Products"]["id"]}.jpg")) {

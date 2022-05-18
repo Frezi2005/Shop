@@ -20,7 +20,7 @@
 		<div class="products">
 			<?php
 				for ($i = 0; $i < 4; $i++) {
-					echo "<div class=\"productOnMainPage\"><p><a href=\"product?product_id=".$randomProducts[$i]["Product"]["id"]."\" target=\"_self\">".$randomProducts[$i]["Product"]["name"]."</a></p></div>";
+					echo "<div class=\"productOnMainPage\"><p><a href=\"product?product_id=".$randomProducts[$i]["Product"]["id"]."\" target=\"_self\">".$randomProducts[$i]["Product"]["name"]."</a><br/><span>".$randomProducts[$i]["Product"]["price"]."USD</span></p></div>";
 				}
 			?>
 		</div>
