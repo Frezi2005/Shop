@@ -127,9 +127,11 @@ class MailsController extends AppController {
 			$userId = base64_encode($user["User"]["id"]);
 			try {
 				$email->send("http://localhost/Shop/vendor/cakephp/cakephp/update-password-page?id=".$userId);
+				$this->Session->write("forgotPasswordEmailSent", true);
 			} catch (Exception $e) {
-				debug($e);
+				$this->Session->write("forgotPasswordEmailSent", false);
 			}
+			$this->redirect("/login");
 		}
 	}
 }

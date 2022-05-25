@@ -88,6 +88,7 @@
 	Router::connect("/forgot-password", 	   	   array("controller" => "customers", "action" => "forgotPassword"));
 	Router::connect("/update-password-page", 	   array("controller" => "customers", "action" => "updatePasswordPage"));
 	Router::connect("/update-password", 	   	   array("controller" => "customers", "action" => "updatePassword"));
+	Router::connect("/remove-customer", 	   	   array("controller" => "customers", "action" => "removeCustomer"));
 
 	Router::connect("/send-email-from-customer",   array("controller" => "mails", "action" => "sendEmailFromCustomer"));
 	Router::connect("/send-forgot-password-email", array("controller" => "mails", "action" => "sendForgotPasswordEmail"));

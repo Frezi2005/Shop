@@ -91,7 +91,7 @@ class ProductsController extends AppController {
 				"fields" => array("id", "name", "description"),
 				"conditions" => array(
 					"OR" => array(
-						"name LIKE" => "%".$this->params["url"]["q"]."%",
+						"name LIKE" => $this->params["url"]["q"]."%",
 						"description LIKE" => "%".$this->params["url"]["q"]."%"
 					)
 				),
@@ -284,13 +284,13 @@ class ProductsController extends AppController {
 	public function addProductsFromDelivery() {
 		$this->autoRender = false;
 		$data = $this->request["data"]["deliveryForm"];
-		if (preg_match('/\d/', $data["count"])) {
+		if (preg_match('/\d/', $data["count"]) && intval($data["count"]) > 0) {
 			for ($i = 0; $i < count($data["products"]); $i++) {
 				$count = $this->Products->find("first", array("conditions" => array("id" => $data["products"][$i]), "fields" => array("product_count")));
 				$this->Products->updateAll(array("product_count" => intval($count["Products"]["product_count"]) + $data["count"]), array("id" => $data["products"][$i]));
 			}
 		} else {
-			$this->Session->write("priceError", true);
+			$this->Session->write("numberError", true);
 		}
 		$this->redirect("/delivery-form");
 	}

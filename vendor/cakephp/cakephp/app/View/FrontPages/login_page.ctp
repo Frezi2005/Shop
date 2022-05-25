@@ -17,4 +17,10 @@
         ?>
     </div>
 </div>
+<?php
+    if ($this->Session->read("forgotPasswordEmailSent")) {
+        echo "<script>Swal.fire({icon: \"success\",text: \"Email with reset password link has been sent.\",showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
+        $_SESSION["forgotPasswordEmailSent"] = false;
+    }
+?>
 

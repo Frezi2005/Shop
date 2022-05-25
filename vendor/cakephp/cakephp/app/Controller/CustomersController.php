@@ -241,7 +241,12 @@ class CustomersController extends AppController {
 			throw new ForbiddenException();
 		}
 		$employees = $this->User->find("all", array("conditions" => array("is_employee" => 1)));
-		$customers = $this->User->find("all", array("conditions" => array("is_employee" => 0)));
+		$customers = $this->User->find("all", array("conditions" => array(
+			"AND" => array(
+				"is_employee" => 0,
+				"name IS NOT NULL"
+			)
+		)));
 		
 		$this->set("privileges", [
 			"ksiegowosc" => $this->CheckPrivileges->check("ksiegowosc", $this->Session->read("userUUID")),
@@ -256,7 +261,7 @@ class CustomersController extends AppController {
 	public function grantAdminPrivileges() {
 		$this->autoRender = false;
 		$userId = $this->params["url"]["id"];
-		$this->User->updateAll(array("is_employee" => (isset($this->params["url"]["employee"])) ? 1 : 0, "is_admin" => (isset($this->params["url"]["admin"])) ? 1 : 0), array("id" => $userId));
+		$this->User->updateAll(array("is_admin" => (isset($this->params["url"]["admin"])) ? 1 : 0), array("id" => $userId));
 	}
 
 	public function orderHistory() {
@@ -312,7 +317,17 @@ class CustomersController extends AppController {
 		$data = $this->request["data"]["updatePasswordForm"];
 		if ($data["password"] == $data["passwordConfirm"]) {
 			$this->User->updateAll(array("password" => "'".$this->SecurityUtils->encrypt($data["password"])."'"), array("id" => $data["id"]));
-			$this->session->write("changePassword", true);
+			$this->Session->write("changePassword", true);
+			$this->Session->write("loggedIn", true);
+			$this->Session->write("loggedModal", true);
+			$this->Session->write("userUUID", $data["id"]);
+			$this->redirect("/home");
 		}
+	}
+
+	public function removeCustomer() {
+		$this->autoRender = false;
+		$userId = $this->params["url"]["id"];
+		$this->User->deleteAll(array("id" => $userId), false);
 	}
 }

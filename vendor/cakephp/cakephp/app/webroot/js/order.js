@@ -33,6 +33,14 @@ $(function() {
         }
     });
 
+    $('form').submit(function(e) {
+        $('form select').each(function() {
+            if ($(this).val() == 'None') {
+                e.preventDefault();
+            }
+        });
+    });
+
     changePaymentInfo($('select#orderFormPaymentMethod'));
     
     $('select#orderFormPaymentMethod').change(function() {

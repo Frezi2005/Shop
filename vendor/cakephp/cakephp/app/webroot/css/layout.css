@@ -122,7 +122,7 @@ nav select {
     height: 40px;
     margin-top: calc((75px - 40px) / 2);
     border-radius: 27px;
-    border: 1px solid #000000;
+    border: 1px solid #78e4ff;
     width: 140px;
     text-align: center;
     appearance: none;
@@ -132,6 +132,10 @@ nav select {
     font-weight: bold;
     padding: 0;
     margin-bottom: 0;
+}
+
+nav select option {
+    background-image: linear-gradient(to right, #bbeeff, #a1e2fe, #88d6ff, #72c8ff, #60baff);
 }
 
 nav .links {

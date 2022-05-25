@@ -72,9 +72,13 @@ $(function() {
                 dataType: "json",
                 async: false,
                 success: function(data) {
-                    $("div.searchResults").css("display", "block");
-                    for (product of data) {
-                        $("div.innerSearchResults").append(`<p title='${product["Products"].name}'><a href='product?product_id=${product["Products"].id}'><img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/${(product["Products"].imgExists) ? product["Products"].id : 'noimg'}.jpg'/>${product["Products"].name}</a></p>`);
+                    if(data.length > 0) {
+                        $("div.searchResults").css("display", "block");
+                        for (product of data) {
+                            $("div.innerSearchResults").append(`<p title='${product["Products"].name}'><a href='product?product_id=${product["Products"].id}'><img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/${(product["Products"].imgExists) ? product["Products"].id : 'noimg'}.jpg'/>${product["Products"].name}</a></p>`);
+                        }
+                    } else {
+                        $("div.searchResults").css("display", "none");
                     }
                 },
                 error: function(result) {

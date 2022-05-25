@@ -6,8 +6,8 @@
     <h3 id="productName"><?php echo $product["name"]; ?></h3>
     <div id="productImg"></div>
     <p id="description">Description: <?php echo $product["description"];?></p>
-    <p id="priceWithoutTax">Netto: <span id="productPrice"><?php echo $product["price"] ?></span></p>
-    <p id="priceWithTax"><sup>Brutto: <span id="productTaxPrice"><?php echo $product["price"] + $product["tax"]; ?></span></sup></p>
+    <p id="priceWithoutTax">Netto: <span id="productPrice"><?php echo $product["price"] ?>USD</span></p>
+    <p id="priceWithTax"><sup>Brutto: <span id="productTaxPrice"><?php echo $product["price"] + $product["tax"]; ?>USD</span></sup></p>
     <input type="hidden" id="productId" value="<?php echo $product["id"];?>">
     <?php
         if ($product["product_count"] > 0) {

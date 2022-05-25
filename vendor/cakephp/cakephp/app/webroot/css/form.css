@@ -10,6 +10,11 @@ form, div#info {
     width: min-content;
 }
 
+form a {
+    color: #000000;
+    text-decoration: none;
+}
+
 #main {
     float: left;
 }

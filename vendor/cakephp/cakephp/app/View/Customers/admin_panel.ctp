@@ -16,7 +16,6 @@
             for ($i = 0; $i < count($employees); $i++) {
                 echo "<option value='".$employees[$i]["User"]["id"]."'>".$employees[$i]["User"]["name"]." ".$employees[$i]["User"]["surname"].": ".$employees[$i]["User"]["email"]."</option>";
             }   
-            
         ?>
     </select>
     <button id="grantAdmin">Grant admin privileges</button>
