@@ -20,67 +20,50 @@ $(function() {
             e.preventDefault();
         }
 
+        var text = '';
+
         if (password_validation(password)) {
             if (password !== passwordConfirm) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Passwords do not match!'
-                });
+                text += 'Passwords do not match!\n';
                 e.preventDefault();
             }
         } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Password has to be at least 8 characters long, include only letters and number and at least one uppercase letter!'
-            });
+            text += 'Password has to be at least 8 characters long, include only letters and number and at least one uppercase letter!\n';
             e.preventDefault();
         }
 
         if (!text_validation(name, 3, 40)) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Name must be between 3 and 40 characters long!'
-            });
+            text += 'Name has to be at least 3 characters long and maximum 40 characters long!\n';
             e.preventDefault();
         }
 
         if (!text_validation(surname, 2, 50)) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Surname must be between 2 and 50 characters long!'
-            });
+            text += 'Surname has to be at least 2 characters long and maximum 50 characters long!\n';
             e.preventDefault();
         }
 
         if (!email_validation(email)) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Email is not valid!'
-            });
+            text += 'Email is not valid!\n';
             e.preventDefault();
         }
 
         if (!phone_number_validation(phoneNumber)) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Phone number is not valid!'
-            });
+            text += 'Phone number is not valid!\n';
             e.preventDefault();
         }
 
         if (!date_validation(birthDate)) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Birth date is not valid!'
-            });
+            text += 'Birth date is not valid!\n';
             e.preventDefault();
+        }
+
+        if(text != '') {
+            Swal.fire({
+                title: 'Oops...',
+                text: text,
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            });
         }
     });
 

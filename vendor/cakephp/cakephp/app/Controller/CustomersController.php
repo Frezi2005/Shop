@@ -148,7 +148,11 @@ class CustomersController extends AppController {
 			$this->Session->write("loggedIn", true);
 			$this->Session->write("loggedModal", true);
 			$this->Session->write("userUUID", $user["User"]["id"]);
-			$this->redirect("/home");
+			if($this->Session->read("orderInfo")) {
+				$this->redirect("/order-products");
+			} else {
+				$this->redirect("/home");
+			}
 		} else {
 			$this->redirect("/login");
 		}
@@ -284,7 +288,13 @@ class CustomersController extends AppController {
 				$sort_by = "";
 				break;
 		}
-		$this->set("orders", $this->Orders->find("all", array("conditions" => array("user_id" => $this->Session->read("userUUID"), "order_date > now() - INTERVAL 2 year;"), "order" => array($sort_by))));
+		$price = (isset($this->params["url"]["priceMin"]) && isset($this->params["url"]["priceMax"])) ? "total_price BETWEEN {$this->params["url"]["priceMin"]} AND {$this->params["url"]["priceMax"]}" : "";
+		$date = (isset($this->params["url"]["dateMin"]) && isset($this->params["url"]["dateMax"])) ? "order_date BETWEEN '{$this->params["url"]["dateMin"]}' AND '{$this->params["url"]["dateMax"]}'" : "";
+		$payment = (isset($this->params["url"]["payment"])) ? "payment_method = '{$this->params["url"]["payment"]}'" : "";
+		$currency = (isset($this->params["url"]["currency"])) ? "currency = '{$this->params["url"]["currency"]}'" : "";
+		$orders = $this->Orders->find("all", array("conditions" => array("user_id" => $this->Session->read("userUUID"), "order_date > now() - INTERVAL 2 year", $price, $payment, $currency, $date), "order" => array($sort_by)));
+		$log = $this->Orders->getDataSource()->getLog(false, false);
+		$this->set("orders", $orders);
 	}
 
 	public function deleteAccount() {
@@ -329,5 +339,17 @@ class CustomersController extends AppController {
 		$this->autoRender = false;
 		$userId = $this->params["url"]["id"];
 		$this->User->deleteAll(array("id" => $userId), false);
+	}
+
+	public function updateEmployeePage() {
+		$employees = $this->User->find("all", array("conditions" => array("is_employee" => 1, "is_deleted" => 0), "fields" => array("id", "name", "surname", "email", "salary", "internship_length", "bonus_amount", "holiday_amount")));
+		$this->set("employees", $employees);
+	}
+
+	public function updateEmployee() {
+		$this->autoRender = false;
+		$data = $this->params["url"];
+		debug($data);
+		$this->User->updateAll(array("name" => $data["name"], "surname" => $data["surname"], "email" => $data["email"], "salary" => $data["salary"], "internship_length" => $data["internship_length"], "bonus_amount" => $data["bonus_amount"], "holiday_amount" => $data["holiday_amount"]));
 	}
 }

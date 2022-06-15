@@ -86,7 +86,7 @@ class OrdersController extends AppController {
 
 	public function orderProducts() {
 		$this->autoRender = false;
-		$data = $this->request["data"]["orderForm"];
+		$data = (isset($this->request["data"]["orderForm"])) ? $this->request["data"]["orderForm"] : $this->Session->read("orderInfo");
 		$this->loadModel("Orders");
 		$this->loadModel("Users");
 		$this->loadModel("Products");
@@ -164,9 +164,6 @@ class OrdersController extends AppController {
 		}
 
 		$this->Session->write("orderedModal", true);
-		if (empty($this->Session->read("userUUID"))) {
-			$this->redirect("/ask-for-account");
-		}
 		$this->redirect("/home");
 	}
 

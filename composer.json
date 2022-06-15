@@ -3,6 +3,8 @@
         "cakephp/cakephp": "2.10.*",
         "components/jquery": "^3.5",
         "swiftmailer/swiftmailer": "^6.0",
-        "tecnickcom/tcpdf": "^6.4"
+        "tecnickcom/tcpdf": "^6.4",
+        "fakerphp/faker": "^1.19",
+        "kwn/number-to-words": "^2.4"
     }
 }

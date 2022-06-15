@@ -28,8 +28,8 @@
 		</div>
 		<div id="container">
 			<nav>
-				<p class="logo"><a href="home"><?= $this->Html->image("logo.png");?></a></p>
-				<div class="searchBox">
+				<p class="logo col-lg-1 col-md-1 col-sm-1"><a href="home"><?= $this->Html->image("logo.png");?></a></p>
+				<div class="searchBox col-lg-2 col-md-3 col-sm-4">
 					<input class="searchInput" type="search" placeholder="Search...">
 					<button class="searchBtn"><i class="fas fa-search"></i></button>
 					<div class="searchResults">
@@ -37,44 +37,57 @@
 					</div>
 				</div>
 				
-				<div class="links">
-					<select class="languageSelect">
-						<?php
-							if ($this->Session->read("language") == "eng") {
-								echo "<option value='eng'>".__("eng")."</option>";
-								echo "<option value='pol'>".__("pol")."</option>";
-							} else {
-								echo "<option value='pol'>".__("pol")."</option>";
-								echo "<option value='eng'>".__("eng")."</option>";
-							}
-						?>
-					</select>
-					<div class="logInLink navLink">
-						<i class="fas fa-user"></i>
-						<span><?php echo ($this->Session->read("loggedIn") == true) ? "Profile" : "Log in"?></span>
-						<div class="logInModal">
+				<div class="links col-lg-6 col-md-5 col-sm-4">
+					<p class="menu">
+						<i class="fas fa-bars"></i>
+					</p>
+					<div class="hoverMenu">
+						<p class="close">
+							X
+						</p>
+						<select class="languageSelect">
 							<?php
-								if ($this->Session->read("loggedIn") != true) {
-									echo "<a href='login'>Log In</a>";
-									echo "<hr>";
-									echo "<a href='register'>Register</a>";
+								if ($this->Session->read("language") == "eng") {
+									echo "<option value='eng'>".__("eng")."</option>";
+									echo "<option value='pol'>".__("pol")."</option>";
 								} else {
-									echo "<a href='profile'>Profile</a>";
-									echo "<hr>";
-									echo "<a href='settings'>Settings</a>";
-									echo "<hr>";
-									echo "<a href='logout'>Logout</a>";
+									echo "<option value='pol'>".__("pol")."</option>";
+									echo "<option value='eng'>".__("eng")."</option>";
 								}
 							?>
+						</select>
+						<select class="currencySelect">
+							<option value="USD">USD</option>
+							<option value="PLN">PLN</option>
+							<option value="EUR">EUR</option>
+						</select>
+						<div class="logInLink navLink">
+							<i class="fas fa-user"></i>
+							<span><?php echo ($this->Session->read("loggedIn") == true) ? "Profile" : "Log in"?></span>
+							<div class="logInModal">
+								<?php
+									if ($this->Session->read("loggedIn") != true) {
+										echo "<a href='login'>Log In</a>";
+										echo "<hr>";
+										echo "<a href='register'>Register</a>";
+									} else {
+										echo "<a href='profile'>Profile</a>";
+										echo "<hr>";
+										echo "<a href='settings'>Settings</a>";
+										echo "<hr>";
+										echo "<a href='logout'>Logout</a>";
+									}
+								?>
+							</div>
 						</div>
-					</div>
-					<div class="cartLink navLink">
-						<span id="linkOuter">
-							<i class="fas fa-shopping-cart"></i>
-							<a href="cart">Cart</a>
-							<span id="cartProductsAmount"></span>
-						</span>
-						<div class="cartModal"></div>
+						<div class="cartLink navLink">
+							<span id="linkOuter">
+								<i class="fas fa-shopping-cart"></i>
+								<a href="cart">Cart</a>
+								<span id="cartProductsAmount"></span>
+							</span>
+							<div class="cartModal"></div>
+						</div>
 					</div>
 				</div>
 			</nav>
@@ -86,15 +99,15 @@
 			
 			<div id="content">
 				<?php
-					if (strpos($_SERVER["REDIRECT_URL"], "login") === false && strpos($_SERVER["REDIRECT_URL"], "register") === false && strpos($_SERVER["REDIRECT_URL"], "contact") === false) {
+					if (strpos($_SERVER["REDIRECT_URL"], "login") === false && strpos($_SERVER["REDIRECT_URL"], "register") === false && strpos($_SERVER["REDIRECT_URL"], "contact") === false && strpos($_SERVER["REDIRECT_URL"], "ask-for-account") === false) {
 						echo $this->element("side_menu");
 					}
 					echo $this->fetch("content");
 				?>
 			</div>
-			<!-- <footer class="text-center justify-content-center">
+			<footer class="text-center justify-content-center">
 				<p class="col-lg-12 h-20">Kamil Waniczek <?= date("Y"); ?> &copy; All rights reserved.</p>
-				<div class="col-lg-10 h-80 mx-auto">
+				<!-- <div class="col-lg-10 h-80 mx-auto">
 					<div class="col-lg-3 float-start">
 						<ul class="footerUsefulLinks1">
 							<li><span>Useful links</span></li>
@@ -117,8 +130,8 @@
 							<li><a href=""><i class="fab fa-instagram"></i> - Instagram </a></li>
 						</ul>
 					</div>
-				</div>
-			</footer> -->
+				</div> -->
+			</footer>
 		</div>
 	</body>
 </html>

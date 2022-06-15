@@ -11,6 +11,7 @@
     <a href="orders-report">Orders report</a>
     <a href="add-product-to-database">Add product to DB</a>
     <a href="delivery-form">Products delivery</a>
+    <a href="update-employee-page">Update employee</a>
     <select id="usersSelect">
         <?php
             for ($i = 0; $i < count($employees); $i++) {

@@ -10,7 +10,10 @@
     <h1>Order page</h1>
     <div id="orderForm">
         <?php
-            echo $this->Form->create("orderForm", array("url" => "/order-products"));
+
+            $url = (isset($_SESSION["userUUID"])) ? "/order-products" : "/ask-for-account";
+
+            echo $this->Form->create("orderForm", array("url" => $url));
             echo $this->Form->input("countries", array("options" => $countries, "required" => true));
             echo $this->Form->input("city", array("type" => "text", "label" => "", "placeholder" => "City", "required" => true, "pattern" => "[a-zA-Z\s]+"));
             echo $this->Form->input("street", array("type" => "text", "label" => "", "placeholder" => "Street", "required" => true, "pattern" => "[\da-zA-Z\s]+"));

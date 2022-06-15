@@ -11,8 +11,9 @@ form, div#info {
 }
 
 form a {
-    color: #000000;
+    color: #539dff;
     text-decoration: none;
+    font-weight: bold;
 }
 
 #main {

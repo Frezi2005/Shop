@@ -17,7 +17,7 @@
             echo $this->Form->input("passwordConfirm", array("type" => "password", "label" => "", "placeholder" => __("password_confirm")));
             echo $this->Form->input("birthDate", array("type" => "text", "label" => "", "placeholder" => __("birth_date")));
             echo "<div class='g-recaptcha' data-sitekey='6LfVFXUfAAAAAElmtQKXvt_3HFLJvNE2Mi4UR3IY'></div>";
-            echo $this->Form->input("rules", array("type" => "checkbox", "label" => __("tos"), "required" => true));
+            echo $this->Form->input("rules", array("type" => "checkbox", "label" => __("tos"), "required" => true, "style" => "height: 50px; aspect-ratio: 1;"));
             echo $this->Form->end(__("register"));
         ?>
     </div>

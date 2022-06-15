@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '797b1db0f5dc08f3768b46d5387bd26d24e020e6',
+    'reference' => 'dad03f4caf8906e4a80d0cac95e6e4250867b3d2',
     'name' => '__root__',
   ),
   'versions' => 
@@ -41,7 +41,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '797b1db0f5dc08f3768b46d5387bd26d24e020e6',
+      'reference' => 'dad03f4caf8906e4a80d0cac95e6e4250867b3d2',
     ),
     'cakephp/cakephp' => 
     array (
@@ -79,6 +79,33 @@ private static $installed = array (
       ),
       'reference' => 'ee0db30118f661fb166bcffbf5d82032df484697',
     ),
+    'fakerphp/faker' => 
+    array (
+      'pretty_version' => 'v1.19.0',
+      'version' => '1.19.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'd7f08a622b3346766325488aa32ddc93ccdecc75',
+    ),
+    'kwn/number-to-words' => 
+    array (
+      'pretty_version' => '2.4.0',
+      'version' => '2.4.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '539913b39bbe326975b7d79196e28736cf86d7de',
+    ),
+    'psr/container' => 
+    array (
+      'pretty_version' => '2.0.2',
+      'version' => '2.0.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'c71ecc56dfe541dbd90c5360474fbc405f8d5963',
+    ),
     'swiftmailer/swiftmailer' => 
     array (
       'pretty_version' => 'v6.2.7',
@@ -87,6 +114,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '15f7faf8508e04471f666633addacf54c0ab5933',
+    ),
+    'symfony/deprecation-contracts' => 
+    array (
+      'pretty_version' => 'v2.5.1',
+      'version' => '2.5.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'e8b495ea28c1d97b5e0c121748d6f9b53d075c66',
     ),
     'symfony/polyfill-iconv' => 
     array (

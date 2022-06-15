@@ -6,13 +6,13 @@
 	<div class="slider carousel slide" data-bs-ride="carousel">
 		<div class="carousel-inner h-100">
 			<div class="carousel-item active h-100" data-bs-interval="3000">
-				<div class="d-block slider-item w-100 h-100 text-center">1</div>
+				<div class="d-block slider-item w-100 h-100 text-center"><img src="http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/slider-img-1.png"/></div>
 			</div>
 			<div class="carousel-item h-100" data-bs-interval="3000">
-				<div class="d-block slider-item w-100 h-100 text-center">2</div>
+				<div class="d-block slider-item w-100 h-100 text-center"><img src="http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/slider-img-2.jpg"/></div>
 			</div>
 			<div class="carousel-item h-100" data-bs-interval="3000">
-				<div class="d-block slider-item w-100 h-100 text-center">3</div>
+				<div class="d-block slider-item w-100 h-100 text-center"><img src="http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/slider-img-3.png"/></div>
 			</div>
 		</div>
 	</div>
@@ -20,7 +20,7 @@
 		<div class="products">
 			<?php
 				for ($i = 0; $i < 4; $i++) {
-					echo "<div class=\"productOnMainPage\"><p><a href=\"product?product_id=".$randomProducts[$i]["Product"]["id"]."\" target=\"_self\">".$randomProducts[$i]["Product"]["name"]."</a><br/><span>".$randomProducts[$i]["Product"]["price"]."USD</span></p></div>";
+					echo "<div class=\"productOnMainPage\"><p><a href=\"product?product_id=".$randomProducts[$i]["Product"]["id"]."\" target=\"_self\">".$randomProducts[$i]["Product"]["name"]."</a><br/><span class='price'>".$randomProducts[$i]["Product"]["price"]."USD</span></p></div>";
 				}
 			?>
 		</div>
@@ -49,6 +49,9 @@ if ($this->Session->read("verified")) {
 } else if ($this->Session->read("changePassword")) {
     echo "<script>Swal.fire({icon: \"success\",text: \"Your password has been changed!\",showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
     $_SESSION["changePassword"] = false;
+} else if ($this->Session->read("changedAddress")) {
+    echo "<script>Swal.fire({icon: \"success\",text: \"Your address has been changed!\",showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
+    $_SESSION["changedAddress"] = false;
 }
 ?>
 

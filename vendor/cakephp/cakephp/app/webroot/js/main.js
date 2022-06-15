@@ -138,4 +138,39 @@ $(function() {
     $(".searchBtn").click(function() {
         window.location.replace("http://localhost/Shop/vendor/cakephp/cakephp/products-list?q=" + $("input.searchInput").val());
     });
+
+    $(".currencySelect").change(function() { 
+        var currency = $(this).val();
+
+        if(currency !== 'USD') {
+            $.ajax({
+                type: "GET",
+                url: `https://api.apilayer.com/fixer/latest?base=USD`,
+                headers: {
+                    "apikey": "CYRTNdKSEHi9b5TOKRBvEFQkMy9xishI"
+                },
+                success: function(data) {
+                    localStorage.setItem("currency", currency);
+                    localStorage.setItem("rate", data.rates[currency]);
+                    location.reload();
+                }
+            });
+        } else {
+            localStorage.setItem("currency", currency);
+            localStorage.setItem("rate", 1);
+            location.reload();
+        }
+    });
+
+    $(".menu i").click(function() {
+        $(".hoverMenu").css("right", "0px");
+    })
+
+    $("p.close").click(function() {
+        $(".hoverMenu").css("right", "-200px");
+    })
+
+    $(".productOnMainPage .price").each(function() {
+        $(this).text((parseFloat($(this).text()) * localStorage.getItem("rate")).toFixed(2)+localStorage.getItem("currency"));
+    });
 });

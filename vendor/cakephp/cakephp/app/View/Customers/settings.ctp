@@ -6,9 +6,9 @@
 
 ?>
 <div id="main">
-    <p><a href="change-email">Change email</a></p>
+    <p><a href="change-email-form">Change email</a></p>
     <p><a href="">Change password</a></p>
-    <p><a href="">Change address</a></p>
+    <p><a href="change-address-form">Change address</a></p>
     <?php 
         if ($is_admin) {
             echo "<a href=\"admin-panel\">Admin Panel</a>";

@@ -3,6 +3,13 @@
 body {
     background-image: url("../img/bg-pattern.png");
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;    
+}
+
+#container {
+    padding-bottom: 2.5rem;
 }
 
 * {
@@ -22,7 +29,7 @@ nav > * {
 }
 
 nav .logo {
-    margin-left: 10%;
+    margin-left: 6%;
     font-size: 30px;
     font-weight: bold;
 }
@@ -42,8 +49,7 @@ div.searchBox {
     position: relative;
     height: 40px;
     margin-top: calc((75px - 40px) / 2);
-    margin-left: 285px;
-    width: 450px;
+    margin-left: 50px;
 }
 
 nav input {
@@ -139,9 +145,21 @@ nav select option {
 }
 
 nav .links {
-    width: 400px;
     float: right;
-    margin-right: 100px;
+    margin-right: 6%;
+}
+
+p.close {
+    display: none;
+}
+
+nav .links .menu {
+    float: right;
+    display: none;
+}
+nav .links .menu i {
+    font-size: 20px;
+    cursor: pointer;
 }
 
 nav .navLink {
@@ -335,14 +353,14 @@ div.subCategories > a {
 }
 
 footer {
-    height: 300px;
     width: 100%;
     text-align: center;
     line-height: 50px;
     background-image: linear-gradient(to right, #bbeeff, #a1e2fe, #88d6ff, #72c8ff, #60baff);
     font-weight: bold;
-    position: absolute;
-    bottom: -250px;
+    margin-top: auto;
+    position: fixed;
+    bottom: -15px;
 }
 
 footer a {
@@ -407,6 +425,78 @@ a#back:hover {
     background-color: #aaffb2cd;
     transform: scale(1.1);
 }
+
+/* input[type=checkbox]:before {
+    height: 40px;
+} */
+
+input[type=checkbox] {
+    display: none;
+}
+
+input[type=checkbox] + *::before {
+    content: "";
+    display: inline-block;
+    vertical-align: bottom;
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid #c1c1c1;
+    border-radius: 2px;
+    background-color: #fff;
+    font-size: 1.2em;
+}
+
+input[type="checkbox"]:checked + *::before {
+    content: "✓";
+    color: #009E55;
+    text-align: center;
+    background: #fff;
+}
+
+input[type="checkbox"]:checked + * {
+    color: #fff;
+}
+
+@media (max-width: 1068px) {
+    .hoverMenu > * {
+        text-align: center;
+        float: left;
+        display: block;
+        width: 80%;
+        margin: auto;
+        color: white;
+    }
+
+    .hoverMenu {
+        background-color: rgba(0, 0, 0, 0.425);
+        position: absolute;
+        height: 100vh;
+        right: -200px;
+        width: 200px;
+    }
+
+    nav .links .menu {
+        display: block;
+    }
+
+    p.close {
+        display: block;
+        font-size: 30px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+}
+
+@media (min-width: 1069px) {
+    .links > *:not(.menu) {
+        display: block;
+    }
+
+    nav .links .menu {
+        display: none;
+    }
+}
+
 
 
 

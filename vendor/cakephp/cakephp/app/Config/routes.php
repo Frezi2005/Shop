@@ -26,7 +26,7 @@
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
 		
-	Router::parseExtensions();
+	Router::parseExtensions('xml');
 	Router::connect("/search", 					   array("controller" => "products", "action" => "search"));
 	Router::connect("/product", 				   array("controller" => "products", "action" => "product"));
 	Router::connect("/products-list",              array("controller" => "products", "action" => "productsList"));
@@ -43,11 +43,15 @@
 	Router::connect("/update-image-form", 	   	   array("controller" => "products", "action" => "updateImageForm"));
 	Router::connect("/update-image", 	   	   	   array("controller" => "products", "action" => "updateImage"));
 	Router::connect("/invoice", 	   	   	       array("controller" => "products", "action" => "invoice"));
+	Router::connect("/edit-product-form", 	   	   array("controller" => "products", "action" => "editProductForm"));
+	Router::connect("/edit-product", 	   	       array("controller" => "products", "action" => "editProduct"));
 
 	Router::connect("/profile",                    array("controller" => "profiles", "action" => "profile"));
 	Router::connect("/change-email-form",          array("controller" => "profiles", "action" => "changeEmailForm"));
 	Router::connect("/send-change-email",          array("controller" => "profiles", "action" => "sendChangeEmail"));
 	Router::connect("/change-email",          	   array("controller" => "profiles", "action" => "changeEmail"));
+	Router::connect("/change-address-form",        array("controller" => "profiles", "action" => "changeAddressForm"));
+	Router::connect("/change-address",             array("controller" => "profiles", "action" => "changeAddress"));
 
 	Router::connect("/about-us", 				   array("controller" => "frontPages", "action" => "aboutUs"));
 	Router::connect("/cooperation",                array("controller" => "frontPages", "action" => "cooperation"));
@@ -63,7 +67,7 @@
 	Router::connect("/register", 				   array("controller" => "frontPages", "action" => "registerPage"));
 	Router::connect("/login", 					   array("controller" => "frontPages", "action" => "loginPage"));
 	Router::connect("/register-employee-page", 	   array("controller" => "frontPages", "action" => "registerEmployeePage"));
-	Router::connect("/site-map", 				   array("controller" => "frontPages", "action" => "siteMap"));
+	Router::connect("/site-map", 				   array("controller" => "frontPages", "action" => "siteMap", "ext" => "xml"));
 	Router::connect("/create-rodo-cookie", 		   array("controller" => "frontPages", "action" => "createRodoCookie"));
 	Router::connect("/error-test", 		   		   array("controller" => "frontPages", "action" => "errorTest"));
 	Router::connect("/gifts-catalog", 		   	   array("controller" => "frontPages", "action" => "giftsCatalog"));
@@ -89,6 +93,8 @@
 	Router::connect("/update-password-page", 	   array("controller" => "customers", "action" => "updatePasswordPage"));
 	Router::connect("/update-password", 	   	   array("controller" => "customers", "action" => "updatePassword"));
 	Router::connect("/remove-customer", 	   	   array("controller" => "customers", "action" => "removeCustomer"));
+	Router::connect("/update-employee-page", 	   array("controller" => "customers", "action" => "updateEmployeePage"));
+	Router::connect("/update-employee", 	       array("controller" => "customers", "action" => "updateEmployee"));
 
 	Router::connect("/send-email-from-customer",   array("controller" => "mails", "action" => "sendEmailFromCustomer"));
 	Router::connect("/send-forgot-password-email", array("controller" => "mails", "action" => "sendForgotPasswordEmail"));

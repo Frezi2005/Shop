@@ -30,16 +30,9 @@ $(function() {
         // location.replace("http://localhost/Shop/vendor/cakephp/cakephp/order-history"+newUrl);
     });
 
-    // function checkImage(id) {
-    //     var img = new File(`app/webroot/img/${id}.jpg`);
-    //     console.log(img);
-    //     var returnSrc;
-    //     img.onload = (returnSrc) => { returnSrc = id; };
-    //     img.onerror = (returnSrc) => { returnSrc = "noimg"; };
-    //     img.src = `http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/${id}.jpg`;
-    //     console.log(returnSrc);
-    //     return returnSrc;
-    // }
+    $("button#filter").click(function() {
+        location.replace(`${window.location.origin}${window.location.pathname}?priceMin=${$("input#priceMin").val()}&priceMax=${$("input#priceMax").val()}&dateMin=${$("input#dateMin").val()}&dateMax=${$("input#dateMax").val()}&payment=${$("select#paymentMethod").val()}&currency=${$("select#currency").val()}`);
+    });
 
     function checkImage(id) {
         var img = new Image();

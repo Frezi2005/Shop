@@ -92,7 +92,7 @@ class ProductsController extends AppController {
 				"conditions" => array(
 					"OR" => array(
 						"name LIKE" => $this->params["url"]["q"]."%",
-						"description LIKE" => "%".$this->params["url"]["q"]."%"
+						"description LIKE" => $this->params["url"]["q"]."%"
 					)
 				),
 				"limit" => 15
@@ -328,5 +328,15 @@ class ProductsController extends AppController {
 
 	public function invoice() {
 		$this->layout = false;
+	}
+
+	public function editProductForm() {
+		$this->set("products", $this->Products->find("all", array("order" => array("name" => "asc"))));
+	}
+
+	public function editProduct() {
+		$this->autoRender = false;
+		$data = $this->params["url"];
+		$this->Product->updateAll(array("name" => "'".$data["name"]."'", "description" => "'".$data["description"]."'", "specs" => "'".$data["specs"]."'", "price" => $data["price"], "discount_value" => $data["discount_value"], "sub_category_id" => "'".$data["sub_category_id"]."'"), array("id" => $data["id"]));
 	}
 }

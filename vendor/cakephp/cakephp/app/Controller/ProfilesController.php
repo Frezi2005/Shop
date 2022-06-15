@@ -93,8 +93,19 @@ class ProfilesController extends AppController {
 	}
 
 	public function changeAddress() {
-		$user = $this->User->find("first", array("conditions" => array("id" => $this->Session->read("userUUID"))))["User"];
-		$this->set("user", $user);
+		$this->loadModel("Users");
+		$this->autoRender = false;
+		$data = $this->request["data"]["changeAddressForm"];
+		foreach($data as $key => $value) {
+			$data[$key] = "'".$value."'";
+		}
+		$this->Users->updateAll($data, array("id" => $this->Session->read("userUUID")));
+		$this->Session->write("changedAddress", true);
+		$this->redirect("/");
+	}
+
+	public function changeAddressForm() {
+		
 	}
 
 	public function changeEmailForm() {

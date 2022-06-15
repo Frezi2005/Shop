@@ -35,7 +35,7 @@ class FrontPagesController extends AppController {
  *
  * @var array
  */
-	public $components = array("Cookie");
+	public $components = array("Cookie", "RequestHandler");
 
 	public $uses = array();
 
@@ -148,7 +148,8 @@ class FrontPagesController extends AppController {
 	}
 
 	public function siteMap() {
-		
+		$this->layout = false;
+		$this->RequestHandler->respondAs('xml');
 	}
 
 	public function createRodoCookie() {
@@ -178,7 +179,7 @@ class FrontPagesController extends AppController {
 	}
 
 	public function askForAccount() {
-		
+		$this->Session->write("orderInfo", $this->request["data"]["orderForm"]);
 	}
 
 	public function forgotPasswordPage() {
