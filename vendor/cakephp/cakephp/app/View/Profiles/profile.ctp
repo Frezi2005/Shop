@@ -5,12 +5,12 @@
 ?>
 
 <div id="main">
-    <p>Name: <?=$name;?></p>
-    <p>Surname: <?=$surname;?></p>
-    <p>Email: <?=$email;?></p>
-    <p>Creation date: <?=$creation_date;?></p>
-    <p>Total points: <?=$total_points;?></p>
-    <a href="gifts-catalog">Gifts catalog</a>
-    <a href="order-history">Order history</a>
-    <a href="">Regulamin programu lojalnościowego</a>
+    <p><?=__("name")?>: <?=$name;?></p>
+    <p><?=__("surname")?>: <?=$surname;?></p>
+    <p><?=__("email")?>: <?=$email;?></p>
+    <p><?=__("creation_date")?>: <?=$creation_date;?></p>
+    <p><?=__("total_points")?>: <?=$total_points;?></p>
+    <a href="gifts-catalog"><?=__("gifts_catalog")?></a>
+    <a href="order-history"><?=__("order_history")?></a>
+    <a href=""><?=__("rules_loyalty_program")?></a>
 </div>

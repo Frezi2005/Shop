@@ -1,9 +1,11 @@
 div#main {
-    float: left;
-    margin: 20px 0 0 50px;
     padding: 20px;
     border: 3px solid #b0ffb8;
     border-radius: 27px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 a {

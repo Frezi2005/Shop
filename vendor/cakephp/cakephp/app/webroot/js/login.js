@@ -5,8 +5,8 @@ $(function() {
         if (email.length == 0 || password.length == 0) {
             e.preventDefault();
             Swal.fire({
-                title: "Error",
-                text: "Please fill in all fields",
+                title: lang.error,
+                text: lang.login_error,
                 icon: "error"
             });
         }

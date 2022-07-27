@@ -8,8 +8,7 @@ $(function() {
         var payment = $("#paymentMethod").val();
         var currency = $("#currency").val();
         $.getJSON(`http://localhost/Shop/vendor/cakephp/cakephp/get-orders?priceMin=${priceMin}&priceMax=${priceMax}&dateMin=${dateMin}&dateMax=${dateMax}&payment=${payment}&currency=${currency}`, function(data) {
-            console.log(data);    
-            if (data.length) { 
+            if (data.length) {
                 var file = Object.keys(data[0].Orders).toString().replaceAll(",", ";") + "%0A";
                 for (var i = 0; i < data.length; i++) {
                     for (var n in data[i].Orders) {
@@ -18,12 +17,11 @@ $(function() {
                     file = file.slice(0, -3);
                     file += "%0A";
                 }
-
-                $("body").append("<a href='data:application/octet-stream,"+file+"'>download</a>");
+                window.open(`data:application/octet-stream,${file}`, '_blank');
             } else {
                 Swal.fire({
-                    title: 'Error',
-                    text: 'No orders found',
+                    title: lang.error,
+                    text: lang.orders_error,
                     icon: 'error',
                     confirmButtonText: 'Ok'
                 });

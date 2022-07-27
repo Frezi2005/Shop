@@ -10,12 +10,12 @@ $(function() {
         var city = $("input#registerEmployeeFormCity").val();
         var street = $("input#registerEmployeeFormStreet").val();
         var id = $("input#registerEmployeeFormIdNumberAndSeries").val();
-    
+
         if (!text_validation(name, 3, 40)) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Name must be between 3 and 40 characters long!'
+                text: lang.name_error
             });
             e.preventDefault();
         }
@@ -24,7 +24,7 @@ $(function() {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Surname must be between 2 and 50 characters long!'
+                text: lang.surname_error
             });
             e.preventDefault();
         }
@@ -33,7 +33,7 @@ $(function() {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Email is not valid!'
+                text: lang.email_error
             });
             e.preventDefault();
         }
@@ -42,7 +42,7 @@ $(function() {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Phone number is not valid!'
+                text: lang.phone_error
             });
             e.preventDefault();
         }
@@ -51,7 +51,7 @@ $(function() {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Birth date is not valid!'
+                text: lang.date_error
             });
             e.preventDefault();
         }
@@ -60,7 +60,7 @@ $(function() {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Country must be alphabetic!'
+                text: lang.country_error
             });
             e.preventDefault();
         }
@@ -69,7 +69,7 @@ $(function() {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'City must be alphabetic!'
+                text: lang.city_error
             });
             e.preventDefault();
         }
@@ -78,7 +78,7 @@ $(function() {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Street must be alphabetic!'
+                text: lang.street_error
             });
             e.preventDefault();
         }
@@ -87,7 +87,7 @@ $(function() {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'ID number must be numeric!'
+                text: lang.id_error
             });
             e.preventDefault();
         }

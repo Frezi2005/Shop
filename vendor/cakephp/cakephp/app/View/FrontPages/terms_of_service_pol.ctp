@@ -1,5 +1,5 @@
-<article>
-	<h1 class="page-title text-center">Regulamin serwisu</h1>
+<article class="offset-xxl-3 col-xxl-6 offset-xl-3 col-xl-6 offset-2 col-8">
+<h1 class="page-title text-center">Regulamin serwisu</h1>
 	<h2>I. Pojęcia ogólne</h2>
 	<ul>
 		<li><strong>Regulamin</strong> – niniejszy regulamin</li>

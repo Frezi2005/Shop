@@ -1,25 +1,39 @@
 $(function (){
 
+	$("#productPrice").text((parseFloat($("#productPrice").text().replace(/[^\d]*/, '')) * localStorage.getItem("rate")).toFixed(2) + localStorage.getItem("currency"));
+	$("#productTaxPrice").text((parseFloat($("#productTaxPrice").text().replace(/[^\d]*/, '')) * localStorage.getItem("rate")).toFixed(2) + localStorage.getItem("currency"));
+
     $("#productAmount").on("input", function() {
         if (parseInt($(this).val()) > parseInt($(this).attr("max"))) {
             $(this).val($(this).attr("max"));
-        } 
+        }
     });
-        
+
     $("#addToCartBtn").click(function() {
-        updateCart($("input#productAmount").val(), $("#productId").val(), $("#productName").text(), $("#productTaxPrice").text());
+        updateCart($("input#productAmount").val(), $("#productId").val(), $("#productName").text(), $("#productPrice").text());
     });
 
     $("#buyNowBtn").click(function() {
-        var amount = $("input#productAmount").val();    
-        var item = [{
-            id: $("#productId").val(),
-            name: $("#productName").text(),
-            price: $("#productTaxPrice").text(),
-            count: parseInt(amount)
-        }];
-        localStorage.setItem("buyNow", JSON.stringify(item));
-        location.replace("http://localhost/Shop/vendor/cakephp/cakephp/order");
+		console.log('test');
+		var amount = $("input#productAmount").val();
+		var item = [{
+			id: $("#productId").val(),
+			name: $("#productName").text(),
+			price: $("#productTaxPrice").text(),
+			count: parseInt(amount)
+		}];
+		if (amount <= 0) {
+			Swal.fire({
+				icon: "error",
+				text: lang.amount_error,
+				showConfirmButton: false,
+				timer: 5000,
+				timerProgressBar: true
+			});
+		} else {
+			localStorage.setItem("buyNow", JSON.stringify(item));
+			location.replace("http://localhost/Shop/vendor/cakephp/cakephp/order");
+		}
     });
 
     var queryString = window.location.search;
@@ -28,13 +42,12 @@ $(function (){
     var newUrl;
 
     $("select#sort").find("[value='" + urlParams.get("sort_by") + "']").attr("selected", true);
-    //console.log(urlParams.get("sort_by"));
 
     $("button.page-change").click(function() {
         newUrl = queryString.replace(/&p=\d{1,}/, "") + "&p=" + (((page + parseInt($(this).data("page-change"))) > 0) ? (page + parseInt($(this).data("page-change"))) : 1);
         if ($(".product").length == $(".productsShown").val() && parseInt($(this).data("page-change")) == 1 || parseInt($(this).data("page-change")) == -1) {
             location.replace("http://localhost/Shop/vendor/cakephp/cakephp/products-list"+newUrl);
-        } 
+        }
     });
 
     $("select#sort").change(function() {
@@ -54,6 +67,14 @@ $(function (){
 
     displayAmount(items);
     displayItemsInCartGUI(items);
+	if($('select.languageSelect').find(":selected").val() == 'pol') {
+		$.ajax({
+			url: `https://api-free.deepl.com/v2/translate?auth_key=0ab1f56e-efa3-908b-f6c3-aef8ec8eab6f:fx&text=${$(`p#description`).text()}!&target_lang=PL`,
+			success: function (result) {
+				$('p#description').text(result.translations[0].text.replace(/(\.?!+)/, '.'));
+			}
+		})
+	}
 });
 
 var items = (JSON.parse(localStorage.getItem("cart")) == null) ? [] : JSON.parse(localStorage.getItem("cart"));
@@ -68,7 +89,7 @@ function updateCart(amount, id, name, price, add = true, modal = true) {
             items.push({
                     id: id,
                     name: name,
-                    price: price,
+                    price: parseFloat(price.replace(/[^\d]*/, '')),
                     count: parseInt(amount)
                 }
             );
@@ -90,7 +111,7 @@ function updateCart(amount, id, name, price, add = true, modal = true) {
                 items.push({
                         id: id,
                         name: name,
-                        price: price,
+                        price: parseFloat(price.replace(/[^\d]*/, '')),
                         count: parseInt(amount)
                     }
                 );
@@ -99,7 +120,7 @@ function updateCart(amount, id, name, price, add = true, modal = true) {
         if (modal) {
             Swal.fire({
                 icon: "success",
-                text: "This item has been successfully added to your cart: " + name,
+                text: lang.item_added_to_cart + name,
                 showConfirmButton: false,
                 timer: 5000,
                 timerProgressBar: true
@@ -111,7 +132,7 @@ function updateCart(amount, id, name, price, add = true, modal = true) {
     } else {
         Swal.fire({
             icon: "error",
-            text: "Products amount can't have letters, be empty or be equal or less than 0!",
+            text: lang.amount_error,
             showConfirmButton: false,
             timer: 5000,
             timerProgressBar: true
@@ -142,10 +163,10 @@ function displayItemsInCartGUI(cart) {
     var sum = 0;
     if (cart.length > 0 || cart != null) {
         for (var i = 0; i < cart.length; i++) {
-            sum += parseInt(cart[i].count) * parseFloat(cart[i].price); 
-            $(".cartModal").append("<div><a title='"+cart[i].name+"' href='product?product_id="+cart[i].id+"'>"+cart[i].name+"</a><br/><div class='grid'><span class='amount'>"+cart[i].count+"</span><i class='fas fa-minus substractProduct'></i><i class='fas fa-plus addProduct'></i><span class='price'>"+cart[i].price+"USD</span><i class='fas fa-trash-alt deleteProduct' data-product-id='" + cart[i].id + "'></i></div></div>");
+            sum += parseInt(cart[i].count) * parseFloat(cart[i].price);
+            $(".cartModal").append(`<div><a title="${+cart[i].name}" href="product?product_id=${cart[i].id}">${cart[i].name}</a><br/><div class='grid'><span class='amount'>${cart[i].count}</span><i class='fas fa-minus substractProduct'></i><i class='fas fa-plus addProduct'></i><span class='price'>${(cart[i].price).toFixed(2)}${localStorage.getItem("currency")}</span><i class='fas fa-trash-alt deleteProduct' data-product-id='${cart[i].id}'></i></div></div>`);
         }
-        $(".cartModal").append("<span>Total: "+(Math.round((sum + Number.EPSILON) * 100) / 100)+"USD</span>");
+        $(".cartModal").append(`<span>${lang.total}: ${(Math.round((sum + Number.EPSILON) * 100) / 100).toFixed(2)}${localStorage.getItem("currency")}</span>`);
     }
 
     $(".deleteProduct").each(function () {
@@ -159,7 +180,7 @@ function displayItemsInCartGUI(cart) {
     $(".addProduct").each(function () {
         $(this).click(function () {
             var children = $(this).parent().parent();
-            var price = children.find('span.price').text().replaceAll('USD', '');
+            var price = children.find('span.price').text().replace(/[A-Z]/gm, '');
             var name = children.find('a').attr('title');
             var id = children.find('a').attr('href').replaceAll('product?product_id=', '');
             updateCart('1', id, name, price, true, false);
@@ -169,7 +190,7 @@ function displayItemsInCartGUI(cart) {
     $(".substractProduct").each(function () {
         $(this).click(function () {
             var children = $(this).parent().parent();
-            var price = children.find('span.price').text().replaceAll('USD', '');
+            var price = children.find('span.price').text().replace(/[A-Z]/gm, '');
             var name = children.find('a').attr('title');
             var id = children.find('a').attr('href').replaceAll('product?product_id=', '');
             updateCart('1', id, name, price, false, false);

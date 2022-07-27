@@ -1,1 +1,1 @@
-<h1>About US</h1>
+<h1><?=__("about_us")?></h1>

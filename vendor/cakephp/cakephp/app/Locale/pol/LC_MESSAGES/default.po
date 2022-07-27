@@ -2,7 +2,7 @@ msgid "computers_and_laptops"
 msgstr "Komputery i laptopy"
 
 msgid "peripherals"
-msgstr "Urządzenia peryferyjne" 
+msgstr "Urządzenia peryferyjne"
 
 msgid "phones_and_tablets"
 msgstr "Telefony i tablety"
@@ -29,221 +29,221 @@ msgid "cameras"
 msgstr "Aparaty fotograficzne"
 
 msgid "floor_lamps"
-msgstr "Lampy podłogowe"	
+msgstr "Lampy podłogowe"
 
 msgid "hanging_lamps"
 msgstr "Lampy wiszące"
-	
+
 msgid "led_strips"
 msgstr "Paski LED"
-	
+
 msgid "lightbulbs"
 msgstr "Żarówki"
-	
+
 msgid "tvs"
 msgstr "Telewizory"
-	
+
 msgid "smarttvs"
 msgstr "Smart TV"
-	
+
 msgid "remotes"
 msgstr "Piloty"
-	
+
 msgid "wall_mounts"
 msgstr "Uchwyty ścienne"
-	
+
 msgid "projectors"
 msgstr "Projektory"
-	
+
 msgid "microphones"
 msgstr "Mikrofony"
-	
+
 msgid "displays"
 msgstr "Monitory"
-	
+
 msgid "keyboards"
 msgstr "Klawiatury"
-	
+
 msgid "mice"
 msgstr "Myszki"
-	
+
 msgid "mouse_pads"
 msgstr "Podkładki do myszy"
-	
+
 msgid "headphones"
 msgstr "Słuchawki"
-	
+
 msgid "speakers"
 msgstr "Głośniki"
-	
+
 msgid "printers"
 msgstr "Drukarki"
-	
+
 msgid "web_cams"
 msgstr "Kamerki internetowe"
-	
+
 msgid "cpus"
 msgstr "Procesory"
-	
+
 msgid "cpu_coolers"
 msgstr "Chłodzenie procesorów"
-	
+
 msgid "gpus"
 msgstr "Karty graficzne"
-	
+
 msgid "memory"
 msgstr "Kości pamięci"
-	
+
 msgid "storage"
 msgstr "Dyski HDD\\SSD"
-	
+
 msgid "case"
 msgstr "Obudowy"
-	
+
 msgid "power_supply"
 msgstr "Zasilacze"
-	
+
 msgid "case_fans"
 msgstr "Chłodzenie obudowy"
-	
+
 msgid "network_cards"
 msgstr "Karty sieciowe"
-	
+
 msgid "sound_cards"
 msgstr "Karty dźwiękowe"
-	
+
 msgid "car_chargers"
 msgstr "Ładowarki samochodowe"
-	
+
 msgid "gps"
 msgstr "Nawigacja"
-	
+
 msgid "recorders"
 msgstr "Nagrywarki"
-	
+
 msgid "parking_sensors"
 msgstr "Czujniki parkowania"
-	
+
 msgid "stereo"
 msgstr "Stereo"
-	
+
 msgid "computers"
 msgstr "Komputery"
-	
+
 msgid "laptops"
 msgstr "Laptopy"
-	
+
 msgid "motherboards"
 msgstr "Płyty główne"
-	
+
 msgid "slr_cameras"
 msgstr "Lustrzanki"
-	
+
 msgid "digital_cameras"
 msgstr "Aparaty cyfrowe"
-	
+
 msgid "compact_cameras"
 msgstr "Aparaty kompaktowe"
-	
+
 msgid "polaroids"
 msgstr "Polaroidy"
-	
+
 msgid "tripods"
 msgstr "Tripody"
-	
+
 msgid "monitoring_cameras"
 msgstr "Kamery monitorujące"
-	
+
 msgid "column_speakers"
 msgstr "Głośniki kolumnowe"
-	
+
 msgid "speakers"
 msgstr "Głośniki"
-	
+
 msgid "home_theater"
 msgstr "Kino domowe"
-	
+
 msgid "amplifiers"
 msgstr "Wzmacniacze"
-	
+
 msgid "soundbars"
 msgstr "Soundbary"
-	
+
 msgid "smartphones"
 msgstr "Smartfony"
-	
+
 msgid "phones"
 msgstr "Telefony"
-	
+
 msgid "tablets"
 msgstr "Tablety"
-	
+
 msgid "memory_cards"
 msgstr "Karty pamięci"
-	
+
 msgid "chargers"
 msgstr "Ładowarki"
-	
+
 msgid "protection_kits"
 msgstr "Pakiety ochrony"
-	
+
 msgid "accessories"
 msgstr "Akcesoria"
-	
+
 msgid "refrigerators"
 msgstr "Lodówki"
-	
+
 msgid "ovens"
 msgstr "Piekarniki"
-	
+
 msgid "induction_plates"
 msgstr "Płyty indukcyjne"
-	
+
 msgid "mixers"
 msgstr "Miksery"
-	
+
 msgid "food_processors"
 msgstr "Procesory jedzenia"
-	
+
 msgid "vacuums"
 msgstr "Odkurzacze"
-	
+
 msgid "air_purifiers"
 msgstr "Oczyszczacze powietrza"
-	
+
 msgid "ionizers"
 msgstr "Ionizatory"
-	
+
 msgid "dryers"
 msgstr "Suszarki"
-	
+
 msgid "washing_machines"
 msgstr "Pralki"
-	
+
 msgid "coffee_makers"
 msgstr "Ekspresy do kawy"
-	
+
 msgid "controllers"
 msgstr "Kontrolery"
-	
+
 msgid "3d_sensors"
 msgstr "Czujniki 3D"
-	
+
 msgid "capturing_devices"
 msgstr "Urządzenia przechwytujące"
-	
+
 msgid "vr"
 msgstr "VR"
-	
+
 msgid "games"
 msgstr "Gry"
-	
+
 msgid "consoles"
 msgstr "Konsole"
-	
+
 msgid "portable_consoles"
 msgstr "Konsole przenośne"
-	
+
 msgid "steering_wheels"
 msgstr "Kierownice"
 
@@ -288,3 +288,423 @@ msgstr "ANG (Angielski)"
 
 msgid "pol"
 msgstr "POL (Polski)"
+
+msgid "employees_list"
+msgstr "Lista pracowników"
+
+msgid "products_list"
+msgstr "Lista produktów"
+
+msgid "remove_employee"
+msgstr "Usuń pracownika"
+
+msgid "orders_report"
+msgstr "Raporty zamówień"
+
+msgid "add_product_to_db"
+msgstr "Dodaj produkt do bazy danych"
+
+msgid "products_delivery"
+msgstr "Dostawa produktów"
+
+msgid "update_employee"
+msgstr "Edytuj dane pracownika"
+
+msgid "grant_admin"
+msgstr "Przyznaj uprawnienia administratora"
+
+msgid "delete_customer"
+msgstr "Usuń klienta"
+
+msgid "price_ascending"
+msgstr "Cena rosnąco"
+
+msgid "price_descending"
+msgstr "Cena malejąco"
+
+msgid "date_ascending"
+msgstr "Data rosnąco"
+
+msgid "date_descending"
+msgstr "Data malejąco"
+
+msgid "credit_card"
+msgstr "Karta kredytowa"
+
+msgid "bank_transfer"
+msgstr "Przelew bankowy"
+
+msgid "filter"
+msgstr "Filtruj"
+
+msgid "price_min"
+msgstr "Cena min"
+
+msgid "price_max"
+msgstr "Cena maks"
+
+msgid "change_email"
+msgstr "Zmień email"
+
+msgid "change_password"
+msgstr "Zmień hasło"
+
+msgid "change_address"
+msgstr "Zmień adres"
+
+msgid "admin_panel"
+msgstr "Panel administracyjny"
+
+msgid "delete_account"
+msgstr "Usuń konto"
+
+msgid "about_us"
+msgstr "O Nas"
+
+msgid "ask_account_text"
+msgstr "Chcesz utworzyć konto do dalszych zakupów?"
+
+msgid "account_confirm"
+msgstr "Tak"
+
+msgid "account_denie"
+msgstr "Nie, dziękuję"
+
+msgid "partnership"
+msgstr "Współpraca"
+
+msgid "password_reset_email_alert"
+msgstr "Email z linkiem do resetowania hasła został wysłany."
+
+msgid "employees_registration_form"
+msgstr "Rejestracja pracownika"
+
+msgid "date_format"
+msgstr "Wzór: RRRR-MM-DD"
+
+msgid "country"
+msgstr "Kraj"
+
+msgid "city"
+msgstr "Miasto"
+
+msgid "street"
+msgstr "Ulica"
+
+msgid "id"
+msgstr "pesel"
+
+msgid "salary"
+msgstr "wynagrodzenie"
+
+msgid "house_number"
+msgstr "Numer domu"
+
+msgid "flat_number"
+msgstr "Numer mieszkania"
+
+msgid "internship_length"
+msgstr "Okres zatrudnienia"
+
+msgid "bonus_amount"
+msgstr "Bonus"
+
+msgid "holiday_amount"
+msgstr "Liczba dni wolnych"
+
+msgid "employees"
+msgstr "Pracownicy"
+
+msgid "delete"
+msgstr "Usuń"
+
+msgid "gifts_catalog"
+msgstr "Katalog prezentów"
+
+msgid "contact"
+msgstr "Kontakt"
+
+msgid "from"
+msgstr "Od"
+
+msgid "message"
+msgstr "Wiadomość"
+
+msgid "send"
+msgstr "Wyślij"
+
+msgid "message_sent_alert"
+msgstr "Twoja wiadomość została wysłana. Odpowiemy w ciągu 2-3 dni roboczych."
+
+msgid "message_sending_error_alert"
+msgstr "Twoja wiadomość nie mogła być wysłana. Spróbuj ponownie później."
+
+msgid "site_map"
+msgstr "Mapa strony"
+
+msgid "account_verification_alert"
+msgstr "Twoje konto zostało zweryfikowane. Możesz się teraz zalogować."
+
+msgid "login_alert"
+msgstr "Zostałeś pomyślnie zalogowany!"
+
+msgid "register_alert"
+msgstr "Twoje konto zostało utworzone!"
+
+msgid "email_sent_alert"
+msgstr "Email został wysłany!"
+
+msgid "order_alert"
+msgstr "Dziękujemy za skorzystanie z naszych usług! Twoje zamówienie będzie zaraz przetwarzane."
+
+msgid "password_change_alert"
+msgstr "Twoje hasło zostało zmienione!"
+
+msgid "address_change_alert"
+msgstr "Twój adres został zmieniony!"
+
+msgid "product_name"
+msgstr "Nazwa produktu"
+
+msgid "description"
+msgstr "Opis"
+
+msgid "specs"
+msgstr "Specyfikacja"
+
+msgid "price"
+msgstr "Cena"
+
+msgid "image"
+msgstr "Zdjęcie produkty(Maks. rozmiar: 2MB, typ: JPG)"
+
+msgid "file_limit_alert"
+msgstr "Rozmiar twojego pliku przekracza limit 2MB!"
+
+msgid "price_error_alert"
+msgstr "Wartość ceny jest nieprawidłowa!"
+
+msgid "number_of_products"
+msgstr "Liczba produktów:"
+
+msgid "order_form"
+msgstr "Formularz zamawiania"
+
+msgid "payment_info"
+msgstr "Dane do zapłaty"
+
+msgid "select"
+msgstr "Wybierz"
+
+msgid "courier"
+msgstr "Kurier"
+
+msgid "pickup_point"
+msgstr "Odbiór na miejscu"
+
+msgid "parcel_locker"
+msgstr "Paczkomat"
+
+msgid "add_to_cart"
+msgstr "Dodaj do koszyka"
+
+msgid "buy_now"
+msgstr "Kup teraz"
+
+msgid "ask_for_availability"
+msgstr "Zapytaj o dostępność"
+
+msgid "max_amount"
+msgstr "Maks. ilość:"
+
+msgid "product_id"
+msgstr "ID produktu"
+
+msgid "update"
+msgstr "Aktualizuj"
+
+msgid "change_address_form"
+msgstr "Formularz do zmiany adresu"
+
+msgid "change_email_form"
+msgstr "Formularz do zmiany emaila"
+
+msgid "enter_current_email"
+msgstr "Wpisz swój aktualny email"
+
+msgid "enter_new_email"
+msgstr "Wpisz nowy email"
+
+msgid "enter_password"
+msgstr "Wpisz swoje hasło"
+
+msgid "creation_date"
+msgstr "Data stworzenia"
+
+msgid "total_points"
+msgstr "Liczba punktów"
+
+msgid "rules_loyalty_program"
+msgstr "Regulamin programu lojalnościowego"
+
+msgid "cart"
+msgstr "Koszyk"
+
+msgid "log_in"
+msgstr "Zaloguj"
+
+msgid "profile"
+msgstr "Profil"
+
+msgid "settings"
+msgstr "Ustawienia"
+
+msgid "logout"
+msgstr "Wyloguj"
+
+msgid "search"
+msgstr "Szukaj"
+
+msgid "forgot_password"
+msgstr "Zapomniałem hasła"
+
+msgid "order_history"
+msgstr "Historia zamówień"
+
+msgid "order"
+msgstr "Zamów"
+
+msgid "countries"
+msgstr "Kraje"
+
+msgid "payment_method"
+msgstr "Metody płatności"
+
+msgid "delivery_type"
+msgstr "Dostawa"
+
+msgid "order_price_error"
+msgstr "Wystąpił błąd poczas składania twojego zamówienia. Przepraszamy za niedogodności, proszę spróbować później."
+
+msgid "all_rights_reserved"
+msgstr "Wszelkie prawa zastrzeżone."
+
+msgid "generate"
+msgstr "Generuj plik CSV"
+
+msgid "submit"
+msgstr "Zatwierdź"
+
+msgid "buy_for_points"
+msgstr "Kup za punkty"
+
+msgid "cooperation"
+msgstr "Współpraca"
+
+msgid "agree_to_tos"
+msgstr "Musisz się zgodzić z warunkami korzystania z serwisu"
+
+msgid "number_error"
+msgstr "Liczba produktów jest nieprawidłowa!"
+
+msgid "invoice"
+msgstr "Faktura"
+
+msgid "seller"
+msgstr "Sprzedawca"
+
+msgid "company_name"
+msgstr "Nazwa firmy"
+
+msgid "buyer"
+msgstr "Kupujący"
+
+msgid "contractor"
+msgstr "Kontrahent"
+
+msgid "number"
+msgstr "Numer"
+
+msgid "account"
+msgstr "konta"
+
+msgid "index"
+msgstr "L.p."
+
+msgid "product_name"
+msgstr "Nazwa produktu"
+
+msgid "product_status"
+msgstr "Status produktu"
+
+msgid "netto_price"
+msgstr "Cena netto"
+
+msgid "vat_price"
+msgstr "Cena vat"
+
+msgid "total_netto"
+msgstr "Kwota netto"
+
+msgid "total_vat"
+msgstr "Kwota VAT"
+
+msgid "total_brutto"
+msgstr "Kwota brutto"
+
+msgid "price_in_words"
+msgstr "Cena słownie"
+
+msgid "person_to_pickup"
+msgstr "Osoba upoważniona do odbioru"
+
+msgid "personToSend"
+msgstr "Osoba upoważniona do wysyłki"
+
+msgid "total"
+msgstr "Razem"
+
+msgid "total_to_pay"
+msgstr "Razem do zaþłaty"
+
+msgid "date_min"
+msgstr "Data min"
+
+msgid "date_max"
+msgstr "Data maks"
+
+msgid "currency"
+msgstr "Waluta"
+
+msgid "privacy_policy"
+msgstr "Polityka Prywatności"
+
+msgid "terms_of_service"
+msgstr "Warunki korzystania z serwisu"
+
+msgid "message_type"
+msgstr "Typ wiadomości"
+
+msgid "opinion"
+msgstr "Opinia"
+
+msgid "complaint"
+msgstr "Reklamacja"
+
+msgid "cooperative_offer"
+msgstr "Oferta współpraca"
+
+msgid "media_contact"
+msgstr "Kontakt do mediów"
+
+msgid "other"
+msgstr "Inne"
+
+msgid "sub_category"
+msgstr "Podkategoria"
+
+msgid "products"
+msgstr "Produkty"
+
+msgid "filters"
+msgstr "Filtry"

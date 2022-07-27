@@ -10,8 +10,17 @@ $(function() {
         $(this).find(".fa-search").each(function() {
             $(this).click(function() {
                 var fields = $(this).parent().parent().find(".fields").val();
+				var html = '';
+				var products = JSON.parse(JSON.parse(fields).Orders.products);
+				if(products.length) {
+					for(let i = 0; i < products.length; i++) {
+						html += `<img style='height: 100px' src='app/webroot/img/${products[i].id}.jpg'><p>${products[i].count} * ${products[i].name} - ${products[i].count * parseFloat(products[i].price.toString().replace(/[^\.\d]*/gm, ''))}${JSON.parse(fields).Orders.currency}</p>`;
+					}
+				} else {
+					html = `<h4>${lang.no_order_products}🤔</h4>`;
+				}
                 Swal.fire({
-                    text: fields,
+                    html: html,
                     showConfirmButton: true
                 });
             });
@@ -22,7 +31,24 @@ $(function() {
     var urlParams = new URLSearchParams(queryString);
     var newUrl;
 
-    $("select#sortHistory").find("[value='" + urlParams.get("sort_by") + "']").attr("selected", true);
+	$('input#dateMin').datepicker({
+		dateFormat: "yy-mm-dd",
+		maxDate: '0'
+	});
+
+	$('input#dateMax').datepicker({
+		dateFormat: "yy-mm-dd",
+		maxDate: '0'
+	});
+
+	console.log($.now());
+
+	$('input#priceMin').val(urlParams.get('priceMin'));
+	$('input#priceMax').val(urlParams.get('priceMax'));
+	$('input#dateMin').val(urlParams.get('dateMin'));
+	$('input#dateMax').val(urlParams.get('dateMax'));
+
+	$("select#sortHistory").find("[value='" + urlParams.get("sort_by") + "']").attr("selected", true);
 
     $("select#sortHistory").change(function() {
         newUrl = queryString.replace("&sort_by="+urlParams.get("sort_by"), "&sort_by=" + $(this).val());
@@ -39,5 +65,16 @@ $(function() {
         img.src = `http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/${id}.jpg`;
         return (img.height != 0) ? id : 'noimg';
     }
+	$(".fa-angle-right").click(function() {
+		if($("#filters").data("open")) {
+			$("#filters").css("height", 0);
+			$(".fa-angle-right").css("transform", "rotate(0deg)");
+			$("#filters").data("open", false)
+		} else {
+			$("#filters").css("height", "444px");
+			$(".fa-angle-right").css("transform", "rotate(90deg)");
+			$("#filters").data("open", true)
+		}
+	});
 
 });

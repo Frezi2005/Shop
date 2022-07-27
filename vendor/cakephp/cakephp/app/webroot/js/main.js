@@ -139,7 +139,7 @@ $(function() {
         window.location.replace("http://localhost/Shop/vendor/cakephp/cakephp/products-list?q=" + $("input.searchInput").val());
     });
 
-    $(".currencySelect").change(function() { 
+    $(".currencySelect").change(function() {
         var currency = $(this).val();
 
         if(currency !== 'USD') {
@@ -161,6 +161,8 @@ $(function() {
             location.reload();
         }
     });
+
+	$(`.currencySelect option[value=${localStorage.getItem("currency")}]`).attr("selected", "selected");
 
     $(".menu i").click(function() {
         $(".hoverMenu").css("right", "0px");

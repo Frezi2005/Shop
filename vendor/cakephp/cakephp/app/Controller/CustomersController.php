@@ -93,7 +93,7 @@ class CustomersController extends AppController {
 	public function register() {
 		$this->autoRender = false;
 		$customerRegisterData = $this->request["data"]["registerUserForm"];
-		$this->Session->write("rememberedFieldsData", $customerRegisterData); 
+		$this->Session->write("rememberedFieldsData", $customerRegisterData);
 		$this->User->set($customerRegisterData);
 		$userUUID = CakeText::uuid();
 
@@ -178,7 +178,7 @@ class CustomersController extends AppController {
 		$this->set("is_admin", 0);
 		if ($user["is_admin"]) {
 			$this->set("is_admin", 1);
-		} 
+		}
 	}
 
 	public function changePassword() {
@@ -251,7 +251,7 @@ class CustomersController extends AppController {
 				"name IS NOT NULL"
 			)
 		)));
-		
+
 		$this->set("privileges", [
 			"ksiegowosc" => $this->CheckPrivileges->check("ksiegowosc", $this->Session->read("userUUID")),
 			"kadry" => $this->CheckPrivileges->check("kadry", $this->Session->read("userUUID")),
@@ -285,7 +285,7 @@ class CustomersController extends AppController {
 				$sort_by = "order_date DESC";
 				break;
 			default:
-				$sort_by = "";
+				$sort_by = "order_date DESC";
 				break;
 		}
 		$price = (isset($this->params["url"]["priceMin"]) && isset($this->params["url"]["priceMax"])) ? "total_price BETWEEN {$this->params["url"]["priceMin"]} AND {$this->params["url"]["priceMax"]}" : "";

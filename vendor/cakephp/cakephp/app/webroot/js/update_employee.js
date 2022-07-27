@@ -2,10 +2,10 @@ $(function() {
     function generateInputs(id, employee) {
         let html = '';
         delete employee.id;
-        for(const value in employee) {
-            html += `${value}: <input type="text" value="${employee[value]}"/>`;
+        for (const value in employee) {
+            html += `${lang[value]}: <input type="text" value="${employee[value]}"/>`;
         }
-        html += '<button id="updateEmployee">Save</button>';
+        html += `<button id="updateEmployee">${lang.save}</button>`;
         $("div#inputs").html(html);
     }
     generateInputs($("#employeesSelect").val(), $("#employeesSelect").find(":selected").data("employee"));

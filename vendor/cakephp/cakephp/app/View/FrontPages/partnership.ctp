@@ -1,1 +1,1 @@
-<h1>Partnership</h1>
+<h1><?=__("partnership")?></h1>

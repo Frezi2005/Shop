@@ -5,29 +5,29 @@
 
 ?>
 <div id="main">
-    <a href="list-employees" target="_blank">Employees list</a>
-    <a href="inventory" target="_blank">Products List</a>
-    <a href="remove-employee-page" target="_blank">Remove employee</a>
-    <a href="orders-report">Orders report</a>
-    <a href="add-product-to-database">Add product to DB</a>
-    <a href="delivery-form">Products delivery</a>
-    <a href="update-employee-page">Update employee</a>
+    <a href="list-employees" target="_blank"><?=__("employees_list")?></a>
+    <a href="inventory" target="_blank"><?=__("products_list")?></a>
+    <a href="remove-employee-page" target="_blank"><?=__("remove_employee")?></a>
+    <a href="orders-report"><?=__("orders_report")?></a>
+    <a href="add-product-to-database"><?=__("add_product_to_db")?></a>
+    <a href="delivery-form"><?=__("products_delivery")?></a>
+    <a href="update-employee-page"><?=__("update_employee")?></a>
     <select id="usersSelect">
         <?php
             for ($i = 0; $i < count($employees); $i++) {
                 echo "<option value='".$employees[$i]["User"]["id"]."'>".$employees[$i]["User"]["name"]." ".$employees[$i]["User"]["surname"].": ".$employees[$i]["User"]["email"]."</option>";
-            }   
+            }
         ?>
     </select>
-    <button id="grantAdmin">Grant admin privileges</button>
+    <button id="grantAdmin"><?=__("grant_admin")?></button>
     <select id="customersSelect">
         <?php
             for ($i = 0; $i < count($customers); $i++) {
                 echo "<option value='".$customers[$i]["User"]["id"]."'>".$customers[$i]["User"]["name"]." ".$customers[$i]["User"]["surname"].": ".$customers[$i]["User"]["email"]."</option>";
-            }   
+            }
         ?>
     </select>
-    <button id="deleteCustomer">Delete customer</button>
+    <button id="deleteCustomer"><?=__("delete_customer")?></button>
     <?php
         if ($privileges["ksiegowosc"]) {
             echo "<a href='ksiegowosc'>Księgowość</a>";

@@ -29,221 +29,221 @@ msgid "cameras"
 msgstr "Cameras"
 
 msgid "floor_lamps"
-msgstr "Floor lamps"	
+msgstr "Floor lamps"
 
 msgid "hanging_lamps"
 msgstr "Hanging lamps"
-	
+
 msgid "led_strips"
 msgstr "LED strips"
-	
+
 msgid "lightbulbs"
 msgstr "Lightbulbs"
-	
+
 msgid "tvs"
 msgstr "TVs"
-	
+
 msgid "smarttvs"
 msgstr "Smart TVs"
-	
+
 msgid "remotes"
 msgstr "Remotes"
-	
+
 msgid "wall_mounts"
 msgstr "Wall mounts"
-	
+
 msgid "projectors"
 msgstr "Projectors"
-	
+
 msgid "microphones"
 msgstr "Microphones"
-	
+
 msgid "displays"
 msgstr "Displays"
-	
+
 msgid "keyboards"
 msgstr "Keyboards"
-	
+
 msgid "mice"
 msgstr "Mice"
-	
+
 msgid "mouse_pads"
 msgstr "Mouse pads"
-	
+
 msgid "headphones"
 msgstr "Headphones"
-	
+
 msgid "speakers"
 msgstr "Speakers"
-	
+
 msgid "printers"
 msgstr "Printers"
-	
+
 msgid "web_cams"
 msgstr "Web cams"
-	
+
 msgid "cpus"
 msgstr "CPUs"
-	
+
 msgid "cpu_coolers"
 msgstr "CPU coolers"
-	
+
 msgid "gpus"
 msgstr "GPUs"
-	
+
 msgid "memory"
 msgstr "Memory"
-	
+
 msgid "storage"
 msgstr "Storage"
-	
+
 msgid "case"
 msgstr "Case"
-	
+
 msgid "power_supply"
 msgstr "Power supply"
-	
+
 msgid "case_fans"
 msgstr "Case fans"
-	
+
 msgid "network_cards"
 msgstr "Network cards"
-	
+
 msgid "sound_cards"
 msgstr "Sound cards"
-	
+
 msgid "car_chargers"
 msgstr "Car chargers"
-	
+
 msgid "gps"
 msgstr "GPS"
-	
+
 msgid "recorders"
 msgstr "Recorders"
-	
+
 msgid "parking_sensors"
 msgstr "Parking sensors"
-	
+
 msgid "stereo"
 msgstr "Stereo"
-	
+
 msgid "computers"
 msgstr "Computers"
-	
+
 msgid "laptops"
 msgstr "Laptops"
-	
+
 msgid "motherboards"
 msgstr "Motherboards"
-	
+
 msgid "slr_cameras"
 msgstr "SLR cameras"
-	
+
 msgid "digital_cameras"
 msgstr "Digital cameras"
-	
+
 msgid "compact_cameras"
 msgstr "Compact cameras"
-	
+
 msgid "polaroids"
 msgstr "Polaroids"
-	
+
 msgid "tripods"
 msgstr "Tripods"
-	
+
 msgid "monitoring_cameras"
 msgstr "Monitoring cameras"
-	
+
 msgid "column_speakers"
 msgstr "Column speakers"
-	
+
 msgid "speakers"
 msgstr "Speakers"
-	
+
 msgid "home_theater"
 msgstr "Home theater"
-	
+
 msgid "amplifiers"
 msgstr "Amplifiers"
-	
+
 msgid "soundbars"
 msgstr "Soundbars"
-	
+
 msgid "smartphones"
 msgstr "Smartphones"
-	
+
 msgid "phones"
 msgstr "Phones"
-	
+
 msgid "tablets"
 msgstr "Tablets"
-	
+
 msgid "memory_cards"
 msgstr "Memory cards"
-	
+
 msgid "chargers"
 msgstr "Chargers"
-	
+
 msgid "protection_kits"
 msgstr "Protection kits"
-	
+
 msgid "accessories"
 msgstr "Accessories"
-	
+
 msgid "refrigerators"
 msgstr "Refrigerators"
-	
+
 msgid "ovens"
 msgstr "Ovens"
-	
+
 msgid "induction_plates"
 msgstr "Induction plates"
-	
+
 msgid "mixers"
 msgstr "Mixers"
-	
+
 msgid "food_processors"
 msgstr "Food processors"
-	
+
 msgid "vacuums"
 msgstr "Vacuums"
-	
+
 msgid "air_purifiers"
 msgstr "Air purifiers"
-	
+
 msgid "ionizers"
 msgstr "Ionizers"
-	
+
 msgid "dryers"
 msgstr "Dryers"
-	
+
 msgid "washing_machines"
 msgstr "Washing machines"
-	
+
 msgid "coffee_makers"
 msgstr "Coffee makers"
-	
+
 msgid "controllers"
 msgstr "Controllers"
-	
+
 msgid "3d_sensors"
 msgstr "3D sensors"
-	
+
 msgid "capturing_devices"
 msgstr "Capturing devices"
-	
+
 msgid "vr"
 msgstr "VR"
-	
+
 msgid "games"
 msgstr "Games"
-	
+
 msgid "consoles"
 msgstr "Consoles"
-	
+
 msgid "portable_consoles"
 msgstr "Portable consoles"
-	
+
 msgid "steering_wheels"
 msgstr "Steering wheels"
 
@@ -288,3 +288,425 @@ msgstr "ENG (English)"
 
 msgid "pol"
 msgstr "POL (Polish)"
+
+msgid "employees_list"
+msgstr "Employees list"
+
+msgid "products_list"
+msgstr "Products List"
+
+msgid "remove_employee"
+msgstr "Remove employee"
+
+msgid "orders_report"
+msgstr "Orders report"
+
+msgid "add_product_to_db"
+msgstr "Add product to database"
+
+msgid "products_delivery"
+msgstr "Products delivery"
+
+msgid "update_employee"
+msgstr "Update employee"
+
+msgid "grant_admin"
+msgstr "Grant admin privileges"
+
+msgid "delete_customer"
+msgstr "Delete customer"
+
+msgid "price_ascending"
+msgstr "Price ascending"
+
+msgid "price_descending"
+msgstr "Price descending"
+
+msgid "date_ascending"
+msgstr "Date ascending"
+
+msgid "date_descending"
+msgstr "Date descending"
+
+msgid "credit_card"
+msgstr "Credit card"
+
+msgid "bank_transfer"
+msgstr "Bank transfer"
+
+msgid "filter"
+msgstr "Filter"
+
+msgid "price_min"
+msgstr "Price min"
+
+msgid "price_max"
+msgstr "Price max"
+
+msgid "change_email"
+msgstr "Change email"
+
+msgid "change_password"
+msgstr "Change password"
+
+msgid "change_address"
+msgstr "Change address"
+
+msgid "admin_panel"
+msgstr "Admin panel"
+
+msgid "delete_account"
+msgstr "Delete account"
+
+msgid "about_us"
+msgstr "About Us"
+
+msgid "ask_account_text"
+msgstr "Do you want to create an account for further purchases?"
+
+msgid "account_confirm"
+msgstr "Yes, sign up"
+
+msgid "account_denie"
+msgstr "No thanks"
+
+msgid "partnership"
+msgstr "Partnership"
+
+msgid "password_reset_email_alert"
+msgstr "Email with reset password link has been sent."
+
+msgid "employees_registration_form"
+msgstr "Register employees page"
+
+msgid "date_format"
+msgstr "Format: YYYY-MM-DD"
+
+msgid "country"
+msgstr "Country"
+
+msgid "city"
+msgstr "City"
+
+msgid "street"
+msgstr "Street"
+
+msgid "id"
+msgstr "ID"
+
+msgid "salary"
+msgstr "Salary"
+
+msgid "house_number"
+msgstr "House number"
+
+msgid "flat_number"
+msgstr "Flat number"
+
+msgid "internship_length"
+msgstr "Internship length"
+
+msgid "bonus_amount"
+msgstr "Bonus amount"
+
+msgid "holiday_amount"
+msgstr "Holiday amount"
+
+msgid "employees"
+msgstr "Employees"
+
+msgid "delete"
+msgstr "Delete"
+
+msgid "gifts_catalog"
+msgstr "Gifts Catalog"
+
+msgid "contact"
+msgstr "Contact"
+
+msgid "from"
+msgstr "From"
+
+msgid "message"
+msgstr "Message"
+
+msgid "send"
+msgstr "Send"
+
+msgid "message_sent_alert"
+msgstr "Your message has been sent. We'll reply in 2-3 work days."
+
+msgid "message_sending_error_alert"
+msgstr "Your message couldn't be sent. Try again later."
+
+msgid "site_map"
+msgstr "Site map"
+
+msgid "account_verification_alert"
+msgstr "Your account has been verified! You can login now."
+
+msgid "login_alert"
+msgstr "You have been logged in!"
+
+msgid "register_alert"
+msgstr "Your account has been created!"
+
+msgid "email_sent_alert"
+msgstr "Email has been sent!"
+
+msgid "order_alert"
+msgstr "Thank you for using our service! Your order will be processed soon!"
+
+msgid "password_change_alert"
+msgstr "Your password has been changed!"
+
+msgid "address_change_alert"
+msgstr "Your address has been changed!"
+
+msgid "product_name"
+msgstr "Product name"
+
+msgid "description"
+msgstr "Description"
+
+msgid "specs"
+msgstr "Specification"
+
+msgid "price"
+msgstr "Price"
+
+msgid "image"
+msgstr "Product image(Max size: 2MB, type: JPG)"
+
+msgid "file_limit_alert"
+msgstr "Your file size exceedes the limit of 2MB!"
+
+msgid "price_error_alert"
+msgstr "Price value is invalid!"
+msgstr "Price value is invalid!"
+
+msgid "number_of_products"
+msgstr "Number of products:"
+
+msgid "order_form"
+msgstr "Order form"
+
+msgid "payment_info"
+msgstr "Payment Info"
+
+msgid "select"
+msgstr "Select"
+
+msgid "courier"
+msgstr "Courier"
+
+msgid "pickup_point"
+msgstr "Pickup point"
+
+msgid "parcel_locker"
+msgstr "Parcel locker"
+
+msgid "add_to_cart"
+msgstr "Add to cart"
+
+msgid "buy_now"
+msgstr "Buy now"
+
+msgid "ask_for_availability"
+msgstr "Ask for availability"
+
+msgid "max_amount"
+msgstr "Max amount:"
+
+msgid "product_id"
+msgstr "Product id"
+
+msgid "update"
+msgstr "Update"
+
+msgid "change_address_form"
+msgstr "Change address"
+
+msgid "change_email_form"
+msgstr "Change email"
+
+msgid "enter_current_email"
+msgstr "Enter your current email"
+
+msgid "enter_new_email"
+msgstr "Enter your new email"
+
+msgid "enter_password"
+msgstr "Enter your password"
+
+msgid "creation_date"
+msgstr "Creation date"
+
+msgid "total_points"
+msgstr "Total points"
+
+msgid "rules_loyalty_program"
+msgstr "Regulations of the loyalty program"
+
+msgid "cart"
+msgstr "Cart"
+
+msgid "log_in"
+msgstr "Log In"
+
+msgid "profile"
+msgstr "Profile"
+
+msgid "settings"
+msgstr "Settings"
+
+msgid "logout"
+msgstr "Logout"
+
+msgid "search"
+msgstr "Search"
+
+msgid "forgot_password"
+msgstr "Forgot password"
+
+msgid "order_history"
+msgstr "Order history"
+
+msgid "order"
+msgstr "Order"
+
+msgid "countries"
+msgstr "Countries"
+
+msgid "payment_method"
+msgstr "Payment method"
+
+msgid "delivery_type"
+msgstr "Delivery type"
+
+msgid "order_price_error"
+msgstr "Error has occured during your order. We're sorry for inconvenience, please try again later."
+
+msgid "all_rights_reserved"
+msgstr "All rights reserved."
+
+msgid "generate"
+msgstr "Generate CSV"
+
+msgid "submit"
+msgstr "Submit"
+
+msgid "buy_for_points"
+msgstr "Buy for points"
+
+msgid "cooperation"
+msgstr "Cooperation"
+
+msgid "agree_to_tos"
+msgstr "You have to agree to ToS"
+
+msgid "number_error"
+msgstr "Products count is invalid!"
+
+msgid "invoice"
+msgstr "Invoice"
+
+msgid "seller"
+msgstr "Seller"
+
+msgid "company_name"
+msgstr "Company name"
+
+msgid "buyer"
+msgstr "Buyer"
+
+msgid "contractor"
+msgstr "Contractor"
+
+msgid "number"
+msgstr "Number"
+
+msgid "account"
+msgstr "Account"
+
+msgid "index"
+msgstr "Index"
+
+msgid "product_name"
+msgstr "Product name"
+
+msgid "product_status"
+msgstr "Product status"
+
+msgid "netto_price"
+msgstr "Net price"
+
+msgid "vat_price"
+msgstr "Tax price"
+
+msgid "total_netto"
+msgstr "Net sum"
+
+msgid "total_vat"
+msgstr "Tax sum"
+
+msgid "total_brutto"
+msgstr "Gross sum"
+
+msgid "price_in_words"
+msgstr "Price in words"
+
+msgid "person_to_pickup"
+msgstr "Person with rights to pick up"
+
+msgid "personToSend"
+msgstr "Person with rights to send"
+
+msgid "total"
+msgstr "Total"
+
+msgid "total_to_pay"
+msgstr "Total to pay"
+
+msgid "date_min"
+msgstr "Date min"
+
+msgid "date_max"
+msgstr "Date max"
+
+msgid "currency"
+msgstr "Currency"
+
+msgid "privacy_policy"
+msgstr "Privacy Policy"
+
+msgid "terms_of_service"
+msgstr "Terms of Service"
+
+msgid "message_type"
+msgstr "Message type"
+
+msgid "opinion"
+msgstr "Opinion"
+
+msgid "complaint"
+msgstr "Complaint"
+
+msgid "cooperative_offer"
+msgstr "Cooperative offer"
+
+msgid "media_contact"
+msgstr "Media contact"
+
+msgid "other"
+msgstr "Other"
+
+msgid "sub_category"
+msgstr "Sub Category"
+
+msgid "products"
+msgstr "Products"
+
+msgid "filters"
+msgstr "Filters"
+

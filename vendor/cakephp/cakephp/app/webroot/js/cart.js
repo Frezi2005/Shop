@@ -1,24 +1,24 @@
 $(function() {
-    var cart = JSON.parse(localStorage.getItem("cart"));
+    var cart = (JSON.parse(localStorage.getItem("cart")) == null) ? history.back() : JSON.parse(localStorage.getItem("cart"));
     var sum = 0;
 
     for (var i = 0; i < cart.length; i++) {
-        sum += parseInt(cart[i].count) * parseFloat(cart[i].price); 
-        $(".products").append("<div class='product'><p class='productName' title='" + cart[i].name + "'><i class='fas fa-trash-alt trashIcon' data-product-id='" + cart[i].id + "'></i>" + cart[i].name + "</p><br/><span class='productCount'>" + cart[i].count + "</span><span class='productPrice'>" + cart[i].price + "USD</span></div>");
+        sum += parseInt(cart[i].count) * parseFloat(cart[i].price);
+        $(".products").append(`<div class='product m-2'><div class='row'><p class='productName float-start col-12' title='${cart[i].name}'><i class='fas fa-trash-alt trashIcon float-end' data-product-id='${cart[i].id}'></i>${cart[i].name}</p></div><div class='row'><span class='productCount text-start col-6'>${cart[i].count}</span><span class='productPrice text-end col-6'>${cart[i].price}USD</span></div></div>`);
     }
 
-    if (!sum) {
+    if (!sum || sum == null) {
         history.back();
     }
 
-    $(".products").append("<span>Total: "+(Math.round((sum + Number.EPSILON) * 100) / 100)+"$</span>");
+    $(".products").append(`<span class="m-2">Total: ${Math.round((sum + Number.EPSILON) * 100) / 100}$</span>`);
 
     $(".trashIcon").each(function () {
         $(this).click(function () {
             removeFromCart($(this).data("product-id"));
             var newSum = 0;
             for (var i = 0; i < JSON.parse(localStorage.getItem("cart")).length; i++) {
-                newSum += parseInt(JSON.parse(localStorage.getItem("cart"))[i].count) * parseFloat(JSON.parse(localStorage.getItem("cart"))[i].price); 
+                newSum += parseInt(JSON.parse(localStorage.getItem("cart"))[i].count) * parseFloat(JSON.parse(localStorage.getItem("cart"))[i].price);
             }
             $(".products > span").text(Math.round((newSum + Number.EPSILON) * 100) / 100);
             $(this).parent().parent().remove();
@@ -26,7 +26,7 @@ $(function() {
             displayAmount(cart);
         });
     });
-    
+
     $("button#order").click(function() {
         location.replace("http://localhost/Shop/vendor/cakephp/cakephp/order");
     });

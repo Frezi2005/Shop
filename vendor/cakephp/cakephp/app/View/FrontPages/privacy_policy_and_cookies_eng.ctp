@@ -1,3 +1,4 @@
+<div id="text" class="offset-xxl-3 col-xxl-6 offset-xl-3 col-xl-6 offset-2 col-8">
 <h1>Privacy Policy</h1>
 <p>Last updated: March 31, 2022</p>
 <p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
@@ -173,3 +174,4 @@
 <ul>
 <li>By visiting this page on our website: <a href="https://www.alphatech.com/privacy-policy-and-cookies" rel="external nofollow noopener" target="_blank">https://www.alphatech.com/privacy-policy-and-cookies</a></li>
 </ul>
+</div>

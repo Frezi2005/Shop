@@ -1,20 +1,29 @@
+.main {
+	margin-top: 9px;
+}
+
 div#orderForm {
     float: left;
+	position: relative;
 }
 
 div#paymentInfo {
     float: left;
-    width: 300px;
+    /*width: 300px;*/
     text-align: center;
     margin-top: 20px;
 }
 
 div#info {
     margin: auto;
-} 
+}
+
+div#info input {
+	width: auto;
+}
 
 div#paymentInfo input {
-    width: 250px;
+    /*width: 250px;*/
     margin: auto;
     display: block;
 }
@@ -31,4 +40,20 @@ div#info div#imgGrid {
     grid-template-columns: 50% 50%;
     grid-template-rows: 50% 50%;
     grid-gap: 10px;
+}
+.active {
+	border: 2px solid black;
+}
+
+#checkboxError {
+	display: none;
+	color: red;
+}
+
+form {
+	width: auto;
+}
+
+form select, form input {
+	width: 100%;
 }

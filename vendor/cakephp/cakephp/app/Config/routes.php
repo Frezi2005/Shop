@@ -19,13 +19,13 @@
  * @since         CakePHP(tm) v 0.2.9
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
- 
+
 /**
  * Here, we are connecting "/" (base path) to controller called "Pages",
  * its action called "display", and we pass a param to select the view file
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
-		
+
 	Router::parseExtensions('xml');
 	Router::connect("/search", 					   array("controller" => "products", "action" => "search"));
 	Router::connect("/product", 				   array("controller" => "products", "action" => "product"));
@@ -57,8 +57,10 @@
 	Router::connect("/cooperation",                array("controller" => "frontPages", "action" => "cooperation"));
 	Router::connect("/contact",                    array("controller" => "frontPages", "action" => "contact"));
 	Router::connect("/partnership",                array("controller" => "frontPages", "action" => "partnership"));
-	Router::connect("/terms-of-service",           array("controller" => "frontPages", "action" => "termsOfService"));
-	Router::connect("/privacy-policy-and-cookies", array("controller" => "frontPages", "action" => "privacyPolicyAndCookies"));
+	Router::connect("/terms-of-service-pol",           array("controller" => "frontPages", "action" => "termsOfServicePol"));
+	Router::connect("/terms-of-service-eng",           array("controller" => "frontPages", "action" => "termsOfServiceEng"));
+	Router::connect("/privacy-policy-and-cookies-pol", array("controller" => "frontPages", "action" => "privacyPolicyAndCookiesPol"));
+	Router::connect("/privacy-policy-and-cookies-eng", array("controller" => "frontPages", "action" => "privacyPolicyAndCookiesEng"));
 	Router::connect("/generate-hashed-password",   array("controller" => "frontPages", "action" => "generateHashedPassword"));
 	Router::connect("/change-language",            array("controller" => "frontPages", "action" => "changeLanguage"));
 	Router::connect("/get-sub-categories",         array("controller" => "frontPages", "action" => "getSubCategories"));
@@ -103,7 +105,7 @@
 	Router::connect("/get-orders",   		   	   array("controller" => "orders", "action" => "getOrders"));
 
 	Router::connect("/buy-gift",   		   	   	   array("controller" => "gifts", "action" => "buyGift"));
-	
+
 /**
  * ...and connect the rest of "Pages" controller"s URLs.
  */

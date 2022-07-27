@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<?php 
+		<?php
 			//Setting charset, loading scipts, libraries and styles
 			echo $this->Html->charset();
+			if ($this->Session->read("language") == "eng"){
+				$this->Html->script("lang_en", array("inline" => false));
+			} else {
+				$this->Html->script("lang_pl", array("inline" => false));
+			}
 			echo $this->Html->script("../../../components/jquery/jquery.min");
 			echo $this->Html->css("../../../components/jqueryui/jquery-ui.min");
 			echo $this->Html->script("../../../components/jqueryui/jquery-ui");
@@ -14,7 +19,7 @@
 			echo $this->Html->css("layout");
 			echo $this->Html->script("product");
 			echo $this->Html->script("main");
-			
+
 			echo $this->fetch("meta");
 			echo $this->fetch("css");
 			echo $this->fetch("script");
@@ -28,85 +33,116 @@
 		</div>
 		<div id="container">
 			<nav>
-				<p class="logo col-lg-1 col-md-1 col-sm-1"><a href="home"><?= $this->Html->image("logo.png");?></a></p>
-				<div class="searchBox col-lg-2 col-md-3 col-sm-4">
-					<input class="searchInput" type="search" placeholder="Search...">
+				<p class="logo offset-1 col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3 float-start"><a href="home"><?= $this->Html->image("logo.png");?></a></p>
+				<div class="searchBox col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-7 float-start">
+					<input class="searchInput" type="search" placeholder="<?=__("search")?>...">
 					<button class="searchBtn"><i class="fas fa-search"></i></button>
 					<div class="searchResults">
 						<div class="innerSearchResults"></div>
 					</div>
 				</div>
-				
-				<div class="links col-lg-6 col-md-5 col-sm-4">
-					<p class="menu">
+				<div class="links col-xxl-5 col-xl-5 col-lg-5 col-md-4 col-sm-1 float-start">
+					<p class="menu float-end">
 						<i class="fas fa-bars"></i>
 					</p>
 					<div class="hoverMenu">
 						<p class="close">
 							X
 						</p>
-						<select class="languageSelect">
-							<?php
-								if ($this->Session->read("language") == "eng") {
-									echo "<option value='eng'>".__("eng")."</option>";
-									echo "<option value='pol'>".__("pol")."</option>";
-								} else {
-									echo "<option value='pol'>".__("pol")."</option>";
-									echo "<option value='eng'>".__("eng")."</option>";
-								}
-							?>
-						</select>
-						<select class="currencySelect">
-							<option value="USD">USD</option>
-							<option value="PLN">PLN</option>
-							<option value="EUR">EUR</option>
-						</select>
-						<div class="logInLink navLink">
+						<div class="logInLink navLink float-start col-3">
 							<i class="fas fa-user"></i>
-							<span><?php echo ($this->Session->read("loggedIn") == true) ? "Profile" : "Log in"?></span>
+							<span><?php echo ($this->Session->read("loggedIn") == true) ? __("profile") : __("log_in")?></span>
 							<div class="logInModal">
 								<?php
-									if ($this->Session->read("loggedIn") != true) {
-										echo "<a href='login'>Log In</a>";
-										echo "<hr>";
-										echo "<a href='register'>Register</a>";
-									} else {
-										echo "<a href='profile'>Profile</a>";
-										echo "<hr>";
-										echo "<a href='settings'>Settings</a>";
-										echo "<hr>";
-										echo "<a href='logout'>Logout</a>";
-									}
+								if ($this->Session->read("loggedIn") != true) {
+									echo "<a href='login'>".__("log_in")."</a>";
+									echo "<hr>";
+									echo "<a href='register'>".__("register")."</a>";
+								} else {
+									echo "<a href='profile'>".__("profile")."</a>";
+									echo "<hr>";
+									echo "<a href='settings'>".__("settings")."</a>";
+									echo "<hr>";
+									echo "<a href='logout'>".__("logout")."</a>";
+								}
 								?>
 							</div>
 						</div>
-						<div class="cartLink navLink">
+						<div class="cartLink navLink float-start col-3">
 							<span id="linkOuter">
 								<i class="fas fa-shopping-cart"></i>
-								<a href="cart">Cart</a>
+								<a href="cart"><?=__("cart")?></a>
 								<span id="cartProductsAmount"></span>
 							</span>
 							<div class="cartModal"></div>
 						</div>
+						<select class="languageSelect float-start col-3">
+							<?php
+							if ($this->Session->read("language") == "eng") {
+								echo "<option value='eng'>".__("eng")."</option>";
+								echo "<option value='pol'>".__("pol")."</option>";
+							} else {
+								echo "<option value='pol'>".__("pol")."</option>";
+								echo "<option value='eng'>".__("eng")."</option>";
+							}
+							?>
+						</select>
+						<select class="currencySelect float-start col-3">
+							<option value="USD">USD</option>
+							<option value="PLN">PLN</option>
+							<option value="EUR">EUR</option>
+						</select>
 					</div>
 				</div>
 			</nav>
-			<?php 
-				if ($_SERVER["REDIRECT_URL"] !== "/Shop/vendor/cakephp/cakephp/app/webroot/home") {
+			<?php
+				if ($_SERVER["REDIRECT_URL"] !== "/Shop/vendor/cakephp/cakephp/app/webroot/home" && strpos($_SERVER["HTTP_REFERER"], "order") === false) {
 					echo "<a id='back' href='#'><i class='fas fa-arrow-left'></i></a>";
-				} 
+				}
 			?>
-			
-			<div id="content">
+
+			<div id="content" class="col-12">
 				<?php
-					if (strpos($_SERVER["REDIRECT_URL"], "login") === false && strpos($_SERVER["REDIRECT_URL"], "register") === false && strpos($_SERVER["REDIRECT_URL"], "contact") === false && strpos($_SERVER["REDIRECT_URL"], "ask-for-account") === false) {
+
+					$sites = [
+						"login",
+						"register",
+						"contact",
+						"ask-for-account",
+						"admin-panel",
+						"settings",
+						"add-product-to-database",
+						"change-email-form",
+						"change-address-form",
+						"order-history",
+						"orders-report",
+						"update-employee-page",
+						"forgot-password-page",
+						"privacy-policy-and-cookies",
+						"terms-of-service",
+						"remove-employee-page",
+						"delivery-form",
+						"remove-products-form",
+						"update-image-form",
+						"edit-product-form"
+					];
+					$display = true;
+
+					for($i = 0; $i < count($sites); $i++) {
+						if(strpos($_SERVER["REDIRECT_URL"], $sites[$i]) !== false) {
+							$display = false;
+							break;
+						}
+					}
+
+					if ($display) {
 						echo $this->element("side_menu");
 					}
 					echo $this->fetch("content");
 				?>
 			</div>
 			<footer class="text-center justify-content-center">
-				<p class="col-lg-12 h-20">Kamil Waniczek <?= date("Y"); ?> &copy; All rights reserved.</p>
+				<p class="col-lg-12 h-20">Kamil Waniczek <?= date("Y"); ?> &copy; <?=__("all_rights_reserved")?> <a href="privacy-policy-and-cookies-<?=$this->Session->read("language")?>"><?=__("privacy_policy")?></a><a href="terms-of-service-<?=$this->Session->read("language")?>"><?=__("terms_of_service")?></a></p>
 				<!-- <div class="col-lg-10 h-80 mx-auto">
 					<div class="col-lg-3 float-start">
 						<ul class="footerUsefulLinks1">

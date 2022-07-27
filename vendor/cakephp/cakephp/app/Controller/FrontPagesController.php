@@ -91,7 +91,7 @@ class FrontPagesController extends AppController {
 		$this->set("randomProducts", $this->Product->find("all", array("order" => "rand()", "limit" => 4, "fields" => array("id", "name", "price"))));
 	}
 
-	public function registerPage() 
+	public function registerPage()
 	{
 
 	}
@@ -122,20 +122,28 @@ class FrontPagesController extends AppController {
 	}
 
 	public function contact() {
-	
+
 	}
 
 	public function partnership() {
 
 	}
 
-	public function termsOfService() {
+	public function termsOfServicePol() {
 
 	}
 
-	public function privacyPolicyAndCookies() {
-		
-	} 
+	public function termsOfServiceEng() {
+
+	}
+
+	public function privacyPolicyAndCookiesPol() {
+
+	}
+
+	public function privacyPolicyAndCookiesEng() {
+
+	}
 
 	public function generateHashedPassword() {
 		$this->autoRender = false;
@@ -183,6 +191,6 @@ class FrontPagesController extends AppController {
 	}
 
 	public function forgotPasswordPage() {
-		
+
 	}
 }

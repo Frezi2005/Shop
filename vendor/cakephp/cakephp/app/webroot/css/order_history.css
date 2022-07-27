@@ -1,20 +1,55 @@
 div#orders {
     display: flex;
     flex-direction: column;
-    width: 60%;
+	/*float: left;*/
+	/*margin-left: 100px;*/
+}
+
+#content {
+	float: left;
+	height: 100%;
+	width: 100%;
+}
+
+div#filters {
+	/*float: left;*/
+	/*margin: 70px 80px 0 40px;*/
+	display: flex;
+	flex-direction: column;
+	transition: height 0.5s ease-in-out;
+	overflow: hidden !important;
+}
+
+div#filters > *:not(p):not(div), div#filters > div *:not(p):not(div) {
+	margin: 10px 0;
+	padding: 5px;
+}
+
+div#filters p {
+	margin: 0 20px;
+}
+
+div#filters button {
+	outline: none;
+	border: 2px solid #b0ffb8;
+	background-color: #ffffff;
+	margin: auto;
+	height: 50px;
+	border-radius: 50px;
 }
 
 div.order {
     height: 60px;
-    width: 800px;
+    width: calc(100% - 20px * 2);
     background-color: #fff;
     border-radius: 50px;
     -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
     line-height: 40px;
-    margin: 20px;
     padding: 10px;
+	margin: 20px;
+	font-size: 15px;
 }
 
 div.order span:not(:last-of-type) {
@@ -24,8 +59,23 @@ div.order span:not(:last-of-type) {
     text-align: center;
 }
 
+div.order span {
+	height: 40px;
+}
+
+div.order span:nth-of-type(2) {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
 div.order span:nth-of-type(3) {
-    width: 20%;
+    width: 25%;
+}
+
+div.order span:nth-of-type(5) {
+	width: 10%;
 }
 
 span.images {
@@ -39,3 +89,31 @@ div.order img {
     height: 40px;
     line-height: 40px;
 }
+
+.fa-angle-right {
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+}
+
+.filters-dropdown {
+	font-size: 20px;
+	display: none;
+}
+
+@media (max-width: 991px) {
+	div#content {
+		display: flex;
+		flex-direction: column;
+		flex-flow: column-reverse;
+	}
+
+	#filters {
+		height: 0;
+		overflow-y: hidden;
+	}
+
+	.filters-dropdown {
+		display: block;
+	}
+}
+

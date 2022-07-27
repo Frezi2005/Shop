@@ -1,4 +1,4 @@
-<?php 
+<?php
 
     echo $this->Html->css("form");
     echo $this->Html->css("settings");
@@ -6,14 +6,14 @@
 
 ?>
 <div id="main">
-    <p><a href="change-email-form">Change email</a></p>
-    <p><a href="">Change password</a></p>
-    <p><a href="change-address-form">Change address</a></p>
-    <?php 
+    <p><a href="change-email-form"><?=__("change_email")?></a></p>
+    <p><a href=""><?=__("change_password")?></a></p>
+    <p><a href="change-address-form"><?=__("change_address")?></a></p>
+    <?php
         if ($is_admin) {
-            echo "<a href=\"admin-panel\">Admin Panel</a>";
+            echo "<a href='admin-panel'>".__("admin_panel")."</a>";
         } else {
-            echo "<p><a href=\"\" id=\"delAccount\">Delete account</a></p>";
+            echo "<p><a href='' id='delAccount'>".__("delete_account")."</a></p>";
         }
     ?>
     <!-- <a href="error-test">error test</a> -->

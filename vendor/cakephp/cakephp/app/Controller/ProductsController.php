@@ -90,10 +90,7 @@ class ProductsController extends AppController {
 			$products = $this->Products->find("all", array(
 				"fields" => array("id", "name", "description"),
 				"conditions" => array(
-					"OR" => array(
-						"name LIKE" => $this->params["url"]["q"]."%",
-						"description LIKE" => $this->params["url"]["q"]."%"
-					)
+					"name LIKE" => $this->params["url"]["q"]."%"
 				),
 				"limit" => 15
 			));
@@ -141,6 +138,20 @@ class ProductsController extends AppController {
 				$sort_by = "";
 				break;
 		}
+		if (isset($this->params["url"]["category"])) {
+			$products = [];
+			$subCategories = $this->SubCategory->find("all", array("conditions" => array("category_id" => $this->params["url"]["category"])));
+			foreach($subCategories as $subCategory) {
+				$allProducts = $this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategory["SubCategory"]["id"], "price $priceRange"), "limit" => $page * $productsShown, "order" => array($sort_by)));
+				foreach($allProducts as $product) {
+					array_push($products, $product);
+				}
+			}
+			$this->set("productsShown", $productsShown);
+			$this->set("subCategoryId", $this->params["url"]["category"]);
+			$this->set("products", $products);
+			return 0;
+		}
 		if (!isset($this->params["url"]["q"])) {
 			$subCategoryId = $this->SubCategory->find("first", array("conditions" => array("id" => $this->params["url"]["sub_category"]), "fields" => "id"))["SubCategory"]["id"];
 			$products = $this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategoryId, "price $priceRange"), "limit" => $page * $productsShown, "order" => array($sort_by)));
@@ -154,7 +165,7 @@ class ProductsController extends AppController {
 						$index++;
 					}
 
-					for ($i = 0; $i < count($filters); $i++) { 
+					for ($i = 0; $i < count($filters); $i++) {
 						if (!isset($filters[$i][$this->params["url"]["filters"]])) { continue; };
 						$filter = $filters[$i][$this->params["url"]["filters"]][$this->params["url"]["filtersValues"]];
 						if ($filter) {
@@ -221,7 +232,7 @@ class ProductsController extends AppController {
 
 		for ($i = 0; $i < count($subCategoriesIds); $i++) {
 			foreach ($subCategoriesIds[$i] as $key => $value) {
-				$formatted[$value["id"]] = $value["sub_category_name"];
+				$formatted[$value["id"]] = __($value["sub_category_name"]);
 			}
 		}
 
@@ -229,7 +240,7 @@ class ProductsController extends AppController {
 	}
 
 	public function cart() {
-		
+
 	}
 
 	public function returnProductsCount() {
@@ -263,18 +274,19 @@ class ProductsController extends AppController {
 				$countries[$v] = $v;
 			}
 		}
+
 		ksort($countries);
-		$countries = array("None" => "Select") + $countries;
+		$countries = array("" => "") + $countries;
 		$this->set("countries", $countries);
 	}
 
 	public function insertOrderToDB() {
-		
+
 	}
 
 	public function deliveryForm() {
 		$arr = [];
-		$products = $this->Products->find("all", array("fields" => array("id", "name"))); 
+		$products = $this->Products->find("all", array("fields" => array("id", "name")));
 		for ($i = 0; $i < count($products); $i++) {
 			$arr[$products[$i]["Products"]["id"]] = $products[$i]["Products"]["name"];
 		}
@@ -297,7 +309,7 @@ class ProductsController extends AppController {
 
 	public function removeProductsForm() {
 		$arr = [];
-		$products = $this->Products->find("all", array("fields" => array("id", "name"))); 
+		$products = $this->Products->find("all", array("fields" => array("id", "name")));
 		for ($i = 0; $i < count($products); $i++) {
 			$arr[$products[$i]["Products"]["id"]] = $products[$i]["Products"]["name"];
 		}

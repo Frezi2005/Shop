@@ -1,15 +1,17 @@
 div.boxRight {
-    margin-right: 10%;
+    /*margin-right: 10%;*/
     margin-top: 20px;
-    float: right;
+	margin-right: calc(100% / 12);
+    /*float: right;*/
 }
 
 div.slider {
     border: 3px solid #b0ffb8;
     border-radius: 27px;
-    height: 350px;
-    width: 1100px;
+    /*height: 350px;*/
+	/*width: 100%;*/
     background-color: #ffffff;
+	aspect-ratio: 16 / 6;
 }
 
 div.slider-item {
@@ -19,20 +21,19 @@ div.slider-item {
 div.productsList {
     border-top: 1px solid #797979;
     height: 290px;
-    width: 1100px;
     background-color: transparent;
     margin-top: 70px;
 }
 
 div.products {
-    margin-top: 50px;
+    margin-top: 70px;
 }
 
 div.productOnMainPage {
     border: 3px solid #97cbff;
     border-radius: 27px;
-    margin-right: 99px;
-    width: calc((100% / 4) - (99px * 3) / 4);
+    margin-right: 5%;
+    width: calc((100% / 4) - (5% * 3) / 4);
     aspect-ratio: 1;
     float: left;
     background-color: #ffffff;
@@ -68,7 +69,7 @@ div.contact {
     border: 3px solid #b0ffb8;
     border-radius: 27px;
     float: left;
-    margin-left: 10%;
+    /*margin-left: 10%;*/
     height: 150px;
     background-color: #ffffff;
     margin-top: 20px;
@@ -81,9 +82,9 @@ div.contact {
 div.contact a {
     display: flex;
     flex: 1;
-    flex-direction: row;   
+    flex-direction: row;
     line-height: 72px;
-    font-size: 20px; 
+    font-size: 20px;
     text-decoration: none;
     color: black;
     position: relative;

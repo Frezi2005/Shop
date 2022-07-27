@@ -5,7 +5,7 @@ body {
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;    
+    min-height: 100vh;
 }
 
 #container {
@@ -23,45 +23,48 @@ nav {
     background-image: linear-gradient(to right, #bbffc2, #adffb5, #9effa7, #8eff99, #7dfe8a);
 }
 
-nav > * {
-    float: left;
-    line-height: 75px;
+/*nav > * {*/
+/*    float: left;*/
+/*    line-height: 75px;*/
+/*}*/
+
+nav .menu {
+	line-height: 75px;
 }
 
 nav .logo {
-    margin-left: 6%;
-    font-size: 30px;
-    font-weight: bold;
+    height: 100%;
+	padding-bottom: 0;
+	line-height: 75px;
 }
 
 .logo img {
     mix-blend-mode: multiply;
     height: 60px;
     line-height: 75px;
+	margin-left: -37px;
 }
 
-nav .logo a {
-    color: black;
-    text-decoration: none;
-}
+/*nav .logo a {*/
+/*    color: black;*/
+/*    text-decoration: none;*/
+/*}*/
 
 div.searchBox {
     position: relative;
     height: 40px;
     margin-top: calc((75px - 40px) / 2);
-    margin-left: 50px;
 }
 
 nav input {
-    padding-left: 20px;
-    float: left;
-    width: 100%;
+    width: 250px;
     height: 100%;
     border-radius: 27px;
     border: 1px solid #797979;
     -webkit-box-shadow: 0px 2px 6px 0px #000000cc;
     -moz-box-shadow: 0px 2px 6px 0px #000000cc;
     box-shadow: 0px 2px 6px 0px #000000cc;
+	padding-left: 20px;
 }
 
 div.searchResults {
@@ -94,8 +97,8 @@ div.innerSearchResults > p {
     font-size: 14px;
     margin-bottom: 0;
     margin-left: 20px;
-    overflow-x: hidden; 
-    white-space: nowrap; 
+    overflow-x: hidden;
+    white-space: nowrap;
     text-overflow: ellipsis;
     width: 400px;
 }
@@ -112,7 +115,7 @@ div.innerSearchResults > p > a > img {
 nav button {
     position: absolute;
     top: 0;
-    right: 0;
+    left: 175px;
     height: 40px;
     width: 75px;
     border: none;
@@ -129,7 +132,6 @@ nav select {
     margin-top: calc((75px - 40px) / 2);
     border-radius: 27px;
     border: 1px solid #78e4ff;
-    width: 140px;
     text-align: center;
     appearance: none;
     line-height: 38px;
@@ -144,17 +146,17 @@ nav select option {
     background-image: linear-gradient(to right, #bbeeff, #a1e2fe, #88d6ff, #72c8ff, #60baff);
 }
 
-nav .links {
-    float: right;
-    margin-right: 6%;
-}
+/*nav .links {*/
+/*    float: right;*/
+/*    margin-right: 6%;*/
+/*}*/
 
 p.close {
     display: none;
 }
 
 nav .links .menu {
-    float: right;
+    /*float: right;*/
     display: none;
 }
 nav .links .menu i {
@@ -163,11 +165,10 @@ nav .links .menu i {
 }
 
 nav .navLink {
-    float: left;
     margin: auto 0;
-    width: calc(400px / 2 - 40px * 2);
     text-align: center;
     font-size: 20px;
+	line-height: 75px;
 }
 
 nav .navLink a {
@@ -193,7 +194,7 @@ div.logInLink > div.logInModal, div.cartLink > div.cartModal {
     z-index: -1px;
 }
 
-div.logInModal { 
+div.logInModal {
     width: 200px;
 }
 
@@ -246,8 +247,8 @@ div.logInModal hr {
 }
 
 div.logInLink:hover {
-    border: 1px solid #b4b4b4;   
-    border-bottom: 1px solid #ffffff; 
+    border: 1px solid #b4b4b4;
+    border-bottom: 1px solid #ffffff;
     border-radius: 5px 5px 0 0;
     cursor: pointer;
     height: 65px;
@@ -266,7 +267,6 @@ div.categories {
     border-radius: 27px;
     margin-top: 20px;
     float: left;
-    margin-left: 10%;
     height: 500px;
     background-color: #fff;
 }
@@ -289,6 +289,11 @@ div.category {
     display: block;
     padding: 9px 0;
     transition: all 0.2s ease-in-out;
+}
+
+#category-name a {
+	color: black;
+	text-decoration: none;
 }
 
 #category-name:hover {
@@ -416,7 +421,7 @@ a#back {
     text-align: center;
     border-radius: 15px;
     position: absolute;
-    top: 10%;
+    top: 100px;
     left: 2.5%;
     transition: all .3s ease-in-out;
 }
@@ -453,7 +458,7 @@ input[type="checkbox"]:checked + *::before {
     background: #fff;
 }
 
-input[type="checkbox"]:checked + * {
+input[type="checkbox"]:checked + *:not(label) {
     color: #fff;
 }
 
@@ -495,6 +500,85 @@ input[type="checkbox"]:checked + * {
     nav .links .menu {
         display: none;
     }
+}
+
+@media (max-width: 991px) {
+	div.categories {
+		margin-top: 0;
+		border: 0;
+		border-radius: 0;
+		height: 120px;
+	}
+
+	div.categories hr {
+		display: none;
+	}
+
+	ul.categoriesList {
+		padding: 10px;
+		height: 120px;
+	}
+
+	.category {
+		width: calc(100% / 5);
+		float: left;
+		height: 50px;
+	}
+
+	.category > * {
+		height: 100%;
+		width: 100%;
+	}
+
+	#category-name {
+		font-size: 14px;
+		padding: 0;
+		text-align: center;
+		display: table;
+	}
+
+	#category-name > * {
+		display: table-cell;
+		vertical-align: middle;
+		text-align: center;
+	}
+
+	#category-name i {
+		display: none;
+	}
+
+	div.category > .subCategories {
+		left: 0;
+		top: 50px;
+		width: 255px;
+	}
+}
+
+@media (max-width: 503px) {
+	div.categories {
+		height: 170px;
+	}
+
+	ul.categoriesList {
+		height: 170px;
+	}
+
+	.category {
+		width: calc(100% / 4);
+		float: left;
+		height: 50px;
+	}
+
+	.category:nth-last-of-type(-n+2) {
+		width: 50%;
+	}
+}
+
+#main {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 

@@ -15,7 +15,7 @@ $(function() {
         var password = $("input#registerUserFormPassword").val();
         var passwordConfirm = $("input#registerUserFormPasswordConfirm").val();
         var birthDate = $("input#registerUserFormBirthDate").val();
-    
+
         if (grecaptcha.getResponse().length == 0) {
             e.preventDefault();
         }
@@ -24,36 +24,36 @@ $(function() {
 
         if (password_validation(password)) {
             if (password !== passwordConfirm) {
-                text += 'Passwords do not match!\n';
+                text += lang.passwords_match_error;
                 e.preventDefault();
             }
         } else {
-            text += 'Password has to be at least 8 characters long, include only letters and number and at least one uppercase letter!\n';
+            text += lang.password_error;
             e.preventDefault();
         }
 
         if (!text_validation(name, 3, 40)) {
-            text += 'Name has to be at least 3 characters long and maximum 40 characters long!\n';
+            text += lang.name_error;
             e.preventDefault();
         }
 
         if (!text_validation(surname, 2, 50)) {
-            text += 'Surname has to be at least 2 characters long and maximum 50 characters long!\n';
+            text += lang.surname_error;
             e.preventDefault();
         }
 
         if (!email_validation(email)) {
-            text += 'Email is not valid!\n';
+            text += lang.email_error;
             e.preventDefault();
         }
 
         if (!phone_number_validation(phoneNumber)) {
-            text += 'Phone number is not valid!\n';
+            text += lang.phone_error;
             e.preventDefault();
         }
 
         if (!date_validation(birthDate)) {
-            text += 'Birth date is not valid!\n';
+            text += lang.date_error;
             e.preventDefault();
         }
 

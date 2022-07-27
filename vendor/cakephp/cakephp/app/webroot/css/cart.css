@@ -1,12 +1,12 @@
 div.cartContainer {
     float: left;
-    margin-left: 50px;
+    /*margin-left: 50px;*/
     margin-top: 20px;
     border: 3px solid #b0ffb8;
     border-radius: 27px;
     padding: 40px;
-    width: 40%;
-    max-width: 80% !important;
+    /*width: 40%;*/
+    /*max-width: 80% !important;*/
     height: auto;
     max-height: 600px;
     overflow-y: scroll;
@@ -19,26 +19,26 @@ div.products {
 }
 
 .product {
-    width: 90%;
+    /*width: 90%;*/
     height: 150px;
     background-color: #ffffff;
     padding: 40px;
-    margin: 10px;
+    /*margin: 10px;*/
     border-radius: 50px;
     border: 1px solid #aaff91;
 }
 
 .product .productPrice {
-    float: right;
+    /*float: right;*/
 }
 
 .trashIcon {
-    float: right;
+    /*float: right;*/
     cursor: pointer;
 }
 
 button {
-    width: 70px;
+    /*width: 70px;*/
     outline: none;
     border: 2px solid #000000;
     background-color: #ffffff;

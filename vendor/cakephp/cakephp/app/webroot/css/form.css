@@ -1,5 +1,5 @@
 h1 {
-    margin: 20px 0 0 70px;
+	text-align: center;
 }
 
 form, div#info {
@@ -8,6 +8,7 @@ form, div#info {
     border-radius: 27px;
     margin: 30px 70px;
     width: min-content;
+	margin: auto;
 }
 
 form a {
@@ -49,4 +50,11 @@ select {
 
 input[type=checkbox] {
     margin-right: 10px;
+}
+
+.addProductToDbForm {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
