@@ -1,5 +1,5 @@
 <article class="offset-xxl-3 col-xxl-6 offset-xl-3 col-xl-6 offset-2 col-8">
-	<h1 class="page-title text-center">Regulamin serwisu</h1>
+	<h1 class="page-title text-center">Terms of Service</h1>
 	<h2> I. General concepts </h2>
 	<ul>
 		<li> <strong> Regulations </strong> - these regulations </li>
@@ -128,7 +128,7 @@
 		Recipients in cookie files. </p>
 	<p> The scope, purposes, method and principles of data processing are available in the appendices to the Regulations: &#8222; <a
 				href = "https://alphatech.pl/rodo/"> GDPR information obligation </a> &#8221; and in &#8222; <a
-				href = "https://alphatech.pl/privacy-policy-and-cookies/"> Privacy Policy </a> &#8222;, constituting an integral
+				href = "privacy-policy-and-cookies/"> Privacy Policy </a> &#8222;, constituting an integral
 		part of the Regulations. </p>
 	<ul>
 		<li> <em> Data collected during registration: </em> <br> Username, first and last name, e-mail address <p> W

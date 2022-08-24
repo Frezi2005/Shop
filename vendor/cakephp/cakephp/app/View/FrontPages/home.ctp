@@ -18,11 +18,14 @@
 	</div>
 	<div class="productsList">
 		<div class="products">
-			<?php
-				for ($i = 0; $i < 4; $i++) {
-					echo "<div class='productOnMainPage'><p><a href='product?product_id=".$randomProducts[$i]["Product"]["id"]."' target='_self'>".$randomProducts[$i]["Product"]["name"]."</a><br/><span class='price'>".$randomProducts[$i]["Product"]["price"]."USD</span></p></div>";
-				}
-			?>
+			<div class="col-xxl-6 col-12 float-start">
+				<div class='productOnMainPage col-5'><p><a href='product?product_id=<?=$randomProducts[0]["Product"]["id"]?>' target='_self'><?=$randomProducts[0]["Product"]["name"]?></a><br/><span class='price'><?=$randomProducts[0]["Product"]["price"]?>USD</span></p></div>
+				<div class='productOnMainPage col-5 ms-xxl-5 offset-xxl-0 offset-2'><p><a href='product?product_id=<?=$randomProducts[1]["Product"]["id"]?>' target='_self'><?=$randomProducts[1]["Product"]["name"]?></a><br/><span class='price'><?=$randomProducts[1]["Product"]["price"]?>USD</span></p></div>
+			</div>
+			<div class="ps-xxl-4 col-12 col-xxl-6 float-start my-xxl-0 my-5">
+				<div class='productOnMainPage col-5'><p><a href='product?product_id=<?=$randomProducts[2]["Product"]["id"]?>' target='_self'><?=$randomProducts[2]["Product"]["name"]?></a><br/><span class='price'><?=$randomProducts[2]["Product"]["price"]?>USD</span></p></div>
+				<div class='productOnMainPage col-5 ms-xxl-5 offset-xxl-0 offset-2'><p><a href='product?product_id=<?=$randomProducts[3]["Product"]["id"]?>' target='_self'><?=$randomProducts[3]["Product"]["name"]?></a><br/><span class='price'><?=$randomProducts[3]["Product"]["price"]?>USD</span></p></div>
+			</div>
 		</div>
 	</div>
 </div>

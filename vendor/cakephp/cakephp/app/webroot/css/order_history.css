@@ -68,6 +68,7 @@ div.order span:nth-of-type(2) {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	line-height: 20px;
 }
 
 div.order span:nth-of-type(3) {
@@ -93,6 +94,10 @@ div.order img {
 .fa-angle-right {
 	cursor: pointer;
 	transition: all 0.2s ease-in-out;
+}
+
+.fa-file-invoice {
+	margin-left: 5px;
 }
 
 .filters-dropdown {

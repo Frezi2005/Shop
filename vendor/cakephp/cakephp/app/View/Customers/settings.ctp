@@ -7,7 +7,7 @@
 ?>
 <div id="main">
     <p><a href="change-email-form"><?=__("change_email")?></a></p>
-    <p><a href=""><?=__("change_password")?></a></p>
+    <p><a href="change-password-form"><?=__("change_password")?></a></p>
     <p><a href="change-address-form"><?=__("change_address")?></a></p>
     <?php
         if ($is_admin) {

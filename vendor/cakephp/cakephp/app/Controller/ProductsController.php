@@ -339,7 +339,18 @@ class ProductsController extends AppController {
 	}
 
 	public function invoice() {
+		$this->loadModel("User");
+		$this->loadModel("Order");
 		$this->layout = false;
+		$userUUID = json_decode($this->params["url"]["products"], true)["Orders"]["user_id"];
+		$user = $this->User->find("first", array("conditions" => array("id" => $userUUID), "fields" => array("name", "surname", "country", "city", "street", "house_number")));
+		$date = strtotime(json_decode($this->params["url"]["products"], true)["Orders"]["order_date"]);
+		$year = date('Y', $date);
+		$month = date('m', $date);
+		$this->set("geoApiKey", Configure::read("geoApiKey"));
+		$this->set("zipCodeApiKey", Configure::read("zipCodeApiKey"));
+		$this->set("invoice_number", $this->Order->find("first", array("conditions" => array("user_id" => $userUUID, "Month(order_date)" => $month, "Year(order_date)" => $year), "order" => array("order_date DESC"), "fields" => array("invoice_number")))["Order"]["invoice_number"]);
+		$this->set("user", $user);
 	}
 
 	public function editProductForm() {

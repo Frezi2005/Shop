@@ -4,7 +4,7 @@ $(function() {
         var ids = JSON.parse($(this).find("input[type=hidden]").val());
         var html = "";
         for (var i = 0; i < ids.length; i++) {
-            html += `<img src="app/webroot/img/${checkImage(ids[i])}.jpg"/>`;
+            html += `<img class='${(i > 0) ? 'd-lg-inline d-none' : ''}' src="app/webroot/img/${checkImage(ids[i])}.jpg"/>`;
         }
         $(this).find("span.images").append(html);
         $(this).find(".fa-search").each(function() {

@@ -275,7 +275,7 @@ msgid "birth_date"
 msgstr "Data urodzenia"
 
 msgid "tos"
-msgstr "Akceptuje <a href=\"terms-of-service\" target=\"_blank\">warunki korzystania z serwisu</a>"
+msgstr "Akceptuje <a href=\"terms-of-service-pol\" target=\"_blank\">warunki korzystania z serwisu</a>"
 
 msgid "register"
 msgstr "Zarejestruj się"
@@ -638,7 +638,7 @@ msgid "product_status"
 msgstr "Status produktu"
 
 msgid "netto_price"
-msgstr "Cena netto"
+msgstr "Wartość netto"
 
 msgid "vat_price"
 msgstr "Cena vat"
@@ -646,14 +646,20 @@ msgstr "Cena vat"
 msgid "total_netto"
 msgstr "Kwota netto"
 
-msgid "total_vat"
-msgstr "Kwota VAT"
+msgid "vat"
+msgstr "VAT%"
 
-msgid "total_brutto"
-msgstr "Kwota brutto"
+msgid "total_vat"
+msgstr "Kw. VAT"
+
+msgid "unit_brutto_price"
+msgstr "Cena j. brutto"
+
+msgid "brutto_price"
+msgstr "Wartość brutto"
 
 msgid "price_in_words"
-msgstr "Cena słownie"
+msgstr "Słownie"
 
 msgid "person_to_pickup"
 msgstr "Osoba upoważniona do odbioru"
@@ -662,7 +668,7 @@ msgid "personToSend"
 msgstr "Osoba upoważniona do wysyłki"
 
 msgid "total"
-msgstr "Razem"
+msgstr "Ogółem"
 
 msgid "total_to_pay"
 msgstr "Razem do zaþłaty"
@@ -708,3 +714,60 @@ msgstr "Produkty"
 
 msgid "filters"
 msgstr "Filtry"
+
+msgid "payment_date"
+msgstr "Termin płatności"
+
+msgid "service_date"
+msgstr "Data wykonania usługi"
+
+msgid "unit_of_measure"
+msgstr "J.m."
+
+msgid "unit"
+msgstr "szt."
+
+msgid "amount"
+msgstr "Il."
+
+msgid "vat_rate"
+msgstr "Stawka VAT"
+
+msgid "vat_value"
+msgstr "Wartość VAT"
+
+msgid "to_pay"
+msgstr "Do zapłaty"
+
+msgid "payed"
+msgstr "Zapłacono"
+
+msgid "preview"
+msgstr "Podgląd"
+
+msgid "change-email-error"
+msgstr "Twój email lub hasło są nieprawidłowe!"
+
+msgid "change-address-error"
+msgstr "Pola nie mogą być puste!"
+
+msgid "available"
+msgstr "Dostępnych"
+
+msgid "change_password_form"
+msgstr "Formularz zmiany hasła"
+
+msgid "new_password"
+msgstr "Nowe hasło"
+
+msgid "new_password_confirm"
+msgstr "Potwierdź nowe hasło"
+
+msgid "current_password"
+msgstr "Aktualne hasło"
+
+msgid "bill"
+msgstr "Rachunek"
+
+msgid "invoice_tax"
+msgstr "FAKTURA vat nr"

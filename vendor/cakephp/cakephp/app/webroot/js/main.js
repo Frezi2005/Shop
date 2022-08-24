@@ -136,8 +136,10 @@ $(function() {
     //});
 
     $(".searchBtn").click(function() {
-        window.location.replace("http://localhost/Shop/vendor/cakephp/cakephp/products-list?q=" + $("input.searchInput").val());
-    });
+		if($("input.searchInput").val().length > 0) {
+			window.location.replace("http://localhost/Shop/vendor/cakephp/cakephp/products-list?q=" + $("input.searchInput").val());
+		}
+	});
 
     $(".currencySelect").change(function() {
         var currency = $(this).val();

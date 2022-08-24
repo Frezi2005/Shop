@@ -90,7 +90,6 @@ class OrdersController extends AppController {
 		$this->loadModel("Orders");
 		$this->loadModel("Users");
 		$this->loadModel("Products");
-		$this->loadModel("Invoices");
 
 		if(!$data || !isset($data)) {
 			$this->redirect("/home");
@@ -107,8 +106,6 @@ class OrdersController extends AppController {
 			$this->redirect("/home");
 		}
 
-		$number = $this->Invoices->find("first", array("order" => array("id" => "DESC")))["Invoices"]["invoice_number"];
-		die;
 
 		if (empty($this->Session->read("userUUID"))) {
 			$this->Users->save(array(
@@ -144,6 +141,8 @@ class OrdersController extends AppController {
 		}
 
 		$products = json_decode($data["cart"], true);
+		$orders = $this->Orders->find("all", array("conditions" => array("user_id" => $this->Session->read("userUUID"), "Month(order_date)" => 9, "Year(order_date)" => date("Y")), array("order" => "order_date DESC"), array("fields" => "invoice_number")));
+		$invoiceNumber = (count($orders) > 0) ? $orders[0]["Orders"]["invoice_number"] : 0;
 
 		$this->Orders->save(array(
 			"user_id" => (empty($this->Session->read("userUUID"))) ? $userUuid : $this->Session->read("userUUID"),
@@ -163,7 +162,8 @@ class OrdersController extends AppController {
 			"order_points" => (empty($this->Session->read("userUUID"))) ? 0 : floor(intval($data["price"]) / 100),
 			"promo_code_id" => null,
 			"currency" => $data["currency"],
-			"shop_id" => null
+			"shop_id" => null,
+			"invoice_number" => ++$invoiceNumber
 		));
 
 //		$this->Invoices->save(array(

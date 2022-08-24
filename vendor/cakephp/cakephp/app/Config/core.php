@@ -38,6 +38,8 @@ Configure::write('Config.max_per_page', 8);
 	Configure::write('debug', 2);
 	Configure::write("hierarchy", array("admin-panel" => [5, 4, 3, 2, 1], "list-employees" => [5, 4, 3], "ksiegowosc" => [5, 4], "kadry" => [5, 3], "kierownictwo" => 2, "pracownicy" => [5, 1]));
 	Configure::write("icons", array("computers_and_laptops" => "fa-laptop", "peripherals" => "fa-keyboard", "phones_and_tablets" => "fa-mobile", "tv" => "fa-tv", "audio_sets" => "fa-headphones", "for_gamers" => "fa-gamepad", "car_accessories" => "fa-car", "appliances" => "fa-blender", "lighting" => "fa-lightbulb", "cameras" => "fa-camera"));
+	Configure::write('geoApiKey', "5673dd870804dead2a2c98701296402d");
+	Configure::write('zipCodeApiKey', "frezi2005");
 
 /**
  * Configure the Error handler used to handle errors for your application. By default

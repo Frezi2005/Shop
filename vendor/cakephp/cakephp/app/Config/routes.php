@@ -52,6 +52,7 @@
 	Router::connect("/change-email",          	   array("controller" => "profiles", "action" => "changeEmail"));
 	Router::connect("/change-address-form",        array("controller" => "profiles", "action" => "changeAddressForm"));
 	Router::connect("/change-address",             array("controller" => "profiles", "action" => "changeAddress"));
+	Router::connect("/change-password-form",             array("controller" => "profiles", "action" => "changePasswordForm"));
 
 	Router::connect("/about-us", 				   array("controller" => "frontPages", "action" => "aboutUs"));
 	Router::connect("/cooperation",                array("controller" => "frontPages", "action" => "cooperation"));

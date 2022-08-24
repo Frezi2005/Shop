@@ -12,6 +12,7 @@ div.slider {
 	/*width: 100%;*/
     background-color: #ffffff;
 	aspect-ratio: 16 / 6;
+	overflow: hidden;
 }
 
 div.slider-item {
@@ -32,8 +33,8 @@ div.products {
 div.productOnMainPage {
     border: 3px solid #97cbff;
     border-radius: 27px;
-    margin-right: 5%;
-    width: calc((100% / 4) - (5% * 3) / 4);
+    /*margin-right: 5%;*/
+    /*width: calc((100% / 4) - (5% * 3) / 4);*/
     aspect-ratio: 1;
     float: left;
     background-color: #ffffff;
@@ -52,7 +53,7 @@ div.productOnMainPage img {
 
 div.productOnMainPage > p {
     text-align: center;
-    margin-top: 130px;
+    margin-top: 55%;
     padding: 0 10px;
 }
 
@@ -102,4 +103,10 @@ div.contact a:first-of-type::after {
     transform: translateX(-50%);
     bottom: 0;
     opacity: 0.25;
+}
+
+@media (min-width: 1400px) {
+	div.products > div:first-of-type {
+		padding-left: 25px;
+	}
 }

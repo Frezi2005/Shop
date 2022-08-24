@@ -4,6 +4,7 @@
 ?>
 <div id="orders" class="offset-1 col-xxl-6 col-xl-6 col-lg-7 col-10 float-start">
     <?php
+		$ids = array();
         foreach ($orders as $order) {
             $products = json_decode($order["Orders"]["products"], true);
             $ids = array();
@@ -12,9 +13,17 @@
             }
             $ids = json_encode($ids);
             $fields = json_encode($order);
-            echo "<div class='order'><input type='hidden' value='{$ids}'/><input type='hidden' value='{$fields}' class='fields'/><span class='images'></span><span>".__($order["Orders"]["delivery_type"])."</span><span>".substr($order["Orders"]["order_date"], 0, -3)."</span><span>{$order["Orders"]["total_price"]}</span><span>{$order["Orders"]["currency"]}</span><span><i class='fas fa-search'></i><a href='invoice?products=$fields' target='_blank'><i class='fas fa-file-invoice'></i></a></span></div>";
+			$date = explode(" ", $order["Orders"]["order_date"])[0];
+			$hours = explode(" ", $order["Orders"]["order_date"])[1];
+            echo "<div class='order'><input type='hidden' value='{$ids}'/><input type='hidden' value='{$fields}' class='fields'/><span class='images'></span><span>".__($order["Orders"]["delivery_type"])."</span><span>".$date." <span class='d-md-inline d-none'>".substr($hours, 0, -3)."</span></span><span>{$order["Orders"]["total_price"]}</span><span>{$order["Orders"]["currency"]}</span><span><i class='fas fa-search' title='".__("preview")."'></i><a href='invoice?products=$fields' target='_blank' title='".__("invoice")."'><i class='fas fa-file-invoice'></i></a></span></div>";
         }
+//		echo "<i class='fas fa-angle-left'></i>";
+//		for($i = 1; $i <= $count; $i++) {
+//			echo ($i == $page) ? "<b>$i</b>" : $i;
+//		}
+//		echo "<i class='fas fa-angle-right'></i>";
     ?>
+
 </div>
 <div id="filters" class="offset-1 col-xxl-3 col-xl-3 col-lg-2 col-10 float-start">
 	<select id="sortHistory">
@@ -48,5 +57,4 @@
 	<button id="filter" class="col-12"><?=__("filter")?></button>
 </div>
 <div class="col-10 offset-1 text-center filters-dropdown" data-open="false"><i class="fas fa-angle-right mx-2"></i><?=__("filters")?></div>
-
 

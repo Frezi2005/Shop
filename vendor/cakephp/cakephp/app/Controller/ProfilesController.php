@@ -98,6 +98,10 @@ class ProfilesController extends AppController {
 		$data = $this->request["data"]["changeAddressForm"];
 		foreach($data as $key => $value) {
 			$data[$key] = "'".$value."'";
+			if(preg_replace('/\s+/', '', $value) == "") {
+				$this->Session->write("changeAddressError", true);
+				$this->redirect("/change-address-form");
+			}
 		}
 		$this->Users->updateAll($data, array("id" => $this->Session->read("userUUID")));
 		$this->Session->write("changedAddress", true);
@@ -105,11 +109,28 @@ class ProfilesController extends AppController {
 	}
 
 	public function changeAddressForm() {
-		
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_URL, "http://country.io/names.json");
+		$result = curl_exec($ch);
+		curl_close($ch);
+
+		$countries = array();
+		$obj = json_decode($result, true);
+		foreach ($obj as $k => $v) {
+			if ($v != "Russia") {
+				$countries[$v] = $v;
+			}
+		}
+
+		ksort($countries);
+		$countries = array("" => "") + $countries;
+		$this->set("countries", $countries);
 	}
 
 	public function changeEmailForm() {
-	
+
 	}
 
 	public function sendChangeEmail() {
@@ -120,23 +141,26 @@ class ProfilesController extends AppController {
 		$changeEmailData = $this->request["data"]["changeEmailForm"];
 		$user = $this->Users->find("first", array("conditions" => array("email" => $changeEmailData["currentEmail"], "password" => $this->SecurityUtils->encrypt($changeEmailData["password"]))));
 		$this->Users->updateAll(array("email_change_creation_date" => "'".date("Y-m-d H:i:s")."'", "email_change_expiration_date" => "'".date("Y-m-d H:i:s", strtotime("+1 hours"))."'", "new_email" => "'".$changeEmailData["newEmail"]."'"), array("password" => $this->SecurityUtils->encrypt($changeEmailData["password"])));
-		
+		$this->Session->write("data", $changeEmailData);
 		if ($user) {
 			$transport = (new Swift_SmtpTransport('ssl://smtp.gmail.com', 465))
 				->setUsername('internetspam.pl@gmail.com')
 				->setPassword('internetspam.pl');
-	
+
 			$mailer = new Swift_Mailer($transport);
-	
+
 			$message = (new Swift_Message('Change email'))
 				->setFrom(['internetspam.pl@gmail.com' => 'AlphaTech'])
 				->setTo(['kamil.wan05@gmail.com'])
 				->setBody('');
-	
+
 			if ($mailer->send($message)) {
 				$this->Session->write("changeEmailSent", true);
 				$this->redirect("/logout");
 			}
+		} else {
+			$this->Session->write("changeEmailError", true);
+			$this->redirect("/change-email-form");
 		}
 	}
 
@@ -145,5 +169,9 @@ class ProfilesController extends AppController {
 		$user = $this->Users->find("first", array("conditions" => array("id" => $this->params["url"]["id"])));
 		debug($user);
 		die;
+	}
+
+	public function changePasswordForm() {
+
 	}
 }

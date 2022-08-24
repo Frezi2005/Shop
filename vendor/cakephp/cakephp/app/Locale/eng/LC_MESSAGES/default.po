@@ -275,7 +275,7 @@ msgid "birth_date"
 msgstr "Birth date"
 
 msgid "tos"
-msgstr "I accept the <a href=\"terms-of-service\" target=\"_blank\">terms of service</a>"
+msgstr "I accept the <a href=\"terms-of-service-eng\" target=\"_blank\">terms of service</a>"
 
 msgid "register"
 msgstr "Register"
@@ -483,7 +483,6 @@ msgstr "Your file size exceedes the limit of 2MB!"
 
 msgid "price_error_alert"
 msgstr "Price value is invalid!"
-msgstr "Price value is invalid!"
 
 msgid "number_of_products"
 msgstr "Number of products:"
@@ -630,7 +629,7 @@ msgid "account"
 msgstr "Account"
 
 msgid "index"
-msgstr "Index"
+msgstr "No."
 
 msgid "product_name"
 msgstr "Product name"
@@ -641,17 +640,17 @@ msgstr "Product status"
 msgid "netto_price"
 msgstr "Net price"
 
-msgid "vat_price"
-msgstr "Tax price"
-
-msgid "total_netto"
-msgstr "Net sum"
+msgid "vat"
+msgstr "TAX%"
 
 msgid "total_vat"
-msgstr "Tax sum"
+msgstr "Total TAX"
 
-msgid "total_brutto"
-msgstr "Gross sum"
+msgid "unit_brutto_price"
+msgstr "Unit gross price"
+
+msgid "brutto_price"
+msgstr "Gross price"
 
 msgid "price_in_words"
 msgstr "Price in words"
@@ -710,3 +709,59 @@ msgstr "Products"
 msgid "filters"
 msgstr "Filters"
 
+msgid "payment_date"
+msgstr "Payment date"
+
+msgid "service_date"
+msgstr "Date of service"
+
+msgid "unit_of_measure"
+msgstr "U.m."
+
+msgid "unit"
+msgstr "pcs."
+
+msgid "amount"
+msgstr "Amt."
+
+msgid "vat_rate"
+msgstr "TAX rate"
+
+msgid "vat_value"
+msgstr "TAX value"
+
+msgid "to_pay"
+msgstr "To pay"
+
+msgid "payed"
+msgstr "Payed"
+
+msgid "preview"
+msgstr "Preview"
+
+msgid "change-email-error"
+msgstr "Your email or password is incorrect!"
+
+msgid "change-address-error"
+msgstr "Fields cannot be empty!"
+
+msgid "available"
+msgstr "Available"
+
+msgid "change_password_form"
+msgstr "Password change form"
+
+msgid "new_password"
+msgstr "New password"
+
+msgid "new_password_confirm"
+msgstr "New password confirm"
+
+msgid "current_password"
+msgstr "Current password"
+
+msgid "bill"
+msgstr "Bill"
+
+msgid "invoice_tax"
+msgstr "VAT invoice no"

@@ -90,7 +90,9 @@ class CustomersController extends AppController {
 		}
 	}
 
-	public function register() {
+	
+
+		public function register() {
 		$this->autoRender = false;
 		$customerRegisterData = $this->request["data"]["registerUserForm"];
 		$this->Session->write("rememberedFieldsData", $customerRegisterData);
@@ -182,13 +184,25 @@ class CustomersController extends AppController {
 	}
 
 	public function changePassword() {
+		debug("test");
+		die;
 		$this->autoRender = false;
 		$changePasswordData = $this->request["data"]["changePasswordForm"];
+
 		if ($changePasswordData["newPasswordConfirm"] == $changePasswordData["newPassword"]) {
 			$this->User->password = $this->SecurityUtils->encrypt($changePasswordData["currentPassword"]);
-			$this->User->saveField("password", $this->SecurityUtils->encrypt($changePasswordData["newPassword"]));
-			$this->Session->write("changePassword", true);
-			$this->redirect("/logout");
+			$user = $this->User->find("first", array("conditions" => array("password" => $this->SecurityUtils->encrypt($changePasswordData["currentPassword"]))));
+			if($user) {
+				$this->User->saveField("password", $this->SecurityUtils->encrypt($changePasswordData["newPassword"]));
+				$this->Session->write("changePassword", true);
+				$this->redirect("/logout");
+			} else {
+				$this->Session->write("userNotFoundError", true);
+				$this->redirect("/change-password-form");
+			}
+		} else {
+			$this->Session->write("passwordMatchError", true);
+			$this->redirect("/change-password-form");
 		}
 	}
 
@@ -292,9 +306,14 @@ class CustomersController extends AppController {
 		$date = (isset($this->params["url"]["dateMin"]) && isset($this->params["url"]["dateMax"])) ? "order_date BETWEEN '{$this->params["url"]["dateMin"]}' AND '{$this->params["url"]["dateMax"]}'" : "";
 		$payment = (isset($this->params["url"]["payment"])) ? "payment_method = '{$this->params["url"]["payment"]}'" : "";
 		$currency = (isset($this->params["url"]["currency"])) ? "currency = '{$this->params["url"]["currency"]}'" : "";
-		$orders = $this->Orders->find("all", array("conditions" => array("user_id" => $this->Session->read("userUUID"), "order_date > now() - INTERVAL 2 year", $price, $payment, $currency, $date), "order" => array($sort_by)));
+		$perPage = 6;
+		$page = (!isset($this->params["url"]["page"])) ? 1 : $this->params["url"]["page"];
+		$offset = (intval($page) - 1) * $perPage;
+		$orders = $this->Orders->find("all", array("conditions" => array("user_id" => $this->Session->read("userUUID"), "order_date > now() - INTERVAL 2 year", $price, $payment, $currency, $date), "order" => array($sort_by), "limit" => $perPage, "offset" => $offset));
 		$log = $this->Orders->getDataSource()->getLog(false, false);
 		$this->set("orders", $orders);
+		$this->set("count", ceil(count($this->Orders->find("all", array("conditions" => array("user_id" => $this->Session->read("userUUID"), "order_date > now() - INTERVAL 2 year", $price, $payment, $currency, $date), "order" => array($sort_by)))) / $perPage));
+		$this->set("page", $page);
 	}
 
 	public function deleteAccount() {
