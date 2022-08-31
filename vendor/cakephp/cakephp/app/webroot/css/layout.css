@@ -57,7 +57,7 @@ div.searchBox {
 }
 
 nav input {
-    width: 250px;
+    width: 95%;
     height: 100%;
     border-radius: 27px;
     border: 1px solid #797979;
@@ -115,7 +115,7 @@ div.innerSearchResults > p > a > img {
 nav button {
     position: absolute;
     top: 0;
-    left: 175px;
+    left: calc(95% - 75px);
     height: 40px;
     width: 75px;
     border: none;
@@ -463,6 +463,10 @@ input[type="checkbox"]:checked + *:not(label) {
     color: #fff;
 }
 
+p.categoriesBtn {
+    display: none;
+}
+
 @media (max-width: 1068px) {
     .hoverMenu > * {
         text-align: center;
@@ -491,6 +495,14 @@ input[type="checkbox"]:checked + *:not(label) {
         font-weight: bold;
         cursor: pointer;
     }
+
+    nav input {
+        width: 150%;
+    }
+
+    nav button {
+        left: calc(150% - 75px);
+    }
 }
 
 @media (min-width: 1069px) {
@@ -504,7 +516,7 @@ input[type="checkbox"]:checked + *:not(label) {
 }
 
 @media (max-width: 991px) {
-	div.categories {
+	/* div.categories {
 		margin-top: 0;
 		border: 0;
 		border-radius: 0;
@@ -552,11 +564,49 @@ input[type="checkbox"]:checked + *:not(label) {
 		left: 0;
 		top: 50px;
 		width: 255px;
+	} */
+    div.categories {
+        float: left;
+		margin-top: 0;
+		border: 0;
+		border-radius: 0;
+        height: 50px;
+        transition: height .2s ease-in-out;
+        padding-bottom: 10px;
 	}
+
+    .categoriesList {
+        opacity: 0;
+        height: 0px !important;
+        transition: height .2s ease-in-out;
+    }
+
+    p.categoriesBtn {
+        display: block;
+        text-align: center;
+        cursor: pointer;
+        line-height: 47px;
+        font-size: 20px;
+        margin: 0;
+    }
+
+    div.category > .subCategories {
+        left: 30%;
+    }
+}
+
+@media (max-width: 767px) {
+    nav input {
+        width: 95%;
+    }
+
+    nav button {
+        left: calc(95% - 75px);
+    }
 }
 
 @media (max-width: 503px) {
-	div.categories {
+	/* div.categories {
 		height: 170px;
 	}
 
@@ -572,7 +622,7 @@ input[type="checkbox"]:checked + *:not(label) {
 
 	.category:nth-last-of-type(-n+2) {
 		width: 50%;
-	}
+	} */
 }
 
 #main {
@@ -581,10 +631,3 @@ input[type="checkbox"]:checked + *:not(label) {
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
-
-
-
-
-
-
-

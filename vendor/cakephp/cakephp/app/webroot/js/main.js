@@ -175,6 +175,21 @@ $(function() {
     })
 
     $(".productOnMainPage .price").each(function() {
-        $(this).text((parseFloat($(this).text()) * localStorage.getItem("rate")).toFixed(2)+localStorage.getItem("currency"));
+        $(this).text((parseFloat($(this).text()) * localStorage.getItem("rate")).toFixed(2) + ' ' + localStorage.getItem("currency"));
     });
+
+    var closed = true;
+    $("p.categoriesBtn").click(function() {
+        if(closed) {
+            $(".categoriesList").css("opacity", 1);
+            $(".categories").css("height", "530px")
+            $(".categoriesList").css("height", "530px");
+            closed = false;
+        } else {
+            $(".categoriesList").css("opacity", 0);
+            $(".categories").css("height", "50px")
+            $(".categoriesList").css("height", 0);
+            closed = true;
+        }
+    })
 });

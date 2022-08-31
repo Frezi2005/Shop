@@ -1,6 +1,7 @@
 <?php
 
     echo $this->Html->css("form");
+    echo $this->Html->script("add_product_to_db");
 
 ?>
 <div id="main" class="addProductToDbForm">

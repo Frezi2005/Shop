@@ -200,6 +200,7 @@ class ProductsController extends AppController {
 
 	public function addProductToDatabase() {
 		$this->loadModel("SubCategory");
+		$id = CakeText::uuid();
 		if (isset($this->request["data"]["addProductForm"])) {
 			$productData = $this->request["data"]["addProductForm"];
 			if (!empty($productData)) {
@@ -208,9 +209,9 @@ class ProductsController extends AppController {
 				} else if (!preg_match('/\d/', $productData["price"])) {
 					$this->Session->write("priceError", true);
 				} else {
-					move_uploaded_file($productData["image"]["tmp_name"], WWW_ROOT."img/".$productData["name"].".jpg");
+					move_uploaded_file($productData["image"]["tmp_name"], WWW_ROOT."img/".$id.".jpg");
 					$this->Product->save(array(
-						"id" => CakeText::uuid(),
+						"id" => $id,
 						"name" => $productData["name"],
 						"description" => $productData["description"],
 						"specs" => $productData["specs"],
@@ -260,6 +261,7 @@ class ProductsController extends AppController {
 	}
 
 	public function order() {
+		$this->loadModel("User");
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -276,7 +278,11 @@ class ProductsController extends AppController {
 		}
 
 		ksort($countries);
-		$countries = array("" => "") + $countries;
+		$countries = array("" => __("countries")) + $countries;
+		if($this->Session->read("loggedIn")) {
+			$user = $this->User->find("first", array("conditions" => array("id" => $this->Session->read("userUUID")), "fields" => array("country", "city", "street", "house_number", "flat_number", "email")));
+			$this->set("userInfo", $user["User"]);
+		}
 		$this->set("countries", $countries);
 	}
 

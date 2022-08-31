@@ -141,9 +141,22 @@ class OrdersController extends AppController {
 		}
 
 		$products = json_decode($data["cart"], true);
-		$orders = $this->Orders->find("all", array("conditions" => array("user_id" => $this->Session->read("userUUID"), "Month(order_date)" => 9, "Year(order_date)" => date("Y")), array("order" => "order_date DESC"), array("fields" => "invoice_number")));
+		$orders = $this->Orders->find(
+			"all", 
+			array(
+				"conditions" => array(
+					"user_id" => $this->Session->read("userUUID"), "Month(order_date)" => date("m"), 
+					"Year(order_date)" => date("Y")
+				), 
+				"order" => array(
+					"order_date DESC"
+				), 
+				"fields" => array(
+					"invoice_number"
+				)
+			)
+		);
 		$invoiceNumber = (count($orders) > 0) ? $orders[0]["Orders"]["invoice_number"] : 0;
-
 		$this->Orders->save(array(
 			"user_id" => (empty($this->Session->read("userUUID"))) ? $userUuid : $this->Session->read("userUUID"),
 			"email" => $data["email"],

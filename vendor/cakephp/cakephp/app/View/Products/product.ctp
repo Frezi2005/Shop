@@ -4,10 +4,10 @@
 ?>
 <div class="productContainer offset-1 col-xxl-6 col-xl-6 col-lg-5 col-4">
     <h3 id="productName" class="col-12"><?php echo $product["name"]; ?></h3>
-    <div id="productImg" class="col-xxl-6 col-xl-6 col-lg-6 col-12"></div>
-    <p id="description" class="col-12"><?=__("description")?>: <?php echo $product["description"];?></p>
-    <p id="priceWithoutTax">Netto: <span id="productPrice"><?php echo $product["price"] ?>USD</span></p>
-    <p id="priceWithTax"><sup>Brutto: <span id="productTaxPrice"><?php echo $product["price"] + $product["tax"]; ?>USD</span></sup></p>
+    <div id="productImg" class="col-xxl-6 col-xl-6 col-lg-6 col-12 float-start"></div>
+    <p id="description" class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 float-start"><?=__("description")?>: <?php echo $product["description"];?></p>
+    <p id="priceWithoutTax">Netto: <span id="productPrice"><?php echo $product["price"] ?> USD</span></p>
+    <p id="priceWithTax"><sup>Brutto: <span id="productTaxPrice"><?php echo $product["price"] + $product["tax"]; ?> USD</span></sup></p>
     <input type="hidden" id="productId" value="<?php echo $product["id"];?>">
     <?php
         if ($product["product_count"] > 0) {

@@ -10,7 +10,7 @@
     <p><a href="change-password-form"><?=__("change_password")?></a></p>
     <p><a href="change-address-form"><?=__("change_address")?></a></p>
     <?php
-        if ($is_admin) {
+        if ($is_employee) {
             echo "<a href='admin-panel'>".__("admin_panel")."</a>";
         } else {
             echo "<p><a href='' id='delAccount'>".__("delete_account")."</a></p>";

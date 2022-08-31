@@ -2,6 +2,10 @@
 	margin-top: 9px;
 }
 
+.main h1 {
+    text-align: left;
+}
+
 div#orderForm {
     float: left;
 	position: relative;

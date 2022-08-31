@@ -1,4 +1,5 @@
 <div class="categories offset-lg-1 col-xxl-3 col-xl-3 col-lg-4 col-12">
+    <p class="categoriesBtn">Categories</p>
     <ul class="categoriesList">
         <?php
             $index = 0;

@@ -1,7 +1,8 @@
-$(function (){
+const PRICE_LIMIT = 1000000;
 
-	$("#productPrice").text((parseFloat($("#productPrice").text().replace(/[^\d]*/, '')) * localStorage.getItem("rate")).toFixed(2) + localStorage.getItem("currency"));
-	$("#productTaxPrice").text((parseFloat($("#productTaxPrice").text().replace(/[^\d]*/, '')) * localStorage.getItem("rate")).toFixed(2) + localStorage.getItem("currency"));
+$(function (){
+	$("#productPrice").text((parseFloat($("#productPrice").text().replace(/[^\d]*/, '')) * localStorage.getItem("rate")).toFixed(2) + ' ' + localStorage.getItem("currency"));
+	$("#productTaxPrice").text((parseFloat($("#productTaxPrice").text().replace(/[^\d]*/, '')) * localStorage.getItem("rate")).toFixed(2) + ' ' + localStorage.getItem("currency"));
 
     $("#productAmount").on("input", function() {
         if (parseInt($(this).val()) > parseInt($(this).attr("max"))) {
@@ -81,33 +82,20 @@ var items = (JSON.parse(localStorage.getItem("cart")) == null) ? [] : JSON.parse
 
 function updateCart(amount, id, name, price, add = true, modal = true) {
     if (amount.match(/^[1-9][0-9]{0,}$|^[1-9][0-9]{0,}$/gm)) {
-        var existsInCart;
-        if (JSON.parse(localStorage.getItem("cart")) == null) {
-            localStorage.setItem("cart", JSON.stringify([]));
-        }
-        if (items.length == 0) {
-            items.push({
-                    id: id,
-                    name: name,
-                    price: parseFloat(price.replace(/[^\d]*/, '')),
-                    count: parseInt(amount)
-                }
-            );
+        if (getCartPrice(items) + ((add) ? parseFloat(price.replace(/[^\d]*/, '')) : 0) * amount > PRICE_LIMIT) {
+            Swal.fire({
+                icon: "error",
+                text: "Too much!",
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true
+            });
         } else {
-            for (var i = 0; i < items.length; i++) {
-                if (id == items[i].id) {
-                    existsInCart = true;
-                    if (!add && items[items.findIndex(x => x.id == id)].count <= 1) {
-                        removeFromCart(id);
-                        return;
-                    }
-                    items[items.findIndex(x => x.id == id)].count += (add) ? parseInt(amount) : -1 * parseInt(amount);
-                    break;
-                } else {
-                    existsInCart = false;
-                }
+            var existsInCart;
+            if (JSON.parse(localStorage.getItem("cart")) == null) {
+                localStorage.setItem("cart", JSON.stringify([]));
             }
-            if (!existsInCart) {
+            if (items.length == 0) {
                 items.push({
                         id: id,
                         name: name,
@@ -115,20 +103,43 @@ function updateCart(amount, id, name, price, add = true, modal = true) {
                         count: parseInt(amount)
                     }
                 );
+            } else {
+                for (var i = 0; i < items.length; i++) {
+                    if (id == items[i].id) {
+                        existsInCart = true;
+                        if (!add && items[items.findIndex(x => x.id == id)].count <= 1) {
+                            removeFromCart(id);
+                            return;
+                        }
+                        items[items.findIndex(x => x.id == id)].count += (add) ? parseInt(amount) : -1 * parseInt(amount);
+                        break;
+                    } else {
+                        existsInCart = false;
+                    }
+                }
+                if (!existsInCart) {
+                    items.push({
+                            id: id,
+                            name: name,
+                            price: parseFloat(price.replace(/[^\d]*/, '')),
+                            count: parseInt(amount)
+                        }
+                    );
+                }
             }
+            if (modal) {
+                Swal.fire({
+                    icon: "success",
+                    text: lang.item_added_to_cart + name,
+                    showConfirmButton: false,
+                    timer: 5000,
+                    timerProgressBar: true
+                });
+            }
+            localStorage.setItem("cart", JSON.stringify(items));
+            displayAmount(items);
+            displayItemsInCartGUI(items);
         }
-        if (modal) {
-            Swal.fire({
-                icon: "success",
-                text: lang.item_added_to_cart + name,
-                showConfirmButton: false,
-                timer: 5000,
-                timerProgressBar: true
-            });
-        }
-        localStorage.setItem("cart", JSON.stringify(items));
-        displayAmount(items);
-        displayItemsInCartGUI(items);
     } else {
         Swal.fire({
             icon: "error",
@@ -150,6 +161,19 @@ function removeFromCart(id) {
     location.reload();
 }
 
+function getCartPrice(cart) {
+    var price = 0;
+    var priceTemp = 0;
+    for(var i = 0; i < cart.length; i++) {
+        for(var j = 0; j < cart[i].count; j++) {
+            priceTemp = cart[i].count * cart[i].price;
+        }
+        price += priceTemp;
+        priceTemp = 0;
+    }
+    return parseFloat((Math.round((price + Number.EPSILON) * 100) / 100).toFixed(2));
+}
+
 function displayAmount(cart) {
     var amount = 0;
     for (var i = 0; i < cart.length; i++) {
@@ -164,9 +188,9 @@ function displayItemsInCartGUI(cart) {
     if (cart.length > 0 || cart != null) {
         for (var i = 0; i < cart.length; i++) {
             sum += parseInt(cart[i].count) * parseFloat(cart[i].price);
-            $(".cartModal").append(`<div><a title="${+cart[i].name}" href="product?product_id=${cart[i].id}">${cart[i].name}</a><br/><div class='grid'><span class='amount'>${cart[i].count}</span><i class='fas fa-minus substractProduct'></i><i class='fas fa-plus addProduct'></i><span class='price'>${(cart[i].price).toFixed(2)}${localStorage.getItem("currency")}</span><i class='fas fa-trash-alt deleteProduct' data-product-id='${cart[i].id}'></i></div></div>`);
+            $(".cartModal").append(`<div><a title="${+cart[i].name}" href="product?product_id=${cart[i].id}">${cart[i].name}</a><br/><div class='grid'><span class='amount'>${cart[i].count}</span><i class='fas fa-minus substractProduct'></i><i class='fas fa-plus addProduct'></i><span class='price'>${(cart[i].price).toFixed(2)} ${localStorage.getItem("currency")}</span><i class='fas fa-trash-alt deleteProduct' data-product-id='${cart[i].id}'></i></div></div>`);
         }
-        $(".cartModal").append(`<span>${lang.total}: ${(Math.round((sum + Number.EPSILON) * 100) / 100).toFixed(2)}${localStorage.getItem("currency")}</span>`);
+        $(".cartModal").append(`<span>${lang.total}: ${(Math.round((sum + Number.EPSILON) * 100) / 100).toFixed(2)} ${localStorage.getItem("currency")}</span>`);
     }
 
     $(".deleteProduct").each(function () {

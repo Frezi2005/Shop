@@ -70,9 +70,11 @@
 						</div>
 						<div class="cartLink navLink float-start col-3">
 							<span id="linkOuter">
-								<i class="fas fa-shopping-cart"></i>
-								<a href="cart"><?=__("cart")?></a>
-								<span id="cartProductsAmount"></span>
+								<a href="cart">
+									<i class="fas fa-shopping-cart"></i>
+									<?=__("cart")?>
+									<span id="cartProductsAmount"></span>
+								</a>
 							</span>
 							<div class="cartModal"></div>
 						</div>

@@ -90,9 +90,7 @@ class CustomersController extends AppController {
 		}
 	}
 
-	
-
-		public function register() {
+	public function register() {
 		$this->autoRender = false;
 		$customerRegisterData = $this->request["data"]["registerUserForm"];
 		$this->Session->write("rememberedFieldsData", $customerRegisterData);
@@ -177,9 +175,9 @@ class CustomersController extends AppController {
 
 	public function settings() {
 		$user = $this->User->find("first", array("conditions" => array("id" => $this->Session->read("userUUID"))))["User"];
-		$this->set("is_admin", 0);
-		if ($user["is_admin"]) {
-			$this->set("is_admin", 1);
+		$this->set("is_employee", 0);
+		if ($user["is_employee"]) {
+			$this->set("is_employee", 1);
 		}
 	}
 
@@ -266,12 +264,25 @@ class CustomersController extends AppController {
 			)
 		)));
 
-		$this->set("privileges", [
-			"ksiegowosc" => $this->CheckPrivileges->check("ksiegowosc", $this->Session->read("userUUID")),
-			"kadry" => $this->CheckPrivileges->check("kadry", $this->Session->read("userUUID")),
-			"kierownictwo" => $this->CheckPrivileges->check("kierownictwo", $this->Session->read("userUUID")),
-			"pracownicy" => $this->CheckPrivileges->check("pracownicy", $this->Session->read("userUUID"))
-		]);
+		$links = [
+			"list-employees",
+			"inventory",
+			"remove-employee-page",
+			"orders-report",
+			"add-product-to-database",
+			"delivery-form",
+			"update-employee-page",
+			"admin-privileges",
+			"remove-customer"
+		];
+
+		$privileges = [];
+
+		for($i = 0; $i < count($links); $i++) {
+			$privileges[$links[$i]] = $this->CheckPrivileges->check($links[$i], $this->Session->read("userUUID"));
+		}
+
+		$this->set("privileges", $privileges);
 		$this->set("employees", $employees);
 		$this->set("customers", $customers);
 	}
@@ -306,7 +317,7 @@ class CustomersController extends AppController {
 		$date = (isset($this->params["url"]["dateMin"]) && isset($this->params["url"]["dateMax"])) ? "order_date BETWEEN '{$this->params["url"]["dateMin"]}' AND '{$this->params["url"]["dateMax"]}'" : "";
 		$payment = (isset($this->params["url"]["payment"])) ? "payment_method = '{$this->params["url"]["payment"]}'" : "";
 		$currency = (isset($this->params["url"]["currency"])) ? "currency = '{$this->params["url"]["currency"]}'" : "";
-		$perPage = 6;
+		$perPage = 10;
 		$page = (!isset($this->params["url"]["page"])) ? 1 : $this->params["url"]["page"];
 		$offset = (intval($page) - 1) * $perPage;
 		$orders = $this->Orders->find("all", array("conditions" => array("user_id" => $this->Session->read("userUUID"), "order_date > now() - INTERVAL 2 year", $price, $payment, $currency, $date), "order" => array($sort_by), "limit" => $perPage, "offset" => $offset));

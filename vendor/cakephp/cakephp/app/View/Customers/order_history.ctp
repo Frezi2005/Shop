@@ -17,11 +17,13 @@
 			$hours = explode(" ", $order["Orders"]["order_date"])[1];
             echo "<div class='order'><input type='hidden' value='{$ids}'/><input type='hidden' value='{$fields}' class='fields'/><span class='images'></span><span>".__($order["Orders"]["delivery_type"])."</span><span>".$date." <span class='d-md-inline d-none'>".substr($hours, 0, -3)."</span></span><span>{$order["Orders"]["total_price"]}</span><span>{$order["Orders"]["currency"]}</span><span><i class='fas fa-search' title='".__("preview")."'></i><a href='invoice?products=$fields' target='_blank' title='".__("invoice")."'><i class='fas fa-file-invoice'></i></a></span></div>";
         }
-//		echo "<i class='fas fa-angle-left'></i>";
-//		for($i = 1; $i <= $count; $i++) {
-//			echo ($i == $page) ? "<b>$i</b>" : $i;
-//		}
-//		echo "<i class='fas fa-angle-right'></i>";
+		echo "<div class='pagination'>";
+			echo "<i class='fas fa-angle-left page-prev' data-page='-1'></i>";
+			for($i = 1; $i <= $count; $i++) {
+				echo ($i == $page) ? "<p class='bold'>$i</p>" : "<p>$i</p>";
+			}
+			echo "<i class='fas fa-angle-right page-next' data-page='1'></i>";
+		echo "</div>";
     ?>
 
 </div>
@@ -56,5 +58,5 @@
 	</select>
 	<button id="filter" class="col-12"><?=__("filter")?></button>
 </div>
-<div class="col-10 offset-1 text-center filters-dropdown" data-open="false"><i class="fas fa-angle-right mx-2"></i><?=__("filters")?></div>
+<div class="col-10 offset-1 text-center filters-dropdown" data-open="false"><i class="fas fa-angle-right mx-2 filter-dropdown-arrow"></i><?=__("filters")?></div>
 

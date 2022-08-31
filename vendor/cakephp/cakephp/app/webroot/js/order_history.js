@@ -14,7 +14,7 @@ $(function() {
 				var products = JSON.parse(JSON.parse(fields).Orders.products);
 				if(products.length) {
 					for(let i = 0; i < products.length; i++) {
-						html += `<img style='height: 100px' src='app/webroot/img/${products[i].id}.jpg'><p>${products[i].count} * ${products[i].name} - ${products[i].count * parseFloat(products[i].price.toString().replace(/[^\.\d]*/gm, ''))}${JSON.parse(fields).Orders.currency}</p>`;
+						html += `<img style='height: 100px' src='app/webroot/img/${products[i].id}.jpg'><p>${products[i].count} * ${products[i].name} - ${products[i].count * parseFloat(products[i].price.toString().replace(/[^\.\d]*/gm, ''))} ${JSON.parse(fields).Orders.currency}</p>`;
 					}
 				} else {
 					html = `<h4>${lang.no_order_products}🤔</h4>`;
@@ -41,8 +41,6 @@ $(function() {
 		maxDate: '0'
 	});
 
-	console.log($.now());
-
 	$('input#priceMin').val(urlParams.get('priceMin'));
 	$('input#priceMax').val(urlParams.get('priceMax'));
 	$('input#dateMin').val(urlParams.get('dateMin'));
@@ -65,16 +63,54 @@ $(function() {
         img.src = `http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/${id}.jpg`;
         return (img.height != 0) ? id : 'noimg';
     }
-	$(".fa-angle-right").click(function() {
+
+	$(".filter-dropdown-arrow").click(function() {
 		if($("#filters").data("open")) {
 			$("#filters").css("height", 0);
-			$(".fa-angle-right").css("transform", "rotate(0deg)");
+			$(".filter-dropdown-arrow").css("transform", "rotate(0deg)");
 			$("#filters").data("open", false)
 		} else {
 			$("#filters").css("height", "444px");
-			$(".fa-angle-right").css("transform", "rotate(90deg)");
+			$(".filter-dropdown-arrow").css("transform", "rotate(90deg)");
 			$("#filters").data("open", true)
 		}
 	});
 
+	$(".pagination .fas").click(function() {
+		var count = 0;
+		var delimiter = "";
+		var page;
+		var isPageInParams = false;
+		var isPageFirst = false;
+
+		var index = 0;
+
+		for (const [key, value] of urlParams) {
+			if(key == "page") {
+				page = parseInt(value);
+				isPageInParams = true;
+				isPageFirst = (!index) ? true : false;
+			}
+			count++;
+			index++;
+		}
+
+		if(count) {
+			delimiter = "&";
+		} else {
+			delimiter = "?";
+		}
+
+		if(page + $(this).data("page") != 0 && page + $(this).data("page") <= $(".pagination p").length) {
+			// console.log($(this).data("page") == 1 ? "Page next" : "Page prev");
+			// console.log(`Current page: ${page}`);
+			// console.log(`Next page: ${page + $(this).data("page")}`);
+			// console.log(delimiter);
+			// console.log(isPageInParams);
+			if(isPageInParams && isPageFirst) {
+				var newUrl = queryString.replace("?page="+page, "?page=" + (page + $(this).data("page")));
+			}
+			location.replace("http://localhost/Shop/vendor/cakephp/cakephp/order-history"+newUrl);
+		}
+	});
 });

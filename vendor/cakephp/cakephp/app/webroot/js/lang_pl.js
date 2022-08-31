@@ -36,6 +36,7 @@ const lang = {
 	salary: "Wypłata",
 	internship_length: "Okres zatrudnienia",
 	bonus_amount: "Premia",
-	holiday_amount: "Dni wolne"
+	holiday_amount: "Dni wolne",
+	product_added: "Produkt został dodany do bazy danych!"
 }
 

@@ -25,34 +25,16 @@
     border: 1px solid transparent;
     transition: all .5s ease-in-out;
     border-radius: 25px;
+    height: 150px;
 }
 
 .product img:hover {
-    position: absolute;
-    left: 0;
-    top: 0;
-    transform: translate(-50%, -50%);
-    transform-origin: center;
-    transform: scale(1.3, 1.3);
+    transform: scale(1.5, 1.5);
     mix-blend-mode: normal;
-    z-index: 10;
-    border-radius: 25px;
-    border: 1px solid #c9c9c9;
 }
 
 .product > * {
     float: left;
-}
-
-div.image, div.namePriceAmount {
-    /*height: 150px;*/
-    /*float: left;*/
-    /*width: 50%;*/
-}
-
-div.first, div.details {
-    /*height: 50%;*/
-    /*width: 100%;*/
 }
 
 

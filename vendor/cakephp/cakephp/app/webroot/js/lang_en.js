@@ -36,5 +36,6 @@ const lang = {
 	salary: "Salary",
 	internship_length: "Internship length",
 	bonus_amount: "Bonus amount",
-	holiday_amount: "Holiday amount"
+	holiday_amount: "Holiday amount",
+	product_added: "Product has been added to DB!"
 }

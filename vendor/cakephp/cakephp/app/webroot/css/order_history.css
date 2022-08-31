@@ -52,6 +52,10 @@ div.order {
 	font-size: 15px;
 }
 
+div.order:first-of-type {
+	margin-top: 30px;
+}
+
 div.order span:not(:last-of-type) {
     display: block;
     width: 18%;
@@ -103,6 +107,14 @@ div.order img {
 .filters-dropdown {
 	font-size: 20px;
 	display: none;
+}
+
+div.pagination .bold {
+	font-weight: bold;
+}
+
+.page-prev, .page-next {
+	cursor: pointer;
 }
 
 @media (max-width: 991px) {

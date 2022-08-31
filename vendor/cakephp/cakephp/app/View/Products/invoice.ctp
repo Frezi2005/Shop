@@ -67,9 +67,9 @@
 
     $sumWords = $numberTransformer->toWords($sumWithTax);
 
-	$whole = intval(number_format($sumWithTax, 2));
-	$decimal1 = number_format($sumWithTax, 2) - $whole;
-	$decimal2 = number_format($decimal1, 2);
+	$whole = intval(number_format($sumWithTax, 2, ".", ""));
+	$decimal1 = number_format($sumWithTax, 2, ".", "") - $whole;
+	$decimal2 = number_format($decimal1, 2, ".", "");
 	$decimal = substr($decimal2, 2);
 
 	$bank = $faker->bank();
@@ -129,7 +129,7 @@
 				border: 1px solid black;
 				border-collapse: collapse;
 				font-size: 7px;
-				text-align: right;
+				text-align: center;
 				padding: 3px;
 			}
 		</style>
@@ -156,7 +156,7 @@
 		<table>
 			<tr>
 				<td style="width: 4%">$index</td>
-				<td style="width: 52%; text-align: left;">$productName</td>
+				<td style="width: 52%;">$productName</td>
 				<td style="width: 4%">$unitOfMeasure</td>
 				<td style="width: 3%">$amount</td>
 				<td style="width: 8%">$unitBruttoPrice</td>
@@ -167,7 +167,8 @@
 			</tr>
 			$html
 			<tr>
-				<td style="text-align: right; border: none; border-top: 1px solid black" colspan="8">$total</td>
+				<td style="border: none; border-top: 1px solid black" colspan="7">&nbsp;</td>
+				<td style="border: none; border-top: 1px solid black; text-align: right;">$total&nbsp;&nbsp;</td>
 				<td>$sumWithTaxRounded</td>
 			</tr>
 		</table>
