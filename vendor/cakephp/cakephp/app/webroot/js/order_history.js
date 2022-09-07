@@ -82,6 +82,7 @@ $(function() {
 		var page;
 		var isPageInParams = false;
 		var isPageFirst = false;
+		var newUrl = '';
 
 		var index = 0;
 
@@ -95,6 +96,8 @@ $(function() {
 			index++;
 		}
 
+		page = page ?? 1;
+
 		if(count) {
 			delimiter = "&";
 		} else {
@@ -102,13 +105,19 @@ $(function() {
 		}
 
 		if(page + $(this).data("page") != 0 && page + $(this).data("page") <= $(".pagination p").length) {
-			// console.log($(this).data("page") == 1 ? "Page next" : "Page prev");
-			// console.log(`Current page: ${page}`);
-			// console.log(`Next page: ${page + $(this).data("page")}`);
-			// console.log(delimiter);
-			// console.log(isPageInParams);
+			console.log($(this).data("page") == 1 ? "Page next" : "Page prev");
+			console.log(`Current page: ${page}`);
+			console.log(`Next page: ${page + $(this).data("page")}`);
+			console.log(delimiter);
+			console.log(isPageInParams);
 			if(isPageInParams && isPageFirst) {
-				var newUrl = queryString.replace("?page="+page, "?page=" + (page + $(this).data("page")));
+				newUrl = queryString.replace("?page="+page, "?page=" + (page + $(this).data("page")));
+			} else if (isPageInParams && !isPageFirst) {
+				newUrl = queryString.replace("&page="+page, "&page=" + (page + $(this).data("page")));
+			} else if (!Array.from(urlParams).length) {
+				newUrl = queryString + "?page=" + (page + $(this).data("page"));
+			} else {
+				newUrl = queryString + "&page=" + (page + $(this).data("page"));
 			}
 			location.replace("http://localhost/Shop/vendor/cakephp/cakephp/order-history"+newUrl);
 		}

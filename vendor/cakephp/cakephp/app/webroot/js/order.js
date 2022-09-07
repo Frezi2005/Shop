@@ -21,7 +21,7 @@ $(function() {
 		history.back();
 	}
 
-    $('#sum').text(lang.sum + ': ' + (Math.round((sum + Number.EPSILON) * 100) / 100) + localStorage.getItem("currency"));
+    $('#sum').text(lang.sum + ': ' + (Math.round((sum + Number.EPSILON) * 100) / 100) + ' ' + localStorage.getItem("currency"));
     $('input#orderFormCart').val(JSON.stringify(cart));
     $('input#orderFormPrice').val(sum);
 
@@ -103,6 +103,31 @@ $(function() {
     $('select#orderFormPaymentMethod').change(function() {
         changePaymentInfo($(this));
     });
+
+	$("select#orderFormDeliveryType").change(function() {
+		console.log('test');
+		if($(this).val() == "parcel_locker") {
+			console.log($("#mapModal"));
+			$("#mapModal").css("display", "block");
+			$("#mapModal").css("opacity", "1");
+			$("div#map").append(`
+				<link rel="stylesheet" href="https://geowidget.inpost.pl/inpost-geowidget.css"/>
+				<script src='https://geowidget.inpost.pl/inpost-geowidget.js' defer></script>
+				<script>
+					function afterPointSelected(point) {
+						document.querySelector("#orderFormParcelLockerCode").value = point.name;
+						document.querySelector("#mapModal").style.opacity = 0;
+						setTimeout(() => {
+							document.querySelector("#mapModal").style.display = "none";
+						}, 200);
+					}
+				</script>
+				
+				<inpost-geowidget onpoint="afterPointSelected" token='${INPOST_API_TOKEN}' language='pl' config='parcelcollect'></inpost-geowidget>
+			`);
+		}
+	});
+
 
     function changePaymentInfo(select) {
         switch (select.val()) {

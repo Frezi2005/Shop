@@ -765,3 +765,6 @@ msgstr "Bill"
 
 msgid "invoice_tax"
 msgstr "VAT invoice no"
+
+msgid "choose"
+msgstr "Choose"

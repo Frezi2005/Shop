@@ -145,7 +145,8 @@ class OrdersController extends AppController {
 			"all", 
 			array(
 				"conditions" => array(
-					"user_id" => $this->Session->read("userUUID"), "Month(order_date)" => date("m"), 
+					"user_id" => $this->Session->read("userUUID"), 
+					"Month(order_date)" => date("m"), 
 					"Year(order_date)" => date("Y")
 				), 
 				"order" => array(
@@ -166,6 +167,7 @@ class OrdersController extends AppController {
 			"flat_number" => $data["flat_number"],
 			"house_number" => $data["house_number"],
 			"products" => json_encode($products),
+			"parcel_locker_code" => $data["deliveryType"] == "parcel_locker" ? $data["parcelLockerCode"] : null,
 			"delivery_type" => $data["deliveryType"],
 			"order_date" => date("Y-m-d H:i:s"),
 			"shipment_date" => date("Y-m-d H:i:s", strtotime(date("Y-m-d H:i:s") . " + 3 days")),
@@ -178,23 +180,6 @@ class OrdersController extends AppController {
 			"shop_id" => null,
 			"invoice_number" => ++$invoiceNumber
 		));
-
-//		$this->Invoices->save(array(
-//			"customer_id" => ,
-//			"invoice_number" => '',
-//			"buyer_name" => '',
-//			"buyer_surname" => '',
-//			"country" => '',
-//			"city" => '',
-//			"street" => '',
-//			"house_number" => '',
-//			"flat_number" => '',
-//			"order_date" => '',
-//			"products" => '',
-//			"payment_date" => '',
-//			"total" => ''
-//		));
-
 
 		if (!empty($this->Session->read("userUUID"))) {
 			$user = $this->Users->find("first", array("conditions" => array("id" => $this->Session->read("userUUID")), "fields" => array("total_points")));
@@ -218,6 +203,8 @@ class OrdersController extends AppController {
 		$payment = (isset($this->params["url"]["payment"])) ? "payment_method = '{$this->params["url"]["payment"]}'" : "";
 		$currency = (isset($this->params["url"]["currency"])) ? "currency = '{$this->params["url"]["currency"]}'" : "";
 		$orders = $this->Orders->find("all", array("conditions" => array($price, $payment, $currency, $date)));
+		$log = $this->Orders->getDataSource()->getLog(false, false);
+		$this->Log($log);
 		return json_encode($orders);
 	}
 }

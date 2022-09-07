@@ -466,6 +466,9 @@ input[type="checkbox"]:checked + *:not(label) {
 p.categoriesBtn {
     display: none;
 }
+.categoriesBtn i {
+    transition: all .2s ease-in-out;
+}
 
 @media (max-width: 1068px) {
     .hoverMenu > * {
@@ -497,11 +500,11 @@ p.categoriesBtn {
     }
 
     nav input {
-        width: 150%;
+        width: 200%;
     }
 
     nav button {
-        left: calc(150% - 75px);
+        left: calc(200% - 75px);
     }
 }
 
@@ -592,6 +595,14 @@ p.categoriesBtn {
 
     div.category > .subCategories {
         left: 30%;
+    }
+
+    nav input {
+        width: 100%;
+    }
+
+    nav button {
+        left: calc(100% - 75px);
     }
 }
 

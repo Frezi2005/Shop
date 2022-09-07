@@ -771,3 +771,6 @@ msgstr "Rachunek"
 
 msgid "invoice_tax"
 msgstr "FAKTURA vat nr"
+
+msgid "choose"
+msgstr "Wybierz"

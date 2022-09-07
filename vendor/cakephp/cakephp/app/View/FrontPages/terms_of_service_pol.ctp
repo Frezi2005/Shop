@@ -1,4 +1,4 @@
-<article class="offset-xxl-3 col-xxl-6 offset-xl-3 col-xl-6 offset-2 col-8">
+<article class="offset-1 col-10">
 <h1 class="page-title text-center">Regulamin serwisu</h1>
 	<h2>I. Pojęcia ogólne</h2>
 	<ul>

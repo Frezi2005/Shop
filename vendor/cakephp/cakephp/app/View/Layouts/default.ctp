@@ -19,6 +19,7 @@
 			echo $this->Html->css("layout");
 			echo $this->Html->script("product");
 			echo $this->Html->script("main");
+			echo $this->Html->script("config");
 
 			echo $this->fetch("meta");
 			echo $this->fetch("css");
@@ -34,14 +35,14 @@
 		<div id="container">
 			<nav>
 				<p class="logo offset-1 col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3 float-start"><a href="home"><?= $this->Html->image("logo.png");?></a></p>
-				<div class="searchBox col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-7 float-start">
+				<div class="searchBox col-xxl-3 col-xl-3 col-lg-3 col-md-7 col-sm-6 col-7 float-start">
 					<input class="searchInput" type="search" placeholder="<?=__("search")?>...">
 					<button class="searchBtn"><i class="fas fa-search"></i></button>
 					<div class="searchResults">
 						<div class="innerSearchResults"></div>
 					</div>
 				</div>
-				<div class="links col-xxl-5 col-xl-5 col-lg-5 col-md-4 col-sm-1 float-start">
+				<div class="links col-xxl-5 col-xl-5 col-lg-5 col-md-1 col-sm-1 float-start">
 					<p class="menu float-end">
 						<i class="fas fa-bars"></i>
 					</p>
@@ -144,7 +145,7 @@
 				?>
 			</div>
 			<footer class="text-center justify-content-center">
-				<p class="col-lg-12 h-20">Kamil Waniczek <?= date("Y"); ?> &copy; <?=__("all_rights_reserved")?> <a href="privacy-policy-and-cookies-<?=$this->Session->read("language")?>"><?=__("privacy_policy")?></a><a href="terms-of-service-<?=$this->Session->read("language")?>"><?=__("terms_of_service")?></a></p>
+				<p class="col-lg-12 h-20">Kamil Waniczek <?= date("Y"); ?> &copy; <?=__("all_rights_reserved")?> <a href="privacy-policy-and-cookies-<?=$this->Session->read("language")?>"><?=__("privacy_policy")?></a>&nbsp;<a href="terms-of-service-<?=$this->Session->read("language")?>"><?=__("terms_of_service")?></a></p>
 				<!-- <div class="col-lg-10 h-80 mx-auto">
 					<div class="col-lg-3 float-start">
 						<ul class="footerUsefulLinks1">

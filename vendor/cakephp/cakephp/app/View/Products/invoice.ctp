@@ -139,17 +139,24 @@
 		<p>&nbsp;</p>
 		<p style="text-align: right;">Tychy $orderDate</p>
 		<h5 style="text-align: center; line-height: 8px;">$invoice: $invoiceNumber</h5>
-		<p style="font-weight: bold;">$seller:</p>
-		<p style="font-weight: bold;">AlphaTech sp. z. o.o</p>
-		<p style="font-weight: bold;">43-100 Tychy, ul. Marii Konopnickiej 13</p>
-		<p style="font-weight: bold;">$bill: $bank nr 25 1050 1142 1000 0090 6674 7867</p>
-		<p style="font-weight: bold;"><span>NIP: 9492107026</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>NIP EU: PL9492107026</span></p>
-		<p>&nbsp;</p>
-		<p style="font-weight: bold;">$buyer:</p>
-		<p style="font-weight: bold;">ID: XU0036879</p>
-		<p style="font-weight: bold;">$name $surname</p>
-		<p style="font-weight: bold;">$postalCode $city, $street $houseNumber, $country</p>
-		<p>&nbsp;</p>
+		<table>
+			<tr>
+				<td style="width: 50%; text-align: left; border: none;">
+					<p style="font-weight: bold;">$seller:</p>
+					<p style="font-weight: bold;">AlphaTech sp. z. o.o</p>
+					<p style="font-weight: bold;">43-100 Tychy, ul. Marii Konopnickiej 13</p>
+					<p style="font-weight: bold;">$bill: $bank nr 25 1050 1142<br /><br /><br /><br /> 1000 0090 6674 7867</p>
+					<p style="font-weight: bold;"><span>NIP: 9492107026</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>NIP EU: PL9492107026</span></p>
+				</td>
+				<td style="width: 50%; text-align: right; border: none;">
+					<p style="font-weight: bold;">$buyer:</p>
+					<p style="font-weight: bold;">ID: XU0036879</p>
+					<p style="font-weight: bold;">$name $surname</p>
+					<p style="font-weight: bold;">$postalCode $city, $street $houseNumber, $country</p>
+				</td>
+			</tr>
+		</table>
+		<br /><br /><br /><br /><br />
 		<p>$serviceDate: $orderDate</p>
 		<p>$paymentMethod: $paymentType</p>
 		<p>$paymentDate: $orderDate</p>

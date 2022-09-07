@@ -1,4 +1,4 @@
-<div id="text" class="offset-xxl-3 col-xxl-6 offset-xl-3 col-xl-6 offset-2 col-8">
+<div id="text" class="offset-1 col-10">
 <h1>Polityka prywatności</h1>
 	<p>Ostatnia aktualizacja: 31 marca 2022</p>
 	<p>Niniejsza Polityka prywatności opisuje nasze zasady i procedury dotyczące gromadzenia, wykorzystywania i ujawniania Twoich informacji podczas korzystania z Usługi oraz informuje Cię o Twoich prawach do prywatności oraz o tym, jak chroni Cię prawo.</p>

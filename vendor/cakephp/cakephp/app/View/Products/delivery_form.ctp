@@ -2,8 +2,8 @@
     echo $this->Html->script("delivery_form");
 	echo $this->Html->css("delivery_form");
 ?>
-<div id="main">
-	<div id="deliveryForm">
+<div id="main" class="col-12">
+	<div id="deliveryForm" class="offset-1 col-10">
 		<?php
 			echo $this->Form->create("deliveryForm", array("url" => "/add-products-from-delivery"));
 			echo $this->Form->input("products", array("options" => $products, "multiple" => true, "label" => __("products"), "size" => 10));

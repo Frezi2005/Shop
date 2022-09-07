@@ -1,12 +1,13 @@
 $(function() {
 
     $("#generate").click(function() {
-        var priceMin = $("#priceMin").val();
-        var priceMax = $("#priceMax").val();
+        var priceMin = parseFloat($("#priceMin").val());
+        var priceMax = parseFloat($("#priceMax").val());
         var dateMin = $("#dateMin").val();
         var dateMax = $("#dateMax").val();
         var payment = $("#paymentMethod").val();
         var currency = $("#currency").val();
+        
         $.getJSON(`http://localhost/Shop/vendor/cakephp/cakephp/get-orders?priceMin=${priceMin}&priceMax=${priceMax}&dateMin=${dateMin}&dateMax=${dateMax}&payment=${payment}&currency=${currency}`, function(data) {
             if (data.length) {
                 var file = Object.keys(data[0].Orders).toString().replaceAll(",", ";") + "%0A";

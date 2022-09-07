@@ -15,26 +15,35 @@ $(function (){
     });
 
     $("#buyNowBtn").click(function() {
-		console.log('test');
 		var amount = $("input#productAmount").val();
-		var item = [{
-			id: $("#productId").val(),
-			name: $("#productName").text(),
-			price: $("#productTaxPrice").text(),
-			count: parseInt(amount)
-		}];
-		if (amount <= 0) {
-			Swal.fire({
+        if(parseInt(amount) * parseFloat($("#productTaxPrice").text().replace(/[^\d]*/, '')) > PRICE_LIMIT) {
+            Swal.fire({
 				icon: "error",
-				text: lang.amount_error,
+				text: `Too much. Max is ${PRICE_LIMIT} USD`,
 				showConfirmButton: false,
 				timer: 5000,
 				timerProgressBar: true
 			});
-		} else {
-			localStorage.setItem("buyNow", JSON.stringify(item));
-			location.replace("http://localhost/Shop/vendor/cakephp/cakephp/order");
-		}
+        } else {
+            var item = [{
+                id: $("#productId").val(),
+                name: $("#productName").text(),
+                price: $("#productTaxPrice").text(),
+                count: parseInt(amount)
+            }];
+            if (amount <= 0) {
+                Swal.fire({
+                    icon: "error",
+                    text: lang.amount_error,
+                    showConfirmButton: false,
+                    timer: 5000,
+                    timerProgressBar: true
+                });
+            } else {
+                localStorage.setItem("buyNow", JSON.stringify(item));
+                location.replace("http://localhost/Shop/vendor/cakephp/cakephp/order");
+            }
+        }
     });
 
     var queryString = window.location.search;
@@ -85,7 +94,7 @@ function updateCart(amount, id, name, price, add = true, modal = true) {
         if (getCartPrice(items) + ((add) ? parseFloat(price.replace(/[^\d]*/, '')) : 0) * amount > PRICE_LIMIT) {
             Swal.fire({
                 icon: "error",
-                text: "Too much!",
+                text: `Too much. Max is ${PRICE_LIMIT} USD`,
                 showConfirmButton: false,
                 timer: 5000,
                 timerProgressBar: true

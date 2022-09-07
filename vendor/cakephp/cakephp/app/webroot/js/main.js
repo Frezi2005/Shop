@@ -184,11 +184,13 @@ $(function() {
             $(".categoriesList").css("opacity", 1);
             $(".categories").css("height", "530px")
             $(".categoriesList").css("height", "530px");
+            $(".categoriesBtn > i").css("transform", "rotate(-90deg)");
             closed = false;
         } else {
             $(".categoriesList").css("opacity", 0);
             $(".categories").css("height", "50px")
             $(".categoriesList").css("height", 0);
+            $(".categoriesBtn > i").css("transform", "rotate(0deg)");
             closed = true;
         }
     })

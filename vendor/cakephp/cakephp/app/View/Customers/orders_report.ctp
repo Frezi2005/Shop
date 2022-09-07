@@ -10,13 +10,13 @@
 		<input type="number" id="priceMax" placeholder="<?=__("price_max")?>">
 		<input type="date" id="dateMin">
 		<input type="date" id="dateMax">
-		<select id="paymentMethod">
+		<select id="paymentMethod" multiple>
 			<option value="Credit card"><?=__("credit_card")?></option>
 			<option value="Bank transfer"><?=__("bank_transfer")?></option>
 			<option value="PayPal">PayPal</option>
 			<option value="BLIK">BLIK</option>
 		</select>
-		<select id="currency">
+		<select id="currency" multiple>
 			<option value="EUR">EUR</option>
 			<option value="USD">USD</option>
 			<option value="GBP">GBP</option>

@@ -278,7 +278,7 @@ class ProductsController extends AppController {
 		}
 
 		ksort($countries);
-		$countries = array("" => __("countries")) + $countries;
+		$countries = array("" => __("choose")) + $countries;
 		if($this->Session->read("loggedIn")) {
 			$user = $this->User->find("first", array("conditions" => array("id" => $this->Session->read("userUUID")), "fields" => array("country", "city", "street", "house_number", "flat_number", "email")));
 			$this->set("userInfo", $user["User"]);

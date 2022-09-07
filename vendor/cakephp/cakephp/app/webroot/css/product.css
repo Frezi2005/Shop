@@ -2,6 +2,7 @@
     mix-blend-mode: multiply;
     /*height: 200px;*/
 	width: 100%;
+    padding-bottom: 100px;
 }
 
 div.productContainer {
@@ -10,7 +11,7 @@ div.productContainer {
     margin-top: 20px;
     border: 3px solid #b0ffb8;
     border-radius: 27px;
-    padding: 40px;
+    padding: 40px 40px 0 40px;
     /*max-width: 60% !important;*/
 }
 
