@@ -1,0 +1,13 @@
+#text {
+    margin-top: 100px;
+}
+
+h1:first-of-type {
+    text-align: center;
+}
+
+@media (max-width: 991px) {
+    a#back {
+        display: none;
+    }
+}

@@ -52,4 +52,7 @@
             echo "<button id='deleteCustomer'>".__("delete_customer")."</button>";
         }
     ?>
+
+    <a href="monitor-employees-worktime">Monitorowanie godzin pracy pracowników</a>
+
 </div>

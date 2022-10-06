@@ -105,26 +105,12 @@ $(function() {
     });
 
 	$("select#orderFormDeliveryType").change(function() {
-		console.log('test');
 		if($(this).val() == "parcel_locker") {
-			console.log($("#mapModal"));
 			$("#mapModal").css("display", "block");
 			$("#mapModal").css("opacity", "1");
-			$("div#map").append(`
-				<link rel="stylesheet" href="https://geowidget.inpost.pl/inpost-geowidget.css"/>
-				<script src='https://geowidget.inpost.pl/inpost-geowidget.js' defer></script>
-				<script>
-					function afterPointSelected(point) {
-						document.querySelector("#orderFormParcelLockerCode").value = point.name;
-						document.querySelector("#mapModal").style.opacity = 0;
-						setTimeout(() => {
-							document.querySelector("#mapModal").style.display = "none";
-						}, 200);
-					}
-				</script>
-				
-				<inpost-geowidget onpoint="afterPointSelected" token='${INPOST_API_TOKEN}' language='pl' config='parcelcollect'></inpost-geowidget>
-			`);
+		} else {
+			$("#mapModal").css("display", "none");
+			$("#mapModal").css("opacity", "0");
 		}
 	});
 

@@ -116,9 +116,10 @@ class ProductsController extends AppController {
 
 	public function productsList() {
 		$this->loadModel("SubCategory");
+		$this->loadModel("Category");
 		$this->loadModel("Filter");
 		$sort = (isset($this->params["url"]["sort_by"])) ? $this->params["url"]["sort_by"] : "";
-		$page = (isset($this->params["url"]["p"])) ? $this->params["url"]["p"] : 1;
+		$page = (isset($this->params["url"]["page"])) ? $this->params["url"]["page"] : 1;
 		$productsShown = (isset($this->params["url"]["per_page"])) ? $this->params["url"]["per_page"] : Configure::read("Config.max_per_page");
 		$priceRange = (isset($this->params["url"]["price_range"])) ? " BETWEEN ".explode("-", $this->params["url"]["price_range"])[0]." AND ".explode("-", $this->params["url"]["price_range"])[1] : "";
 		switch ($sort) {
@@ -139,17 +140,109 @@ class ProductsController extends AppController {
 				break;
 		}
 		if (isset($this->params["url"]["category"])) {
-			$products = [];
-			$subCategories = $this->SubCategory->find("all", array("conditions" => array("category_id" => $this->params["url"]["category"])));
-			foreach($subCategories as $subCategory) {
-				$allProducts = $this->Product->find("all", array("conditions" => array("sub_category_id" => $subCategory["SubCategory"]["id"], "price $priceRange"), "limit" => $page * $productsShown, "order" => array($sort_by)));
-				foreach($allProducts as $product) {
-					array_push($products, $product);
-				}
+			$products = $this->Category->find('all', array(
+				'joins' => array(
+					array(
+						'table' => 'sub_categories',
+						'alias' => 'SubCategoriesJoin',
+						'type' => 'INNER',
+						'conditions' => array(
+							'SubCategoriesJoin.category_id = Category.id'
+						)
+					),
+					array(
+						'table' => 'products',
+						'alias' => 'ProductsJoin',
+						'type' => 'INNER',
+						'conditions' => array(
+							'ProductsJoin.sub_category_id = SubCategoriesJoin.id'
+						)
+					)
+				),
+				'conditions' => array(
+					'category_id' => $this->params['url']['category']
+				),
+				'fields' => array('ProductsJoin.id', 'ProductsJoin.name', 'ProductsJoin.price', 'ProductsJoin.product_count'),
+				'order' => array($sort_by),
+				'recursive' => -1,
+				'limit' => $page * $productsShown
+			));
+
+			for ($i = 0; $i < ($page - 1) * $productsShown; $i++) {
+				array_shift($products);
 			}
+
+			$this->set("isCategory", true);
 			$this->set("productsShown", $productsShown);
 			$this->set("subCategoryId", $this->params["url"]["category"]);
 			$this->set("products", $products);
+			$this->set(
+				"count", 
+				ceil(count($this->Category->find('all', array(
+					'joins' => array(
+						array(
+							'table' => 'sub_categories',
+							'alias' => 'SubCategoriesJoin',
+							'type' => 'INNER',
+							'conditions' => array(
+								'SubCategoriesJoin.category_id = Category.id'
+							)
+						),
+						array(
+							'table' => 'products',
+							'alias' => 'ProductsJoin',
+							'type' => 'INNER',
+							'conditions' => array(
+								'ProductsJoin.sub_category_id = SubCategoriesJoin.id'
+							)
+						)
+					),
+					'conditions' => array(
+						'category_id' => $this->params['url']['category']
+					),
+					'fields' => array('ProductsJoin.id', 'ProductsJoin.name', 'ProductsJoin.price', 'ProductsJoin.product_count'),
+					'order' => array($sort_by),
+					'recursive' => -1
+				))) / $productsShown)
+			);
+			return 0;
+		} else if(isset($this->params["url"]["sub_category"])) {
+			$subCategory = $this->SubCategory->find("first", array("conditions" => array("id" => $this->params["url"]["sub_category"]), "fields" => array("sub_category_name", "category_id")))["SubCategory"];
+			$category = $this->Category->find("first", array("conditions" => array("id" => $subCategory["category_id"])))["Category"];
+			$products = $this->Product->find('all', array(
+				'conditions' => array(
+					'sub_category_id' => $this->params['url']['sub_category']
+				),
+				'alias' => 'ProductsJoin',
+				'fields' => array('id', 'name', 'price', 'product_count'),
+				'order' => array($sort_by),
+				'recursive' => -1,
+				'limit' => $page * $productsShown
+			));
+
+			for ($i = 0; $i < ($page - 1) * $productsShown; $i++) {
+				array_shift($products);
+			}
+
+			$this->set("isCategory", false);
+			$this->set("productsShown", $productsShown);
+			$this->set("subCategoryId", $this->params["url"]["sub_category"]);
+			$this->set("products", $products);
+			$this->set("subCategoryName", $subCategory["sub_category_name"]);
+			$this->set("categoryName", $category["category_name"]);
+			$this->set("categoryId", $category["id"]);
+			$this->set(
+				"count", 
+				ceil(count($this->Product->find('all', array(
+					'conditions' => array(
+						'sub_category_id' => $this->params['url']['sub_category']
+					),
+					'alias' => 'ProductsJoin',
+					'fields' => array('id', 'name', 'price', 'product_count'),
+					'order' => array($sort_by),
+					'recursive' => -1
+				))) / $productsShown)
+			);
 			return 0;
 		}
 		if (!isset($this->params["url"]["q"])) {
@@ -164,7 +257,6 @@ class ProductsController extends AppController {
 						$filters[$index] = [$spec => json_decode($this->Filter->find("first", array("conditions" => array("name" => strtolower($spec))))["Filter"]["filter_values"], true)];
 						$index++;
 					}
-
 					for ($i = 0; $i < count($filters); $i++) {
 						if (!isset($filters[$i][$this->params["url"]["filters"]])) { continue; };
 						$filter = $filters[$i][$this->params["url"]["filters"]][$this->params["url"]["filtersValues"]];
@@ -347,8 +439,8 @@ class ProductsController extends AppController {
 	public function invoice() {
 		$this->loadModel("User");
 		$this->loadModel("Order");
-		$this->layout = false;
-		$userUUID = json_decode($this->params["url"]["products"], true)["Orders"]["user_id"];
+		$this->layout = false;	
+		$userUUID = json_decode(urldecode($this->params["url"]["products"]), true)["Orders"]["user_id"];
 		$user = $this->User->find("first", array("conditions" => array("id" => $userUUID), "fields" => array("name", "surname", "country", "city", "street", "house_number")));
 		$date = strtotime(json_decode($this->params["url"]["products"], true)["Orders"]["order_date"]);
 		$year = date('Y', $date);

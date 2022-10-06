@@ -774,3 +774,15 @@ msgstr "FAKTURA vat nr"
 
 msgid "choose"
 msgstr "Wybierz"
+
+msgid "name_ascending"
+msgstr "Nazwa A-Z"
+
+msgid "name_descending"
+msgstr "Nazwa Z-A"
+
+msgid "next"
+msgstr "Następna"
+
+msgid "previous"
+msgstr "Poprzednia"

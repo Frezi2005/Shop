@@ -41,6 +41,7 @@ div.productOnMainPage {
     text-align: center;
     font-size: 13px;
     position: relative;
+    color: black;
 }
 
 div.productOnMainPage img {

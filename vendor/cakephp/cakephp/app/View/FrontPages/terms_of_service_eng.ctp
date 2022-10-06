@@ -1,4 +1,9 @@
-<article class="offset-1 col-10">
+<?php
+
+    echo $this->Html->css("privacyPolicyAndToS");
+
+?>
+<article id="text" class="offset-1 col-10">
 	<h1 class="page-title text-center">Terms of Service</h1>
 	<h2> I. General concepts </h2>
 	<ul>

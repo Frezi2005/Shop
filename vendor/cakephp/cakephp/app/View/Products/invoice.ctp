@@ -25,7 +25,8 @@
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($ch, CURLOPT_URL, "http://api.geonames.org/findNearbyPostalCodesJSON?lat=$lat&lng=$lon&username=$zipCodeApiKey");
-	$postalCode = json_decode(curl_exec($ch), true)['postalCodes'][0]['postalCode'];
+	$chReturn = json_decode(curl_exec($ch), true)['postalCodes'];
+	$postalCode = !empty($chReturn) ? $chReturn[0]['postalCode'] : "";
 	curl_close($ch);
 
     $pdf->SetFont('dejavusans', '', 14, '', true);

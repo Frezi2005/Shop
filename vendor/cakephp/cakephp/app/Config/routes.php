@@ -98,6 +98,7 @@
 	Router::connect("/remove-customer", 	   	   array("controller" => "customers", "action" => "removeCustomer"));
 	Router::connect("/update-employee-page", 	   array("controller" => "customers", "action" => "updateEmployeePage"));
 	Router::connect("/update-employee", 	       array("controller" => "customers", "action" => "updateEmployee"));
+	Router::connect("/monitor-employees-worktime", array("controller" => "customers", "action" => "monitorEmployeesWorktime"));
 
 	Router::connect("/send-email-from-customer",   array("controller" => "mails", "action" => "sendEmailFromCustomer"));
 	Router::connect("/send-forgot-password-email", array("controller" => "mails", "action" => "sendForgotPasswordEmail"));

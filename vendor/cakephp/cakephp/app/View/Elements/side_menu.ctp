@@ -5,7 +5,7 @@
             $index = 0;
             $icons = Configure::read("icons");
             foreach ($categories as $category => $sub) {
-                echo "<div class='category'><li data-category-id='{$sub["category_id"]}' id='category-name'><a href='products-list?category={$sub["category_id"]}'><i class='fa-solid fas ".$icons[$category]."'></i>".__($category)."</a></li>";
+                echo "<div class='category'><a href='products-list?category={$sub["category_id"]}'><li data-category-id='{$sub["category_id"]}' id='category-name'><i class='fa-solid fas ".$icons[$category]."'></i>".__($category)."</li></a>";
                     echo "<div class='subCategories'>";
                     for ($i = 0; $i < count($sub["sub_categories"]); $i++) {
                         echo "<li data-subcategory-id='{$sub["sub_categories"][$i]["id"]}'><a href='products-list?sub_category={$sub["sub_categories"][$i]["id"]}'>".__($sub["sub_categories"][$i]["sub_category_name"])."</a></li>";

@@ -75,7 +75,7 @@ $(function() {
                     if(data.length > 0) {
                         $("div.searchResults").css("display", "block");
                         for (product of data) {
-                            $("div.innerSearchResults").append(`<p title='${product["Products"].name}'><a href='product?product_id=${product["Products"].id}'><img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/${(product["Products"].imgExists) ? product["Products"].id : 'noimg'}.jpg'/>${product["Products"].name}</a></p>`);
+                            $("div.innerSearchResults").append(`<a href='product?product_id=${product["Products"].id}'><p title='${product["Products"].name}'><img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/${(product["Products"].imgExists) ? product["Products"].id : 'noimg'}.jpg'/>${product["Products"].name}</p></a>`);
                         }
                     } else {
                         $("div.searchResults").css("display", "none");
@@ -98,25 +98,7 @@ $(function() {
 
     $(".productOnMainPage").each(function() {
         var cur = $(this);
-        $.ajax({
-            type: "GET",
-            url: "http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/"+cur.find("a").text()+".jpg",
-            success: function(data) {
-                cur.prepend("<a href='" + cur.find("a").attr("href") + "'><img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/"+cur.find("a").text()+".jpg" + "'/></a>")
-            },
-            error: function(e) {
-                $.ajax({
-                    type: "GET",
-                    url: "http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/"+cur.find("a").attr("href").replace("product?product_id=", "")+".jpg",
-                    success: function(data) {
-                        cur.prepend("<a href='" + cur.find("a").attr("href") + "'><img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/"+cur.find("a").attr("href").replace("product?product_id=", "")+".jpg" + "'/></a>")
-                    },
-                    error: function(e) {
-                        cur.prepend("<a href='" + cur.find("a").attr("href") + "'><img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/noimg.jpg'/></a>")
-                    }
-                });
-            }
-        });
+        cur.prepend("<a href='" + cur.parent().attr("href") + "'><img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/"+cur.parent().attr("href").replace("product?product_id=", "")+".jpg" + "'/></a>")
     });
 
     if(window.history.length == 1) {

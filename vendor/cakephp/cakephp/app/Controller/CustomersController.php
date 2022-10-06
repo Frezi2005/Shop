@@ -382,4 +382,8 @@ class CustomersController extends AppController {
 		debug($data);
 		$this->User->updateAll(array("name" => $data["name"], "surname" => $data["surname"], "email" => $data["email"], "salary" => $data["salary"], "internship_length" => $data["internship_length"], "bonus_amount" => $data["bonus_amount"], "holiday_amount" => $data["holiday_amount"]));
 	}
+
+	public function monitorEmployeesWorktime() {
+		$this->set("employees", $this->User->find("all", array("conditions" => array("is_employee" => 1, "is_deleted" => 0))));
+	}
 }

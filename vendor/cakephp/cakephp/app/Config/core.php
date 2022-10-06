@@ -36,10 +36,33 @@ Configure::write('Config.max_per_page', 8);
  * In development mode, you need to click the flash message to continue.
  */
 	Configure::write('debug', 2);
-	Configure::write("hierarchy", array("admin-panel" => [5, 4, 3, 2, 1], "list-employees" => [5, 4, 3], "inventory" => [5, 4, 1], "remove-employee-page" => [5, 4], "orders-report" => [5, 4, 2], "add-product-to-database" => [5, 4, 1], "delivery-form" => [5, 4, 1], "update-employee-page" => [5, 4, 3], "admin-privileges" => 5, "remove-customer" => [5, 4], "ksiegowosc" => [5, 4], "kadry" => [5, 3], "kierownictwo" => 2, "pracownicy" => [5, 1]));
-	Configure::write("icons", array("computers_and_laptops" => "fa-laptop", "peripherals" => "fa-keyboard", "phones_and_tablets" => "fa-mobile", "tv" => "fa-tv", "audio_sets" => "fa-headphones", "for_gamers" => "fa-gamepad", "car_accessories" => "fa-car", "appliances" => "fa-blender", "lighting" => "fa-lightbulb", "cameras" => "fa-camera"));
+	Configure::write("hierarchy", array(
+		"admin-panel" => [5, 4, 3, 2, 1], 
+		"list-employees" => [5, 4, 3], 
+		"inventory" => [5, 4, 1], 
+		"remove-employee-page" => [5, 4], 
+		"orders-report" => [5, 4, 2], 
+		"add-product-to-database" => [5, 4, 1], 
+		"delivery-form" => [5, 4, 1], 
+		"update-employee-page" => [5, 4, 3], 
+		"admin-privileges" => 5, 
+		"remove-customer" => [5, 4]
+	));
+	Configure::write("icons", array(
+		"computers_and_laptops" => "fa-laptop", 
+		"peripherals" => "fa-keyboard", 
+		"phones_and_tablets" => "fa-mobile", 
+		"tv" => "fa-tv", 
+		"audio_sets" => "fa-headphones", 
+		"for_gamers" => "fa-gamepad", 
+		"car_accessories" => "fa-car", 
+		"appliances" => "fa-blender", 
+		"lighting" => "fa-lightbulb", 
+		"cameras" => "fa-camera"
+	));
 	Configure::write('geoApiKey', "5673dd870804dead2a2c98701296402d");
 	Configure::write('zipCodeApiKey', "frezi2005");
+	Configure::write('Config.language', 'pol');
 
 /**
  * Configure the Error handler used to handle errors for your application. By default

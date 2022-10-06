@@ -1,12 +1,12 @@
 div#main {
     float: left;
-    margin: 20px 0 0 50px;
     padding: 20px;
     border: 3px solid #b0ffb8;
     border-radius: 27px;
 }
 
-a {
+div#main a {
     color: #000;
-    text-decoration: none;
+    display: block;
+    margin: 10px;
 }

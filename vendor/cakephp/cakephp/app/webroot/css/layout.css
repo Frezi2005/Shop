@@ -23,6 +23,16 @@ nav {
     background-image: linear-gradient(to right, #bbffc2, #adffb5, #9effa7, #8eff99, #7dfe8a);
 }
 
+form button, form input[type=submit], button#deleteCustomer, button#grantAdmin, button#generate, button#updateEmployee {
+    width: 80% !important;
+    margin: auto !important;
+    height: 50px !important;
+    border-radius: 50px !important;
+    outline: none !important;
+    border: 2px solid #000 !important;
+    background-color: #fff !important;
+}
+
 /*nav > * {*/
 /*    float: left;*/
 /*    line-height: 75px;*/
@@ -91,7 +101,7 @@ div.innerSearchResults {
 }
 
 
-div.innerSearchResults > p {
+div.innerSearchResults p {
     line-height: calc(200px / 3);
     height: calc(200px / 3);
     font-size: 14px;
@@ -103,12 +113,12 @@ div.innerSearchResults > p {
     width: 400px;
 }
 
-div.innerSearchResults > p > a {
+div.innerSearchResults a {
     color: black;
     text-decoration: none;
 }
 
-div.innerSearchResults > p > a > img {
+div.innerSearchResults img {
     height: 40px !important;
 }
 
@@ -181,6 +191,20 @@ div.logInLink, div.cartLink {
     position: relative;
 }
 
+#cartProductsAmount {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 10px;
+    background-color: #a1e2fe;
+    height: 20px;
+    width: 20px;
+    line-height: 15px;
+    padding: 2.5px;
+    text-align: center;
+    border-radius: 50%;
+}
+
 div.logInLink > div.logInModal, div.cartLink > div.cartModal {
     display: none;
     height: auto;
@@ -195,19 +219,20 @@ div.logInLink > div.logInModal, div.cartLink > div.cartModal {
 }
 
 div.logInModal {
-    width: 200px;
+    width: 101.5%;
 }
 
 div.cartModal {
     border-radius: 5px;
-    height: auto;
+    height: 500px !important;
     line-height: 0;
-    width: 300px
+    width: 300px;
+    overflow-y: scroll;
 }
 
 div.cartModal > div > a {
     display: inline-block;
-    width: 250px;
+    width: 280px;
     text-overflow: ellipsis;
     white-space: nowrap;
     font-size: 15px;
@@ -215,6 +240,8 @@ div.cartModal > div > a {
     line-height: 50px;
     margin: 0;
     padding: 0;
+    overflow: hidden;
+    text-align: left;
 }
 
 div.cartModal div.grid {
@@ -291,7 +318,7 @@ div.category {
     transition: all 0.2s ease-in-out;
 }
 
-#category-name a {
+.category a {
 	color: black;
 	text-decoration: none;
 }

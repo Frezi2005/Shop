@@ -1,3 +1,8 @@
+<?php
+
+    echo $this->Html->css("privacyPolicyAndToS");
+
+?>
 <div id="text" class="offset-1 col-10">
 <h1>Privacy Policy</h1>
 <p>Last updated: March 31, 2022</p>

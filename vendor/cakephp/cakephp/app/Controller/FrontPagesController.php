@@ -127,7 +127,9 @@ class FrontPagesController extends AppController {
 	}
 
 	public function contact() {
-
+		if(isset($this->params["url"]["template"])) {
+			$this->set("template", $this->params["url"]["template"]);
+		}
 	}
 
 	public function partnership() {

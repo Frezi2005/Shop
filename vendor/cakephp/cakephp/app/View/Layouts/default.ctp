@@ -127,7 +127,9 @@
 						"delivery-form",
 						"remove-products-form",
 						"update-image-form",
-						"edit-product-form"
+						"edit-product-form",
+						"profile",
+						"gifts-catalog"
 					];
 					$display = true;
 

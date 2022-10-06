@@ -130,13 +130,14 @@ class ProfilesController extends AppController {
 	}
 
 	public function changeEmailForm() {
-
+		$this->loadModel("User");
+		$this->set("email", $this->User->find("first", array("conditions" => array("id" => $this->Session->read("userUUID")), "fields" => array("email")))["User"]["email"]);
 	}
 
 	public function sendChangeEmail() {
 		$this->autoRender = false;
 		require_once '../../../../autoload.php';
-		$this->loadModel("Users");
+		$this->loadModel("User");
 		$this->SecurityUtils = $this->Components->load("PasswordHashing");
 		$changeEmailData = $this->request["data"]["changeEmailForm"];
 		$user = $this->Users->find("first", array("conditions" => array("email" => $changeEmailData["currentEmail"], "password" => $this->SecurityUtils->encrypt($changeEmailData["password"]))));

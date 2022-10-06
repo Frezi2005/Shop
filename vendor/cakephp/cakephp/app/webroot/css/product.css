@@ -31,13 +31,22 @@ input[type=number] {
   	-moz-appearance: textfield;
 }
 
-#addToCartBtn, #buyNowBtn {
-  	border: none;
-  	outline: none;
-	background-image: linear-gradient(to right, #bbeeff, #a1e2fe, #88d6ff, #72c8ff, #60baff);
-	border-radius: 20px;
+#addToCartBtn, #buyNowBtn, #ask {
+    border-radius: 50px !important;
+    outline: none !important;
+    border: 2px solid #000 !important;
+    background-color: #fff !important;
 	display: inline-block;
 	/*margin-left: 40px;*/
+    margin-bottom: 15px;
+    font-size: 14px;
+    padding: 0;
+    height: 50px;
+    line-height: 45px;
+}
+
+#ask {
+    padding: 10px;
 }
 
 div.ad {
