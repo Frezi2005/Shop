@@ -145,7 +145,6 @@ class OrdersController extends AppController {
 			"all", 
 			array(
 				"conditions" => array(
-					"user_id" => $this->Session->read("userUUID"), 
 					"Month(order_date)" => date("m"), 
 					"Year(order_date)" => date("Y")
 				), 

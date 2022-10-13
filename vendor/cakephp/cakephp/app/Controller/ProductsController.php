@@ -354,28 +354,19 @@ class ProductsController extends AppController {
 
 	public function order() {
 		$this->loadModel("User");
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_URL, "http://country.io/names.json");
-		$result = curl_exec($ch);
-		curl_close($ch);
-
-		$countries = array();
-		$obj = json_decode($result, true);
-		foreach ($obj as $k => $v) {
-			if ($v != "Russia") {
-				$countries[$v] = $v;
-			}
+		$countries = ["pl" => [], "en" => []];
+		foreach(json_decode(file_get_contents("../webroot/files/countries.json"), true) as $country) {
+			$countries["pol"][$country["name_pl"]] = $country["name_pl"];
+			$countries["eng"][$country["name_en"]] = $country["name_en"];
 		}
-
-		ksort($countries);
-		$countries = array("" => __("choose")) + $countries;
+	
+		ksort($countries[$this->Session->read("language") ?? "eng"]);
+		$countries[$this->Session->read("language") ?? "eng"] = array("" => __("choose")) + $countries[$this->Session->read("language") ?? "eng"];
 		if($this->Session->read("loggedIn")) {
 			$user = $this->User->find("first", array("conditions" => array("id" => $this->Session->read("userUUID")), "fields" => array("country", "city", "street", "house_number", "flat_number", "email")));
 			$this->set("userInfo", $user["User"]);
 		}
-		$this->set("countries", $countries);
+		$this->set("countries", $countries[$this->Session->read("language") ?? "eng"]);
 	}
 
 	public function insertOrderToDB() {
@@ -398,6 +389,8 @@ class ProductsController extends AppController {
 			for ($i = 0; $i < count($data["products"]); $i++) {
 				$count = $this->Products->find("first", array("conditions" => array("id" => $data["products"][$i]), "fields" => array("product_count")));
 				$this->Products->updateAll(array("product_count" => intval($count["Products"]["product_count"]) + $data["count"]), array("id" => $data["products"][$i]));
+				$log = $this->Products->getDataSource()->getLog(false, false);
+				$this->log($log);
 			}
 		} else {
 			$this->Session->write("numberError", true);
@@ -447,7 +440,7 @@ class ProductsController extends AppController {
 		$month = date('m', $date);
 		$this->set("geoApiKey", Configure::read("geoApiKey"));
 		$this->set("zipCodeApiKey", Configure::read("zipCodeApiKey"));
-		$this->set("invoice_number", $this->Order->find("first", array("conditions" => array("user_id" => $userUUID, "Month(order_date)" => $month, "Year(order_date)" => $year), "order" => array("order_date DESC"), "fields" => array("invoice_number")))["Order"]["invoice_number"]);
+		$this->set("invoice_number", $this->Order->find("first", array("conditions" => array("Month(order_date)" => $month, "Year(order_date)" => $year), "order" => array("order_date DESC"), "fields" => array("invoice_number")))["Order"]["invoice_number"]);
 		$this->set("user", $user);
 	}
 

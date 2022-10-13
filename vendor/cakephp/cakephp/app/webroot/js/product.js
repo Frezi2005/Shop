@@ -51,6 +51,17 @@ $(function (){
     var urlParams = new URLSearchParams(queryString);
     var page = parseInt((urlParams.get("page") != null) ? urlParams.get("page") : 1);
 
+    if(page > +$(".totalCount").val()) {
+        urlParams.set("page", +$(".totalCount").val())
+        location.replace("http://localhost/Shop/vendor/cakephp/cakephp/products-list?" + urlParams.toString());
+    }
+
+    if(page == 1) {
+        $("#page-prev").css("display", "none");
+    } else if (page == +$(".totalCount").val()) {
+        $("#page-next").css("display", "none");
+    }
+
     $("select#sort").find("[value='" + urlParams.get("sort_by") + "']").attr("selected", true);
 
     $("button.page-change").click(function() {
@@ -223,6 +234,9 @@ function displayAmount(cart) {
         amount += cart[i].count;
     }
     $("#cartProductsAmount").text(amount);
+    if(!amount) {
+        $("#linkOuter a").attr("href", "#");
+    }
 }
 
 function displayItemsInCartGUI(cart) {

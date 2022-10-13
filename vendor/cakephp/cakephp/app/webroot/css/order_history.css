@@ -18,6 +18,10 @@ div#filters {
 	flex-direction: column;
 	transition: height 0.5s ease-in-out;
 	overflow: hidden !important;
+	margin-top: 20px;
+	border-radius: 27px;
+	border: 3px solid #000000;
+	padding: 20px;
 }
 
 div#filters > *:not(p):not(div), div#filters > div *:not(p):not(div) {
@@ -31,7 +35,7 @@ div#filters p {
 
 div#filters button {
 	outline: none;
-	border: 2px solid #b0ffb8;
+	border: 2px solid #000000;
 	background-color: #ffffff;
 	margin: auto;
 	height: 50px;
@@ -50,6 +54,14 @@ div.order {
     padding: 10px;
 	margin: 20px;
 	font-size: 15px;
+}
+
+div.pagination > * {
+	height: 50px;
+	line-height: 50px;
+	padding: 5px;
+	cursor: pointer;
+	font-size: 25px;
 }
 
 div.order:first-of-type {
@@ -134,8 +146,11 @@ div.pagination .bold {
 	}
 
 	#filters {
-		height: 0;
+		border: none !important;
+		height: 0px;
 		overflow-y: hidden;
+		padding: 0 !important;
+		margin-top: 0 !important;
 	}
 
 	.filters-dropdown {

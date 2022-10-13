@@ -108,12 +108,18 @@ $(function() {
 		if($(this).val() == "parcel_locker") {
 			$("#mapModal").css("display", "block");
 			$("#mapModal").css("opacity", "1");
+			$(document).mouseup(function(e) {
+				var container = $("#mapModal");
+		
+				if (!container.is(e.target) && container.has(e.target).length === 0) {
+					container.slideUp(1000);
+				}
+			});
 		} else {
 			$("#mapModal").css("display", "none");
 			$("#mapModal").css("opacity", "0");
 		}
 	});
-
 
     function changePaymentInfo(select) {
         switch (select.val()) {

@@ -21,6 +21,9 @@
     if ($this->Session->read("forgotPasswordEmailSent")) {
         echo "<script>Swal.fire({icon: \"success\",text: '".__("password_reset_email_alert")."',showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
         $_SESSION["forgotPasswordEmailSent"] = false;
+    } else if ($this->Session->read("loginError")) {
+        echo "<script>Swal.fire({icon: \"error\",text: '".__("login_error")."',showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
+        $_SESSION["loginError"] = false;
     }
 ?>
 

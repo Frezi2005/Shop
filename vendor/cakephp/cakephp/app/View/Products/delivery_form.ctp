@@ -14,7 +14,7 @@
 </div>
 <?php
     if ($this->Session->read("numberError") == true) {
-        echo "<script>Swal.fire({icon: \"error\",text: ".__("number_error").",showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
+        echo "<script>Swal.fire({icon: \"error\",text: '".__("number_error")."',showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
         $_SESSION["numberError"] = false;
     }
 ?>

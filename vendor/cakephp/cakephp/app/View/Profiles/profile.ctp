@@ -12,5 +12,5 @@
     <p><?=__("total_points")?>: <?=$total_points;?></p>
     <a href="gifts-catalog"><?=__("gifts_catalog")?></a>
     <a href="order-history"><?=__("order_history")?></a>
-    <a href=""><?=__("rules_loyalty_program")?></a>
+    <a href="regulations-of-loyalty-program-<?=$this->Session->read("language")?>"><?=__("rules_loyalty_program")?></a>
 </div>

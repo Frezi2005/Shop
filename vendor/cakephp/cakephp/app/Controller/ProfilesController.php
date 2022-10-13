@@ -136,28 +136,63 @@ class ProfilesController extends AppController {
 
 	public function sendChangeEmail() {
 		$this->autoRender = false;
-		require_once '../../../../autoload.php';
 		$this->loadModel("User");
 		$this->SecurityUtils = $this->Components->load("PasswordHashing");
 		$changeEmailData = $this->request["data"]["changeEmailForm"];
-		$user = $this->Users->find("first", array("conditions" => array("email" => $changeEmailData["currentEmail"], "password" => $this->SecurityUtils->encrypt($changeEmailData["password"]))));
-		$this->Users->updateAll(array("email_change_creation_date" => "'".date("Y-m-d H:i:s")."'", "email_change_expiration_date" => "'".date("Y-m-d H:i:s", strtotime("+1 hours"))."'", "new_email" => "'".$changeEmailData["newEmail"]."'"), array("password" => $this->SecurityUtils->encrypt($changeEmailData["password"])));
+		$user = $this->User->find("first", array("conditions" => array("email" => $changeEmailData["currentEmail"], "password" => $this->SecurityUtils->encrypt($changeEmailData["password"]))));
+		$this->User->updateAll(array("email_change_creation_date" => "'".date("Y-m-d H:i:s")."'", "email_change_expiration_date" => "'".date("Y-m-d H:i:s", strtotime("+1 hours"))."'", "new_email" => "'".$changeEmailData["newEmail"]."'"), array("password" => $this->SecurityUtils->encrypt($changeEmailData["password"])));
 		$this->Session->write("data", $changeEmailData);
 		if ($user) {
-			$transport = (new Swift_SmtpTransport('ssl://smtp.gmail.com', 465))
-				->setUsername('internetspam.pl@gmail.com')
-				->setPassword('internetspam.pl');
 
-			$mailer = new Swift_Mailer($transport);
+			$curl = curl_init();
 
-			$message = (new Swift_Message('Change email'))
-				->setFrom(['internetspam.pl@gmail.com' => 'AlphaTech'])
-				->setTo(['kamil.wan05@gmail.com'])
-				->setBody('');
+			curl_setopt_array($curl, [
+				CURLOPT_URL => "https://rapidprod-sendgrid-v1.p.rapidapi.com/mail/send",
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_ENCODING => "",
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 30,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => "POST",
+				CURLOPT_POSTFIELDS => "{
+					\"personalizations\": [
+						{
+							\"to\": [
+								{
+									\"email\": \"kamil.wan05@gmail.com\"
+								}
+							],
+							\"subject\": \"Change email\"
+						}
+					],
+					\"from\": {
+						\"email\": \"no-reply@alphatech.pl\"
+					},
+					\"content\": [
+						{
+							\"type\": \"text/plain\",
+							\"value\": \"Hello, World!\"
+						}
+					]
+				}",
+				CURLOPT_HTTPHEADER => [
+					"X-RapidAPI-Host: rapidprod-sendgrid-v1.p.rapidapi.com",
+					"X-RapidAPI-Key: fdc08166b9mshdbd3ed3b4030c0fp1f1f9djsn7379b940a5c2",
+					"content-type: application/json"
+				],
+			]);
 
-			if ($mailer->send($message)) {
+			$response = curl_exec($curl);
+			$err = curl_error($curl);
+
+			curl_close($curl);
+
+			if ($err) {
+				echo "cURL Error #:" . $err;
+			} else {
 				$this->Session->write("changeEmailSent", true);
-				$this->redirect("/logout");
+			 	$this->redirect("/logout");
 			}
 		} else {
 			$this->Session->write("changeEmailError", true);

@@ -37,5 +37,7 @@ const lang = {
 	internship_length: "Internship length",
 	bonus_amount: "Bonus amount",
 	holiday_amount: "Holiday amount",
-	product_added: "Product has been added to the system!"
+	product_added: "Product has been added to the system!",
+	recaptcha_error: "You must submit the ReCaptcha!\n",
+	checkbox_error: "You must agree to ToS!\n"
 }

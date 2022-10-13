@@ -35,6 +35,7 @@ class AppController extends Controller {
         parent::beforeFilter();
         $this->loadModel("Category");
         $this->loadModel("SubCategory");
+        $this->Session->read("language") ?? $this->Session->write("language", "eng");
         Configure::write("Config.language", $this->Session->read("language"));
 		$locale = Configure::read('Config.language');
 		if ($locale && file_exists(APP . 'View' . DS . $locale . DS . $this->viewPath . DS . $this->view . $this->ext)) {

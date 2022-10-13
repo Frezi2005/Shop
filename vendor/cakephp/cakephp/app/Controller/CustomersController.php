@@ -154,6 +154,7 @@ class CustomersController extends AppController {
 				$this->redirect("/home");
 			}
 		} else {
+			$this->Session->write("loginError", true);
 			$this->redirect("/login");
 		}
 	}
@@ -182,17 +183,18 @@ class CustomersController extends AppController {
 	}
 
 	public function changePassword() {
-		debug("test");
-		die;
+		// debug("test");
+		// die;
 		$this->autoRender = false;
 		$changePasswordData = $this->request["data"]["changePasswordForm"];
 
 		if ($changePasswordData["newPasswordConfirm"] == $changePasswordData["newPassword"]) {
-			$this->User->password = $this->SecurityUtils->encrypt($changePasswordData["currentPassword"]);
-			$user = $this->User->find("first", array("conditions" => array("password" => $this->SecurityUtils->encrypt($changePasswordData["currentPassword"]))));
+			$user = $this->User->find("first", array("conditions" => array("id" => $this->Session->read("userUUID"))));
 			if($user) {
-				$this->User->saveField("password", $this->SecurityUtils->encrypt($changePasswordData["newPassword"]));
+				$this->User->updateAll(array("password" => "'".$this->SecurityUtils->encrypt($changePasswordData["newPassword"])."'"), array("id" => $this->Session->read("userUUID")));
 				$this->Session->write("changePassword", true);
+				$log = $this->User->getDataSource()->getLog(false, false);
+				$this->Log($log);
 				$this->redirect("/logout");
 			} else {
 				$this->Session->write("userNotFoundError", true);
@@ -245,18 +247,17 @@ class CustomersController extends AppController {
 	}
 
 	public function listEmployees() {
-		$this->autoRender = false;
 		if (!$this->CheckPrivileges->check($_SERVER["REQUEST_URI"], $this->Session->read("userUUID"))) {
 			throw new ForbiddenException();
 		}
-		debug($this->User->find("all", array("conditions" => array("is_employee" => 1))));
+		$this->set("employees", $this->User->find("all", array("conditions" => array("is_employee" => 1))));
 	}
 
 	public function adminPanel() {
 		if (!$this->CheckPrivileges->check($_SERVER["REQUEST_URI"], $this->Session->read("userUUID"))) {
 			throw new ForbiddenException();
 		}
-		$employees = $this->User->find("all", array("conditions" => array("is_employee" => 1)));
+		$employees = $this->User->find("all", array("conditions" => array("is_employee" => 1, "is_admin" => 0)));
 		$customers = $this->User->find("all", array("conditions" => array(
 			"AND" => array(
 				"is_employee" => 0,

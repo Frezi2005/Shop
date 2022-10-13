@@ -1,5 +1,6 @@
 <?php
     echo $this->Html->css("order_history");
+    echo $this->Html->css("form");
     echo $this->Html->script("order_history");
 ?>
 <div id="orders" class="offset-1 col-xxl-6 col-xl-6 col-lg-7 col-10 float-start">
@@ -43,12 +44,12 @@ echo "</div>";
 						<option value="date_desc">${!${''} = __("date_descending")}</option>
 					</select>
 					<div class="row">
-						<div class="col-lg-12 col-6 float-start"><p>${!${''} = __("price_min")}</p><input type="number" class="col-12" id="priceMin" placeholder="${!${''} = __("price_min")}"></div>
-						<div class="col-lg-12 col-6 float-start"><p>${!${''} = __("price_max")}</p><input type="number" class="col-12" id="priceMax" placeholder="${!${''} = __("price_max")}"></div>
+						<div class="col-lg-12 col-6 float-start"><input type="number" class="col-12" id="priceMin" placeholder="${!${''} = __("price_min")}"></div>
+						<div class="col-lg-12 col-6 float-start"><input type="number" class="col-12" id="priceMax" placeholder="${!${''} = __("price_max")}"></div>
 					</div>
 					<div class="row">
-						<div class="col-lg-12 col-6 float-start"><p>${!${''} = __("date_min")}</p><input type="text" class="col-12" id="dateMin"></div>
-						<div class="col-lg-12 col-6 float-start"><p>${!${''} = __("date_max")}</p><input type="text" class="col-12" id="dateMax"></div>
+						<div class="col-lg-12 col-6 float-start"><input type="text" class="col-12" id="dateMin" placeholder="${!${''} = __("date_min")}"></div>
+						<div class="col-lg-12 col-6 float-start"><input type="text" class="col-12" id="dateMax" placeholder="${!${''} = __("date_max")}"></div>
 					</div>
 					<p>${!${''} = __("payment_method")}</p>
 					<select id="paymentMethod">

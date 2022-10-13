@@ -96,7 +96,7 @@ div.contact a {
 
 div.contact a:first-of-type::after {
     content: "";
-    border-bottom: 2px solid #60baff;
+    border-bottom: 2px solid #97cbff;
     height: 0px;
     width: 90%;
     position: absolute;

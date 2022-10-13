@@ -26,6 +26,7 @@ form input[type=submit] {
 }
 
 div.submit {
+    margin-top: 15px;
     text-align: center;
 }
 

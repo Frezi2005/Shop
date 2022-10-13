@@ -52,7 +52,7 @@
 						</p>
 						<div class="logInLink navLink float-start col-3">
 							<i class="fas fa-user"></i>
-							<span><?php echo ($this->Session->read("loggedIn") == true) ? __("profile") : __("log_in")?></span>
+							<span><?php echo ($this->Session->read("loggedIn") == true) ? "<a href='profile'>".__("profile")."</a>" : "<a href='login'>".__("log_in")."</a>"?></span>
 							<div class="logInModal">
 								<?php
 								if ($this->Session->read("loggedIn") != true) {
@@ -99,7 +99,9 @@
 				</div>
 			</nav>
 			<?php
-				if ($_SERVER["REDIRECT_URL"] !== "/Shop/vendor/cakephp/cakephp/app/webroot/home" && strpos($_SERVER["HTTP_REFERER"], "order") === false) {
+				preg_match("/(?<!\/ )[^\/]+$/", $_SERVER["REDIRECT_URL"], $matches);
+
+				if ($_SERVER["REDIRECT_URL"] !== "/Shop/vendor/cakephp/cakephp/app/webroot/home" && $matches !== "order") {
 					echo "<a id='back' href='#'><i class='fas fa-arrow-left'></i></a>";
 				}
 			?>
@@ -121,20 +123,27 @@
 						"orders-report",
 						"update-employee-page",
 						"forgot-password-page",
-						"privacy-policy-and-cookies",
-						"terms-of-service",
+						"privacy-policy-and-cookies-eng",
+						"privacy-policy-and-cookies-pol",
+						"terms-of-service-eng",
+						"terms-of-service-pol",
 						"remove-employee-page",
 						"delivery-form",
 						"remove-products-form",
 						"update-image-form",
 						"edit-product-form",
 						"profile",
-						"gifts-catalog"
+						"gifts-catalog",
+						"change-password-form",
+						"update-password-page",
+						"regulations-of-loyalty-program-pol",
+						"regulations-of-loyalty-program-eng"
 					];
 					$display = true;
 
 					for($i = 0; $i < count($sites); $i++) {
-						if(strpos($_SERVER["REDIRECT_URL"], $sites[$i]) !== false) {
+						preg_match("/(?<!\/ )[^\/]+$/", $_SERVER["REDIRECT_URL"], $matches);
+						if($matches[0] == $sites[$i]) {
 							$display = false;
 							break;
 						}

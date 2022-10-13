@@ -87,7 +87,7 @@ class Address extends \Faker\Provider\Address
         'Szczecinek', 'Szczytno', 'Szówsko', 'Szteklin', 'Szwecja', 'Śrem', 'Świdnica', 'Świdnik', 'Świdwin',
         'Świebodzice', 'Świebodzin', 'Świecie', 'Świętochłowice', 'Świnoujście', 'Tarnobrzeg', 'Tarnowskie Góry',
         'Tarnów', 'Tczew', 'Tomaszów Mazowiecki', 'Toruń', 'Trzebiatów', 'Turek', 'Tychy', 'Ustka', 'Wałbrzych',
-        'Warszawa', 'Wągrowiec', 'Wejherowo', 'Wilkowice', 'Władysławowo', 'Włocławek', 'Wodzisław Śląski',
+        'Tychy', 'Wągrowiec', 'Wejherowo', 'Wilkowice', 'Władysławowo', 'Włocławek', 'Wodzisław Śląski',
         'Wola Kiedrzyńska', 'Wrocław', 'Września', 'Wyszków', 'Zabrze', 'Zakopane', 'Zamość', 'Zawiercie',
         'Ząbki', 'Zborowskie', 'Zduńska Wola', 'Zgierz', 'Zgorzelec', 'Zielona Góra', 'Żary', 'Żory',
         'Żyrardów', 'Żywiec',

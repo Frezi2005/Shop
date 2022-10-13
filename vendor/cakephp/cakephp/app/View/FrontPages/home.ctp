@@ -9,7 +9,7 @@
 				<div class="d-block slider-item w-100 h-100 text-center"><img src="http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/slider-img-1.png"/></div>
 			</div>
 			<div class="carousel-item h-100" data-bs-interval="3000">
-				<div class="d-block slider-item w-100 h-100 text-center"><img src="http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/slider-img-2.jpg"/></div>
+				<div class="d-block slider-item w-100 h-100 text-center"><img src="http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/slider-img-2.png"/></div>
 			</div>
 			<div class="carousel-item h-100" data-bs-interval="3000">
 				<div class="d-block slider-item w-100 h-100 text-center"><img src="http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/slider-img-3.png"/></div>

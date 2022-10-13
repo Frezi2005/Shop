@@ -786,3 +786,12 @@ msgstr "Następna"
 
 msgid "previous"
 msgstr "Poprzednia"
+
+msgid "login_error"
+msgstr "Nie znaleźlismy pasującego konta o podanych danych!"
+
+msgid "name_and_surname"
+msgstr "Imię i nazwisko"
+
+msgid "user_not_found"
+msgstr "Nie mogliśmy znaleźć użytkownika o podanym adresie email!"

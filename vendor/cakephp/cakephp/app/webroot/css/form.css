@@ -21,7 +21,7 @@ form a {
     float: left;
 }
 
-div#info input:not(input[type=submit]), form input:not(input[type=submit]) {
+div#info input:not(input[type=submit]), form input:not(input[type=submit]), #filters input:not(input[type=submit]) {
     resize: none;
     padding: 5px;
     outline: none;

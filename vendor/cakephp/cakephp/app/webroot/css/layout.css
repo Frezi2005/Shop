@@ -20,10 +20,12 @@ nav {
     width: 100%;
     float: left;
     height: 75px;
-    background-image: linear-gradient(to right, #bbffc2, #adffb5, #9effa7, #8eff99, #7dfe8a);
+    /* background-image: linear-gradient(to right, #bbffc2, #adffb5, #9effa7, #8eff99, #7dfe8a); */
+    background-color: #b0ffb8;
 }
 
 form button, form input[type=submit], button#deleteCustomer, button#grantAdmin, button#generate, button#updateEmployee {
+    display: block;
     width: 80% !important;
     margin: auto !important;
     height: 50px !important;
@@ -70,10 +72,10 @@ nav input {
     width: 95%;
     height: 100%;
     border-radius: 27px;
-    border: 1px solid #797979;
-    -webkit-box-shadow: 0px 2px 6px 0px #000000cc;
+    border: 1px solid #ebebeb;
+    /* -webkit-box-shadow: 0px 2px 6px 0px #000000cc;
     -moz-box-shadow: 0px 2px 6px 0px #000000cc;
-    box-shadow: 0px 2px 6px 0px #000000cc;
+    box-shadow: 0px 2px 6px 0px #000000cc; */
 	padding-left: 20px;
 }
 
@@ -141,19 +143,15 @@ nav select {
     height: 40px;
     margin-top: calc((75px - 40px) / 2);
     border-radius: 27px;
-    border: 1px solid #78e4ff;
+    border: none;
     text-align: center;
     appearance: none;
     line-height: 38px;
-    background-image: linear-gradient(to right, #bbeeff, #a1e2fe, #88d6ff, #72c8ff, #60baff);
+    background-color: #97cbff;
     cursor: pointer;
     font-weight: bold;
     padding: 0;
     margin-bottom: 0;
-}
-
-nav select option {
-    background-image: linear-gradient(to right, #bbeeff, #a1e2fe, #88d6ff, #72c8ff, #60baff);
 }
 
 /*nav .links {*/
@@ -191,10 +189,14 @@ div.logInLink, div.cartLink {
     position: relative;
 }
 
+#linkOuter a {
+    position: relative;
+}
+
 #cartProductsAmount {
     position: absolute;
-    top: 20px;
-    right: 30px;
+    top: -10px;
+    right: -12px;
     font-size: 10px;
     background-color: #a1e2fe;
     height: 20px;
@@ -224,7 +226,7 @@ div.logInModal {
 
 div.cartModal {
     border-radius: 5px;
-    height: 500px !important;
+    height: min(auto, 500px) !important;
     line-height: 0;
     width: 300px;
     overflow-y: scroll;
@@ -370,7 +372,7 @@ ul.categoriesList > div > div > li > a {
 
 ul.categoriesList hr {
     margin: 0;
-    background-color: #60baff;
+    background-color: #97cbff;
     height: 2px;
 }
 
@@ -388,7 +390,8 @@ footer {
     width: 100%;
     text-align: center;
     line-height: 50px;
-    background-image: linear-gradient(to right, #bbeeff, #a1e2fe, #88d6ff, #72c8ff, #60baff);
+    /* background-image: linear-gradient(to right, #bbeeff, #a1e2fe, #88d6ff, #72c8ff, #97cbff); */
+    background-color: #97cbff;
     font-weight: bold;
     margin-top: auto;
     position: fixed;
@@ -490,11 +493,19 @@ input[type="checkbox"]:checked + *:not(label) {
     color: #fff;
 }
 
+label {
+    line-height: 2rem;
+}
+
 p.categoriesBtn {
     display: none;
 }
 .categoriesBtn i {
     transition: all .2s ease-in-out;
+}
+
+h1 {
+    margin-bottom: 15px !important;
 }
 
 @media (max-width: 1068px) {
@@ -597,16 +608,16 @@ p.categoriesBtn {
 	} */
     div.categories {
         float: left;
-		margin-top: 0;
 		border: 0;
-		border-radius: 0;
+		border-radius: 27px;
         height: 50px;
         transition: height .2s ease-in-out;
         padding-bottom: 10px;
+        margin-top: 20px;
 	}
 
     .categoriesList {
-        opacity: 0;
+        display: none;
         height: 0px !important;
         transition: height .2s ease-in-out;
     }
@@ -618,6 +629,15 @@ p.categoriesBtn {
         line-height: 47px;
         font-size: 20px;
         margin: 0;
+        font-weight: bold;
+    }
+
+    p.categoriesBtn i:first-of-type {
+        margin-left: 15px;
+    }
+
+    p.categoriesBtn i {
+        margin: auto 4px;
     }
 
     div.category > .subCategories {

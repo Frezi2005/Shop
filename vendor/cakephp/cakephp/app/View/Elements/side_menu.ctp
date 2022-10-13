@@ -1,4 +1,4 @@
-<div class="categories offset-lg-1 col-xxl-3 col-xl-3 col-lg-4 col-12">
+<div class="categories offset-1 col-xxl-3 col-xl-3 col-lg-4 col-10">
     <p class="categoriesBtn">Categories<i class='fas fa-angle-left'></i><i class='fas fa-angle-left'></i><i class='fas fa-angle-left'></i></p>
     <ul class="categoriesList">
         <?php

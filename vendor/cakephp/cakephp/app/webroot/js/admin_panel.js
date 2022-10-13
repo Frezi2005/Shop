@@ -8,6 +8,9 @@ $(() => {
                     text: "Admin privileges granted",
                     icon: "success",
                     button: "OK",
+                    onClose: () => {
+                        location.reload();
+                    }
                 });
             }
         });
@@ -22,8 +25,10 @@ $(() => {
                     text: "Customer account has been removed",
                     icon: "success",
                     button: "OK",
+                    onClose: () => {
+                        location.reload();
+                    }
                 });
-                location.reload();
             }
         });
     });

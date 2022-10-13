@@ -1,12 +1,6 @@
 $(function() {
     var form = $("form#registerUserFormRegisterPageForm");
 
-    $("input#registerUserFormBirthDate").datepicker({
-        dateFormat: "yy-mm-dd",
-        changeMonth: true,
-        changeYear: true,
-        maxDate: '-16y',
-    });
     form.submit(function(e) {
         var name = $("input#registerUserFormName").val();
         var surname = $("input#registerUserFormSurname").val();
@@ -15,12 +9,18 @@ $(function() {
         var password = $("input#registerUserFormPassword").val();
         var passwordConfirm = $("input#registerUserFormPasswordConfirm").val();
         var birthDate = $("input#registerUserFormBirthDate").val();
+        var tosCheckbox = $("input#registerUserFormRules")[0].checked;
+        var text = '';
 
-        if (grecaptcha.getResponse().length == 0) {
+        if(!tosCheckbox) {
+            text += lang.checkbox_error;
             e.preventDefault();
         }
 
-        var text = '';
+        if (grecaptcha.getResponse().length == 0) {
+            text += lang.recaptcha_error;
+            e.preventDefault();
+        }
 
         if (password_validation(password)) {
             if (password !== passwordConfirm) {
@@ -58,6 +58,8 @@ $(function() {
         }
 
         if(text != '') {
+            $(".recaptcha-checkbox-border").css("border", "none");
+            $(".recaptcha-checkbox-border").css("border", "2px solid red");
             Swal.fire({
                 title: 'Oops...',
                 text: text,
@@ -76,22 +78,18 @@ $(function() {
     }
 
     function email_validation(email) {
-        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-        return regex.test(email);
+        return /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(email);
     }
 
     function phone_number_validation(phoneNumber) {
-        var regex = /^(?:\+\d{1,3}|0\d{1,3}|00\d{1,2})?(?:\s?\(\d+\))?(?:[-\/\s.]|\d)+$/gi;
-        return regex.test(phoneNumber);
+        return /^(?:\+\d{1,3}|0\d{1,3}|00\d{1,2})?(?:\s?\(\d+\))?(?:[-\/\s.]|\d)+$/gi.test(phoneNumber);
     }
 
     function password_validation(password) {
-        var regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
-        return regex.test(password);
+        return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/.test(password);
     }
 
     function date_validation(date) {
-        var regex = /^\d{4}-\d{2}-\d{2}$/;
-        return regex.test(date);
+        return /^\d{4}-\d{2}-\d{2}$/.test(date);
     }
 });

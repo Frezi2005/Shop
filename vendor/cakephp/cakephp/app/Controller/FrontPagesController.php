@@ -200,4 +200,12 @@ class FrontPagesController extends AppController {
 	public function forgotPasswordPage() {
 
 	}
+
+	public function regulationsOfLoyaltyProgramPol() {
+
+	}
+
+	public function regulationsOfLoyaltyProgramEng() {
+
+	}
 }

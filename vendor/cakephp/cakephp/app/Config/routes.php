@@ -77,6 +77,8 @@
 	Router::connect("/remove-employee-page", 	   array("controller" => "frontPages", "action" => "removeEmployeePage"));
 	Router::connect("/ask-for-account", 	   	   array("controller" => "frontPages", "action" => "askForAccount"));
 	Router::connect("/forgot-password-page", 	   array("controller" => "frontPages", "action" => "forgotPasswordPage"));
+	Router::connect("/regulations-of-loyalty-program-pol", 	   array("controller" => "frontPages", "action" => "regulationsOfLoyaltyProgramPol"));
+	Router::connect("/regulations-of-loyalty-program-eng", 	   array("controller" => "frontPages", "action" => "regulationsOfLoyaltyProgramEng"));
 
 	Router::connect("/logout", 					   array("controller" => "customers", "action" => "logout"));
 	Router::connect("/settings", 				   array("controller" => "customers", "action" => "settings"));

@@ -115,23 +115,71 @@ class MailsController extends AppController {
 		$this->autoRender = false;
 		$email = new CakeEmail("default");
 		$email->from(array("internetspam.pl@gmail.com" => "AlphaTech"));
-		//$email->to($this->request["data"]["forgotPasswordForm"]["email"]);
+		//$email->to();
 		$email->to("kamil.wan05@gmail.com");
-		$email->subject("Forgot password from AlphaTech");
+		$email->subject("");
 		$user = $this->User->find("first", array(
 			"conditions" => array(
 				"User.email" => $this->request["data"]["forgotPasswordForm"]["email"]
 			)
 		));
+
 		if (count($user)) {
 			$userId = base64_encode($user["User"]["id"]);
-			try {
-				$email->send("http://localhost/Shop/vendor/cakephp/cakephp/update-password-page?id=".$userId);
-				$this->Session->write("forgotPasswordEmailSent", true);
-			} catch (Exception $e) {
+
+			$curl = curl_init();
+
+			curl_setopt_array($curl, [
+				CURLOPT_URL => "https://rapidprod-sendgrid-v1.p.rapidapi.com/mail/send",
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_ENCODING => "",
+				CURLOPT_MAXREDIRS => 10,
+				CURLOPT_TIMEOUT => 30,
+				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST => "POST",
+				CURLOPT_POSTFIELDS => "{
+					\"personalizations\": [
+						{
+							\"to\": [
+								{
+									\"email\": \"kamil.wan05@gmail.com\"
+								}
+							],
+							\"subject\": \"Forgot password from AlphaTech\"
+						}
+					],
+					\"from\": {
+						\"email\": \"no-reply@alphatech.pl\"
+					},
+					\"content\": [
+						{
+							\"type\": \"text/plain\",
+							\"value\": \"http://localhost/Shop/vendor/cakephp/cakephp/update-password-page?id=".$userId."\"
+						}
+					]
+				}",
+				CURLOPT_HTTPHEADER => [
+					"X-RapidAPI-Host: rapidprod-sendgrid-v1.p.rapidapi.com",
+					"X-RapidAPI-Key: fdc08166b9mshdbd3ed3b4030c0fp1f1f9djsn7379b940a5c2",
+					"content-type: application/json"
+				],
+			]);
+
+			$response = curl_exec($curl);
+			$err = curl_error($curl);
+
+			curl_close($curl);
+
+			if ($err) {
 				$this->Session->write("forgotPasswordEmailSent", false);
+			} else {
+				$this->Session->write("forgotPasswordEmailSent", true);
 			}
 			$this->redirect("/login");
+		} else {
+			$this->Session->write("userNotFound", true);
+			$this->redirect("/forgot-password-page");
 		}
 	}
 }

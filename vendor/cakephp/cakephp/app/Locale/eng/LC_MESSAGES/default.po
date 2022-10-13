@@ -780,3 +780,12 @@ msgstr "Next"
 
 msgid "previous"
 msgstr "Previous"
+
+msgid "login_error"
+msgstr "We haven't have found an account matching submitted credentials!"
+
+msgid "name_and_surname"
+msgstr "Name and surname"
+
+msgid "user_not_found"
+msgstr "We couldn't find any user any matching this email address!"

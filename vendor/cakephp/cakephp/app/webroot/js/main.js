@@ -163,13 +163,13 @@ $(function() {
     var closed = true;
     $("p.categoriesBtn").click(function() {
         if(closed) {
-            $(".categoriesList").css("opacity", 1);
+            $(".categoriesList").css("display", "block");
             $(".categories").css("height", "530px")
             $(".categoriesList").css("height", "530px");
             $(".categoriesBtn > i").css("transform", "rotate(-90deg)");
             closed = false;
         } else {
-            $(".categoriesList").css("opacity", 0);
+            $(".categoriesList").css("display", "none");
             $(".categories").css("height", "50px")
             $(".categoriesList").css("height", 0);
             $(".categoriesBtn > i").css("transform", "rotate(0deg)");

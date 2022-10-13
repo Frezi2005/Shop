@@ -11,7 +11,7 @@
     <div id="orderForm" class="col-6">
         <?php
 
-            $isLoggedIn = $_SESSION["loggedIn"];
+            $isLoggedIn = isset($_SESSION["loggedIn"]) ? $_SESSION["loggedIn"] : false;
             $url = ($isLoggedIn) ? "/order-products" : "/ask-for-account";
 
             echo $this->Form->create("orderForm", array("url" => $url));

@@ -74,7 +74,7 @@
 	$decimal = substr($decimal2, 2);
 
 	$bank = $faker->bank();
-	while(strlen($bank) > 25) {
+	while(strlen($bank) > 20) {
 		$bank = $faker->bank();
 	}
 

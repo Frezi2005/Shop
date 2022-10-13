@@ -7,7 +7,7 @@
     <span id="breadcrumbs">
         <?php
             if(isset($categoryName)) {
-                echo "<a href='products-list?category={$categoryId}'>".__($categoryName)."</a> > <a href='products-list?sub_category={$subCategoryId}'>".__($subCategoryName)."</a>"; 
+                echo "<a href='products-list?category={$categoryId}'>".__($categoryName)."</a> <i class='fas fa-angle-right'></i> <a href='products-list?sub_category={$subCategoryId}'>".__($subCategoryName)."</a>"; 
             }
         ?>
     </span>
@@ -29,8 +29,8 @@
                     <option value="name_asc">$nameAscending</option>
                     <option value="name_desc">$nameDescending</option>
                 </select>
-                <button data-page-change="-1" class="page-change offset-1 col-2">$prev</button>
-                <button data-page-change="1" class="page-change offset-1 col-2">$next</button>
+                <button data-page-change="-1" id='page-prev' class="page-change offset-1 col-2">$prev</button>
+                <button data-page-change="1" id='page-next' class="page-change offset-1 col-2">$next</button>
             </div>
             PAG;
         }
@@ -38,6 +38,7 @@
     ?>
     <input type="hidden" class="productsCount" value="<?=count($products)?>">
     <input type="hidden" class="productsShown" value="<?=$productsShown?>">
+    <input type="hidden" class="totalCount" value="<?=$count?>">
     <?php
         $index = $isCategory ? "ProductsJoin" : "Product";
         foreach ($products as $product) {
