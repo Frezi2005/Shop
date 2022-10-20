@@ -12,7 +12,7 @@
 			www.alphatech.com. Regulamin definiuje zasady przyznawania, wydawania,
 			odejmowania, reklamowania i unieważniania punktów naliczanych w związku z zakupem
 			produktów.</li>
-		<li>2. Program realizowany jest od dnia 06.11.2019r. do odwołania, którego termin zostanie podany
+		<li>2. Program realizowany jest od dnia 09.09.2022r. do odwołania, którego termin zostanie podany
 			przez organizatora do wiadomości uczestników z co najmniej 3-miesięcznym wyprzedzeniem
 			za pośrednictwem informacji umieszczonych na stronie internetowej Organizatora.</li>
 		<li>3. Dokonanie zakupu za pomocą zebranych punktów oznacza jednocześnie zapoznanie się
@@ -126,16 +126,16 @@
 		Podanie danych jest dobrowolne, jednak niezbędne do wzięcia udziału w Programie
 		Lojalnościowym.</li>
 		</li>4. W celu uzyskania dodatkowych informacji dotyczących przetwarzania przez nas danych
-		osobowych mogą Państwo skontaktować się za pomocą adresu e-mail rodo@lumiqon.pl.</li>
+		osobowych mogą Państwo skontaktować się za pomocą adresu e-mail rodo@AlphaTech.pl.</li>
 		</li>5. Dostęp do Państwa danych będą mieć nasi pracownicy oraz pracownicy podmiotów
-		współpracujących z Lumiqon Sp. z o.o. obsługujących systemy informatyczne.</li>
+		współpracujących z AlphaTech Sp. z o.o. obsługujących systemy informatyczne.</li>
 		</li>6. Państwa dane będą przechowywane przez trzy lata od zakończenia Programu Lojalnościowego.</li>
 		</li>7. Przysługuje Państwu prawo do:
 		<ul>
 			<li>1) żądania dostępu do danych osobowych, ich sprostowania, usunięcia lub ograniczenia, a
 				także prawo do wniesienia sprzeciwu wobec przetwarzania oraz o przeniesienia danych.</li>
 			<li>2) Wycofania zgody na przetwarzanie danych osobowych poprzez wysłanie maila na adres
-				rodo@lumiqon.pl cofnięcie zgody nie wpływa na zgodność z prawem przetwarzania,
+				rodo@AlphaTech.pl cofnięcie zgody nie wpływa na zgodność z prawem przetwarzania,
 				którego dokonano na podstawie zgody przed jej cofnięciem;</li>
 			<li>3) wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych dotyczącej
 				przetwarzania przez nas Państwa danych osobowych.</li>
@@ -149,13 +149,13 @@
 		Uczestnik może w każdej chwili i bez podania przyczyny zrezygnować z uczestnictwa
 		w Programie Lojalnościowym poprzez przesłanie stosownego oświadczenia do Organizatora
 		na przykład za pośrednictwem poczty elektronicznej na adres: kamil.wan05@gmail.com lub też
-		pisemnie na adres Organizatora (Lumiqon sp. z o.o., ul. Marii Konopnickiej 13, 43-100 Tychy).
+		pisemnie na adres Organizatora (AlphaTech sp. z o.o., ul. Marii Konopnickiej 13, 43-100 Tychy).
 		Rezygnacja następuje ze skutkiem natychmiastowym.
 	</p>
 	<h3>§ 8. Postępowanie reklamacyjne</h3>
 	<ul>
 		<li>1. Wszelkie reklamacje związane z Programem Lojalnościowym mogą być zgłaszane pisemnie
-			na adres Organizatora (Lumiqon sp. z o.o., ul. Marii Konopnickiej 13, 43-100 Tychy) lub pocztą
+			na adres Organizatora (AlphaTech sp. z o.o., ul. Marii Konopnickiej 13, 43-100 Tychy) lub pocztą
 			elektroniczną na adres e-mail: kamil.wan05@gmail.com z dopiskiem „Reklamacja – Program
 			Lojalnościowy”.</li>
 		<li>2. Reklamacje będą rozpatrywane przez Organizatora w terminie do 7 dni od ich otrzymania.</li>

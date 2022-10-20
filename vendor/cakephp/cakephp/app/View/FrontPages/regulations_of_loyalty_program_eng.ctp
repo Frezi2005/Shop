@@ -12,7 +12,7 @@
 			www.alphatech.com. The regulations define the rules for granting, issuing,
 			deducting, advertising and canceling points accrued in connection with the purchase
 			products. </li>
-		<li> 2. The program is implemented from November 6, 2019. until further notice, the date of which will be given
+		<li> 2. The program is implemented from September 9, 2022. until further notice, the date of which will be given
 			by the organizer to inform the participants at least 3 months in advance
 			via the information posted on the Organiser's website. </li>
 		<li> 3. By making a purchase with the points you have collected, you are also familiarizing yourself with it
@@ -32,7 +32,7 @@
 			number
 			to the register of entrepreneurs of the National Court Register by the District Court for the Capital City
 			of
-			Warszawy in Tychy, 12th Commercial Division of the National Court Register, under
+			Tychy in Tychy, 12th Commercial Division of the National Court Register, under
 			KRS number: 0000213998, NIP: 5341895377, with share capital of PLN 207,000, address
 			electronic: kamil.wan05@gmail.com (hereinafter: the "Organizer"). </li>
 		<li> 3. Product - products offered by the Organizer via the Purchasing Platform. </li>
@@ -101,7 +101,7 @@
 			Organizer. </li>
 		<li> 3. The right to exercise the right granted under these Regulations no
 			can be transferred to a third party. </li>
-		<li> 4. A valid and current list of prizes with assigned point values ​​can be found in
+		<li> 4. A valid and current list of prizes with assigned point values can be found in
 			the "Awards" module </li>
 		<li> 5. During the Loyalty Program, the prizes indicated in the catalog of rewards
 			may be replaced by the Organizer, at its discretion, with other prizes, Fr.
@@ -131,16 +131,16 @@
 		Providing data is voluntary, but necessary to participate in the Program
 		Loyalty. </li>
 		</li> 4. For more information on how we process your data
-		personal data can be contacted via the e-mail address rodo@lumiqon.pl. </li>
+		personal data can be contacted via the e-mail address rodo@alphatech.pl. </li>
 		</li> 5. Our employees and employees of the entities will have access to your data
-		cooperating with Lumiqon Sp. z o.o. that support IT systems. </li>
+		cooperating with AlphaTech Sp. z o.o. that support IT systems. </li>
 		</li> 6. Your data will be stored for three years after the end of the Loyalty Program. </li>
 		</li> 7. You have the right to:
 		<ul>
 			<li> 1) request access to personal data, rectification, deletion or limitation, a
 				also the right to object to the processing and to transfer the data. </li>
 			<li> 2) Withdrawal of consent to the processing of personal data by sending an e-mail to the address
-				rodo@lumiqon.pl withdrawal of consent does not affect the lawfulness of processing,
+				rodo@alphatech.pl withdrawal of consent does not affect the lawfulness of processing,
 				which was made on the basis of consent before its withdrawal; </li>
 			<li> 3) bring a complaint to the President of the Personal Data Protection Office regarding
 				we process your personal data. </li>
@@ -154,13 +154,13 @@
 		The participant may withdraw from participation at any time and without giving any reason
 		in the Loyalty Program by sending an appropriate statement to the Organizer
 		for example via e-mail to the following address: kamil.wan05@gmail.com or also
-		in writing to the Organiser's address (Lumiqon sp. z o.o., ul. Marii Konopnickiej 13, 43-100 Tychy).
+		in writing to the Organiser's address (AlphaTech sp. z o.o., ul. Marii Konopnickiej 13, 43-100 Tychy).
 		The resignation is effective immediately.
 	</p>
 	<h3> § 8. Complaints procedure </h3>
 	<ul>
 		<li> 1. Any complaints related to the Loyalty Program may be submitted in writing
-			to the Organiser's address (Lumiqon sp.z o.o., ul. Marii Konopnickiej 13, 43-100 Tychy) or by post
+			to the Organiser's address (AlphaTech sp.z o.o., ul. Marii Konopnickiej 13, 43-100 Tychy) or by post
 			by e-mail to the following e-mail address: kamil.wan05@gmail.com with the annotation "Complaint - Program
 			Loyalty ”. </li>
 		<li> 2. Complaints will be considered by the Organizer within 7 days of their receipt. </li>

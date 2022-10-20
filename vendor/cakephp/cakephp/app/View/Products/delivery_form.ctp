@@ -8,7 +8,7 @@
 			echo $this->Form->create("deliveryForm", array("url" => "/add-products-from-delivery"));
 			echo $this->Form->input("products", array("options" => $products, "multiple" => true, "label" => __("products"), "size" => 10));
 			echo $this->Form->input("count", array("type" => "number", "label" => "", "placeholder" => __("number_of_products")));
-			echo $this->Form->end(__("submit"));
+			echo $this->Form->end(__("add"));
 		?>
 	</div>
 </div>

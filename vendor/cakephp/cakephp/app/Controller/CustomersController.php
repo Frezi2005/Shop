@@ -387,4 +387,28 @@ class CustomersController extends AppController {
 	public function monitorEmployeesWorktime() {
 		$this->set("employees", $this->User->find("all", array("conditions" => array("is_employee" => 1, "is_deleted" => 0))));
 	}
+
+	public function holidaysForm() {
+		
+	}
+
+	public function requestHolidays() {
+		$this->autoRender = false;
+		$this->loadModel("Holiday");
+		$data = $this->request["data"]["requestHolidaysForm"];
+		$startDate = $data["start"]["year"]."-".$data["start"]["month"]."-".$data["start"]["day"];
+		$endDate = $data["end"]["year"]."-".$data["end"]["month"]."-".$data["end"]["day"];
+		// debug($startDate." - ".$endDate);
+		// debug((strtotime($endDate) - strtotime($startDate)) / 86400 + 1);
+		$this->Holiday->save(array(
+			"id" => CakeText::uuid(),
+			"user_id" => $this->Session->read("userUUID"),
+			"start" => $startDate,
+			"end" => $endDate,
+			"type" => $data["holidayType"],
+			"status" => "pending"
+		));
+		$this->Session->write("leaveRequestSent", true);
+		$this->redirect("/holidays-form");
+	}
 }

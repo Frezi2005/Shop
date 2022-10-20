@@ -5,7 +5,7 @@ $(function() {
 			Swal.fire({
 				title: 'Oops...',
 				icon: 'error',
-				text: 'ReCaptcha has not been submitted!'
+				text: lang.recaptcha_error
 			});
         }
 
@@ -14,7 +14,7 @@ $(function() {
 			Swal.fire({
 				title: 'Oops...',
 				icon: 'error',
-				text: 'Email field cannot be empty!'
+				text: lang.email_error
 			});
 		}
     });

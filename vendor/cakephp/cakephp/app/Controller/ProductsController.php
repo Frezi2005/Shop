@@ -298,7 +298,7 @@ class ProductsController extends AppController {
 			if (!empty($productData)) {
 				if ($productData["image"]["size"] > 2048000) {
 					$this->Session->write("sizeError", true);
-				} else if (!preg_match('/\d/', $productData["price"])) {
+				} else if (!preg_match('/^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$/', $productData["price"])) {
 					$this->Session->write("priceError", true);
 				} else {
 					move_uploaded_file($productData["image"]["tmp_name"], WWW_ROOT."img/".$id.".jpg");
@@ -354,13 +354,14 @@ class ProductsController extends AppController {
 
 	public function order() {
 		$this->loadModel("User");
-		$countries = ["pl" => [], "en" => []];
+		$countries = ["pol" => [], "eng" => []];
 		foreach(json_decode(file_get_contents("../webroot/files/countries.json"), true) as $country) {
 			$countries["pol"][$country["name_pl"]] = $country["name_pl"];
 			$countries["eng"][$country["name_en"]] = $country["name_en"];
 		}
-	
 		ksort($countries[$this->Session->read("language") ?? "eng"]);
+		$countries["pol"] = array_merge(["Polska" => "Polska"], $countries["pol"]); 
+		$countries["eng"] = array_merge(["Poland" => "Poland"], $countries["eng"]); 
 		$countries[$this->Session->read("language") ?? "eng"] = array("" => __("choose")) + $countries[$this->Session->read("language") ?? "eng"];
 		if($this->Session->read("loggedIn")) {
 			$user = $this->User->find("first", array("conditions" => array("id" => $this->Session->read("userUUID")), "fields" => array("country", "city", "street", "house_number", "flat_number", "email")));

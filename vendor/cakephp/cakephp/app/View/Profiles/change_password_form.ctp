@@ -11,7 +11,7 @@ echo $this->Html->css("form");
 			echo $this->Form->input("currentPassword", array("type" => "password", "label" => "", "placeholder" => __("current_password")));
 			echo $this->Form->input("newPassword", array("type" => "password", "label" => "", "placeholder" => __("new_password")));
 			echo $this->Form->input("newPasswordConfirm", array("type" => "password", "label" => "", "placeholder" => __("new_password_confirm")));
-			echo $this->Form->end(__("submit"));
+			echo $this->Form->end(__("change"));
 		?>
 	</div>
 </div>

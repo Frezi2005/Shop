@@ -6,7 +6,7 @@ $(function() {
         for(const value in rest) {
             html += `${value}: <input type="text" value="${rest[value]}"/>`;
         }
-        html += '<button id="editProduct">Save</button>';
+        html += '<button id="editProduct">'+lang.save+'</button>';
         $("div#inputs").html(html);
     }
     generateInputs($("#productSelect").val(), $("#productSelect").find(":selected").data("product"));

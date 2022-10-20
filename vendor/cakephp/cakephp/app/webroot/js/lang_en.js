@@ -39,5 +39,21 @@ const lang = {
 	holiday_amount: "Holiday amount",
 	product_added: "Product has been added to the system!",
 	recaptcha_error: "You must submit the ReCaptcha!\n",
-	checkbox_error: "You must agree to ToS!\n"
+	checkbox_error: "You must agree to ToS!\n",
+	no_file_selected: "No file selected!\n",
+	name_and_description_error: "Name and description must be filled!\n",
+	success: "Success",
+	admin_granted: "Admin privileges granted!",
+	customer_removed: "Customer account has been removed!",
+	message_error: "Your message is either too long or too short.\n",
+	atleast_one_product: "You have to select at least one product!",
+	no_products: "Looks like there's currently no products in this category!",
+	are_you_sure: "Are you sure?",
+	no_revert: "You won't be able to revert this!",
+	yes_delete: "Yes, delete it!",
+	deleted: "Deleted!",
+	account_deleted: "Your account has been deleted.",
+	too_much: "Too much",
+	max_is: "Max is",
+	existing_products: "If you want to add next product to the cart you should buy one of exisitng ones!"
 }

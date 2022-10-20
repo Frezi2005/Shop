@@ -12,7 +12,7 @@
             echo $this->Form->input("newEmail", array("type" => "email", "label" => "", "placeholder" => __("enter_new_email"), "required" => "true", "value" => isset($_SESSION["data"]) && isset($_SESSION["data"]["newEmail"]) ? $_SESSION["data"]["newEmail"] : ""));
             echo $this->Form->input("password", array("type" => "password", "label" => "", "placeholder" => __("enter_password"), "required" => "true"));
 
-            echo $this->Form->end(__("submit"));
+            echo $this->Form->end(__("change"));
         ?>
     </div>
 </div>

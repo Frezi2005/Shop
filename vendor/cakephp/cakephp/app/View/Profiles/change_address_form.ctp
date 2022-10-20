@@ -14,7 +14,7 @@
             echo $this->Form->input("house_number", array("type" => "text", "label" => "", "placeholder" => __("house_number"), "pattern" => "(([1-9])([0-9]*)[a-z]|([1-9])([0-9]*))", "required" => true));
             echo $this->Form->input("flat_number", array("type" => "text", "label" => "", "placeholder" => __("flat_number"), "pattern" => "([1-9])([0-9]*)", "required" => true));
 
-            echo $this->Form->end(__("submit"));
+            echo $this->Form->end(__("change"));
         ?>
     </div>
 </div>

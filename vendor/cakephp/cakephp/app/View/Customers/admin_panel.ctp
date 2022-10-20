@@ -33,8 +33,8 @@
         if($privileges["update-employee-page"]) {
             echo "<a href='update-employee-page'>".__("update_employee")."</a>";
         }
-
-        if($privileges["admin-privileges"]) {
+        
+        if($privileges["admin-privileges"] && count($employees) > 0) {
             echo "<select id='usersSelect'>";
             for ($i = 0; $i < count($employees); $i++) {
                 echo "<option value='".$employees[$i]["User"]["id"]."'>".$employees[$i]["User"]["name"]." ".$employees[$i]["User"]["surname"].": ".$employees[$i]["User"]["email"]."</option>";

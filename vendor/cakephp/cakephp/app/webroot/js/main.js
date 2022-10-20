@@ -163,17 +163,21 @@ $(function() {
     var closed = true;
     $("p.categoriesBtn").click(function() {
         if(closed) {
-            $(".categoriesList").css("display", "block");
+            // $(".categoriesList").css("display", "block");
             $(".categories").css("height", "530px")
             $(".categoriesList").css("height", "530px");
             $(".categoriesBtn > i").css("transform", "rotate(-90deg)");
             closed = false;
         } else {
-            $(".categoriesList").css("display", "none");
+            // $(".categoriesList").css("display", "none");
             $(".categories").css("height", "50px")
-            $(".categoriesList").css("height", 0);
+            $(".categoriesList").css("height", "0px");
             $(".categoriesBtn > i").css("transform", "rotate(0deg)");
             closed = true;
         }
+    })
+
+    $(".logInLink").click(() => {
+        location.replace(`http://localhost/Shop/vendor/cakephp/cakephp/${$($(".logInLink").find("a")[0]).attr("href")}`);
     })
 });

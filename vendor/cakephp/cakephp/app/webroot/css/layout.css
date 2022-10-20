@@ -304,7 +304,7 @@ ul.categoriesList {
     padding: 10px;
     padding-left: 20px;
     width: 100%;
-    overflow: none;
+    overflow: hidden;
     height: 500px;
     font-size: 18px;
 }
@@ -614,11 +614,12 @@ h1 {
         transition: height .2s ease-in-out;
         padding-bottom: 10px;
         margin-top: 20px;
+        overflow: hidden;
 	}
 
     .categoriesList {
-        display: none;
-        height: 0px !important;
+        overflow: hidden;
+        height: 0px;
         transition: height .2s ease-in-out;
     }
 
@@ -653,6 +654,18 @@ h1 {
     }
 }
 
+@media (min-width: 992px) {
+    .categories {
+        height: 500px !important;
+        overflow: visible;
+    }
+
+    ul.categoriesList {
+        height: 500px !important;
+        overflow: visible;
+    }
+}
+
 @media (max-width: 767px) {
     nav input {
         width: 95%;
@@ -661,26 +674,6 @@ h1 {
     nav button {
         left: calc(95% - 75px);
     }
-}
-
-@media (max-width: 503px) {
-	/* div.categories {
-		height: 170px;
-	}
-
-	ul.categoriesList {
-		height: 170px;
-	}
-
-	.category {
-		width: calc(100% / 4);
-		float: left;
-		height: 50px;
-	}
-
-	.category:nth-last-of-type(-n+2) {
-		width: 50%;
-	} */
 }
 
 #main {

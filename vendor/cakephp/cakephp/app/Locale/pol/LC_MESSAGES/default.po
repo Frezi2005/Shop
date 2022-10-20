@@ -795,3 +795,12 @@ msgstr "Imię i nazwisko"
 
 msgid "user_not_found"
 msgstr "Nie mogliśmy znaleźć użytkownika o podanym adresie email!"
+
+msgid "message_sending_success_alert"
+msgstr "Twoja wiadomość została wysłana!"
+
+msgid "change"
+msgstr "Zmień"
+
+msgid "add"
+msgstr "Dodaj"

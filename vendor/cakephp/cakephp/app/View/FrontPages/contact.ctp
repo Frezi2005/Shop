@@ -20,13 +20,14 @@
         echo $this->Form->end(__("send"));
 
         if ($this->Session->read("contactEmailSent") === true) {
-            echo "<script>Swal.fire({icon: \"success\",text: '".__("message_sent_alert")."',showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
+            echo "<script>Swal.fire({icon: \"success\",text: \"".__("message_sent_alert")."\",showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
             $_SESSION["contactEmailSent"] = null;
         } else if ($this->Session->read("contactEmailSent") === false) {
-            echo "<script>Swal.fire({icon: \"error\",text: '".__("message_sending_error_alert")."',showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
+            echo "<script>Swal.fire({icon: \"error\",text: \"".__("message_sending_error_alert")."\",showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
+            $_SESSION["contactEmailSent"] = null;
+        } else if ($this->Session->read("contactEmailSent") === true) {
+            echo "<script>Swal.fire({icon: \"success\",text: \"".__("message_sending_success_alert")."\",showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
             $_SESSION["contactEmailSent"] = null;
         }
     ?>
-    <span id="emailError"></span>
-    <span id="messageError"></span>
 </div>

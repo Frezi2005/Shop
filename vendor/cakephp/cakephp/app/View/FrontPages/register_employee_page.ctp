@@ -24,7 +24,7 @@
             echo $this->Form->input("internshipLength", array("type" => "text", "label" => "", "placeholder" => __("internship_length")));
             echo $this->Form->input("bonusAmount", array("type" => "text", "label" => "", "placeholder" => __("bonus_amount")));
             echo $this->Form->input("holidayAmount", array("type" => "text", "label" => "", "placeholder" => __("holiday_amount")));
-            echo $this->Form->end(__("submit"));
+            echo $this->Form->end(__("register"));
         ?>
     </div>
 </div>

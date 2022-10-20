@@ -2,7 +2,7 @@
     echo $this->Html->css("product");
     echo $this->Html->script("product");
 ?>
-<div class="productContainer offset-1 col-xxl-6 col-xl-6 col-lg-5 col-4">
+<div class="productContainer offset-1 col-xxl-6 col-xl-6 col-lg-5 col-10">
     <h3 id="productName" class="col-12"><?php echo $product["name"]; ?></h3>
     <div id="productImg" class="col-xxl-6 col-xl-6 col-lg-12 col-12 float-start"></div>
     <div class="col-xxl-6 col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 float-start">

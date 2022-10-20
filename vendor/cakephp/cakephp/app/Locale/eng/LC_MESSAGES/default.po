@@ -789,3 +789,12 @@ msgstr "Name and surname"
 
 msgid "user_not_found"
 msgstr "We couldn't find any user any matching this email address!"
+
+msgid "message_sending_success_alert"
+msgstr "Your message has been sent!"
+
+msgid "change"
+msgstr "Change"
+
+msgid "add"
+msgstr "Add"

@@ -5,7 +5,7 @@ $(() => {
 
 	if(!+$(".productsCount").val()) {
 		$(".productsList").hide();
-		$("#content").append("<span class='noProducts'>Looks like there's currently no products in this category!</span>")
+		$("#content").append("<span class='noProducts'>"+lang.no_products+"</span>")
 	}
 
 });

@@ -31,12 +31,12 @@ $(() => {
 
         if($("#addProductFormImage").get(0).files.length === 0) {
             e.preventDefault();
-            text += 'No file selected!\n';
+            text += lang.no_file_selected;
         }
 
         if($("#addProductFormName").val().length == 0 || $("#addProductFormDescription").val().length == 0) {
             e.preventDefault();
-            text += 'Name and description must be filled!\n';
+            text += lang.name_and_description_error;
         }
 
         if(text) {

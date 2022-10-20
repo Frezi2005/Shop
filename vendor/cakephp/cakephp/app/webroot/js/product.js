@@ -20,7 +20,7 @@ $(function (){
         if(parseInt(amount) * parseFloat($("#productTaxPrice").text().replace(/[^\d]*/, '')) > PRICE_LIMIT) {
             Swal.fire({
 				icon: "error",
-				text: `Too much. Max is ${PRICE_LIMIT} USD`,
+				text: `${lang.too_much}. ${lang.max_is} ${PRICE_LIMIT} USD`,
 				showConfirmButton: false,
 				timer: 5000,
 				timerProgressBar: true
@@ -57,9 +57,11 @@ $(function (){
     }
 
     if(page == 1) {
-        $("#page-prev").css("display", "none");
+        $("#page-prev").css("opacity", "0");
+        $("#page-prev").attr("disabled", true);
     } else if (page == +$(".totalCount").val()) {
-        $("#page-next").css("display", "none");
+        $("#page-next").css("opacity", "0");
+        $("#page-next").attr("disabled", true);
     }
 
     $("select#sort").find("[value='" + urlParams.get("sort_by") + "']").attr("selected", true);
@@ -123,7 +125,7 @@ function updateCart(amount, id, name, price, add = true, modal = true) {
         if (getCartPrice(items) + ((add) ? parseFloat(price.replace(/[^\d]*/, '')) : 0) * amount > PRICE_LIMIT) {
             Swal.fire({
                 icon: "error",
-                text: `Too much. Max is ${PRICE_LIMIT} USD`,
+                text: `${lang.too_much}. ${lang.max_is} ${PRICE_LIMIT} USD`,
                 showConfirmButton: false,
                 timer: 5000,
                 timerProgressBar: true
@@ -134,7 +136,7 @@ function updateCart(amount, id, name, price, add = true, modal = true) {
         if(items.length >= MAX_DIFF_PRODUCTS) {
             Swal.fire({
                 icon: "error",
-                text: `If you want to add next product to the cart you should buy one of exisitng ones!`,
+                text: lang.existing_products,
                 showConfirmButton: false,
                 timer: 5000,
                 timerProgressBar: true
@@ -236,6 +238,10 @@ function displayAmount(cart) {
     $("#cartProductsAmount").text(amount);
     if(!amount) {
         $("#linkOuter a").attr("href", "#");
+        $("#linkOuter a").css("cursor", "auto");
+    } else {
+        $("#linkOuter a").attr("href", "cart");
+        $("#linkOuter a").css("cursor", "pointer");
     }
 }
 

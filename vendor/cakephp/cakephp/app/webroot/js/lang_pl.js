@@ -39,6 +39,22 @@ const lang = {
 	holiday_amount: "Dni wolne",
 	product_added: "Produkt został dodany do systemu!",
 	recaptcha_error: "Musisz zaznaczyć ReCaptche!\n",
-	checkbox_error: "Musisz zaakceptować regulamin!\n"
+	checkbox_error: "Musisz zaakceptować regulamin!\n",
+	no_file_selected: "Nie wybrano pliku!\n",
+	name_and_description_error: "Nazwa i opis musi być zapełniony!\n",
+	success: "Sukces",
+	admin_granted: "Prawa administratora nadane!",
+	customer_removed: "Konto klienta zostało usunięte!",
+	message_error: "Twoja wiadomość jest za krótka lub za długa!\n",
+	atleast_one_product: "Musisz zaznaczyć conajmniej jeden produkt!",
+	no_products: "Wygląda na to, że w tej kategorii nie ma jeszcze żadnych produktów!",
+	are_you_sure: "Czy jesteś pewien?",
+	no_revert: "Nie będziesz mógł cofnąć tej akcji!",
+	yes_delete: "Tak, usuń!",
+	deleted: "Usunięte!",
+	account_deleted: "Twoje konto zostało usunięte.",
+	too_much: "Za dużo",
+	max_is: "Maksymalnie",
+	existing_products: "Jeśli chcesz dodać jakis produkt powinieneś kupić jakis już z koszyka!"
 }
 
