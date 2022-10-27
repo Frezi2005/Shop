@@ -109,24 +109,16 @@ class ProfilesController extends AppController {
 	}
 
 	public function changeAddressForm() {
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_URL, "http://country.io/names.json");
-		$result = curl_exec($ch);
-		curl_close($ch);
-
-		$countries = array();
-		$obj = json_decode($result, true);
-		foreach ($obj as $k => $v) {
-			if ($v != "Russia") {
-				$countries[$v] = $v;
-			}
+		$countries = ["pol" => [], "eng" => []];
+		foreach(json_decode(file_get_contents("../webroot/files/countries.json"), true) as $country) {
+			$countries["pol"][$country["name_pl"]] = $country["name_pl"];
+			$countries["eng"][$country["name_en"]] = $country["name_en"];
 		}
-
-		ksort($countries);
-		$countries = array("" => "") + $countries;
-		$this->set("countries", $countries);
+		ksort($countries[$this->Session->read("language") ?? "eng"]);
+		$countries["pol"] = array_merge(["Polska" => "Polska"], $countries["pol"]); 
+		$countries["eng"] = array_merge(["Poland" => "Poland"], $countries["eng"]); 
+		$countries[$this->Session->read("language") ?? "eng"] = array("" => __("choose")) + $countries[$this->Session->read("language") ?? "eng"];
+		$this->set("countries", $countries[$this->Session->read("language") ?? "eng"]);
 	}
 
 	public function changeEmailForm() {

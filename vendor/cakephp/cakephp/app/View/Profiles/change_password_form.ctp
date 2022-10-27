@@ -1,6 +1,7 @@
 <?php
 
-echo $this->Html->css("form");
+	echo $this->Html->css("form");
+	echo $this->Html->script("change_password");
 
 ?>
 <div id="main">

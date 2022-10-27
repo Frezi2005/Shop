@@ -55,6 +55,11 @@ const lang = {
 	account_deleted: "Twoje konto zostało usunięte.",
 	too_much: "Za dużo",
 	max_is: "Maksymalnie",
-	existing_products: "Jeśli chcesz dodać jakis produkt powinieneś kupić jakis już z koszyka!"
+	existing_products: "Jeśli chcesz dodać jakis produkt powinieneś kupić jakis już z koszyka!",
+	order_points: "punktów",
+	price_min_error: "Cena minimalna jest nieprawidłowa.\n",
+	price_max_error: "Cena maksymalna jest nie prawidłowa.\n",
+	date_min_error: "Data minimalna jest nie prawidłowa.\n",
+	date_max_error: "Data maksymalna jest nie prawidłowa.\n"
 }
 

@@ -147,7 +147,7 @@ class MailsController extends AppController {
 		} else {
 			$this->Session->write("contactEmailSent", true);
 		}
-		$this->redirect("/contact");
+		$this->redirect("/home");
 	}
 
 	public function sendForgotPasswordEmail() {

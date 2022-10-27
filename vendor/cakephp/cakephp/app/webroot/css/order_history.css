@@ -5,6 +5,10 @@ div#orders {
 	/*margin-left: 100px;*/
 }
 
+i {
+	cursor: pointer;
+}
+
 #content {
 	float: left;
 	height: 100%;

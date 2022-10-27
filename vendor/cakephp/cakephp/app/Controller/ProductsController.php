@@ -312,7 +312,7 @@ class ProductsController extends AppController {
 						"shop_id" => NULL,
 						"tax" => $productData["price"] * 0.23,
 						"image" => "",
-						"product_count" => rand(1, 1000),
+						"product_count" => $productData["count"],
 						"sub_category_id" => $productData["subCategoryId"]
 					));
 				}

@@ -56,12 +56,8 @@
 							<div class="logInModal">
 								<?php
 								if ($this->Session->read("loggedIn") != true) {
-									echo "<a href='login'>".__("log_in")."</a>";
-									echo "<hr>";
 									echo "<a href='register'>".__("register")."</a>";
 								} else {
-									echo "<a href='profile'>".__("profile")."</a>";
-									echo "<hr>";
 									echo "<a href='settings'>".__("settings")."</a>";
 									echo "<hr>";
 									echo "<a href='logout'>".__("logout")."</a>";
@@ -79,22 +75,26 @@
 							</span>
 							<div class="cartModal"></div>
 						</div>
-						<select class="languageSelect float-start col-3">
-							<?php
-							if ($this->Session->read("language") == "eng") {
-								echo "<option value='eng'>".__("eng")."</option>";
-								echo "<option value='pol'>".__("pol")."</option>";
-							} else {
-								echo "<option value='pol'>".__("pol")."</option>";
-								echo "<option value='eng'>".__("eng")."</option>";
-							}
-							?>
-						</select>
-						<select class="currencySelect float-start col-3">
-							<option value="USD">USD</option>
-							<option value="PLN">PLN</option>
-							<option value="EUR">EUR</option>
-						</select>
+						<div class="select float-start col-3">
+							<select class="languageSelect">
+								<?php
+								if ($this->Session->read("language") == "eng") {
+									echo "<option value='eng'>".__("eng")."</option>";
+									echo "<option value='pol'>".__("pol")."</option>";
+								} else {
+									echo "<option value='pol'>".__("pol")."</option>";
+									echo "<option value='eng'>".__("eng")."</option>";
+								}
+								?>
+							</select>
+						</div>
+						<div class="select float-start col-3">
+							<select class="currencySelect">
+								<option value="USD">USD</option>
+								<option value="PLN">PLN</option>
+								<option value="EUR">EUR</option>
+							</select>
+						</div>
 					</div>
 				</div>
 			</nav>

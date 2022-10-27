@@ -51,3 +51,14 @@ div#loginForm form a {
     display: block;
 }
 
+.registerForm {
+    top: 550px !important;
+    padding-bottom: 150px;
+}
+
+@media (min-height: 900px) {
+    .registerForm {
+        top: 450px !important;
+        padding-bottom: 0 !important;
+    }
+}

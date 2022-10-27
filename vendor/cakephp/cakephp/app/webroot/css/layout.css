@@ -152,6 +152,8 @@ nav select {
     font-weight: bold;
     padding: 0;
     margin-bottom: 0;
+    width: 80%;
+    margin-left: calc(20% / 2);
 }
 
 /*nav .links {*/
@@ -286,8 +288,12 @@ div.logInLink:hover {
     background-color: #ffffff;
 }
 
-div.logInLink:hover div.logInModal, div.cartLink:hover div.cartModal {
+div.logInLink:hover div.logInModal {
     display: block;
+    z-index: 10;
+}
+
+div.cartLink:hover div.cartModal {
     z-index: 10;
 }
 
@@ -515,15 +521,24 @@ h1 {
         display: block;
         width: 80%;
         margin: auto;
-        color: white;
+    }
+
+    .hoverMenu i, .hoverMenu a {
+        color: white !important;
+    }
+
+    #cartProductsAmount {
+        color: black;
     }
 
     .hoverMenu {
-        background-color: rgba(0, 0, 0, 0.425);
+        background-color: rgba(0, 0, 0);
         position: absolute;
         height: 100vh;
-        right: -200px;
-        width: 200px;
+        right: -400px;
+        width: 400px;
+        z-index: 10000;
+        transition: all .2s ease-in-out;
     }
 
     nav .links .menu {
@@ -532,9 +547,12 @@ h1 {
 
     p.close {
         display: block;
-        font-size: 30px;
+        font-size: 20px;
         font-weight: bold;
         cursor: pointer;
+        text-align: right;
+        margin-left: 30px;
+        color: white;
     }
 
     nav input {
@@ -673,6 +691,13 @@ h1 {
 
     nav button {
         left: calc(95% - 75px);
+    }
+
+    #back {
+        height: 35px !important;
+        width: 35px !important;
+        line-height: 35px !important;
+        font-size: 20px !important;
     }
 }
 

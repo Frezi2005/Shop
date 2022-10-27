@@ -103,6 +103,7 @@
 	Router::connect("/monitor-employees-worktime", array("controller" => "customers", "action" => "monitorEmployeesWorktime"));
 	Router::connect("/holidays-form", array("controller" => "customers", "action" => "holidaysForm"));
 	Router::connect("/request-holidays", array("controller" => "customers", "action" => "requestHolidays"));
+	Router::connect("/holidays-approval-form", array("controller" => "customers", "action" => "holidaysApprovalForm"));
 
 	Router::connect("/send-email-from-customer", array("controller" => "mails", "action" => "sendEmailFromCustomer"));
 	Router::connect("/send-forgot-password-email", array("controller" => "mails", "action" => "sendForgotPasswordEmail"));

@@ -73,11 +73,7 @@
 	$decimal2 = number_format($decimal1, 2, ".", "");
 	$decimal = substr($decimal2, 2);
 
-	$bank = $faker->bank();
-	while(strlen($bank) > 15) {
-		$bank = $faker->bank();
-	}
-
+	$bank = "ING Bank Śląski SA";
 	$invoice = strtoupper(__("invoice_tax"));
 	$bill = __("bill");
 	$seller = __("seller");

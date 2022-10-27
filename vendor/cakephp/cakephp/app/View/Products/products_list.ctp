@@ -23,14 +23,16 @@
         if($count > 1) {
             echo <<<PAG
             <div id="pagination" class="col-12">
-                <select id="sort" class="col-5">
+                <select id="sort" class="col-5 mt-lg-0 mt-4 float-start">
                     <option value="price_asc">$priceAscending</option>
                     <option value="price_desc">$priceDescending</option>
                     <option value="name_asc">$nameAscending</option>
                     <option value="name_desc">$nameDescending</option>
                 </select>
-                <button data-page-change="-1" id='page-prev' class="page-change offset-1 col-2">$prev</button>
-                <button data-page-change="1" id='page-next' class="page-change offset-1 col-2">$next</button>
+                <div class="buttons offset-1 col-5 float-start">
+                    <button data-page-change="-1" id='page-prev' class="page-change col-lg-5 col-12 float-start">$prev</button>
+                    <button data-page-change="1" id='page-next' class="page-change offset-xl-2 offset-lg-1 col-lg-5 col-12 mt-lg-0 mt-2 float-start">$next</button>
+                </div>
             </div>
             PAG;
         }

@@ -804,3 +804,9 @@ msgstr "Zmień"
 
 msgid "add"
 msgstr "Dodaj"
+
+msgid "forgot_password_form"
+msgstr "Formularz przypominania hasła"
+
+msgid "now_only"
+msgstr "Teraz tylko"

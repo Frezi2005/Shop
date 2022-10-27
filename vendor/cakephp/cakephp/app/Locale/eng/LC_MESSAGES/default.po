@@ -798,3 +798,9 @@ msgstr "Change"
 
 msgid "add"
 msgstr "Add"
+
+msgid "forgot_password_form"
+msgstr "Forgot password form"
+
+msgid "now_only"
+msgstr "Now only"

@@ -106,6 +106,22 @@ div.contact a:first-of-type::after {
     opacity: 0.25;
 }
 
+.carousel-item {
+    position: relative;
+}
+
+.img-text {
+    position: absolute;
+    top: 110px;
+    left: 30px;
+    font-size: 25px;
+    color: white;
+}
+
+.line-through {
+    text-decoration: line-through;
+}
+
 @media (min-width: 1400px) {
 	div.products > div:first-of-type {
 		padding-left: 25px;

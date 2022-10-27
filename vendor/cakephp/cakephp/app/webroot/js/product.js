@@ -57,10 +57,12 @@ $(function (){
     }
 
     if(page == 1) {
-        $("#page-prev").css("opacity", "0");
+        $("#page-prev").css("background-color", "#e3e3e3");
+        $("#page-prev").css("border-color", "#939393");
         $("#page-prev").attr("disabled", true);
     } else if (page == +$(".totalCount").val()) {
-        $("#page-next").css("opacity", "0");
+        $("#page-next").css("background-color", "#e3e3e3");
+        $("#page-next").css("border-color", "#939393");
         $("#page-next").attr("disabled", true);
     }
 
@@ -234,6 +236,11 @@ function displayAmount(cart) {
     var amount = 0;
     for (var i = 0; i < cart.length; i++) {
         amount += cart[i].count;
+    }
+    if(amount == 0) {
+        $("#cartProductsAmount").css("display", "none");
+    } else {
+        $("#cartProductsAmount").css("display", "block")
     }
     $("#cartProductsAmount").text(amount);
     if(!amount) {

@@ -314,15 +314,16 @@ class CustomersController extends AppController {
 				$sort_by = "order_date DESC";
 				break;
 		}
-		$price = (isset($this->params["url"]["priceMin"]) && isset($this->params["url"]["priceMax"])) ? "total_price BETWEEN {$this->params["url"]["priceMin"]} AND {$this->params["url"]["priceMax"]}" : "";
-		$date = (isset($this->params["url"]["dateMin"]) && isset($this->params["url"]["dateMax"])) ? "order_date BETWEEN '{$this->params["url"]["dateMin"]}' AND '{$this->params["url"]["dateMax"]}'" : "";
-		$payment = (isset($this->params["url"]["payment"])) ? "payment_method = '{$this->params["url"]["payment"]}'" : "";
-		$currency = (isset($this->params["url"]["currency"])) ? "currency = '{$this->params["url"]["currency"]}'" : "";
+		$price = (isset($this->params["url"]["priceMin"]) && isset($this->params["url"]["priceMax"]) && !empty($this->params["url"]["priceMin"]) && !empty($this->params["url"]["priceMax"])) ? "total_price BETWEEN {$this->params["url"]["priceMin"]} AND {$this->params["url"]["priceMax"]}" : "total_price LIKE '%'";
+		$date = (isset($this->params["url"]["dateMin"]) && isset($this->params["url"]["dateMax"]) && !empty($this->params["url"]["dateMin"]) && !empty($this->params["url"]["dateMax"])) ? "order_date BETWEEN '{$this->params["url"]["dateMin"]}' AND '{$this->params["url"]["dateMax"]}'" : "order_date LIKE '%'";
+		$payment = (isset($this->params["url"]["payment"]) && !empty($this->params["url"]["payment"])) ? "payment_method = '{$this->params["url"]["payment"]}'" : "payment_method LIKE '%'";
+		$currency = (isset($this->params["url"]["currency"]) && !empty($this->params["url"]["currency"])) ? "currency = '{$this->params["url"]["currency"]}'" : "currency LIKE '%'";
 		$perPage = 10;
 		$page = (!isset($this->params["url"]["page"])) ? 1 : $this->params["url"]["page"];
 		$offset = (intval($page) - 1) * $perPage;
 		$orders = $this->Orders->find("all", array("conditions" => array("user_id" => $this->Session->read("userUUID"), "order_date > now() - INTERVAL 2 year", $price, $payment, $currency, $date), "order" => array($sort_by), "limit" => $perPage, "offset" => $offset));
 		$log = $this->Orders->getDataSource()->getLog(false, false);
+		$this->log($log);
 		$this->set("orders", $orders);
 		$this->set("count", ceil(count($this->Orders->find("all", array("conditions" => array("user_id" => $this->Session->read("userUUID"), "order_date > now() - INTERVAL 2 year", $price, $payment, $currency, $date), "order" => array($sort_by)))) / $perPage));
 		$this->set("page", $page);
@@ -410,5 +411,24 @@ class CustomersController extends AppController {
 		));
 		$this->Session->write("leaveRequestSent", true);
 		$this->redirect("/holidays-form");
+	}
+
+	public function holidaysApprovalForm() {
+		$this->loadModel("Holiday");
+		$holidays = $this->Holiday->find(
+			"all", 
+			array(
+				"joins" => array(
+					'table' => 'users',
+					'conditions' => array(
+						"users.id = holidays.user_id"
+					)
+				),
+				"conditions" => array(
+					"status" => "pending"
+				)
+			)
+		); 
+		$this->set("pending", str_replace("\"", "'", json_encode($holidays, JSON_FORCE_OBJECT)));
 	}
 }

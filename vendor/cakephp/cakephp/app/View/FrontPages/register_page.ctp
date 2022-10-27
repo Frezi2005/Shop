@@ -4,7 +4,7 @@
     echo $this->Html->css("registerAndLogin");
 ?>
 <script src='https://www.google.com/recaptcha/api.js' async defer></script>
-<div id="main">
+<div id="main" class="registerForm">
     <h1><?=__("registration_form")?></h1>
     <div id="registerForm">
         <?php

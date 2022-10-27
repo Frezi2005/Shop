@@ -58,3 +58,9 @@ div.ad {
     text-align: center;
     margin-right: 20px;
 }
+
+@media (max-width: 1199px) {
+    img {
+        padding: 0 !important; 
+    }
+}

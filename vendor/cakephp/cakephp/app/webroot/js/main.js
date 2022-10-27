@@ -96,6 +96,14 @@ $(function() {
         }, 120)
     });
 
+    $(".img-text .currency").each(function () {
+        $(this).text(localStorage.getItem("currency"));
+    })
+
+    $(".img-text .price").each(function () {
+        $(this).text(($(this).text() * localStorage.getItem("rate")).toFixed(2));
+    })
+
     $(".productOnMainPage").each(function() {
         var cur = $(this);
         cur.prepend("<a href='" + cur.parent().attr("href") + "'><img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/"+cur.parent().attr("href").replace("product?product_id=", "")+".jpg" + "'/></a>")
@@ -109,13 +117,16 @@ $(function() {
         history.back()
     });
 
-    // $("div.cartLink").hover(function() {
-    //     $("div.cartModal").css("display", "block");
-    //     var cart = JSON.parse(localStorage.getItem("cart"));
-    //     if (cart.length == 0) {
-    //         $("div.cartModal").css("display", "none");
-    //     }
-    //});
+    $("div.cartLink").hover(function() {
+        var cart = JSON.parse(localStorage.getItem("cart"));
+        if(cart.length > 0) {
+            $("div.cartModal").css("display", "block");
+        }
+    });
+
+    $("div.cartLink").mouseleave(function() {
+        $("div.cartModal").css("display", "none");
+    })
 
     $(".searchBtn").click(function() {
 		if($("input.searchInput").val().length > 0) {
@@ -153,7 +164,7 @@ $(function() {
     })
 
     $("p.close").click(function() {
-        $(".hoverMenu").css("right", "-200px");
+        $(".hoverMenu").css("right", "-400px");
     })
 
     $(".productOnMainPage .price").each(function() {

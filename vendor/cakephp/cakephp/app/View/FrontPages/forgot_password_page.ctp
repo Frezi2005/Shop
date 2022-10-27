@@ -6,6 +6,7 @@
 
 ?>
 <div id="main">
+	<h1><?=__("forgot_password_form")?></h1>
 	<div id="forgotPasswordForm">
 		<?php
 			echo $this->Form->create("forgotPasswordForm", array("url" => "/send-forgot-password-email"));

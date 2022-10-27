@@ -20,7 +20,7 @@ $(function() {
 					html = `<h4>${lang.no_order_products}🤔</h4>`;
 				}
                 Swal.fire({
-                    html: html,
+                    html: html += `<p>${JSON.parse(fields).Orders.order_points} ${JSON.parse(fields).Orders.order_points == 1 ? lang.order_points.slice(0, -1) : lang.order_points}</p>`,
                     showConfirmButton: true
                 });
             });
@@ -29,7 +29,6 @@ $(function() {
 
     var queryString = window.location.search;
     var urlParams = new URLSearchParams(queryString);
-    var newUrl;
 
 	$('input#dateMin').datepicker({
 		dateFormat: "yy-mm-dd",

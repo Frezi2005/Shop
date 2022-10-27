@@ -13,6 +13,7 @@
             echo $this->Form->input("description", array("type" => "text", "label" => "", "placeholder" => __("description")));
             echo $this->Form->input("specs", array("type" => "text", "label" => "", "placeholder" => __("specs")));
             echo $this->Form->input("price", array("type" => "text", "label" => "", "placeholder" => __("netto_price")));
+            echo $this->Form->input("count", array("type" => "number", "label" => "", "placeholder" => __("amount")));
             echo $this->Form->input("image", array("type" => "file", "label" => __("image"), "accept" => "image/jpeg"));
             echo $this->Form->input("subCategoryId", array("options" => $subCategoriesIds, "label" => __("sub_category")));
 

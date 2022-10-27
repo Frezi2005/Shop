@@ -55,5 +55,10 @@ const lang = {
 	account_deleted: "Your account has been deleted.",
 	too_much: "Too much",
 	max_is: "Max is",
-	existing_products: "If you want to add next product to the cart you should buy one of exisitng ones!"
+	existing_products: "If you want to add next product to the cart you should buy one of exisitng ones!",
+	order_points: "points",
+	price_min_error: "Minimum price is invalid.\n",
+	price_max_error: "Maxium price is invalid.\n",
+	date_min_error: "Minimum date is invalid.\n",
+	date_max_error: "Maximum date is invalid.\n"
 }
