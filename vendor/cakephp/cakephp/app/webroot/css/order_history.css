@@ -159,6 +159,13 @@ div.pagination .bold {
 
 	.filters-dropdown {
 		display: block;
+		margin-top: 20px;
+	}
+}
+
+@media (min-width: 992px) {
+	#filters {
+		height: fit-content !important;
 	}
 }
 

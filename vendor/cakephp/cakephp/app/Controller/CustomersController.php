@@ -415,20 +415,26 @@ class CustomersController extends AppController {
 
 	public function holidaysApprovalForm() {
 		$this->loadModel("Holiday");
-		$holidays = $this->Holiday->find(
-			"all", 
-			array(
-				"joins" => array(
-					'table' => 'users',
-					'conditions' => array(
-						"users.id = holidays.user_id"
+		$holidays = $this->Holiday->find("all", array(
+			"joins" => array(
+				array(
+					"table" => "users",
+					"alias" => "User",
+					"type" => "INNER",
+					"conditions" => array(
+						"Holiday.user_id = User.id"
 					)
-				),
-				"conditions" => array(
-					"status" => "pending"
 				)
-			)
-		); 
+			),
+			"conditions" => array(
+				"Holiday.status" => "pending"
+			),
+			"fields" => array("User.name", "User.surname", "User.email", "Holiday.*")
+		));
 		$this->set("pending", str_replace("\"", "'", json_encode($holidays, JSON_FORCE_OBJECT)));
+	}
+
+	public function approveHolidays() {
+
 	}
 }

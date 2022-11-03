@@ -164,7 +164,7 @@ $(function() {
     })
 
     $("p.close").click(function() {
-        $(".hoverMenu").css("right", "-400px");
+        $(".hoverMenu").css("right", "-100%");
     })
 
     $(".productOnMainPage .price").each(function() {

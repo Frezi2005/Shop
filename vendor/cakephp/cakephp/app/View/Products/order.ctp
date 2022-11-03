@@ -8,7 +8,7 @@
 
 <div class="main offset-1 col-xxl-6 col-xl-6 col-lg-5 col-10 float-start">
     <h1 class="ms-3"><?=__("order_form")?></h1>
-    <div id="orderForm" class="col-6">
+    <div id="orderForm" class="col-lg-6 col-12">
         <?php
 
             $isLoggedIn = isset($_SESSION["loggedIn"]) ? $_SESSION["loggedIn"] : false;
@@ -33,7 +33,7 @@
             echo $this->Form->end(__("order"));
         ?>
     </div>
-    <div id="paymentInfo" class="offset-1 col-5 float-start">
+    <div id="paymentInfo" class="offset-lg-1 col-lg-5 col-12 float-start">
         <h2><?=__("payment_info")?></h2>
         <div id="info"></div>
     </div>

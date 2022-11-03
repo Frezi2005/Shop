@@ -39,6 +39,11 @@ $(() => {
             text += lang.name_and_description_error;
         }
 
+        if(+$("#addProductFormCount").val() < 1) {
+            e.preventDefault();
+            text += lang.amount_error;
+        }
+
         if(text) {
             Swal.fire({
                 icon: "error",

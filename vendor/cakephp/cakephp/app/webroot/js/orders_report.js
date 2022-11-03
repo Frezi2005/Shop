@@ -10,25 +10,25 @@ $(function() {
 
         var text = '';
 
-        if (!price_valiadtion(priceMin)) {
-            text += lang.price_min_error;
-            e.preventDefault();
-        }
+        // if (!price_valiadtion(priceMin)) {
+        //     text += lang.price_min_error;
+        //     e.preventDefault();
+        // }
 
-        if (!price_valiadtion(priceMax)) {
-            text += lang.price_max_error;
-            e.preventDefault();
-        }
+        // if (!price_valiadtion(priceMax)) {
+        //     text += lang.price_max_error;
+        //     e.preventDefault();
+        // }
 
-        if(!date_validation(dateMin)) {
-            text += lang.date_min_error;
-            e.preventDefault();
-        }
+        // if(!date_validation(dateMin)) {
+        //     text += lang.date_min_error;
+        //     e.preventDefault();
+        // }
 
-        if(!date_validation(dateMax)) {
-            text += lang.date_max_error;
-            e.preventDefault();
-        }
+        // if(!date_validation(dateMax)) {
+        //     text += lang.date_max_error;
+        //     e.preventDefault();
+        // }
 
         if(text != '') {
             Swal.fire({

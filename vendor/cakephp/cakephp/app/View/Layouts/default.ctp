@@ -47,9 +47,7 @@
 						<i class="fas fa-bars"></i>
 					</p>
 					<div class="hoverMenu">
-						<p class="close">
-							X
-						</p>
+						<i class="fas fa-xmark close"></i>
 						<div class="logInLink navLink float-start col-3">
 							<i class="fas fa-user"></i>
 							<span><?php echo ($this->Session->read("loggedIn") == true) ? "<a href='profile'>".__("profile")."</a>" : "<a href='login'>".__("log_in")."</a>"?></span>

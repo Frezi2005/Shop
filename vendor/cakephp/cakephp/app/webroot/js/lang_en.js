@@ -15,7 +15,7 @@ const lang = {
 	download: "Download",
 	orders_error: "No orders found!",
 	item_added_to_cart: "This item has been successfully added to your cart: ",
-	amount_error: "Products amount can't have letters, be empty or be equal or less than 0!",
+	amount_error: "Products amount can't have letters, be empty or be equal or less than 0!\n",
 	total: "Total",
 	passwords_match_error: "Passwords do not match!\n",
 	password_error: "Password has to be at least 8 characters long, include only letters and number and at least one uppercase letter!\n",
@@ -60,5 +60,5 @@ const lang = {
 	price_min_error: "Minimum price is invalid.\n",
 	price_max_error: "Maxium price is invalid.\n",
 	date_min_error: "Minimum date is invalid.\n",
-	date_max_error: "Maximum date is invalid.\n"
+	date_max_error: "Maximum date is invalid.\n",
 }

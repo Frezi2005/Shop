@@ -7,7 +7,6 @@ form, div#info {
     border: 3px solid #b0ffb8;
     border-radius: 27px;
     margin: 30px 70px;
-    width: min-content;
 	margin: auto;
 }
 
@@ -19,6 +18,10 @@ form a {
 
 #main {
     float: left;
+}
+
+#productsForm input:not([type=file]) {
+    width: 100%;
 }
 
 div#info input:not(input[type=submit]), form input:not(input[type=submit]), #filters input:not(input[type=submit]) {
@@ -57,4 +60,12 @@ input[type=checkbox] {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+}
+
+.g-recaptcha > div {
+    margin: auto;
+}
+
+#addProductFormAddProductToDatabaseForm {
+    width: 400px;
 }

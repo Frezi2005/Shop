@@ -197,11 +197,20 @@ class OrdersController extends AppController {
 
 	public function getOrders() {
 		$this->autoRender = false;
-		$price = (isset($this->params["url"]["priceMin"]) && isset($this->params["url"]["priceMax"])) ? "total_price BETWEEN {$this->params["url"]["priceMin"]} AND {$this->params["url"]["priceMax"]}" : "";
-		$date = (isset($this->params["url"]["dateMin"]) && isset($this->params["url"]["dateMax"])) ? "order_date BETWEEN '{$this->params["url"]["dateMin"]}' AND '{$this->params["url"]["dateMax"]}'" : "";
+		$date = "";
+		$price = "";
+		if (!empty($this->params["url"]["priceMin"]) && !empty($this->params["url"]["priceMax"])) {
+			$price = "total_price BETWEEN {$this->params["url"]["priceMin"]} AND {$this->params["url"]["priceMax"]}";
+		} else if (!empty($this->params["url"]["dateMin"]) && !empty($this->params["url"]["dateMax"])) {
+			$date = "order_date BETWEEN '{$this->params["url"]["dateMin"]}' AND '{$this->params["url"]["dateMax"]}'";
+		} else {
+			$price = "";
+			$date = "";
+		}
+
 		$payment = (isset($this->params["url"]["payment"])) ? "payment_method = '{$this->params["url"]["payment"]}'" : "";
 		$currency = (isset($this->params["url"]["currency"])) ? "currency = '{$this->params["url"]["currency"]}'" : "";
-		$orders = $this->Orders->find("all", array("conditions" => array($price, $payment, $currency, $date)));
+		$orders = $this->Orders->find("all", array("conditions" => array($price ?? null, $payment, $currency, $date)));
 		$log = $this->Orders->getDataSource()->getLog(false, false);
 		$this->Log($log);
 		return json_encode($orders);

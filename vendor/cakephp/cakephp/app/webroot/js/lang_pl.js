@@ -15,7 +15,7 @@ const lang = {
 	download: "Pobierz",
 	orders_error: "Nie znaleziono zamówień!",
 	item_added_to_cart: "Ten przedmiot został pomyślmnie dodany do koszyka: ",
-	amount_error: "Liczba produktów nie może zawierać liter, nie może być pusta lub być mniejsza lub równa 0!",
+	amount_error: "Liczba produktów nie może zawierać liter, nie może być pusta lub być mniejsza lub równa 0!\n",
 	total: "W sumie",
 	passwords_match_error: "Hasła się nie zgadzają!\n",
 	password_error: "Hasło musi się składać przynajmniej z 8 znaków, w tym liter, liczb oraz conajmniej jednej dużej litery!\n",
