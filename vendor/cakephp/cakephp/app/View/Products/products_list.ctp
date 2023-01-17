@@ -23,7 +23,7 @@
         if($count > 1) {
             echo <<<PAG
             <div id="pagination" class="col-12">
-                <select id="sort" class="col-5 mt-lg-0 mt-4 float-start">
+                <select id="sortProductsList" class="col-5 mt-lg-0 mt-4 float-start">
                     <option value="price_asc">$priceAscending</option>
                     <option value="price_desc">$priceDescending</option>
                     <option value="name_asc">$nameAscending</option>

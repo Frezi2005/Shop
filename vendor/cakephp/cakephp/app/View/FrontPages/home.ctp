@@ -67,6 +67,9 @@
 	} else if ($this->Session->read("contactEmailSent") === false) {
 		echo "<script>Swal.fire({icon: \"error\",text: \"".__("message_sending_error_alert")."\",showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
 		$_SESSION["contactEmailSent"] = null;
-}
+	} else if ($this->Session->read("accountTerminatedError") === true) {
+		echo "<script>Swal.fire({icon: \"error\",text: \"Your account has been terminated!\",showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
+		$_SESSION["accountTerminatedError"] = false;
+	}
 ?>
 

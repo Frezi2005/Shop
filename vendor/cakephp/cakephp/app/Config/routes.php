@@ -104,12 +104,26 @@
 	Router::connect("/holidays-form", array("controller" => "customers", "action" => "holidaysForm"));
 	Router::connect("/request-holidays", array("controller" => "customers", "action" => "requestHolidays"));
 	Router::connect("/holidays-approval-form", array("controller" => "customers", "action" => "holidaysApprovalForm"));
+	Router::connect("/approve-holidays", array("controller" => "customers", "action" => "approveHolidays"));
+	Router::connect("/reject-holidays", array("controller" => "customers", "action" => "rejectHolidays"));
+	Router::connect("/view-holidays", array("controller" => "customers", "action" => "viewHolidays"));
+	Router::connect("/view-sick-leave", array("controller" => "customers", "action" => "viewSickLeave"));
+	Router::connect("/sick-leave-form", array("controller" => "customers", "action" => "sickLeaveForm"));
+	Router::connect("/request-sick-leave", array("controller" => "customers", "action" => "requestSickLeave"));
+	Router::connect("/get-contract", array("controller" => "customers", "action" => "getContract"));
+	Router::connect("/notice-form", array("controller" => "customers", "action" => "noticeForm"));
+	Router::connect("/send-notice-request", array("controller" => "customers", "action" => "sendNoticeRequest"));
+	Router::connect("/fire-employee-form", array("controller" => "customers", "action" => "fireEmployeeForm"));
+	Router::connect("/fire-employee", array("controller" => "customers", "action" => "fireEmployee"));
+	Router::connect("/extend-contract-request-form", array("controller" => "customers", "action" => "extendContractRequestForm"));
+	Router::connect("/extend-contract-request", array("controller" => "customers", "action" => "extendContractRequest"));
 
 	Router::connect("/send-email-from-customer", array("controller" => "mails", "action" => "sendEmailFromCustomer"));
 	Router::connect("/send-forgot-password-email", array("controller" => "mails", "action" => "sendForgotPasswordEmail"));
 
 	Router::connect("/order-products", array("controller" => "orders", "action" => "orderProducts"));
 	Router::connect("/get-orders", array("controller" => "orders", "action" => "getOrders"));
+	Router::connect("/invoices", array("controller" => "orders", "action" => "invoices"));
 
 	Router::connect("/buy-gift", array("controller" => "gifts", "action" => "buyGift"));
 

@@ -20,6 +20,7 @@
 				$date = explode(" ", $order["Orders"]["order_date"])[0];
 				$hours = explode(" ", $order["Orders"]["order_date"])[1];
 				$fields = urlencode(str_replace("&", "&amp;", $fields));
+				debug($fields);
 				echo "<div class='order'><input type='hidden' value='{$ids}'/><input type='hidden' value='{$fields}' class='fields'/><span class='images'></span><span>".__($order["Orders"]["delivery_type"])."</span><span>".$date." <span class='d-md-inline d-none'>".substr($hours, 0, -3)."</span></span><span>{$order["Orders"]["total_price"]}</span><span>{$order["Orders"]["currency"]}</span><span><i class='fas fa-search' title='".__("preview")."'></i><a href='invoice?products=$fields' target='_blank' title='".__("invoice")."'><i class='fas fa-file-invoice'></i></a></span></div>";
 			}
 			

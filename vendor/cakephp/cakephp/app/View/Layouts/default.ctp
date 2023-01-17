@@ -99,7 +99,7 @@
 			<?php
 				preg_match("/(?<!\/ )[^\/]+$/", $_SERVER["REDIRECT_URL"], $matches);
 
-				if ($_SERVER["REDIRECT_URL"] !== "/Shop/vendor/cakephp/cakephp/app/webroot/home" && $matches !== "order") {
+				if ($matches[0] != "home" && !empty($matches) && $matches[0] != "order") {
 					echo "<a id='back' href='#'><i class='fas fa-arrow-left'></i></a>";
 				}
 			?>
@@ -141,7 +141,7 @@
 
 					for($i = 0; $i < count($sites); $i++) {
 						preg_match("/(?<!\/ )[^\/]+$/", $_SERVER["REDIRECT_URL"], $matches);
-						if($matches[0] == $sites[$i]) {
+						if($matches && $matches[0] == $sites[$i]) {
 							$display = false;
 							break;
 						}

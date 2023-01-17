@@ -1,4 +1,6 @@
 <?php
+	// debug(json_decode($_GET["products"], true));
+	// die;
     require_once("..".DS."..".DS."..".DS."..".DS."tecnickcom".DS."tcpdf".DS."tcpdf.php");
     require_once (__DIR__.DS."..".DS."..".DS."..".DS."..".DS."..".DS."autoload.php");
 
@@ -210,5 +212,5 @@ EOD;
 
 
     $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
-    $pdf->Output('example_001.pdf', 'D');
+    $pdf->Output($name." ".$surname." - ".date('Y-m-d').".pdf", 'D');
 ?>

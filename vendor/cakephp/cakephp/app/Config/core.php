@@ -46,7 +46,8 @@ Configure::write('Config.max_per_page', 8);
 		"delivery-form" => [5, 4, 1], 
 		"update-employee-page" => [5, 4, 3], 
 		"admin-privileges" => 5, 
-		"remove-customer" => [5, 4]
+		"remove-customer" => [5, 4],
+		"holidays-approval-form" => [5, 3]
 	));
 	Configure::write("icons", array(
 		"computers_and_laptops" => "fa-laptop", 

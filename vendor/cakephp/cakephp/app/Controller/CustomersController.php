@@ -142,6 +142,7 @@ class CustomersController extends AppController {
 
 	public function login() {
 		$this->autoRender = false;
+		$this->loadModel("Notice");
 		$customerLoginData = $this->request["data"]["loginUserForm"];
 		$user = $this->User->find("first", array("conditions" => array("email" => $customerLoginData["email"], "password" => $this->SecurityUtils->encrypt($customerLoginData["password"]))));
 		if (!empty($user)) {
@@ -274,7 +275,8 @@ class CustomersController extends AppController {
 			"delivery-form",
 			"update-employee-page",
 			"admin-privileges",
-			"remove-customer"
+			"remove-customer",
+			"holidays-approval-form"
 		];
 
 		$privileges = [];
@@ -322,8 +324,6 @@ class CustomersController extends AppController {
 		$page = (!isset($this->params["url"]["page"])) ? 1 : $this->params["url"]["page"];
 		$offset = (intval($page) - 1) * $perPage;
 		$orders = $this->Orders->find("all", array("conditions" => array("user_id" => $this->Session->read("userUUID"), "order_date > now() - INTERVAL 2 year", $price, $payment, $currency, $date), "order" => array($sort_by), "limit" => $perPage, "offset" => $offset));
-		$log = $this->Orders->getDataSource()->getLog(false, false);
-		$this->log($log);
 		$this->set("orders", $orders);
 		$this->set("count", ceil(count($this->Orders->find("all", array("conditions" => array("user_id" => $this->Session->read("userUUID"), "order_date > now() - INTERVAL 2 year", $price, $payment, $currency, $date), "order" => array($sort_by)))) / $perPage));
 		$this->set("page", $page);
@@ -390,7 +390,7 @@ class CustomersController extends AppController {
 	}
 
 	public function holidaysForm() {
-		
+		$this->set("holidaysAmount", $this->User->find("first", array("conditions" => array("id" => $this->Session->read("userUUID")), "fields" => array("holiday_amount")))["User"]["holiday_amount"]);
 	}
 
 	public function requestHolidays() {
@@ -399,21 +399,23 @@ class CustomersController extends AppController {
 		$data = $this->request["data"]["requestHolidaysForm"];
 		$startDate = $data["start"]["year"]."-".$data["start"]["month"]."-".$data["start"]["day"];
 		$endDate = $data["end"]["year"]."-".$data["end"]["month"]."-".$data["end"]["day"];
-		// debug($startDate." - ".$endDate);
-		// debug((strtotime($endDate) - strtotime($startDate)) / 86400 + 1);
 		$this->Holiday->save(array(
 			"id" => CakeText::uuid(),
 			"user_id" => $this->Session->read("userUUID"),
 			"start" => $startDate,
 			"end" => $endDate,
 			"type" => $data["holidayType"],
-			"status" => "pending"
+			"status" => "pending",
+			"request_date" => date("Y-m-d")
 		));
 		$this->Session->write("leaveRequestSent", true);
 		$this->redirect("/holidays-form");
 	}
 
 	public function holidaysApprovalForm() {
+		if (!$this->CheckPrivileges->check($_SERVER["REQUEST_URI"], $this->Session->read("userUUID"))) {
+			throw new ForbiddenException();
+		}
 		$this->loadModel("Holiday");
 		$holidays = $this->Holiday->find("all", array(
 			"joins" => array(
@@ -429,12 +431,135 @@ class CustomersController extends AppController {
 			"conditions" => array(
 				"Holiday.status" => "pending"
 			),
-			"fields" => array("User.name", "User.surname", "User.email", "Holiday.*")
+			"fields" => array("User.name", "User.surname", "User.email", "User.holiday_amount", "Holiday.*")
 		));
 		$this->set("pending", str_replace("\"", "'", json_encode($holidays, JSON_FORCE_OBJECT)));
 	}
 
 	public function approveHolidays() {
+		$this->autoRender = false;
+		$this->loadModel("Holiday");
+		$userHolidayDaysLeft = $this->User->find("first", array("conditions" => array("id" => $this->params["url"]["userId"]), "fields" => array("holiday_amount")))["User"]["holiday_amount"];
+		if ($userHolidayDaysLeft >= intval($this->params["url"]["amount"])) {
+			$this->User->updateAll(array("holiday_amount" => $userHolidayDaysLeft - intval($this->params["url"]["amount"])), array("id" => $this->params["url"]["userId"]));
+			$this->Holiday->updateAll(array("status" => "'approved'"), array("id" => $this->params["url"]["holidayId"]));
+			return true;
+		}
+		return false;
+	}
 
+	public function rejectHolidays() {
+		$this->autoRender = false;
+		$this->loadModel("Holiday");
+		$this->Holiday->updateAll(array("status" => "'rejected'"), array("id" => $this->params["url"]["holidayId"]));
+		return true;
+	}
+
+	public function viewHolidays() {
+		$this->loadModel("Holiday");
+		$this->set("holidaysHistory", $this->Holiday->find("all", array("conditions" => array("user_id" => $this->Session->read("userUUID")))));
+	}
+
+	public function viewSickLeave() {
+		$this->loadModel("SickLeave");
+		$this->set("sickLeaveHistory", $this->SickLeave->find("all", array("conditions" => array("user_id" => $this->Session->read("userUUID")))));
+	}
+
+	public function sickLeaveForm() {
+
+	}
+
+	public function requestSickLeave() {
+		$this->autoRender = false;
+		$this->loadModel("SickLeave");
+		$data = $this->request["data"]["requestSickLeaveForm"];
+		$startDate = $data["start"]["year"]."-".$data["start"]["month"]."-".$data["start"]["day"];
+		$endDate = $data["end"]["year"]."-".$data["end"]["month"]."-".$data["end"]["day"];
+		$this->SickLeave->save(array(
+			"id" => CakeText::uuid(),
+			"user_id" => $this->Session->read("userUUID"),
+			"start" => $startDate,
+			"end" => $endDate
+		));
+		$this->Session->write("sickLeaveRequestSent", true);
+		$this->redirect("/sick-leave-form");
+	}
+
+	public function getContract() {
+		$this->loadModel("Role");
+		$user = $this->User->find("first", array("conditions" => array("id" => $this->Session->read("userUUID"))))["User"];
+		$this->set("user", $user);
+		$this->set("role", $this->Role->find("first", array("conditions" => array("hierarchy" => $user["role"])))["Role"]["name"]);
+	}
+
+	public function noticeForm() {
+
+	}
+
+	public function fireEmployeeForm() {
+		$employees = $this->User->find("list", array("conditions" => array("is_employee" => 1, "id != '".$this->Session->read("userUUID")."'"), "fields" => array("id", "email")));
+		$this->set("employees", $employees);
+	}
+
+	public function sendNoticeRequest() {
+		$this->autoRender = false;
+		if ($_SERVER["HTTP_REFERER"] == "http://localhost/Shop/vendor/cakephp/cakephp/notice-form") {
+			$normal = true;
+		} else {
+			$normal = false;
+		}
+		$this->loadModel("Notice");
+		$user = $this->User->find("first", array("conditions" => array("id" => $normal ? $this->Session->read("userUUID") : $this->request["data"]["fireEmployeeForm"]["employees"]), "fields" => array("contract_start", "id")))["User"];
+		if(!$this->Notice->find("count", array("conditions" => array("user_id" => $user["id"])))) {
+			$start = $user["contract_start"];
+			$end = date('Y-m-d');
+			$ts1 = strtotime($start);
+			$ts2 = strtotime($end);
+			$year1 = date('Y', $ts1);
+			$year2 = date('Y', $ts2);
+			$month1 = date('m', $ts1);
+			$month2 = date('m', $ts2);
+			$diff = (($year2 - $year1) * 12) + ($month2 - $month1);
+			switch($diff) {
+				case $diff > 0 && $diff < 6:
+					$date = date('Y-m-d', strtotime(date('Y-m-d', strtotime('+ 1 weekdays')).'+ 14 days'));
+					break;
+				case $diff >= 6 && $diff < 36:
+					$date = date('Y-m-d', strtotime(date('Y-m-d', strtotime('first day of next month')).'+ 1 months'));
+					break;
+				case $diff >= 36:
+					$date = date('Y-m-d', strtotime(date('Y-m-d', strtotime('first day of next month')).'+ 3 months'));
+					break;
+			}
+
+			$date = date('Y-m-d', strtotime(date('Y-m-d', strtotime($date)).'- 1 days'));
+			$this->Notice->save(array(
+				"id" => CakeText::uuid(),
+				"user_id" => $normal ? $this->Session->read("userUUID") : $this->request["data"]["fireEmployeeForm"]["employees"],
+				"type" => $this->request["data"][$normal ? "noticeRequestForm" : "fireEmployeeForm"]["noticeType"],
+				"termination_date" => $date,
+				"request_date" => date("Y-m-d H:i:s")
+			));
+			$this->Session->write($normal ? "noticeRequestSent" : "employeeHasBeenFired", true);
+		} else {
+			$this->Session->write("noticeExistsError", true);
+		}
+		$this->redirect($normal ? "/notice-form" : "/fire-employee-form");
+	}
+
+	public function extendContractRequestForm() {
+		$employees = $this->User->find("list", array("conditions" => array("is_employee" => 1, "id != '".$this->Session->read("userUUID")."'", "contract_end > NOW() AND contract_end < DATE_ADD(NOW(), INTERVAL 1 MONTH)"), "fields" => array("id", "email")));
+		$this->set("employees", $employees);
+	}
+
+	public function extendContractRequest() {
+		$this->autoRender = false;
+		$this->loadModel("ContractExtend");
+		$this->ContractExtend->save(array(
+			"id" => CakeText::uuid(),
+			"user_id" => $this->request["data"]["extendContractRequestForm"]["employees"],
+			"extend" => $this->request["data"]["extendContractRequestForm"]["extend"],
+		));
+		$this->redirect("/extend-contract-request-form");
 	}
 }

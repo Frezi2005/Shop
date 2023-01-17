@@ -1,0 +1,14 @@
+#inventory td {
+    height: 50px;     
+    overflow-y: hidden;
+    display: block;
+    width: 25%;
+    float: left;
+    line-height: 50px !important;
+}
+
+#inventory th {
+    display: block;
+    width: 25%;
+    float: left;
+}

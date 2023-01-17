@@ -66,7 +66,7 @@ $(function (){
         $("#page-next").attr("disabled", true);
     }
 
-    $("select#sort").find("[value='" + urlParams.get("sort_by") + "']").attr("selected", true);
+    $("select#sortProductsList").find("[value='" + urlParams.get("sort_by") + "']").attr("selected", true);
 
     $("button.page-change").click(function() {
         urlParams.set("page", (page + parseInt($(this).data("page-change")) > 0 ? page + parseInt($(this).data("page-change")) : 1))
@@ -78,7 +78,7 @@ $(function (){
         location.replace(`http://localhost/Shop/vendor/cakephp/cakephp/contact?template=${template}`);
     });
 
-    $("select#sort").change(function() {
+    $("select#sortProductsList").change(function() {
         urlParams.set("sort_by", $(this).val());
         location.replace("http://localhost/Shop/vendor/cakephp/cakephp/products-list?"+urlParams.toString());
     });

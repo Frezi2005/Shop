@@ -215,4 +215,13 @@ class OrdersController extends AppController {
 		$this->Log($log);
 		return json_encode($orders);
 	}
+
+	public function invoices() {
+		$this->loadModel("Orders");
+		if (isset($this->params["url"]["sort_by"])) {
+			$field = explode("-", $this->params["url"]["sort_by"])[0];
+			$sort = explode("-", $this->params["url"]["sort_by"])[1];
+		}
+		$this->set("orders", $this->Orders->find("all", array("order" => isset($this->params["url"]["sort_by"]) ? ($field." ".$sort) : null)));
+	}
 }

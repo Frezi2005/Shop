@@ -33,6 +33,10 @@
         if($privileges["update-employee-page"]) {
             echo "<a href='update-employee-page'>".__("update_employee")."</a>";
         }
+
+        if($privileges["holidays-approval-form"]) {
+            echo "<a href='holidays-approval-form'>".__("holidays_approval_form")."</a>";
+        }
         
         if($privileges["admin-privileges"] && count($employees) > 0) {
             echo "<select id='usersSelect'>";
@@ -54,5 +58,7 @@
     ?>
 
     <a href="monitor-employees-worktime">Monitorowanie godzin pracy pracowników</a>
+    <a href="fire-employee-form">Zwolnij pracowników</a>
+    <a href="invoices">Faktury</a>
 
 </div>

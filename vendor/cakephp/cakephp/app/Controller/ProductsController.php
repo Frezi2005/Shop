@@ -436,6 +436,9 @@ class ProductsController extends AppController {
 		$this->layout = false;	
 		$userUUID = json_decode(urldecode($this->params["url"]["products"]), true)["Orders"]["user_id"];
 		$user = $this->User->find("first", array("conditions" => array("id" => $userUUID), "fields" => array("name", "surname", "country", "city", "street", "house_number")));
+		if(!$userUUID) {
+			debug("User has been removed or something went wrong! Please try again later.");
+		}
 		$date = strtotime(json_decode($this->params["url"]["products"], true)["Orders"]["order_date"]);
 		$year = date('Y', $date);
 		$month = date('m', $date);
