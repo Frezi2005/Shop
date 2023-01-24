@@ -141,7 +141,7 @@
 
 					for($i = 0; $i < count($sites); $i++) {
 						preg_match("/(?<!\/ )[^\/]+$/", $_SERVER["REDIRECT_URL"], $matches);
-						if($matches && $matches[0] == $sites[$i]) {
+						if ($matches && $matches[0] == $sites[$i]) {
 							$display = false;
 							break;
 						}

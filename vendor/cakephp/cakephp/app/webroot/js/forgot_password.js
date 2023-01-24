@@ -9,7 +9,7 @@ $(function() {
 			});
         }
 
-		if(!$('input#forgotPasswordFormEmail').val()) {
+		if (!$('input#forgotPasswordFormEmail').val()) {
 			e.preventDefault();
 			Swal.fire({
 				title: 'Oops...',

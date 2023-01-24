@@ -76,14 +76,14 @@ $(function() {
                 $("div.searchResults").css("display", "none");
             }, 120);
         };
-        if($(this).val().length > 0) {
+        if ($(this).val().length > 0) {
             $("div.innerSearchResults").empty();
             $.ajax({
                 url: "http://localhost/Shop/vendor/cakephp/cakephp/search?q=" + $(this).val(),
                 dataType: "json",
                 async: false,
                 success: function(data) {
-                    if(data.length > 0) {
+                    if (data.length > 0) {
                         $("div.searchResults").css("display", "block");
                         for (product of data) {
                             $("div.innerSearchResults").append(`<a href='product?product_id=${product["Products"].id}'><p title='${product["Products"].name}'><img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/${(product["Products"].imgExists) ? product["Products"].id : 'noimg'}.jpg'/>${product["Products"].name}</p></a>`);
@@ -120,7 +120,7 @@ $(function() {
         cur.prepend("<a href='" + cur.parent().attr("href") + "'><img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/"+cur.parent().attr("href").replace("product?product_id=", "")+".jpg" + "'/></a>")
     });
 
-    if(window.history.length == 1) {
+    if (window.history.length == 1) {
         $("#back").css("display", "none");
     }
 
@@ -130,7 +130,7 @@ $(function() {
 
     $("div.cartLink").hover(function() {
         var cart = JSON.parse(localStorage.getItem("cart"));
-        if(cart.length > 0) {
+        if (cart.length > 0) {
             $("div.cartModal").css("display", "block");
         }
     });
@@ -140,7 +140,7 @@ $(function() {
     })
 
     $(".searchBtn").click(function() {
-		if($("input.searchInput").val().length > 0) {
+		if ($("input.searchInput").val().length > 0) {
 			window.location.replace("http://localhost/Shop/vendor/cakephp/cakephp/products-list?q=" + $("input.searchInput").val());
 		}
 	});
@@ -148,7 +148,7 @@ $(function() {
     $(".currencySelect").change(function() {
         var currency = $(this).val();
 
-        if(currency !== 'USD') {
+        if (currency !== 'USD') {
             $.ajax({
                 type: "GET",
                 url: `https://api.apilayer.com/fixer/latest?base=USD`,
@@ -184,7 +184,7 @@ $(function() {
 
     var closed = true;
     $("p.categoriesBtn").click(function() {
-        if(closed) {
+        if (closed) {
             // $(".categoriesList").css("display", "block");
             $(".categories").css("height", "530px")
             $(".categoriesList").css("height", "530px");

@@ -217,4 +217,8 @@ class MailsController extends AppController {
 			$this->redirect("/forgot-password-page");
 		}
 	}
+
+	public function sendReplyToUser() {
+		
+	}
 }

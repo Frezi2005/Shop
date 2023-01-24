@@ -90,6 +90,8 @@ class CustomersController extends AppController {
 		}
 	}
 
+	//Site responsible for managing the registration 
+
 	public function register() {
 		$this->autoRender = false;
 		$customerRegisterData = $this->request["data"]["registerUserForm"];
@@ -140,6 +142,8 @@ class CustomersController extends AppController {
 		$this->redirect("/home");
 	}
 
+	//Site responsible for managing the login 
+
 	public function login() {
 		$this->autoRender = false;
 		$this->loadModel("Notice");
@@ -149,7 +153,7 @@ class CustomersController extends AppController {
 			$this->Session->write("loggedIn", true);
 			$this->Session->write("loggedModal", true);
 			$this->Session->write("userUUID", $user["User"]["id"]);
-			if($this->Session->read("orderInfo")) {
+			if ($this->Session->read("orderInfo")) {
 				$this->redirect("/order-products");
 			} else {
 				$this->redirect("/home");
@@ -160,6 +164,8 @@ class CustomersController extends AppController {
 		}
 	}
 
+	//Site responsible for activating customers account from link sent to their email 
+
 	public function activateCustomerAccount() {
 		$this->autoRender = false;
 		$this->User->id = $this->params["url"]["userUUID"];
@@ -168,12 +174,16 @@ class CustomersController extends AppController {
 		$this->redirect("/home");
 	}
 
+	//Site responsible for logging the user out
+
 	public function logout() {
 		$this->autoRender = false;
 		$this->Session->write("loggedIn", false);
 		$this->Session->write("userUUID", "");
 		$this->redirect("/home");
 	}
+
+	//Site listing available settings sites
 
 	public function settings() {
 		$user = $this->User->find("first", array("conditions" => array("id" => $this->Session->read("userUUID"))))["User"];
@@ -183,15 +193,15 @@ class CustomersController extends AppController {
 		}
 	}
 
+	//Site reponsible for changing users password after form submittion
+
 	public function changePassword() {
-		// debug("test");
-		// die;
 		$this->autoRender = false;
 		$changePasswordData = $this->request["data"]["changePasswordForm"];
 
 		if ($changePasswordData["newPasswordConfirm"] == $changePasswordData["newPassword"]) {
 			$user = $this->User->find("first", array("conditions" => array("id" => $this->Session->read("userUUID"))));
-			if($user) {
+			if ($user) {
 				$this->User->updateAll(array("password" => "'".$this->SecurityUtils->encrypt($changePasswordData["newPassword"])."'"), array("id" => $this->Session->read("userUUID")));
 				$this->Session->write("changePassword", true);
 				$log = $this->User->getDataSource()->getLog(false, false);
@@ -206,6 +216,8 @@ class CustomersController extends AppController {
 			$this->redirect("/change-password-form");
 		}
 	}
+
+	//Site reponsible for managing employees registration
 
 	public function registerEmployee() {
 		$employee = $this->request["data"]["registerEmployeeForm"];
@@ -247,12 +259,16 @@ class CustomersController extends AppController {
 		$this->redirect("/home");
 	}
 
+	//Site listing all employees and their most useful information
+
 	public function listEmployees() {
 		if (!$this->CheckPrivileges->check($_SERVER["REQUEST_URI"], $this->Session->read("userUUID"))) {
 			throw new ForbiddenException();
 		}
 		$this->set("employees", $this->User->find("all", array("conditions" => array("is_employee" => 1))));
 	}
+
+	//Site listing available administrative tools
 
 	public function adminPanel() {
 		if (!$this->CheckPrivileges->check($_SERVER["REQUEST_URI"], $this->Session->read("userUUID"))) {
@@ -290,11 +306,15 @@ class CustomersController extends AppController {
 		$this->set("customers", $customers);
 	}
 
+	//Site reponsible for granting selected user admin privileges
+
 	public function grantAdminPrivileges() {
 		$this->autoRender = false;
 		$userId = $this->params["url"]["id"];
 		$this->User->updateAll(array("is_admin" => (isset($this->params["url"]["admin"])) ? 1 : 0), array("id" => $userId));
 	}
+
+	//Site on which you can see all of your order history
 
 	public function orderHistory() {
 		$this->loadModel("Orders");
@@ -510,7 +530,7 @@ class CustomersController extends AppController {
 		}
 		$this->loadModel("Notice");
 		$user = $this->User->find("first", array("conditions" => array("id" => $normal ? $this->Session->read("userUUID") : $this->request["data"]["fireEmployeeForm"]["employees"]), "fields" => array("contract_start", "id")))["User"];
-		if(!$this->Notice->find("count", array("conditions" => array("user_id" => $user["id"])))) {
+		if (!$this->Notice->find("count", array("conditions" => array("user_id" => $user["id"])))) {
 			$start = $user["contract_start"];
 			$end = date('Y-m-d');
 			$ts1 = strtotime($start);
@@ -549,6 +569,12 @@ class CustomersController extends AppController {
 
 	public function extendContractRequestForm() {
 		$employees = $this->User->find("list", array("conditions" => array("is_employee" => 1, "id != '".$this->Session->read("userUUID")."'", "contract_end > NOW() AND contract_end < DATE_ADD(NOW(), INTERVAL 1 MONTH)"), "fields" => array("id", "email")));
+		$this->loadModel("Notice");
+		foreach (array_keys($employees) as $k) {
+			if ($this->Notice->find("count", array("conditions" => array("user_id" => $k)))) {
+				unset($employees[$k]);
+			}
+		}
 		$this->set("employees", $employees);
 	}
 
@@ -561,5 +587,25 @@ class CustomersController extends AppController {
 			"extend" => $this->request["data"]["extendContractRequestForm"]["extend"],
 		));
 		$this->redirect("/extend-contract-request-form");
+	}
+
+	public function viewContractExtensionRequests() {
+		$this->loadModel("ContractExtend");
+		$this->set("contractExtensions", $this->ContractExtend->find("all"));
+	}
+
+	public function extendContract() {
+		$this->autoRender = false;
+		$user = $this->User->find("first", array("conditions" => array("id" => $this->params["url"]["user_id"])));
+		if($user) {
+			$this->ContractExtend->deleteAll(array("user_id" => $this->params["url"]["user_id"]));
+			return $this->User->updateAll(array("contract_end" => "'".$this->params["url"]["date"]."'"), array("id" => $this->params["url"]["user_id"]));
+		}
+	}
+
+	public function removeContractExtensionRequest() {
+		$this->autoRender = false;
+		$this->loadModel("ContractExtend");
+		return json_encode($this->ContractExtend->deleteAll(array("user_id" => $this->params["url"]["user_id"])));
 	}
 }

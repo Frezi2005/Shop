@@ -98,7 +98,7 @@ class ProfilesController extends AppController {
 		$data = $this->request["data"]["changeAddressForm"];
 		foreach($data as $key => $value) {
 			$data[$key] = "'".$value."'";
-			if(preg_replace('/\s+/', '', $value) == "") {
+			if (preg_replace('/\s+/', '', $value) == "") {
 				$this->Session->write("changeAddressError", true);
 				$this->redirect("/change-address-form");
 			}

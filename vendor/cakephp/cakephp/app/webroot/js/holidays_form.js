@@ -11,7 +11,7 @@ $(() => {
             e.preventDefault();
             Swal.fire({
                 icon: 'error',
-                text: `You have only ${+$("#holidays span").text()} days left but you selected ${getBusinessDatesCount(start, end)}!`,
+                text: `${lang.you_have_only} ${+$("#holidays span").text()} ${lang.days_left} ${getBusinessDatesCount(start, end)}!`,
                 showConfirmButton: true,
                 timer: 5000,
                 timerProgressBar: true

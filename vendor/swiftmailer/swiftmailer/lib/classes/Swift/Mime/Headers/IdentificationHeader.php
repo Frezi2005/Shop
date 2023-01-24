@@ -130,7 +130,7 @@ class Swift_Mime_Headers_IdentificationHeader extends Swift_Mime_Headers_Abstrac
             $actualIds[] = $id;
         }
 
-        $this->clearCachedValueIf($this->ids != $actualIds);
+        $this->clearCachedValueif ($this->ids != $actualIds);
         $this->ids = $actualIds;
     }
 

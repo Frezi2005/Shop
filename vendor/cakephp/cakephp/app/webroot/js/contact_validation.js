@@ -17,7 +17,7 @@ $(() => {
             text += lang.message_error;
         }
 
-        if(text) {
+        if (text) {
             Swal.fire({
 				title: 'Oops...',
 				icon: 'error',

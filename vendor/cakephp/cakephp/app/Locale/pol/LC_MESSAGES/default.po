@@ -698,7 +698,7 @@ msgid "complaint"
 msgstr "Reklamacja"
 
 msgid "cooperative_offer"
-msgstr "Oferta współpraca"
+msgstr "Oferta współpracy"
 
 msgid "media_contact"
 msgstr "Kontakt do mediów"
@@ -810,3 +810,111 @@ msgstr "Formularz przypominania hasła"
 
 msgid "now_only"
 msgstr "Teraz tylko"
+
+msgid "monitoring_hours"
+msgstr "Monitorowanie godzin pracy pracowników"
+
+msgid "fire_employees"
+msgstr "Zwolnij pracowników"
+
+msgid "invoices"
+msgstr "Faktury"
+
+msgid "employees"
+msgstr "Pracownicy"
+
+msgid "extend"
+msgstr "Przedłuż"
+
+msgid "notice_type"
+msgstr "Typ zwolnienia"
+
+msgid "notice"
+msgstr "Zwolnienie"
+
+msgid "notice_by_consent"
+msgstr "Zwolnienie za porozumieniem stron"
+
+msgid "fire"
+msgstr "Zwolnij"
+
+msgid "employee_already_fire"
+msgstr "Już zwolniłeś tego pracownika!"
+
+msgid "holiday_start_date"
+msgstr "Początek urlopu"
+
+msgid "holiday_end_date"
+msgstr "Koniec urlopu"
+
+msgid "holiday_type"
+msgstr "Typ urlopu"
+
+msgid "occasional_leave"
+msgstr "Urlop okazjonalny"
+
+msgid "leave_on_request"
+msgstr "Urlop na żądanie"
+
+msgid "annual_leave"
+msgstr "Urlop"
+
+msgid "left"
+msgstr "Zostało"
+
+msgid "leave_request_sent"
+msgstr "Zapytanie o zwolnienie lekarskie zostało wysłane!"
+
+msgid "notice_request_sent"
+msgstr "Zapytanie o zwolnienie zostało wysłane!"
+
+msgid "notice_request_exsits"
+msgstr "Już wysłałeś zapytanie o zwolnienie!"
+
+msgid "sick_leave_start_date"
+msgstr "Początek zwolnienia lekarskiego"
+
+msgid "sick_leave_end_date"
+msgstr "Koniec zwolnienia lekarskiego"
+
+msgid "sick_leave_request_sent"
+msgstr "Zapytanie o zwolnienie lekarskie zostało wysłane!"
+
+msgid "start"
+msgstr "Początek"
+
+msgid "end"
+msgstr "Koniec"
+
+msgid "type"
+msgstr "Typ"
+
+msgid "status"
+msgstr "Status"
+
+msgid "account_terminated"
+msgstr "Twoje konto zostało usunięte!"
+
+msgid "view_holidays"
+msgstr "Zobacz urlopy"
+
+msgid "request_notice"
+msgstr "Poproś o zwolnienie"
+
+msgid "request_holidays"
+msgstr "Poproś o urlop"
+
+msgid "request_sick_leave"
+msgstr "Poproś o zwolnienie lekarskie"
+
+msgid "get_contract"
+msgstr "Pobierz umowę"
+
+msgid "view_messages"
+msgstr "Zobacz wiadomości"
+
+msgid "reply"
+msgstr "Odpowiedz"
+
+msgid "your_message"
+msgstr "Twoja wiadomość"

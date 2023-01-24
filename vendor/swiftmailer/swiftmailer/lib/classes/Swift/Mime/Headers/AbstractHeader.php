@@ -66,7 +66,7 @@ abstract class Swift_Mime_Headers_AbstractHeader implements Swift_Mime_Header
      */
     public function setCharset($charset)
     {
-        $this->clearCachedValueIf($charset != $this->charset);
+        $this->clearCachedValueif ($charset != $this->charset);
         $this->charset = $charset;
         if (isset($this->encoder)) {
             $this->encoder->charsetChanged($charset);
@@ -93,7 +93,7 @@ abstract class Swift_Mime_Headers_AbstractHeader implements Swift_Mime_Header
      */
     public function setLanguage($lang)
     {
-        $this->clearCachedValueIf($this->lang != $lang);
+        $this->clearCachedValueif ($this->lang != $lang);
         $this->lang = $lang;
     }
 
@@ -143,7 +143,7 @@ abstract class Swift_Mime_Headers_AbstractHeader implements Swift_Mime_Header
      */
     public function setMaxLineLength($lineLength)
     {
-        $this->clearCachedValueIf($this->lineLength != $lineLength);
+        $this->clearCachedValueif ($this->lineLength != $lineLength);
         $this->lineLength = $lineLength;
     }
 
@@ -406,7 +406,7 @@ abstract class Swift_Mime_Headers_AbstractHeader implements Swift_Mime_Header
      *
      * @param bool $condition
      */
-    protected function clearCachedValueIf($condition)
+    protected function clearCachedValueif ($condition)
     {
         if ($condition) {
             $this->setCachedValue(null);

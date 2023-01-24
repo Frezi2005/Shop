@@ -12,7 +12,7 @@ $(function() {
                 var fields = unescape($(this).parent().parent().find(".fields").val());
 				var html = '';
 				var products = JSON.parse(JSON.parse(fields).Orders.products);
-				if(products.length) {
+				if (products.length) {
 					for(let i = 0; i < products.length; i++) {
 						html += `<img style='height: 100px' src='app/webroot/img/${products[i].id}.jpg'><p>${products[i].count} * ${products[i].name.replaceAll('+', ' ')} - ${products[i].count * parseFloat(products[i].price.toString().replace(/[^\.\d]*/gm, ''))} ${JSON.parse(fields).Orders.currency}</p>`;
 					}
@@ -63,7 +63,7 @@ $(function() {
     }
 
 	$(".filter-dropdown-arrow").click(function() {
-		if($("#filters").data("open")) {
+		if ($("#filters").data("open")) {
 			$("#filters").css("height", 0);
 			$(".filter-dropdown-arrow").css("transform", "rotate(0deg)");
 			$("#filters").data("open", false)
@@ -83,7 +83,7 @@ $(function() {
 
 
 	$(".pagination .fas").click(function() {
-		if(page + $(this).data("page") != 0 && page + $(this).data("page") <= $(".pagination p").length) {
+		if (page + $(this).data("page") != 0 && page + $(this).data("page") <= $(".pagination p").length) {
 			urlParams.set("page", (page + parseInt($(this).data("page")) > 0 ? page + parseInt($(this).data("page")) : 1))
 			location.replace("http://localhost/Shop/vendor/cakephp/cakephp/order-history?" + urlParams.toString());
 		}

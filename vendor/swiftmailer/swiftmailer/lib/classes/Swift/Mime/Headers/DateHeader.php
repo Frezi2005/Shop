@@ -82,7 +82,7 @@ class Swift_Mime_Headers_DateHeader extends Swift_Mime_Headers_AbstractHeader
      */
     public function setDateTime(DateTimeInterface $dateTime)
     {
-        $this->clearCachedValueIf($this->getCachedValue() != $dateTime->format(DateTime::RFC2822));
+        $this->clearCachedValueif ($this->getCachedValue() != $dateTime->format(DateTime::RFC2822));
         if ($dateTime instanceof DateTime) {
             $immutable = new DateTimeImmutable('@'.$dateTime->getTimestamp());
             $dateTime = $immutable->setTimezone($dateTime->getTimezone());

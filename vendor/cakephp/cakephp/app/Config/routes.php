@@ -117,15 +117,23 @@
 	Router::connect("/fire-employee", array("controller" => "customers", "action" => "fireEmployee"));
 	Router::connect("/extend-contract-request-form", array("controller" => "customers", "action" => "extendContractRequestForm"));
 	Router::connect("/extend-contract-request", array("controller" => "customers", "action" => "extendContractRequest"));
+	Router::connect("/view-contract-extension-requests", array("controller" => "customers", "action" => "viewContractExtensionRequests"));
+	Router::connect("/extend-contract", array("controller" => "customers", "action" => "extendContract"));
+	Router::connect("/remove-contract-extension-request", array("controller" => "customers", "action" => "removeContractExtensionRequest"));
 
 	Router::connect("/send-email-from-customer", array("controller" => "mails", "action" => "sendEmailFromCustomer"));
 	Router::connect("/send-forgot-password-email", array("controller" => "mails", "action" => "sendForgotPasswordEmail"));
+	Router::connect("/send-reply-to-user", array("controller" => "mails", "action" => "sendReplyToUser"));
 
 	Router::connect("/order-products", array("controller" => "orders", "action" => "orderProducts"));
 	Router::connect("/get-orders", array("controller" => "orders", "action" => "getOrders"));
 	Router::connect("/invoices", array("controller" => "orders", "action" => "invoices"));
 
 	Router::connect("/buy-gift", array("controller" => "gifts", "action" => "buyGift"));
+
+	Router::connect("/save-message", array("controller" => "messages", "action" => "saveMessage"));
+	Router::connect("/view-messages", array("controller" => "messages", "action" => "viewMessages"));
+	Router::connect("/reply-to-message", array("controller" => "messages", "action" => "replyToMessage"));
 
 /**
  * ...and connect the rest of "Pages" controller"s URLs.

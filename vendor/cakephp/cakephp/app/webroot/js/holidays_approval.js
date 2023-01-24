@@ -23,8 +23,8 @@ $(() => {
                 <td>${holiday.status}</td>
                 <td>${holiday.type}</td>
                 <td>${holiday.amount}</td>
-                <td><button class="btn btn-primary" data-method="approve">Zatwierdź</button></td>
-                <td><button class="btn btn-danger" data-method="reject">Odrzuć</button></td>
+                <td><button class="btn btn-success" data-method="approve">${lang.confirm}</button></td>
+                <td><button class="btn btn-primary" data-method="reject">${lang.deny}</button></td>
                 <td class="d-none"><span id="holiday">${holiday.id}</span><span id="user">${holiday.user_id}</span></td>
             </tr>
         `;
@@ -33,12 +33,12 @@ $(() => {
     $("#holidays").html(`
         <tbody>
             <tr>
-                <th>Name</th>
+                <th>${lang.name}</th>
                 <th>Email</th>
-                <th>Holiday length</th>
+                <th>${lang.holiday_length}</th>
                 <th>Status</th>
-                <th>Type</th>
-                <th>Days left</th>
+                <th>${lang.type}</th>
+                <th>${lang.days_left_holiday}</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -57,7 +57,7 @@ $(() => {
             success: function(result) {
                 Swal.fire({
                     icon: result ? 'success' : 'error',
-                    text: result ? `Holiday was ${method == 'approve' ? 'approved' : 'rejected'} successfully!` : `Unfortunately the holiday couldn't be ${method == 'approve' ? 'approved' : 'rejected'}!`
+                    text: result ? `${lang.holiday_was} ${method == 'approve' ? lang.approved : lang.rejected} ${lang.successfully}!` : `${lang.holiday_couldnt_be} ${method == 'approve' ? lang.approved : lang.rejected}!`
                 });
                 setTimeout(() => {
                     location.reload();

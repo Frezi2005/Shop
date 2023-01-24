@@ -6,7 +6,7 @@
 <div class="productsList offset-1 col-xxl-6 col-xl-6 col-lg-5 col-10 float-start">
     <span id="breadcrumbs">
         <?php
-            if(isset($categoryName)) {
+            if (isset($categoryName)) {
                 echo "<a href='products-list?category={$categoryId}'>".__($categoryName)."</a> <i class='fas fa-angle-right'></i> <a href='products-list?sub_category={$subCategoryId}'>".__($subCategoryName)."</a>"; 
             }
         ?>
@@ -20,7 +20,7 @@
         $next = __("next");
         $prev = __("previous");
 
-        if($count > 1) {
+        if ($count > 1) {
             echo <<<PAG
             <div id="pagination" class="col-12">
                 <select id="sortProductsList" class="col-5 mt-lg-0 mt-4 float-start">

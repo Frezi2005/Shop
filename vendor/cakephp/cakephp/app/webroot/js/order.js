@@ -17,7 +17,7 @@ $(function() {
         sum += cart[i].count * parseFloat(cart[i].price.toString().replace(/[^\d]*/, ''));
     }
 
-	if(!sum) {
+	if (!sum) {
 		history.back();
 	}
 
@@ -37,7 +37,7 @@ $(function() {
 	$("#orderFormCurrency").val(localStorage.getItem("currency"));
 
     $('form').submit(function(e) {
-		if(!$('#orderFormRules').is(':checked')) {
+		if (!$('#orderFormRules').is(':checked')) {
 			e.preventDefault();
 			$('#checkboxError').css('display', 'inline');
 		} else {
@@ -105,7 +105,7 @@ $(function() {
     });
 
 	$("select#orderFormDeliveryType").change(function() {
-		if($(this).val() == "parcel_locker") {
+		if ($(this).val() == "parcel_locker") {
 			$("#mapModal").css("display", "block");
 			$("#mapModal").css("opacity", "1");
 			$(document).mouseup(function(e) {

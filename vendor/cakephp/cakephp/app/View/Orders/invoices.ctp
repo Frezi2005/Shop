@@ -3,10 +3,10 @@
     echo $this->Html->script("invoices");
 
     echo "<select id='sort'>";
-        echo "<option value='order_date-asc'>Order date ascending</option>";
-        echo "<option value='order_date-desc'>Order date descending</option>";
-        echo "<option value='total_price-asc'>Total price ascending</option>";
-        echo "<option value='total_price-desc'>Total price descending</option>";
+        echo "<option value='order_date-asc'>".__("date_ascending")."</option>";
+        echo "<option value='order_date-desc'>".__("date_descending")."</option>";
+        echo "<option value='total_price-asc'>".__("price_ascending")."</option>";
+        echo "<option value='total_price-desc'>".__("price_descending")."</option>";
     echo "</select><br />";
     
     foreach ($orders as $order) {

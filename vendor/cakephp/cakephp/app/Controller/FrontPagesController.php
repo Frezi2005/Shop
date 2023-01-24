@@ -41,8 +41,8 @@ class FrontPagesController extends AppController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
-		if(strpos($_SERVER["REQUEST_URI"], "privacy-policy-and-cookies") !== false || strpos($_SERVER["REQUEST_URI"], "terms-of-service") !== false) {
-			if(substr($_SERVER["REQUEST_URI"], -3) != Configure::read("Config.language")) {
+		if (strpos($_SERVER["REQUEST_URI"], "privacy-policy-and-cookies") !== false || strpos($_SERVER["REQUEST_URI"], "terms-of-service") !== false) {
+			if (substr($_SERVER["REQUEST_URI"], -3) != Configure::read("Config.language")) {
 				$this->redirect("/".str_replace("/Shop/vendor/cakephp/cakephp/", "", substr($_SERVER["REQUEST_URI"], 0, -3)).Configure::read("Config.language"));
 			}
 		}
@@ -127,7 +127,7 @@ class FrontPagesController extends AppController {
 	}
 
 	public function contact() {
-		if(isset($this->params["url"]["template"])) {
+		if (isset($this->params["url"]["template"])) {
 			$this->set("template", $this->params["url"]["template"]);
 		}
 	}

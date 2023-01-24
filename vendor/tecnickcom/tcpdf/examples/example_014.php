@@ -165,7 +165,7 @@ $pdf->Button('submit', 30, 10, 'Submit', array('S'=>'SubmitForm', 'F'=>'http://l
 $js = <<<EOD
 function CheckField(name,message) {
 	var f = getField(name);
-	if(f.value == '') {
+	if (f.value == '') {
 	    app.alert(message);
 	    f.setFocus();
 	    return false;
@@ -173,10 +173,10 @@ function CheckField(name,message) {
 	return true;
 }
 function Print() {
-	if(!CheckField('firstname','First name is mandatory')) {return;}
-	if(!CheckField('lastname','Last name is mandatory')) {return;}
-	if(!CheckField('gender','Gender is mandatory')) {return;}
-	if(!CheckField('address','Address is mandatory')) {return;}
+	if (!CheckField('firstname','First name is mandatory')) {return;}
+	if (!CheckField('lastname','Last name is mandatory')) {return;}
+	if (!CheckField('gender','Gender is mandatory')) {return;}
+	if (!CheckField('address','Address is mandatory')) {return;}
 	print();
 }
 EOD;

@@ -1,18 +1,8 @@
-#list {
-    margin-top: 20px;
-    border: 3px solid #b0ffb8;
-    border-radius: 27px;
-}
-
 table {
     width: 100%;
     text-align: center;
     height: 100%;
     border-spacing: 0; 
-    border-collapse: separate;
-    -moz-border-radius: 27px;
-    -webkit-border-radius: 27px;
-    border-radius: 27px;
 }
 
 tr {

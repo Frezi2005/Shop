@@ -20,17 +20,17 @@ $(function() {
         //     e.preventDefault();
         // }
 
-        // if(!date_validation(dateMin)) {
+        // if (!date_validation(dateMin)) {
         //     text += lang.date_min_error;
         //     e.preventDefault();
         // }
 
-        // if(!date_validation(dateMax)) {
+        // if (!date_validation(dateMax)) {
         //     text += lang.date_max_error;
         //     e.preventDefault();
         // }
 
-        if(text != '') {
+        if (text != '') {
             Swal.fire({
                 title: 'Oops...',
                 text: text,

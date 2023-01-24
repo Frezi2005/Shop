@@ -12,7 +12,7 @@ $(function() {
         var tosCheckbox = $("input#registerUserFormRules")[0].checked;
         var text = '';
 
-        if(!tosCheckbox) {
+        if (!tosCheckbox) {
             text += lang.checkbox_error;
             e.preventDefault();
         }
@@ -57,7 +57,7 @@ $(function() {
             e.preventDefault();
         }
 
-        if(text != '') {
+        if (text != '') {
             $(".recaptcha-checkbox-border").css("border", "none");
             $(".recaptcha-checkbox-border").css("border", "2px solid red");
             Swal.fire({

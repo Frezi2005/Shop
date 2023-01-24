@@ -16,7 +16,7 @@ $(() => {
             e.preventDefault();
         }
 
-        if(text != '') {
+        if (text != '') {
             Swal.fire({
                 title: 'Oops...',
                 text: text,

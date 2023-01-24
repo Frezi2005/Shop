@@ -91,7 +91,7 @@ class OrdersController extends AppController {
 		$this->loadModel("Users");
 		$this->loadModel("Products");
 
-		if(!$data || !isset($data)) {
+		if (!$data || !isset($data)) {
 			$this->redirect("/home");
 		}
 
@@ -101,7 +101,7 @@ class OrdersController extends AppController {
 			$this->redirect("/order");
 		}
 
-		if($data["price"] == 0) {
+		if ($data["price"] == 0) {
 			$this->Session->write("orderPriceError", true);
 			$this->redirect("/home");
 		}

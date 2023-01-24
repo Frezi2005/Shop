@@ -17,7 +17,7 @@ class DoubleQuote extends PartParser
     {
 
         $validQuotedString = $this->checkDQUOTE();
-        if($validQuotedString->isInvalid()) return $validQuotedString;
+        if ($validQuotedString->isInvalid()) return $validQuotedString;
 
         $special = array(
             EmailLexer::S_CR => true,

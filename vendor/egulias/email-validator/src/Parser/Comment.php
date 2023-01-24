@@ -33,7 +33,7 @@ class Comment extends PartParser
     {
         if ($this->lexer->token['type'] === EmailLexer::S_OPENPARENTHESIS) {
             $this->openedParenthesis++;
-            if($this->noClosingParenthesis()) {
+            if ($this->noClosingParenthesis()) {
                 return new InvalidEmail(new UnclosedComment(), $this->lexer->token['value']);
             }
         }
@@ -51,13 +51,13 @@ class Comment extends PartParser
                 $this->openedParenthesis++;
             }
             $this->warnEscaping();
-            if($this->lexer->isNextToken(EmailLexer::S_CLOSEPARENTHESIS)) {
+            if ($this->lexer->isNextToken(EmailLexer::S_CLOSEPARENTHESIS)) {
                 $this->openedParenthesis--;
             }
             $moreTokens = $this->lexer->moveNext();
         }
 
-        if($this->openedParenthesis >= 1) {
+        if ($this->openedParenthesis >= 1) {
             return new InvalidEmail(new UnclosedComment(), $this->lexer->token['value']);
         } else if ($this->openedParenthesis < 0) {
             return new InvalidEmail(new UnOpenedComment(), $this->lexer->token['value']);

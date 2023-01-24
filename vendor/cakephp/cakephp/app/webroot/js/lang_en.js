@@ -61,4 +61,16 @@ const lang = {
 	price_max_error: "Maxium price is invalid.\n",
 	date_min_error: "Minimum date is invalid.\n",
 	date_max_error: "Maximum date is invalid.\n",
+	you_have_only: "You have only",
+	days_left: "days left but you selected",
+	confirm: "Confirm",
+	deny: "Deny",
+	type: "Type",
+	days_left_holiday: "Days left",
+	holiday_length: "Holiday length",
+	holiday_was: "Holiday was",
+	approved: "approved",
+	rejected: "rejected",
+	successfully: "successfully",
+	holiday_couldnt_be: "Unfortunately the holiday couldn't be"
 }

@@ -86,7 +86,7 @@ class ProductsController extends AppController {
 
 	public function search() {
 		$this->autoRender = false;
-		if(strlen($this->params["url"]["q"]) <= 3) {
+		if (strlen($this->params["url"]["q"]) <= 3) {
 			$products = $this->Products->find("all", array(
 				"fields" => array("id", "name", "description"),
 				"conditions" => array(
@@ -206,7 +206,7 @@ class ProductsController extends AppController {
 				))) / $productsShown)
 			);
 			return 0;
-		} else if(isset($this->params["url"]["sub_category"])) {
+		} else if (isset($this->params["url"]["sub_category"])) {
 			$subCategory = $this->SubCategory->find("first", array("conditions" => array("id" => $this->params["url"]["sub_category"]), "fields" => array("sub_category_name", "category_id")))["SubCategory"];
 			$category = $this->Category->find("first", array("conditions" => array("id" => $subCategory["category_id"])))["Category"];
 			$products = $this->Product->find('all', array(
@@ -363,7 +363,7 @@ class ProductsController extends AppController {
 		$countries["pol"] = array_merge(["Polska" => "Polska"], $countries["pol"]); 
 		$countries["eng"] = array_merge(["Poland" => "Poland"], $countries["eng"]); 
 		$countries[$this->Session->read("language") ?? "eng"] = array("" => __("choose")) + $countries[$this->Session->read("language") ?? "eng"];
-		if($this->Session->read("loggedIn")) {
+		if ($this->Session->read("loggedIn")) {
 			$user = $this->User->find("first", array("conditions" => array("id" => $this->Session->read("userUUID")), "fields" => array("country", "city", "street", "house_number", "flat_number", "email")));
 			$this->set("userInfo", $user["User"]);
 		}
@@ -436,7 +436,7 @@ class ProductsController extends AppController {
 		$this->layout = false;	
 		$userUUID = json_decode(urldecode($this->params["url"]["products"]), true)["Orders"]["user_id"];
 		$user = $this->User->find("first", array("conditions" => array("id" => $userUUID), "fields" => array("name", "surname", "country", "city", "street", "house_number")));
-		if(!$userUUID) {
+		if (!$userUUID) {
 			debug("User has been removed or something went wrong! Please try again later.");
 		}
 		$date = strtotime(json_decode($this->params["url"]["products"], true)["Orders"]["order_date"]);

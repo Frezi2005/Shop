@@ -34,7 +34,7 @@ class LocalPart extends PartParser
                 $dquoteParsingResult = $this->parseDoubleQuote();
 
                 //Invalid double quote parsing
-                if($dquoteParsingResult->isInvalid()) {
+                if ($dquoteParsingResult->isInvalid()) {
                     return $dquoteParsingResult;
                 }
             }
@@ -44,7 +44,7 @@ class LocalPart extends PartParser
                 $commentsResult = $this->parseComments();
 
                 //Invalid comment parsing
-                if($commentsResult->isInvalid()) {
+                if ($commentsResult->isInvalid()) {
                     return $commentsResult;
                 }
             }
@@ -70,7 +70,7 @@ class LocalPart extends PartParser
             }
 
             $resultFWS = $this->parseLocalFWS();
-            if($resultFWS->isInvalid()) {
+            if ($resultFWS->isInvalid()) {
                 return $resultFWS;
             }
 
@@ -138,7 +138,7 @@ class LocalPart extends PartParser
         $commentParser = new Comment($this->lexer, new LocalComment());
         $result = $commentParser->parse();
         $this->warnings = array_merge($this->warnings, $commentParser->getWarnings());
-        if($result->isInvalid()) {
+        if ($result->isInvalid()) {
             return $result;
         }
         return $result;

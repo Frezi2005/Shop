@@ -3,7 +3,7 @@ $(() => {
 		$(this).text((parseFloat($(this).text()) * localStorage.getItem("rate")).toFixed(2) + '\n' + localStorage.getItem("currency"));
 	});
 
-	if(!+$(".productsCount").val()) {
+	if (!+$(".productsCount").val()) {
 		$(".productsList").hide();
 		$("#content").append("<span class='noProducts'>"+lang.no_products+"</span>")
 	}

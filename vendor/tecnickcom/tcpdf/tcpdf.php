@@ -23895,7 +23895,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 	 * @protected
 	 */
 	protected function removeTagNamespace($name) {
-		if(strpos($name, ':') !== false) {
+		if (strpos($name, ':') !== false) {
 			$parts = explode(':', $name);
 			return $parts[(sizeof($parts) - 1)];
 		}
@@ -24012,7 +24012,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 			}
 			case 'svg': {
 				// start of SVG object
-				if(++$this->svg_tag_depth <= 1) {
+				if (++$this->svg_tag_depth <= 1) {
 					break;
 				}
 				// inner SVG

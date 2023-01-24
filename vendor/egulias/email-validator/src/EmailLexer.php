@@ -294,7 +294,7 @@ class EmailLexer extends AbstractLexer
 
     protected function isInvalidChar(string $value) : bool
     {
-        if(preg_match("/[^\p{S}\p{C}\p{Cc}]+/iu", $value) ) {
+        if (preg_match("/[^\p{S}\p{C}\p{Cc}]+/iu", $value) ) {
             return false;
         }
         return true;

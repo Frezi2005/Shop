@@ -161,7 +161,7 @@ class DomainPart extends PartParser
                 $commentsResult = $this->parseComments();
 
                 //Invalid comment parsing
-                if($commentsResult->isInvalid()) {
+                if ($commentsResult->isInvalid()) {
                     return $commentsResult;
                 }
             }
@@ -184,7 +184,7 @@ class DomainPart extends PartParser
                 }
 
             $FwsResult = $this->parseFWS();
-            if($FwsResult->isInvalid()) {
+            if ($FwsResult->isInvalid()) {
                 return $FwsResult;
             }
 

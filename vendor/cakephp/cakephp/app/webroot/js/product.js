@@ -17,7 +17,7 @@ $(function (){
 
     $("#buyNowBtn").click(function() {
 		var amount = $("input#productAmount").val();
-        if(parseInt(amount) * parseFloat($("#productTaxPrice").text().replace(/[^\d]*/, '')) > PRICE_LIMIT) {
+        if (parseInt(amount) * parseFloat($("#productTaxPrice").text().replace(/[^\d]*/, '')) > PRICE_LIMIT) {
             Swal.fire({
 				icon: "error",
 				text: `${lang.too_much}. ${lang.max_is} ${PRICE_LIMIT} USD`,
@@ -51,12 +51,12 @@ $(function (){
     var urlParams = new URLSearchParams(queryString);
     var page = parseInt((urlParams.get("page") != null) ? urlParams.get("page") : 1);
 
-    if(page > +$(".totalCount").val()) {
+    if (page > +$(".totalCount").val()) {
         urlParams.set("page", +$(".totalCount").val())
         location.replace("http://localhost/Shop/vendor/cakephp/cakephp/products-list?" + urlParams.toString());
     }
 
-    if(page == 1) {
+    if (page == 1) {
         $("#page-prev").css("background-color", "#e3e3e3");
         $("#page-prev").css("border-color", "#939393");
         $("#page-prev").attr("disabled", true);
@@ -95,7 +95,7 @@ $(function (){
 
     displayAmount(items);
     displayItemsInCartGUI(items);
-	if($('select.languageSelect').find(":selected").val() == 'pol') {
+	if ($('select.languageSelect').find(":selected").val() == 'pol') {
 		$.ajax({
 			url: `https://api-free.deepl.com/v2/translate?auth_key=0ab1f56e-efa3-908b-f6c3-aef8ec8eab6f:fx&text=${$(`p#description`).text()}&target_lang=PL`,
 			success: function (result) {
@@ -110,7 +110,7 @@ function greyOutAddButtons() {
     var item;
     $(".cartModal i.deleteProduct").each(function() {
         item = items[items.findIndex(x => x.id == $(this).data("product-id"))];
-        if(item.count == item.max_amount) {
+        if (item.count == item.max_amount) {
             $(`i[data-product-id=${item.id}]`).parent().children(".addProduct").css("color", "#c7c7c7");
         }
     });
@@ -118,8 +118,8 @@ function greyOutAddButtons() {
 
 var items = (JSON.parse(localStorage.getItem("cart")) == null) ? [] : JSON.parse(localStorage.getItem("cart"));
 function updateCart(amount, id, name, price, add = true, modal = true) {
-    if(items[items.findIndex(x => x.id == id)]) {
-        if(parseInt(items[items.findIndex(x => x.id == id)].count) + ((add) ? parseInt(amount) : -1 * parseInt(amount)) > items[items.findIndex(x => x.id == id)].max_amount) {
+    if (items[items.findIndex(x => x.id == id)]) {
+        if (parseInt(items[items.findIndex(x => x.id == id)].count) + ((add) ? parseInt(amount) : -1 * parseInt(amount)) > items[items.findIndex(x => x.id == id)].max_amount) {
             return;
         }
     }
@@ -135,7 +135,7 @@ function updateCart(amount, id, name, price, add = true, modal = true) {
             return;
         } 
 
-        if(items.length >= MAX_DIFF_PRODUCTS) {
+        if (items.length >= MAX_DIFF_PRODUCTS) {
             Swal.fire({
                 icon: "error",
                 text: lang.existing_products,
@@ -237,13 +237,13 @@ function displayAmount(cart) {
     for (var i = 0; i < cart.length; i++) {
         amount += cart[i].count;
     }
-    if(amount == 0) {
+    if (amount == 0) {
         $("#cartProductsAmount").css("display", "none");
     } else {
         $("#cartProductsAmount").css("display", "block")
     }
     $("#cartProductsAmount").text(amount);
-    if(!amount) {
+    if (!amount) {
         $("#linkOuter a").attr("href", "#");
         $("#linkOuter a").css("cursor", "auto");
     } else {

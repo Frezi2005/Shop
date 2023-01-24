@@ -60,6 +60,18 @@ const lang = {
 	price_min_error: "Cena minimalna jest nieprawidłowa.\n",
 	price_max_error: "Cena maksymalna jest nie prawidłowa.\n",
 	date_min_error: "Data minimalna jest nie prawidłowa.\n",
-	date_max_error: "Data maksymalna jest nie prawidłowa.\n"
+	date_max_error: "Data maksymalna jest nie prawidłowa.\n",
+	you_have_only: "Zostało ci tylko",
+	days_left: "dni a zaznaczyłeś",
+	confirm: "Zatwierdź",
+	deny: "Odmów",
+	type: "Typ",
+	days_left_holiday: "Poostało dni",
+	holiday_length: "Długość urlopu",
+	holiday_was: "Urlop został",
+	approved: "zatwierdzony",
+	rejected: "odmówiony",
+	successfully: "pomyślnie",
+	holiday_couldnt_be: "Niestety nie daliśmy rady urlopu"
 }
 

@@ -804,3 +804,111 @@ msgstr "Forgot password form"
 
 msgid "now_only"
 msgstr "Now only"
+
+msgid "monitoring_hours"
+msgstr "Monitoring employees' working hours"
+
+msgid "fire_employees"
+msgstr "Fire employees"
+
+msgid "invoices"
+msgstr "Invoices"
+
+msgid "employees"
+msgstr "Employees"
+
+msgid "extend"
+msgstr "Extend"
+
+msgid "notice_type"
+msgstr "Notice type"
+
+msgid "notice"
+msgstr "Notice"
+
+msgid "notice_by_consent"
+msgstr "Notice by mutual consent"
+
+msgid "fire"
+msgstr "Fire"
+
+msgid "employee_already_fire"
+msgstr "You have already fired this employee!"
+
+msgid "holiday_start_date"
+msgstr "Holiday start date"
+
+msgid "holiday_end_date"
+msgstr "Holiday end date"
+
+msgid "holiday_type"
+msgstr "Holiday type"
+
+msgid "occasional_leave"
+msgstr "Occasional leave"
+
+msgid "leave_on_request"
+msgstr "Leave on request"
+
+msgid "annual_leave"
+msgstr "Annual leave"
+
+msgid "left"
+msgstr "Left"
+
+msgid "leave_request_sent"
+msgstr "A leave request has been sent!"
+
+msgid "notice_request_sent"
+msgstr "A notice request has been sent!"
+
+msgid "notice_request_exsits"
+msgstr "You have already requested a notice!"
+
+msgid "sick_leave_start_date"
+msgstr "Sick leave start date"
+
+msgid "sick_leave_end_date"
+msgstr "Sick leave end date"
+
+msgid "sick_leave_request_sent"
+msgstr "A sick leave request has been sent!"
+
+msgid "start"
+msgstr "Start"
+
+msgid "end"
+msgstr "End"
+
+msgid "type"
+msgstr "Type"
+
+msgid "status"
+msgstr "Status"
+
+msgid "account_terminated"
+msgstr "Your account has been terminated!"
+
+msgid "view_holidays"
+msgstr "View holidays"
+
+msgid "request_notice"
+msgstr "Request notice"
+
+msgid "request_holidays"
+msgstr "Request holidays"
+
+msgid "request_sick_leave"
+msgstr "Request sick leave"
+
+msgid "get_contract"
+msgstr "Get contract"
+
+msgid "view_messages"
+msgstr "View messages"
+
+msgid "reply"
+msgstr "Reply"
+
+msgid "your_message"
+msgstr "Your message"
