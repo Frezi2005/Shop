@@ -16,5 +16,8 @@
     if ($this->Session->read("numberError") == true) {
         echo "<script>Swal.fire({icon: \"error\",text: '".__("number_error")."',showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
         $_SESSION["numberError"] = false;
-    }
+    } else if ($this->Session->read("productsAdded") == true) {
+		echo "<script>Swal.fire({icon: \"success\",text: '".__("products_added")."',showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
+        $_SESSION["productsAdded"] = false;
+	}
 ?>

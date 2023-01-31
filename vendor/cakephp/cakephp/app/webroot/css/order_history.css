@@ -15,37 +15,6 @@ i {
 	width: 100%;
 }
 
-div#filters {
-	/*float: left;*/
-	/*margin: 70px 80px 0 40px;*/
-	display: flex;
-	flex-direction: column;
-	transition: height 0.5s ease-in-out;
-	overflow: hidden !important;
-	margin-top: 20px;
-	border-radius: 27px;
-	border: 3px solid #000000;
-	padding: 20px;
-}
-
-div#filters > *:not(p):not(div), div#filters > div *:not(p):not(div) {
-	margin: 10px 0;
-	padding: 5px;
-}
-
-div#filters p {
-	margin: 0 20px;
-}
-
-div#filters button {
-	outline: none;
-	border: 2px solid #000000;
-	background-color: #ffffff;
-	margin: auto;
-	height: 50px;
-	border-radius: 50px;
-}
-
 div.order {
     height: 60px;
     width: calc(100% - 20px * 2);
@@ -120,11 +89,6 @@ div.order img {
 	margin-left: 5px;
 }
 
-.filters-dropdown {
-	font-size: 20px;
-	display: none;
-}
-
 div.pagination .bold {
 	font-weight: bold;
 }
@@ -135,11 +99,12 @@ div.pagination .bold {
 
 #no-orders {
 	font-size: 50px;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
 	text-align: center;
+	float: left;
+	display: block;
+	height: 100%;
+	width: 100%;
+	padding-top: 200px;
 }
 
 @media (max-width: 991px) {

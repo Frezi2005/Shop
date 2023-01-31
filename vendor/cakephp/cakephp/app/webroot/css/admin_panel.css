@@ -8,7 +8,7 @@
 	transform: translate(-50%, -50%);
 }
 
-#main * {
+#main .col * {
     display: block;
     margin: 20px;
 }
@@ -16,4 +16,14 @@
 a {
     color: #000;
     text-decoration: none;
+}
+
+.col {
+    float: left;
+    width: 50%;
+}
+
+#main select {
+    width: 90%;
+    margin: auto;
 }

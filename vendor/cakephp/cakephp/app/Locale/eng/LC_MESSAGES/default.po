@@ -912,3 +912,39 @@ msgstr "Reply"
 
 msgid "your_message"
 msgstr "Your message"
+
+msgid "sick_leave_too_long"
+msgstr "Sick leave cannot be longer than 6 months!"
+
+msgid "products_added"
+msgstr "All selected products has been added!"
+
+msgid "holidays_approval_form"
+msgstr "Approve holidays"
+
+msgid "reject"
+msgstr "Reject"
+
+msgid "no_orders1"
+msgstr "Oh, looks like there's no orders!"
+
+msgid "no_orders2"
+msgstr "You can buy some products for orders to appear here!"
+
+msgid "message_sent_successfully"
+msgstr "Your reply has been sent successfully!"
+
+msgid "message_sent_unsuccessfully"
+msgstr "An error has occured whie sending the message, please try again later!"
+
+msgid "extend_contract"
+msgstr "Extend contract"
+
+msgid "view_contract_extensions_requests"
+msgstr "View contract extensions requests"
+
+msgid "no_invoices"
+msgstr "There are no invoices matching this criteria!"
+
+msgid "quantity"
+msgstr "Quantity"

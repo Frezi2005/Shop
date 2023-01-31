@@ -392,6 +392,7 @@ class ProductsController extends AppController {
 				$this->Products->updateAll(array("product_count" => intval($count["Products"]["product_count"]) + $data["count"]), array("id" => $data["products"][$i]));
 				$log = $this->Products->getDataSource()->getLog(false, false);
 				$this->log($log);
+				$this->Session->write("productsAdded", true);
 			}
 		} else {
 			$this->Session->write("numberError", true);

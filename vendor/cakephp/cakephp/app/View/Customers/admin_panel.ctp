@@ -6,16 +6,17 @@
 ?>
 <div id="main">
     <?php
+        echo "<div class='col'>";
         if ($privileges["list-employees"]) {
-            echo "<a href='list-employees' target='_blank'>".__("employees_list")."</a>";
+            echo "<a href='list-employees'>".__("employees_list")."</a>";
         }
 
         if ($privileges["inventory"]) {
-            echo "<a href='inventory' target='_blank'>".__("products_list")."</a>";
+            echo "<a href='inventory'>".__("products_list")."</a>";
         }
 
         if ($privileges["remove-employee-page"]) {
-            echo "<a href='remove-employee-page' target='_blank'>".__("remove_employee")."</a>";
+            echo "<a href='remove-employee-page'>".__("remove_employee")."</a>";
         }
 
         if ($privileges["orders-report"]) {
@@ -37,6 +38,12 @@
         if ($privileges["holidays-approval-form"]) {
             echo "<a href='holidays-approval-form'>".__("holidays_approval_form")."</a>";
         }
+
+        echo "<a href='invoices'>".__("invoices")."</a>";
+        echo "<a href='view-messages'>".__("view_messages")."</a>";
+
+        echo "</div>";
+        echo "<div class='col'>";
         
         if ($privileges["admin-privileges"] && count($employees) > 0) {
             echo "<select id='usersSelect'>";
@@ -47,7 +54,7 @@
             echo "<button id='grantAdmin'>".__("grant_admin")."</button>";
         }
 
-        if ($privileges["remove-customer"]) {
+        if ($privileges["remove-customer"] && count($customers) > 0) {
             echo "<select id='customersSelect'>";
             for ($i = 0; $i < count($customers); $i++) {
                 echo "<option value='".$customers[$i]["User"]["id"]."'>".$customers[$i]["User"]["name"]." ".$customers[$i]["User"]["surname"].": ".$customers[$i]["User"]["email"]."</option>";
@@ -57,9 +64,9 @@
         }
     ?>
 
-    <a href="monitor-employees-worktime"><?=__("monitoring_hours");?></a>
-    <a href="fire-employee-form"><?=__("fire_employees");?></a>
-    <a href="invoices"><?=__("invoices");?></a>
-    <a href="view-messages"><?=__("view_messages");?></a>
-
+        <a href="monitor-employees-worktime"><?=__("monitoring_hours");?></a>
+        <a href="fire-employee-form"><?=__("fire_employees");?></a>
+        <a href="extend-contract-request-form"><?=__("extend_contract");?></a>
+        <a href="view-contract-extension-requests"><?=__("view_contract_extensions_requests");?></a>
+    </div>
 </div>

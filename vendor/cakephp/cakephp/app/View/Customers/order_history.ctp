@@ -1,13 +1,14 @@
 <?php
     echo $this->Html->css("order_history");
     echo $this->Html->css("form");
+	echo $this->Html->css("filter");
     echo $this->Html->script("order_history");
 ?>
 <div id="orders" class="offset-1 col-xxl-6 col-xl-6 col-lg-7 col-10 float-start">
     <?php
 		$ids = array();
 		if (!count($orders)) {
-			echo "<span id='no-orders'>Oh, looks like there's no orders!<br/> You can buy some products for orders to appear here!</span>";
+			echo "<p id='no-orders' class='float-start'>".__("no_orders1")."<br/> ".__("no_orders2")."</p>";
 		} else {
 			foreach ($orders as $order) {
 				$products = json_decode($order["Orders"]["products"], true);
@@ -36,9 +37,10 @@
 				echo "</div>";
 			}
 
+		}
 echo "</div>";
 
-			echo <<<EOD
+		echo <<<EOD
 				<div id="filters" class="offset-1 col-xxl-3 col-xl-3 col-lg-2 col-10 float-start">
 					<select id="sortHistory">
 						<option value="price_asc">${!${''} = __("price_ascending")}</option>
@@ -72,6 +74,5 @@ echo "</div>";
 				</div>
 			<div class="col-10 offset-1 text-center filters-dropdown" data-open="false"><i class="fas fa-angle-right mx-2 filter-dropdown-arrow"></i>${!${''} = __("filters")}</div>	
 		EOD;			
-		}
     ?>
 

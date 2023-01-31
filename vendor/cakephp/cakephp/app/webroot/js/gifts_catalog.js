@@ -6,7 +6,25 @@ $(() => {
             $.ajax({
                 url: `http://localhost/Shop/vendor/cakephp/cakephp/buy-gift?id=${giftId}`,
                 success: function(result) {
-                    location.reload();
+                    Swal.fire({
+                        icon: 'success',
+                        text: lang.gift_bought,
+                        showConfirmButton: true,
+                        timer: 5000,
+                        timerProgressBar: true,
+                        onClose: () => {
+                            location.reload();
+                        }
+                    });
+                },
+                error: function(err) {
+                    Swal.fire({
+                        icon: 'error',
+                        text: lang.gift_error,
+                        showConfirmButton: true,
+                        timer: 5000,
+                        timerProgressBar: true
+                    });
                 }
             });
         });

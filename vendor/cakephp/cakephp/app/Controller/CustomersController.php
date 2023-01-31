@@ -394,15 +394,14 @@ class CustomersController extends AppController {
 	}
 
 	public function updateEmployeePage() {
-		$employees = $this->User->find("all", array("conditions" => array("is_employee" => 1, "is_deleted" => 0), "fields" => array("id", "name", "surname", "email", "salary", "internship_length", "bonus_amount", "holiday_amount")));
+		$employees = $this->User->find("all", array("conditions" => array("is_employee" => 1, "is_deleted" => 0), "fields" => array("id", "name", "surname", "email", "salary", "bonus_amount", "holiday_amount")));
 		$this->set("employees", $employees);
 	}
 
 	public function updateEmployee() {
 		$this->autoRender = false;
 		$data = $this->params["url"];
-		debug($data);
-		$this->User->updateAll(array("name" => $data["name"], "surname" => $data["surname"], "email" => $data["email"], "salary" => $data["salary"], "internship_length" => $data["internship_length"], "bonus_amount" => $data["bonus_amount"], "holiday_amount" => $data["holiday_amount"]));
+		$this->User->updateAll(array("name" => "'".$data["name"]."'", "surname" => "'".$data["surname"]."'", "email" => "'".$data["email"]."'", "salary" => $data["salary"], "bonus_amount" => $data["bonus_amount"], "holiday_amount" => $data["holiday_amount"]), array("id" => $data["id"]));
 	}
 
 	public function monitorEmployeesWorktime() {
@@ -493,8 +492,13 @@ class CustomersController extends AppController {
 		$this->autoRender = false;
 		$this->loadModel("SickLeave");
 		$data = $this->request["data"]["requestSickLeaveForm"];
-		$startDate = $data["start"]["year"]."-".$data["start"]["month"]."-".$data["start"]["day"];
-		$endDate = $data["end"]["year"]."-".$data["end"]["month"]."-".$data["end"]["day"];
+		$startDate = $data["start"];
+		$endDate = $data["end"];
+		$diff = ((date("Y", strtotime($endDate)) - date("Y", strtotime($startDate))) * 12) + (date("m", strtotime($endDate)) - date("m", strtotime($startDate)));
+		if ($diff > 6) {
+			$this->Session->write("sickLeaveDatesTooMuchDifference", true);
+			$this->redirect("/sick-leave-form");
+		}
 		$this->SickLeave->save(array(
 			"id" => CakeText::uuid(),
 			"user_id" => $this->Session->read("userUUID"),
@@ -596,8 +600,9 @@ class CustomersController extends AppController {
 
 	public function extendContract() {
 		$this->autoRender = false;
+		$this->loadModel("ContractExtend");
 		$user = $this->User->find("first", array("conditions" => array("id" => $this->params["url"]["user_id"])));
-		if($user) {
+		if ($user) {
 			$this->ContractExtend->deleteAll(array("user_id" => $this->params["url"]["user_id"]));
 			return $this->User->updateAll(array("contract_end" => "'".$this->params["url"]["date"]."'"), array("id" => $this->params["url"]["user_id"]));
 		}
@@ -607,5 +612,9 @@ class CustomersController extends AppController {
 		$this->autoRender = false;
 		$this->loadModel("ContractExtend");
 		return json_encode($this->ContractExtend->deleteAll(array("user_id" => $this->params["url"]["user_id"])));
+	}
+
+	public function buyGift() {
+		$this->autoRender = false;
 	}
 }

@@ -135,7 +135,8 @@
 						"change-password-form",
 						"update-password-page",
 						"regulations-of-loyalty-program-pol",
-						"regulations-of-loyalty-program-eng"
+						"regulations-of-loyalty-program-eng",
+						"invoices"
 					];
 					$display = true;
 

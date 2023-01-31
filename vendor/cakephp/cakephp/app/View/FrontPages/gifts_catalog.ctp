@@ -3,14 +3,22 @@
     echo $this->Html->script("gifts_catalog");
 
 ?>
-<h1><?=__("gifts_catalog")?></h1>
-<?php
+<div id="gifts" class="my-4 offset-1 col-10 float-start">
+    <h1><?=__("gifts_catalog")?></h1>
+    <div class="row row-cols-4 g-5 p-5">
+        <?php
 
-    foreach ($gifts as $gift) {
-        echo $gift["Gifts"]["name"]."<br/>";
-        echo $gift["Gifts"]["points"]."<br/>";
-        echo $gift["Gifts"]["amount"]."<br/>";
-        echo "<button data-gift-id='".$gift["Gifts"]["id"]."' class='buyGift'>".__("buy_for_points")."</button>";
-    }
+            foreach ($gifts as $gift) {
+                echo "<div class='col'>";
+                echo "<div class='p-3 shadow rounded-3 bg-white'>";
+                echo "<h3 class='mb-3'>".$gift["Gifts"]["name"]."</h3>";
+                echo "<p>".__("price").": ". "<b>".$gift["Gifts"]["points"]."</b></p>";
+                echo "<p>".__("quantity").": ". "<b>".$gift["Gifts"]["amount"]."</b></p>";
+                echo "<button data-gift-id='".$gift["Gifts"]["id"]."' class='buyGift btn btn-outline-dark my-2'>".__("buy_for_points")."</button>";
+                echo "</div>";
+                echo "</div>";
+            }
 
-?>
+        ?>
+    </div>
+</div>

@@ -99,7 +99,9 @@ class MessagesController extends AppController {
                 "id" => CakeText::UUID(),
                 "email" => $email,
                 "message" => $data["message"],
-                "type" => $data["messageType"]
+                "type" => $data["messageType"],
+				"reply_to" => null,
+				"reply_by" => null
             ));
         } catch (Exception $e) {
             $this->Log($e);
@@ -111,11 +113,13 @@ class MessagesController extends AppController {
     }
 
     public function viewMessages() {
-        $this->set("messages", $this->Message->find("all"));
+        $this->set("messages", $this->Message->find("all", array("conditions" => array("type != 'reply'"))));
     }
 
     public function replyToMessage() {
-        $message = $this->Message->find("first", array("conditions" => array("id" => $this->params["url"]["id"])))["Message"]["message"];
-        $this->set("message", $message);
+        $message = $this->Message->find("first", array("conditions" => array("id" => $this->params["url"]["id"])))["Message"];
+		$this->set("id", $this->params["url"]["id"]);
+		$this->set("email", $message["email"]);
+        $this->set("message", $message["message"]);
     }
 }

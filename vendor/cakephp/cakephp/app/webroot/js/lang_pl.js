@@ -72,6 +72,8 @@ const lang = {
 	approved: "zatwierdzony",
 	rejected: "odmówiony",
 	successfully: "pomyślnie",
-	holiday_couldnt_be: "Niestety nie daliśmy rady urlopu"
+	holiday_couldnt_be: "Niestety nie daliśmy rady urlopu",
+	gift_bought: "Prezent został kupiony!",
+	gift_error: "Nie udało się kupić prezentu, proszę spróbować później!"
 }
 

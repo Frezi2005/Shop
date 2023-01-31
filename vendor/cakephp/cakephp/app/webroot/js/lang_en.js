@@ -72,5 +72,7 @@ const lang = {
 	approved: "approved",
 	rejected: "rejected",
 	successfully: "successfully",
-	holiday_couldnt_be: "Unfortunately the holiday couldn't be"
+	holiday_couldnt_be: "Unfortunately the holiday couldn't be",
+	gift_bought: "Gift has been bought!",
+	gift_error: "Something went wrong when buying the gift, please try again later!"
 }

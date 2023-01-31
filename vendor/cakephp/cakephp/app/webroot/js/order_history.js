@@ -14,7 +14,7 @@ $(function() {
 				var products = JSON.parse(JSON.parse(fields).Orders.products);
 				if (products.length) {
 					for(let i = 0; i < products.length; i++) {
-						html += `<img style='height: 100px' src='app/webroot/img/${products[i].id}.jpg'><p>${products[i].count} * ${products[i].name.replaceAll('+', ' ')} - ${products[i].count * parseFloat(products[i].price.toString().replace(/[^\.\d]*/gm, ''))} ${JSON.parse(fields).Orders.currency}</p>`;
+						html += `<img style='height: 100px' src='app/webroot/img/${products[i].id}.jpg'><p>${products[i].count} * ${products[i].name.replaceAll('+', ' ')} - ${(Math.round(((products[i].count * parseFloat(products[i].price.toString().replace(/[^\.\d]*/gm, ''))) + Number.EPSILON) * 100) / 100)} ${JSON.parse(fields).Orders.currency}</p>`;
 					}
 				} else {
 					html = `<h4>${lang.no_order_products}🤔</h4>`;

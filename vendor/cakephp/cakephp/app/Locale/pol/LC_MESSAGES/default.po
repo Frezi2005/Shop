@@ -918,3 +918,39 @@ msgstr "Odpowiedz"
 
 msgid "your_message"
 msgstr "Twoja wiadomość"
+
+msgid "sick_leave_too_long"
+msgstr "Zwolnienie lekarskie nie może być na dłużej niż 6 miesięcy!"
+
+msgid "products_added"
+msgstr "Wszystkie zaznaczone produkty zostały dodane!"
+
+msgid "holidays_approval_form"
+msgstr "Zatwierdź urlopy"
+
+msgid "reject"
+msgstr "Odmów"
+
+msgid "no_orders1"
+msgstr "Oh, wygląda na to, że nie ma żadnych zamówień!"
+
+msgid "no_orders2"
+msgstr "Możesz kupić jakieś produkty żeby się tutaj znalazły!"
+
+msgid "message_sent_successfully"
+msgstr "Twoja odpowiedź została wysłana!"
+
+msgid "message_sent_unsuccessfully"
+msgstr "Wystąpił błąd podczas wysyłania odpowiedzi, proszę sprobówać później!"
+
+msgid "extend_contract"
+msgstr "Przedłuż umowę"
+
+msgid "view_contract_extensions_requests"
+msgstr "Zobacz prośby o przedłużenie umowy"
+
+msgid "no_invoices"
+msgstr "Nie ma faktury które spełniają podane kryteria!"
+
+msgid "quantity"
+msgstr "Ilość"

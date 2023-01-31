@@ -219,6 +219,62 @@ class MailsController extends AppController {
 	}
 
 	public function sendReplyToUser() {
-		
+		$this->autoRender = false;
+		$this->loadModel("Message");
+		$data = $this->request["data"]["replyForm"];
+		$repliedBy = $this->Session->read("userUUID");
+		$this->Message->save(array(
+			"id" => CakeText::UUID(),
+			"email" => $data["email"],
+			"message" => $data["message"],
+			"type" => "reply",
+			"reply_to" => $data["id"],
+			"reply_by" => $repliedBy
+		));
+		$curl = curl_init();
+
+		curl_setopt_array($curl, [
+			CURLOPT_URL => "https://rapidprod-sendgrid-v1.p.rapidapi.com/mail/send",
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_ENCODING => "",
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 30,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => "POST",
+			CURLOPT_POSTFIELDS => "{
+				\"personalizations\": [
+					{
+						\"to\": [
+							{
+								\"email\": \"".$data["email"]."\"
+							}
+						],
+						\"subject\": \"Reply from AlphaTech\"
+					}
+				],
+				\"from\": {
+					\"email\": \"no-reply@alphatech.pl\"
+				},
+				\"content\": [
+					{
+						\"type\": \"text/plain\",
+						\"value\": \"".$data["message"]."\"
+					}
+				]
+			}",
+			CURLOPT_HTTPHEADER => [
+				"X-RapidAPI-Host: rapidprod-sendgrid-v1.p.rapidapi.com",
+				"X-RapidAPI-Key: fdc08166b9mshdbd3ed3b4030c0fp1f1f9djsn7379b940a5c2",
+				"content-type: application/json"
+			],
+		]);
+
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
+
+		curl_close($curl);
+		$this->Session->write("messageSent", $err ? false : true);
+		$this->redirect("/view-messages");
 	}
 }

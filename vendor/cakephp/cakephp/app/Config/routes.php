@@ -120,6 +120,7 @@
 	Router::connect("/view-contract-extension-requests", array("controller" => "customers", "action" => "viewContractExtensionRequests"));
 	Router::connect("/extend-contract", array("controller" => "customers", "action" => "extendContract"));
 	Router::connect("/remove-contract-extension-request", array("controller" => "customers", "action" => "removeContractExtensionRequest"));
+	Router::connect("/buy-gift", array("controller" => "customers", "action" => "buyGift"));
 
 	Router::connect("/send-email-from-customer", array("controller" => "mails", "action" => "sendEmailFromCustomer"));
 	Router::connect("/send-forgot-password-email", array("controller" => "mails", "action" => "sendForgotPasswordEmail"));

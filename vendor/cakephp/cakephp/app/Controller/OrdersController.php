@@ -222,6 +222,19 @@ class OrdersController extends AppController {
 			$field = explode("-", $this->params["url"]["sort_by"])[0];
 			$sort = explode("-", $this->params["url"]["sort_by"])[1];
 		}
-		$this->set("orders", $this->Orders->find("all", array("order" => isset($this->params["url"]["sort_by"]) ? ($field." ".$sort) : null)));
+		$params = $this->params["url"];
+		$this->set("orders", $this->Orders->find("all", 
+			array(
+				"order" => array(
+					isset($this->params["url"]["sort_by"]) ? ($field." ".$sort) : "order_date DESC"
+				),
+				"conditions" => array(
+					isset($params["priceMin"]) && isset($params["priceMax"]) && !empty($params["priceMin"]) && !empty($params["priceMax"]) ? "total_price BETWEEN ".$params["priceMin"]." AND ".$params["priceMax"] : "total_price LIKE '%'", 
+					isset($params["dateMin"]) && isset($params["dateMax"]) && !empty($params["dateMin"]) && !empty($params["dateMax"]) ? "order_date BETWEEN ".$params["dateMin"]." AND ".$params["dateMax"] : "order_date LIKE '%'",
+					isset($params["payment"]) && !empty($params["payment"]) ? "payment_method = ".$params["payment"] : "payment_method LIKE '%'",
+					isset($params["currency"]) && !empty($params["currency"]) ? "currency = ".$params["payment"] : "currency LIKE '%'"
+				)
+			)
+		));
 	}
 }
