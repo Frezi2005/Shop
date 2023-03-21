@@ -50,7 +50,7 @@
 	$orderDate = date('j F Y', $date);
 	$invoiceNumberDate = date('Y/m/', $date);
 	$invoiceNumber = strval($invoiceNumberDate).strval(sprintf("%02d", $invoice_number));
-    foreach($products as $product) {
+    foreach ($products as $product) {
         $html .= "<tr>
             <td>$index</td>
             <td style='text-align: left'>{$product["name"]}</td>

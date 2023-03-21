@@ -90,6 +90,7 @@ class OrdersController extends AppController {
 		$this->loadModel("Orders");
 		$this->loadModel("Users");
 		$this->loadModel("Products");
+		$this->loadModel("Budget");
 
 		if (!$data || !isset($data)) {
 			$this->redirect("/home");
@@ -142,15 +143,15 @@ class OrdersController extends AppController {
 
 		$products = json_decode($data["cart"], true);
 		$orders = $this->Orders->find(
-			"all", 
+			"all",
 			array(
 				"conditions" => array(
-					"Month(order_date)" => date("m"), 
+					"Month(order_date)" => date("m"),
 					"Year(order_date)" => date("Y")
-				), 
+				),
 				"order" => array(
 					"order_date DESC"
-				), 
+				),
 				"fields" => array(
 					"invoice_number"
 				)
@@ -178,6 +179,15 @@ class OrdersController extends AppController {
 			"currency" => $data["currency"],
 			"shop_id" => null,
 			"invoice_number" => ++$invoiceNumber
+		));
+
+		$this->Budget->save(array(
+			"id" => CakeText::uuid(),
+			"type" => "inc",
+			"amount" => $data["price"] * 0.3,
+			"year" => date("Y"),
+			"date" => date("Y-m-d"),
+			"from" => "order"
 		));
 
 		if (!empty($this->Session->read("userUUID"))) {
@@ -223,16 +233,16 @@ class OrdersController extends AppController {
 			$sort = explode("-", $this->params["url"]["sort_by"])[1];
 		}
 		$params = $this->params["url"];
-		$this->set("orders", $this->Orders->find("all", 
+		$this->set("orders", $this->Orders->find("all",
 			array(
 				"order" => array(
-					isset($this->params["url"]["sort_by"]) ? ($field." ".$sort) : "order_date DESC"
+					isset($this->params["url"]["sort_by"]) ? ($field . " " . $sort) : "order_date DESC"
 				),
 				"conditions" => array(
-					isset($params["priceMin"]) && isset($params["priceMax"]) && !empty($params["priceMin"]) && !empty($params["priceMax"]) ? "total_price BETWEEN ".$params["priceMin"]." AND ".$params["priceMax"] : "total_price LIKE '%'", 
-					isset($params["dateMin"]) && isset($params["dateMax"]) && !empty($params["dateMin"]) && !empty($params["dateMax"]) ? "order_date BETWEEN ".$params["dateMin"]." AND ".$params["dateMax"] : "order_date LIKE '%'",
-					isset($params["payment"]) && !empty($params["payment"]) ? "payment_method = ".$params["payment"] : "payment_method LIKE '%'",
-					isset($params["currency"]) && !empty($params["currency"]) ? "currency = ".$params["payment"] : "currency LIKE '%'"
+					isset($params["priceMin"]) && isset($params["priceMax"]) && !empty($params["priceMin"]) && !empty($params["priceMax"]) ? "total_price BETWEEN " . $params["priceMin"] . " AND " . $params["priceMax"] : "total_price LIKE '%'",
+					isset($params["dateMin"]) && isset($params["dateMax"]) && !empty($params["dateMin"]) && !empty($params["dateMax"]) ? "order_date BETWEEN " . $params["dateMin"] . " AND " . $params["dateMax"] : "order_date LIKE '%'",
+					isset($params["payment"]) && !empty($params["payment"]) ? "payment_method = '" . $params["payment"] . "'" : "payment_method LIKE '%'",
+					isset($params["currency"]) && !empty($params["currency"]) ? "currency = '" . $params["currency"] . "'" : "currency LIKE '%'"
 				)
 			)
 		));

@@ -24,23 +24,23 @@
             <td style="width: 1%; text-align: left; border: none;">
             </td>
             <td style="width: 99%; text-align: right; border: none;">
-                <p>ul. Marii Konopnickiej 13, Tychy 43-100, dnia $date roku</p>
+                <p>Tychy, dnia $date r.</p>
             </td>
         </tr>
     </table>
     <br />
     <h1 style="width: 100%; text-align: center; text-decoration: underline;">UMOWA O PRACĘ</h1>
-    <p>zawarta w dniu $contractDate w ???? pomiędzy:</p>
-    <p>/ AlphaTech Sp. z. o.o / <i>należy wpisać dokładne dane pracodawcy (nazwa, adres, NIP, REGON, KRS) </i>zwanym w dalszej części umowy <b>PRACODAWCĄ</b></p>
-    <p>/ $name $surname / <i>należy wpisać dokładne dane pracownika (imię, nazwisko, adres, pesel, nr dowodu osobistego) </i>zwanym dalek <b>PRACOWNIKIEM,</b><br/> łącznie zwani, w dalszej części Umowy <b>STRONAMI<b/></p>
+    <p>zawarta w dniu $contractDate w Tychach pomiędzy:</p>
+    <p>AlphaTech Sp. z. o.o <i>należy wpisać dokładne dane pracodawcy (nazwa, adres, NIP, REGON, KRS) </i>zwanym w dalszej części umowy <b>PRACODAWCĄ</b></p>
+    <p>$name $surname <i>należy wpisać dokładne dane pracownika (imię, nazwisko, adres, pesel, nr dowodu osobistego) </i>zwanym dalek <b>PRACOWNIKIEM,</b><br/> łącznie zwani, w dalszej części Umowy <b>STRONAMI<b/></p>
     <h2 style="width: 100%; text-align: center;">§ 1</h2>
     <p>Strony ustalają następujące warunki zatrudnienia:</p>
     <ol type="a">
         <li> rodzaj umówionej pracy (stanowisko):  $role,</li>
         <li> miejsce wykonywanie pracy:  zdalnie,</li>
-        <li> wymiar czasu pracy:  8h,</li>
+        <li> wymiar czasu pracy:  40godz./tydz.,</li>
         <li> termin rozpoczęcia pracy:  $contractStart,</li>
-        <li> czas trwania umowy:  $contractEnd,</li>
+        <li> termin wygaśnięcia umowy:  $contractEnd,</li>
         <li> wynagrodzenie miesięczne:  $salary USD.</li>
     </ol>
     <h2 style="width: 100%; text-align: center;">§ 2</h2>

@@ -16,6 +16,7 @@
 			echo $this->Html->script("https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js");
 			echo $this->Html->css("https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css");
 			echo $this->Html->script("https://kit.fontawesome.com/b7d5b9359e.js");
+			echo $this->Html->script("https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js");
 			echo $this->Html->css("layout");
 			echo $this->Html->script("product");
 			echo $this->Html->script("main");
@@ -140,7 +141,7 @@
 					];
 					$display = true;
 
-					for($i = 0; $i < count($sites); $i++) {
+					for ($i = 0; $i < count($sites); $i++) {
 						preg_match("/(?<!\/ )[^\/]+$/", $_SERVER["REDIRECT_URL"], $matches);
 						if ($matches && $matches[0] == $sites[$i]) {
 							$display = false;
@@ -155,31 +156,7 @@
 				?>
 			</div>
 			<footer class="text-center justify-content-center">
-				<p class="col-lg-12 h-20">Kamil Waniczek <?= date("Y"); ?> &copy; <?=__("all_rights_reserved")?> <a href="privacy-policy-and-cookies-<?=$this->Session->read("language")?>"><?=__("privacy_policy")?></a>&nbsp;<a href="terms-of-service-<?=$this->Session->read("language")?>"><?=__("terms_of_service")?></a></p>
-				<!-- <div class="col-lg-10 h-80 mx-auto">
-					<div class="col-lg-3 float-start">
-						<ul class="footerUsefulLinks1">
-							<li><span>Useful links</span></li>
-							<li><a href="about-us">About us</a></li>
-							<li><a href="cooperation">Cooperation</a></li>
-							<li><a href="contact">Contact</a></li>
-						</ul>
-					</div>
-					<div class="col-lg-3 float-start mt-50">
-						<ul class="footerUsefulLinks2">
-							<li><a href="partnership">Partnership</a></li>
-							<li><a href="terms-of-service">Terms of Service</a></li>
-							<li><a href="privacy-policy-and-cookies">Privacy policy & Cookies</a></li>
-						</ul>
-					</div>
-					<div class="col-lg-6 float-start socialMediaDiv">
-						<ul class="socialMedia">
-							<li><a href=""><i class="fab fa-twitter"></i> - Twitter </a></li>
-							<li><a href=""><i class="fab fa-facebook-f"></i> - Facebook </a></li>
-							<li><a href=""><i class="fab fa-instagram"></i> - Instagram </a></li>
-						</ul>
-					</div>
-				</div> -->
+				<p class="col-lg-12 h-20">Kamil Waniczek <?= date("Y"); ?> &copy; <?=__("all_rights_reserved")?> <a href="privacy-policy-and-cookies-<?=$this->Session->read("language")?>"><?=__("privacy_policy")?></a>&nbsp;<a href="terms-of-service-<?=$this->Session->read("language")?>"><?=__("terms_of_service")?></a> <a href="https://twitter.com/AlphaTech0" target="_blank"><i class="fab fa-twitter"></i></a> <a href="https://www.instagram.com/0000alphatech0000/" target="_blank"><i class="fab fa-instagram"></i></a></p>
 			</footer>
 		</div>
 	</body>

@@ -79,6 +79,7 @@
 	Router::connect("/forgot-password-page", array("controller" => "frontPages", "action" => "forgotPasswordPage"));
 	Router::connect("/regulations-of-loyalty-program-pol", array("controller" => "frontPages", "action" => "regulationsOfLoyaltyProgramPol"));
 	Router::connect("/regulations-of-loyalty-program-eng", array("controller" => "frontPages", "action" => "regulationsOfLoyaltyProgramEng"));
+	Router::connect("/marketing-materials", array("controller" => "frontPages", "action" => "marketingMaterials"));
 
 	Router::connect("/logout", array("controller" => "customers", "action" => "logout"));
 	Router::connect("/settings", array("controller" => "customers", "action" => "settings"));
@@ -121,10 +122,17 @@
 	Router::connect("/extend-contract", array("controller" => "customers", "action" => "extendContract"));
 	Router::connect("/remove-contract-extension-request", array("controller" => "customers", "action" => "removeContractExtensionRequest"));
 	Router::connect("/buy-gift", array("controller" => "customers", "action" => "buyGift"));
+	Router::connect("/manage-budget", array("controller" => "customers", "action" => "manageBudget"));
+	Router::connect("/get-budget", array("controller" => "customers", "action" => "getBudget"));
+	Router::connect("/work-hours", array("controller" => "customers", "action" => "workHours"));
+	Router::connect("/add-timeshift", array("controller" => "customers", "action" => "addTimeshift"));
+	Router::connect("/get-employee-timeshifts", array("controller" => "customers", "action" => "getEmployeeTimeshifts"));
+	Router::connect("/payslips", array("controller" => "customers", "action" => "payslips"));
 
 	Router::connect("/send-email-from-customer", array("controller" => "mails", "action" => "sendEmailFromCustomer"));
 	Router::connect("/send-forgot-password-email", array("controller" => "mails", "action" => "sendForgotPasswordEmail"));
 	Router::connect("/send-reply-to-user", array("controller" => "mails", "action" => "sendReplyToUser"));
+	Router::connect("/send-newsletter", array("controller" => "mails", "action" => "sendNewsletter"));
 
 	Router::connect("/order-products", array("controller" => "orders", "action" => "orderProducts"));
 	Router::connect("/get-orders", array("controller" => "orders", "action" => "getOrders"));

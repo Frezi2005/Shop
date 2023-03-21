@@ -43,7 +43,7 @@ $(function() {
 		} else {
 			$('#checkboxError').css('display', 'none');
 		}
-		switch($('select#orderFormPaymentMethod').val()) {
+		switch ($('select#orderFormPaymentMethod').val()) {
 			case 'bank_transfer':
 				var selected = false;
 				$("#imgGrid img").each(function() {
@@ -110,7 +110,7 @@ $(function() {
 			$("#mapModal").css("opacity", "1");
 			$(document).mouseup(function(e) {
 				var container = $("#mapModal");
-		
+
 				if (!container.is(e.target) && container.has(e.target).length === 0) {
 					container.slideUp(1000);
 				}

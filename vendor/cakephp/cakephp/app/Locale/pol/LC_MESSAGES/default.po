@@ -914,6 +914,9 @@ msgid "view_messages"
 msgstr "Zobacz wiadomości"
 
 msgid "reply"
+msgstr "Odpowiedź"
+
+msgid "reply_to"
 msgstr "Odpowiedz"
 
 msgid "your_message"
@@ -954,3 +957,21 @@ msgstr "Nie ma faktury które spełniają podane kryteria!"
 
 msgid "quantity"
 msgstr "Ilość"
+
+msgid "manage_budget"
+msgstr "Zarządzaj budżetem"
+
+msgid "contract_extension_request_sent"
+msgstr "Prośba o przedłużenie umowy została wysłana!"
+
+msgid "contract_extension_request_error"
+msgstr "Wystąpił błąd podczas wysyłania prośby o przedłużenie umowy, proszę spróbować później!"
+
+msgid "work_hours"
+msgstr "Godziny pracy"
+
+msgid "marketing_materials"
+msgstr "Materiały marketingowe"
+
+msgid "payslips"
+msgstr "Paski płac"

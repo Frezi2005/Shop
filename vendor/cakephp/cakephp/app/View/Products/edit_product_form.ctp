@@ -6,7 +6,7 @@
 	<div id="editProductForm">
 		<select id='productSelect'>
 			<?php
-				for($i = 0; $i < count($products); $i++) {
+				for ($i = 0; $i < count($products); $i++) {
 					$products[$i]["Products"]["description"] = htmlentities($products[$i]["Products"]["description"], ENT_QUOTES);
 					echo "<option value='".$products[$i]["Products"]["id"]."' data-product='".json_encode($products[$i]["Products"])."'>".$products[$i]["Products"]["name"]."</option>";
 				}

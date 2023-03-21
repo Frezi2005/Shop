@@ -68,5 +68,7 @@
         <a href="fire-employee-form"><?=__("fire_employees");?></a>
         <a href="extend-contract-request-form"><?=__("extend_contract");?></a>
         <a href="view-contract-extension-requests"><?=__("view_contract_extensions_requests");?></a>
+        <a href="manage-budget"><?=__("manage_budget");?></a>
+        <a href="work-hours"><?=__("work_hours");?></a>
     </div>
 </div>

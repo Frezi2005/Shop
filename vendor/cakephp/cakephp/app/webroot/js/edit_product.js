@@ -3,7 +3,7 @@ $(function() {
         let html = '';
         let { id, shop_id, tax, image, product_count, ...rest } = product;
         console.log(rest);
-        for(const value in rest) {
+        for (const value in rest) {
             html += `${value}: <input type="text" value="${rest[value]}"/>`;
         }
         html += '<button id="editProduct">'+lang.save+'</button>';

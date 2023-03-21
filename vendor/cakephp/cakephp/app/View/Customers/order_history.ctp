@@ -23,14 +23,14 @@
 				$fields = urlencode(str_replace("&", "&amp;", $fields));
 				echo "<div class='order'><input type='hidden' value='{$ids}'/><input type='hidden' value='{$fields}' class='fields'/><span class='images'></span><span>".__($order["Orders"]["delivery_type"])."</span><span>".$date." <span class='d-md-inline d-none'>".substr($hours, 0, -3)."</span></span><span>{$order["Orders"]["total_price"]}</span><span>{$order["Orders"]["currency"]}</span><span><i class='fas fa-search' title='".__("preview")."'></i><a href='invoice?products=$fields' target='_blank' title='".__("invoice")."'><i class='fas fa-file-invoice'></i></a></span></div>";
 			}
-			
+
 			if ($count > 1) {
 				echo "<div class='pagination'>";
 					echo "<i class='fas fa-angle-left page-prev' data-page='-1'></i>";
-					// for($i = 1; $i <= $count; $i++) {
+					// for ($i = 1; $i <= $count; $i++) {
 					// 	echo ($i == $page) ?  : "<p>$i</p>";
 					// }
-					for($i = $page - 2; $i <= $page + 2; $i++) {
+					for ($i = $page - 2; $i <= $page + 2; $i++) {
 						echo ($i > 0 && $i <= $count) ? (($i == $page) ? "<p class='bold'>$i</p>" : "<p>$i</p>") : "";
 					}
 					echo "<i class='fas fa-angle-right page-next' data-page='1'></i>";
@@ -58,6 +58,7 @@ echo "</div>";
 					</div>
 					<p>${!${''} = __("payment_method")}</p>
 					<select id="paymentMethod">
+						<option value="">---</option>
 						<option value="Credit card">${!${''} = __("credit_card")}</option>
 						<option value="Bank transfer">${!${''} = __("bank_transfer")}</option>
 						<option value="PayPal">PayPal</option>
@@ -65,6 +66,7 @@ echo "</div>";
 					</select>
 					<p>${!${''} = __("currency")}</p>
 					<select id="currency">
+						<option value="">---</option>
 						<option value="EUR">EUR</option>
 						<option value="USD">USD</option>
 						<option value="GBP">GBP</option>
@@ -72,7 +74,7 @@ echo "</div>";
 					</select>
 					<button id="filter" class="col-12">${!${''} = __("filter")}</button>
 				</div>
-			<div class="col-10 offset-1 text-center filters-dropdown" data-open="false"><i class="fas fa-angle-right mx-2 filter-dropdown-arrow"></i>${!${''} = __("filters")}</div>	
-		EOD;			
+			<div class="col-10 offset-1 text-center filters-dropdown" data-open="false"><i class="fas fa-angle-right mx-2 filter-dropdown-arrow"></i>${!${''} = __("filters")}</div>
+		EOD;
     ?>
 

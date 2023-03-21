@@ -1,0 +1,25 @@
+#calendar th {
+    text-align: center;
+    border-bottom: 2px solid black;
+    padding: 20px;
+    background-color: rgb(189, 189, 189);
+}
+
+.other-month {
+    background-color: #e6e6e6;
+}
+
+#calendar td {
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+    height: 120px;
+    width: 150px;
+}
+
+.event {
+    background-color: #7cf0ff !important;
+}
+
+#calendar td:hover {
+    background-color: rgb(156, 156, 156) !important;
+}

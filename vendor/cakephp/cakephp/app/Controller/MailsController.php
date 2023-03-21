@@ -36,7 +36,7 @@ class MailsController extends AppController {
  * @var array
  */
 	public $uses = array();
-	
+
 	public function beforeFilter() {
 		parent::beforeFilter();
 		App::uses("CakeEmail", "Network/Email");
@@ -92,10 +92,10 @@ class MailsController extends AppController {
 			$this->redirect("/contact");
 		}
 		if (!$this->Session->read("loggedIn")) {
-			$subject = $contactInfo["messageType"]." from: ".$contactInfo["from"];
+			$subject = $contactInfo["messageType"] . " from: " . $contactInfo["from"];
 		} else {
 			$user = $this->User->find("first", array("conditions" => array("id" => $this->Session->read("userUUID")), "fields" => array("email")));
-			$subject = $contactInfo["messageType"]." from: ".$user["User"]["email"];
+			$subject = $contactInfo["messageType"] . " from: " . $user["User"]["email"];
 		}
 
 		$curl = curl_init();
@@ -117,7 +117,7 @@ class MailsController extends AppController {
 								\"email\": \"kamil.wan05@gmail.com\"
 							}
 						],
-						\"subject\": \"".$subject."\"
+						\"subject\": \"" . $subject . "\"
 					}
 				],
 				\"from\": {
@@ -126,7 +126,7 @@ class MailsController extends AppController {
 				\"content\": [
 					{
 						\"type\": \"text/plain\",
-						\"value\": \"".$contactInfo["message"]."\"
+						\"value\": \"" . $contactInfo["message"] . "\"
 					}
 				]
 			}",
@@ -190,7 +190,7 @@ class MailsController extends AppController {
 					\"content\": [
 						{
 							\"type\": \"text/plain\",
-							\"value\": \"http://localhost/Shop/vendor/cakephp/cakephp/update-password-page?id=".$userId."\"
+							\"value\": \"http://localhost/Shop/vendor/cakephp/cakephp/update-password-page?id=" . $userId . "\"
 						}
 					]
 				}",
@@ -247,7 +247,7 @@ class MailsController extends AppController {
 					{
 						\"to\": [
 							{
-								\"email\": \"".$data["email"]."\"
+								\"email\": \"" . $data["email"] . "\"
 							}
 						],
 						\"subject\": \"Reply from AlphaTech\"
@@ -259,7 +259,7 @@ class MailsController extends AppController {
 				\"content\": [
 					{
 						\"type\": \"text/plain\",
-						\"value\": \"".$data["message"]."\"
+						\"value\": \"" . $data["message"] . "\"
 					}
 				]
 			}",
@@ -276,5 +276,60 @@ class MailsController extends AppController {
 		curl_close($curl);
 		$this->Session->write("messageSent", $err ? false : true);
 		$this->redirect("/view-messages");
+	}
+
+	public function sendNewsletter() {
+		$this->loadModel("Product");
+		$product = $this->Product->find("first", array("order" => "RAND()"))["Product"];
+		$id = $product["id"];
+		$name = $product["name"];
+		$price = $product["price"];
+
+		$message = "<style> * { margin: 0; padding: 0; box-sizing: border-box; } </style><div style='width: 100%; height: 100%; float: left;'><div style='width: 100%; height: 50px; background-color: #b0ffb8; margin-bottom: 100px;'><p style='text-align: right; margin-right: 150px; line-height: 50px; font-size: 22px;'>AlphaTech</p></div><div style='margin-top: 100px; margin: auto; width: 500px;-webkit-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75); -moz-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75); box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);'><h1 style='text-align: center; padding: 50px;'>Special offer!</h1><div style='background-color: #fff; width: 400px; margin: auto; margin-bottom: 100px; padding: 10px;'><img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/$id.jpg' style='width: 70%; margin: auto; display: block'/><h3 style='text-align: center'>$name</h3><p style='text-align: center'>Now only " . (floatval($price) * 0.8) . " USD!</p><p style='text-align: center'><a href='https://twitter.com/AlphaTech0' target='_blank' style='color: black; text-decoration: none'><i class='fab fa-twitter'></i> Twitter</a> <a href='https://www.instagram.com/0000alphatech0000/' target='_blank' style='color: black; text-decoration: none'><i class='fab fa-instagram'></i> Instagram</a></p></div></div><div style='width: 100%; height: 50px; background-color: #b0ffb8; text-align: center; line-height: 50px; padding-bottom: 10px;'>Kamil Waniczek " . date("Y") . " &copy; " . __("all_rights_reserved") . " <a href='privacy-policy-and-cookies-" . $this->Session->read("language") . "'>" . __("privacy_policy") . "</a>&nbsp;<a href='terms-of-service-" . $this->Session->read("language") . "'>" . __("terms_of_service") . "</a></div></div>";
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, [
+			CURLOPT_URL => "https://rapidprod-sendgrid-v1.p.rapidapi.com/mail/send",
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_ENCODING => "",
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 30,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => "POST",
+			CURLOPT_POSTFIELDS => "{
+				\"personalizations\": [
+					{
+						\"to\": [
+							{
+								\"email\": \"kamil.wan05@gmail.com\"
+							}
+						],
+						\"subject\": \"Special offer from AlphaTech!\"
+					}
+				],
+				\"from\": {
+					\"email\": \"no-reply@alphatech.pl\"
+				},
+				\"content\": [
+					{
+						\"type\": \"text/html\",
+						\"value\": \"$message\"
+					}
+				]
+			}",
+			CURLOPT_HTTPHEADER => [
+				"X-RapidAPI-Host: rapidprod-sendgrid-v1.p.rapidapi.com",
+				"X-RapidAPI-Key: fdc08166b9mshdbd3ed3b4030c0fp1f1f9djsn7379b940a5c2",
+				"content-type: application/json"
+			],
+		]);
+
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
+		debug($response);
+		debug($err);
+		curl_close($curl);
 	}
 }

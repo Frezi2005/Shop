@@ -5,11 +5,11 @@
     echo $this->Form->create("requestSickLeaveForm", array("url" => "/request-sick-leave"));
     echo "<div class='input date'>";
     echo "<label for='data[requestSickLeaveForm][start]'>".__("sick_leave_start_date")."</label>";
-    echo "<input type='date' name='data[requestSickLeaveForm][start]' min='".date("Y-m-d")."'>";
+    echo "<input type='date' name='data[requestSickLeaveForm][start]' id='startDate' value='".date("Y-m-d")."' min='".date("Y-m-d")."'>";
     echo "</div>";
     echo "<div class='input date'>";
     echo "<label for='data[requestSickLeaveForm][end]'>".__("sick_leave_end_date")."</label>";
-    echo "<input type='date' name='data[requestSickLeaveForm][end]' min='".date("Y-m-d")."'>";
+    echo "<input type='date' name='data[requestSickLeaveForm][end]' id='endDate' value='".date("Y-m-d")."' min='".date("Y-m-d")."'>";
     echo "</div>";
     echo $this->Form->end(__("submit"));
 

@@ -12,7 +12,7 @@
             </tr>
             <?php
                 $i = 0;
-                foreach($employees as $employee) {
+                foreach ($employees as $employee) {
                     $i++;
                     echo "<tr class='employee'>";
                     echo "<td>".$i."</td>";

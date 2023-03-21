@@ -43,7 +43,7 @@ class FrontPagesController extends AppController {
 		parent::beforeFilter();
 		if (strpos($_SERVER["REQUEST_URI"], "privacy-policy-and-cookies") !== false || strpos($_SERVER["REQUEST_URI"], "terms-of-service") !== false) {
 			if (substr($_SERVER["REQUEST_URI"], -3) != Configure::read("Config.language")) {
-				$this->redirect("/".str_replace("/Shop/vendor/cakephp/cakephp/", "", substr($_SERVER["REQUEST_URI"], 0, -3)).Configure::read("Config.language"));
+				$this->redirect("/" . str_replace("/Shop/vendor/cakephp/cakephp/", "", substr($_SERVER["REQUEST_URI"], 0, -3)) . Configure::read("Config.language"));
 			}
 		}
 	}
@@ -188,7 +188,7 @@ class FrontPagesController extends AppController {
 		$employees = $this->User->find("all", array("conditions" => array("is_employee" => 1, "is_deleted" => 0, "is_admin" => 0), "fields" => array("id", "name", "surname", "email")));
 		$arr = [];
 		for ($i = 0; $i < count($employees); $i++) {
-			$arr[$employees[$i]["User"]["id"]] = $employees[$i]["User"]["name"]." ".$employees[$i]["User"]["surname"]." - ".$employees[$i]["User"]["email"];
+			$arr[$employees[$i]["User"]["id"]] = $employees[$i]["User"]["name"] . " " . $employees[$i]["User"]["surname"] . " - " . $employees[$i]["User"]["email"];
 		}
 		$this->set("employees", $arr);
 	}
@@ -206,6 +206,10 @@ class FrontPagesController extends AppController {
 	}
 
 	public function regulationsOfLoyaltyProgramEng() {
+
+	}
+
+	public function marketingMaterials() {
 
 	}
 }

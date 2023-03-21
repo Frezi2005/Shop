@@ -133,7 +133,7 @@ function updateCart(amount, id, name, price, add = true, modal = true) {
                 timerProgressBar: true
             });
             return;
-        } 
+        }
 
         if (items.length >= MAX_DIFF_PRODUCTS) {
             Swal.fire({
@@ -222,8 +222,8 @@ function removeFromCart(id) {
 function getCartPrice(cart) {
     var price = 0;
     var priceTemp = 0;
-    for(var i = 0; i < cart.length; i++) {
-        for(var j = 0; j < cart[i].count; j++) {
+    for (var i = 0; i < cart.length; i++) {
+        for (var j = 0; j < cart[i].count; j++) {
             priceTemp = cart[i].count * cart[i].price;
         }
         price += priceTemp;

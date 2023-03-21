@@ -907,6 +907,9 @@ msgstr "Get contract"
 msgid "view_messages"
 msgstr "View messages"
 
+msgid "reply_to"
+msgstr "Reply"
+
 msgid "reply"
 msgstr "Reply"
 
@@ -948,3 +951,21 @@ msgstr "There are no invoices matching this criteria!"
 
 msgid "quantity"
 msgstr "Quantity"
+
+msgid "manage_budget"
+msgstr "Manage budget"
+
+msgid "contract_extension_request_sent"
+msgstr "Contract extension request has been sent"
+
+msgid "contract_extension_request_error"
+msgstr "Something went wrong during sending contract extension request, please try again later!"
+
+msgid "work_hours"
+msgstr "Work hours"
+
+msgid "marketing_materials"
+msgstr "Marketing materials"
+
+msgid "payslips"
+msgstr "Payslips"

@@ -707,48 +707,58 @@ h1 {
 	transform: translate(-50%, -50%);
 }
 
-table tbody tr {
-    border: 0px solid transparent !important;
-}
+/*table:not(#calendar) tbody tr {*/
+/*    border: 0px solid transparent !important;*/
+/*}*/
 
-table tr:nth-of-type(odd) {
-    background-color: #97cbff !important;
-}
+/*table:not(#calendar) tr:nth-of-type(odd) {*/
+/*    background-color: #97cbff !important;*/
+/*}*/
 
-table tr:nth-of-type(even) {
-    background-color: #b0ffb8 !important;
-}
+/*table:not(#calendar) tr:nth-of-type(even) {*/
+/*    background-color: #b0ffb8 !important;*/
+/*}*/
 
-table thead tr, table tr:first-of-type {
-    border-bottom: 2px solid #000000 !important;
-}
+/*table:not(#calendar) thead tr, table:not(#calendar) tr:first-of-type {*/
+/*    border-bottom: 2px solid #000000 !important;*/
+/*}*/
 
-table {
-    border-radius: 25px !important;
-    width: 100% !important;
-}
+/*table:not(#calendar) {*/
+/*    border-radius: 25px !important;*/
+/*    width: 100% !important;*/
+/*}*/
 
-table tr:first-child th:first-child {
-    border-top-left-radius: 25px !important;
-}
+/*table:not(#calendar) tr:first-child th:first-child {*/
+/*    border-top-left-radius: 25px !important;*/
+/*}*/
 
-table tr:first-child th:last-child {
-    border-top-right-radius: 25px !important;
-}
+/*table:not(#calendar) tr:first-child th:last-child {*/
+/*    border-top-right-radius: 25px !important;*/
+/*}*/
 
-table tr:last-child td:first-child {
-    border-bottom-left-radius: 25px !important;
-}
+/*table:not(#calendar) tr:last-child td:first-child {*/
+/*    border-bottom-left-radius: 25px !important;*/
+/*}*/
 
-table tr:last-child td:last-child {
-    border-bottom-right-radius: 25px !important;
-}
+/*table:not(#calendar) tr:last-child td:last-child {*/
+/*    border-bottom-right-radius: 25px !important;*/
+/*}*/
 
-table td, th {
-    padding: .5rem .5rem !important;
+/*table:not(#calendar) td, table:not(#calendar) th {*/
+/*    padding: .5rem .5rem !important;*/
+/*}*/
+
+table, td {
+	border: 1px solid black !important;
+	border-collapse: separate;
 }
 
 .outer {
     border-radius: 15px !important;
     overflow: hidden !important;
+}
+
+.btn-success {
+    background-color: rgb(45, 194, 40) !important;
+    border-color: rgb(45, 194, 40) !important;
 }

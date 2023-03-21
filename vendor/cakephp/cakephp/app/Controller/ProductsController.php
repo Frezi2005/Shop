@@ -90,7 +90,7 @@ class ProductsController extends AppController {
 			$products = $this->Products->find("all", array(
 				"fields" => array("id", "name", "description"),
 				"conditions" => array(
-					"name LIKE" => $this->params["url"]["q"]."%"
+					"name LIKE" => $this->params["url"]["q"] . "%"
 				),
 				"limit" => 15
 			));
@@ -99,7 +99,7 @@ class ProductsController extends AppController {
 		}
 		$result = [];
 		foreach ($products as $product) {
-			if (file_exists(WWW_ROOT."img/{$product["Products"]["id"]}.jpg")) {
+			if (file_exists(WWW_ROOT . "img/{$product["Products"]["id"]}.jpg")) {
 				$product["Products"]["imgExists"] = true;
 			} else {
 				$product["Products"]["imgExists"] = false;
@@ -121,7 +121,7 @@ class ProductsController extends AppController {
 		$sort = (isset($this->params["url"]["sort_by"])) ? $this->params["url"]["sort_by"] : "";
 		$page = (isset($this->params["url"]["page"])) ? $this->params["url"]["page"] : 1;
 		$productsShown = (isset($this->params["url"]["per_page"])) ? $this->params["url"]["per_page"] : Configure::read("Config.max_per_page");
-		$priceRange = (isset($this->params["url"]["price_range"])) ? " BETWEEN ".explode("-", $this->params["url"]["price_range"])[0]." AND ".explode("-", $this->params["url"]["price_range"])[1] : "";
+		$priceRange = (isset($this->params["url"]["price_range"])) ? " BETWEEN " . explode("-", $this->params["url"]["price_range"])[0] . " AND " . explode("-", $this->params["url"]["price_range"])[1] : "";
 		switch ($sort) {
 			case "price_asc":
 				$sort_by = "price ASC";
@@ -177,7 +177,7 @@ class ProductsController extends AppController {
 			$this->set("subCategoryId", $this->params["url"]["category"]);
 			$this->set("products", $products);
 			$this->set(
-				"count", 
+				"count",
 				ceil(count($this->Category->find('all', array(
 					'joins' => array(
 						array(
@@ -232,7 +232,7 @@ class ProductsController extends AppController {
 			$this->set("categoryName", $category["category_name"]);
 			$this->set("categoryId", $category["id"]);
 			$this->set(
-				"count", 
+				"count",
 				ceil(count($this->Product->find('all', array(
 					'conditions' => array(
 						'sub_category_id' => $this->params['url']['sub_category']
@@ -264,12 +264,12 @@ class ProductsController extends AppController {
 							if (preg_match('/\-\b/', $filter)) {
 								$start = explode("-", $filter)[0];
 								$end = explode("-", $filter)[1];
-								$filterCondition = "JSON_EXTRACT(specs, '$.".$this->params["url"]["filters"]."') BETWEEN $start AND $end AND price $priceRange";
+								$filterCondition = "JSON_EXTRACT(specs, '$." . $this->params["url"]["filters"] . "') BETWEEN $start AND $end AND price $priceRange";
 							} else if (preg_match('/[\+]/', $filter)) {
 								$val = explode("+", $filter)[0];
-								$filterCondition = "JSON_EXTRACT(specs, '$.".$this->params["url"]["filters"]."') * 1 > $val AND price $priceRange";
+								$filterCondition = "JSON_EXTRACT(specs, '$." . $this->params["url"]["filters"] . "') * 1 > $val AND price $priceRange";
 							} else {
-								$filterCondition = "JSON_EXTRACT(specs, '$.".$this->params["url"]["filters"]."') = '$filter' AND price $priceRange";
+								$filterCondition = "JSON_EXTRACT(specs, '$." . $this->params["url"]["filters"] . "') = '$filter' AND price $priceRange";
 							}
 						}
 					}
@@ -301,7 +301,7 @@ class ProductsController extends AppController {
 				} else if (!preg_match('/^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$/', $productData["price"])) {
 					$this->Session->write("priceError", true);
 				} else {
-					move_uploaded_file($productData["image"]["tmp_name"], WWW_ROOT."img/".$id.".jpg");
+					move_uploaded_file($productData["image"]["tmp_name"], WWW_ROOT . "img/$id.jpg");
 					$this->Product->save(array(
 						"id" => $id,
 						"name" => $productData["name"],
@@ -355,13 +355,13 @@ class ProductsController extends AppController {
 	public function order() {
 		$this->loadModel("User");
 		$countries = ["pol" => [], "eng" => []];
-		foreach(json_decode(file_get_contents("../webroot/files/countries.json"), true) as $country) {
+		foreach (json_decode(file_get_contents("../webroot/files/countries.json"), true) as $country) {
 			$countries["pol"][$country["name_pl"]] = $country["name_pl"];
 			$countries["eng"][$country["name_en"]] = $country["name_en"];
 		}
 		ksort($countries[$this->Session->read("language") ?? "eng"]);
-		$countries["pol"] = array_merge(["Polska" => "Polska"], $countries["pol"]); 
-		$countries["eng"] = array_merge(["Poland" => "Poland"], $countries["eng"]); 
+		$countries["pol"] = array_merge(["Polska" => "Polska"], $countries["pol"]);
+		$countries["eng"] = array_merge(["Poland" => "Poland"], $countries["eng"]);
 		$countries[$this->Session->read("language") ?? "eng"] = array("" => __("choose")) + $countries[$this->Session->read("language") ?? "eng"];
 		if ($this->Session->read("loggedIn")) {
 			$user = $this->User->find("first", array("conditions" => array("id" => $this->Session->read("userUUID")), "fields" => array("country", "city", "street", "house_number", "flat_number", "email")));
@@ -425,16 +425,16 @@ class ProductsController extends AppController {
 		$data = $this->request["data"]["updateProductForm"];
 		if ($data["image"]["size"] < 2048000) {
 			$product = $this->Products->find("first", array("conditions" => array("id" => $data["id"]), "fields" => array("name")));
-			debug(WWW_ROOT."img/".$product["Product"]["name"].".jpg");
+			debug(WWW_ROOT . "img/" . $product["Product"]["name"] . ".jpg");
 			die;
-			move_uploaded_file($data["image"]["tmp_name"], WWW_ROOT."img/".$product["Product"]["name"].".jpg");
+			move_uploaded_file($data["image"]["tmp_name"], WWW_ROOT . "img/" . $product["Product"]["name"] . ".jpg");
 		}
 	}
 
 	public function invoice() {
 		$this->loadModel("User");
 		$this->loadModel("Order");
-		$this->layout = false;	
+		$this->layout = false;
 		$userUUID = json_decode(urldecode($this->params["url"]["products"]), true)["Orders"]["user_id"];
 		$user = $this->User->find("first", array("conditions" => array("id" => $userUUID), "fields" => array("name", "surname", "country", "city", "street", "house_number")));
 		if (!$userUUID) {
@@ -456,6 +456,6 @@ class ProductsController extends AppController {
 	public function editProduct() {
 		$this->autoRender = false;
 		$data = $this->params["url"];
-		$this->Product->updateAll(array("name" => "'".$data["name"]."'", "description" => "'".$data["description"]."'", "specs" => "'".$data["specs"]."'", "price" => $data["price"], "discount_value" => $data["discount_value"], "sub_category_id" => "'".$data["sub_category_id"]."'"), array("id" => $data["id"]));
+		$this->Product->updateAll(array("name" => "'" . $data["name"] . "'", "description" => "'" . $data["description"] . "'", "specs" => "'" . $data["specs"] . "'", "price" => $data["price"], "discount_value" => $data["discount_value"], "sub_category_id" => "'" . $data["sub_category_id"] . "'"), array("id" => $data["id"]));
 	}
 }

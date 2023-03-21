@@ -5,6 +5,7 @@
         "swiftmailer/swiftmailer": "^6.0",
         "tecnickcom/tcpdf": "^6.4",
         "fakerphp/faker": "^1.19",
-        "kwn/number-to-words": "^2.4"
+        "kwn/number-to-words": "^2.4",
+        "phpoffice/phpspreadsheet": "^1.28"
     }
 }

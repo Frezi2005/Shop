@@ -4,8 +4,9 @@
 
 ?>
 <div id="gifts" class="my-4 offset-1 col-10 float-start">
+    <input type="hidden" value="<?=$this->Session->read("userUUID");?>" id="userId"/>
     <h1><?=__("gifts_catalog")?></h1>
-    <div class="row row-cols-4 g-5 p-5">
+    <div class="row row-cols-lg-4 row-cols-md-2 row-cols-1 g-5 p-5">
         <?php
 
             foreach ($gifts as $gift) {

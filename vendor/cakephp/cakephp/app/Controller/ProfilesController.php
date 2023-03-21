@@ -96,8 +96,8 @@ class ProfilesController extends AppController {
 		$this->loadModel("Users");
 		$this->autoRender = false;
 		$data = $this->request["data"]["changeAddressForm"];
-		foreach($data as $key => $value) {
-			$data[$key] = "'".$value."'";
+		foreach ($data as $key => $value) {
+			$data[$key] = "'" . $value . "'";
 			if (preg_replace('/\s+/', '', $value) == "") {
 				$this->Session->write("changeAddressError", true);
 				$this->redirect("/change-address-form");
@@ -110,13 +110,13 @@ class ProfilesController extends AppController {
 
 	public function changeAddressForm() {
 		$countries = ["pol" => [], "eng" => []];
-		foreach(json_decode(file_get_contents("../webroot/files/countries.json"), true) as $country) {
+		foreach (json_decode(file_get_contents("../webroot/files/countries.json"), true) as $country) {
 			$countries["pol"][$country["name_pl"]] = $country["name_pl"];
 			$countries["eng"][$country["name_en"]] = $country["name_en"];
 		}
 		ksort($countries[$this->Session->read("language") ?? "eng"]);
-		$countries["pol"] = array_merge(["Polska" => "Polska"], $countries["pol"]); 
-		$countries["eng"] = array_merge(["Poland" => "Poland"], $countries["eng"]); 
+		$countries["pol"] = array_merge(["Polska" => "Polska"], $countries["pol"]);
+		$countries["eng"] = array_merge(["Poland" => "Poland"], $countries["eng"]);
 		$countries[$this->Session->read("language") ?? "eng"] = array("" => __("choose")) + $countries[$this->Session->read("language") ?? "eng"];
 		$this->set("countries", $countries[$this->Session->read("language") ?? "eng"]);
 	}
@@ -132,7 +132,7 @@ class ProfilesController extends AppController {
 		$this->SecurityUtils = $this->Components->load("PasswordHashing");
 		$changeEmailData = $this->request["data"]["changeEmailForm"];
 		$user = $this->User->find("first", array("conditions" => array("email" => $changeEmailData["currentEmail"], "password" => $this->SecurityUtils->encrypt($changeEmailData["password"]))));
-		$this->User->updateAll(array("email_change_creation_date" => "'".date("Y-m-d H:i:s")."'", "email_change_expiration_date" => "'".date("Y-m-d H:i:s", strtotime("+1 hours"))."'", "new_email" => "'".$changeEmailData["newEmail"]."'"), array("password" => $this->SecurityUtils->encrypt($changeEmailData["password"])));
+		$this->User->updateAll(array("email_change_creation_date" => "'" . date("Y-m-d H:i:s") . "'", "email_change_expiration_date" => "'" . date("Y-m-d H:i:s", strtotime("+1 hours")) . "'", "new_email" => "'" . $changeEmailData["newEmail"] . "'"), array("password" => $this->SecurityUtils->encrypt($changeEmailData["password"])));
 		$this->Session->write("data", $changeEmailData);
 		if ($user) {
 

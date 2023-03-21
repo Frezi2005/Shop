@@ -1,0 +1,15 @@
+div.pagination .bold {
+	font-weight: bold;
+}
+
+.page-prev, .page-next {
+	cursor: pointer;
+}
+
+div.pagination > * {
+	height: 50px;
+	line-height: 50px;
+	padding: 5px;
+	cursor: pointer;
+	font-size: 25px;
+}

@@ -4,15 +4,19 @@
     echo $this->Html->css("filter");
     echo $this->Html->css("form");
 
-    echo "<div id='invoices' class='my-4 offset-1 col-xxl-6 col-xl-6 col-lg-7 col-10 float-start'>";
+    echo "<div id='invoices' class='my-4 offset-1 col-xxl-6 col-xl-6 col-lg-7 col-10 float-start row row-cols-lg-2 row-cols-1 g-5 p-5 pt-1'>";
     
     if (!count($orders)) {
         echo "<p id='no-invoices' style='font-size: 50px; text-align: center; float: left; display: block; height: 100%; width: 100%; padding-top: 200px;'>".__("no_invoices")."</p>";
     } else {
         foreach ($orders as $order) {
             $fields = urlencode(str_replace("&", "&amp;", json_encode($order)));
-            echo "<a href='invoice?products=$fields' target='_blank'>".date("Y-m-d", strtotime($order["Orders"]["order_date"]))." - ".$order["Orders"]["total_price"].$order["Orders"]["currency"]." - ".$order["Orders"]["user_id"]."</a><br/>";
-        }
+			echo "<div class='col'>";
+			echo "<div class='p-3 shadow rounded-3 bg-white'>";
+            echo "<a href='invoice?products=$fields' target='_blank'>".date("Y-m-d", strtotime($order["Orders"]["order_date"]))." - ".$order["Orders"]["total_price"].$order["Orders"]["currency"]."<br/>".$order["Orders"]["user_id"]."</a><br/>";
+			echo "</div>";
+			echo "</div>";
+		}
     }
 
     echo "</div>";

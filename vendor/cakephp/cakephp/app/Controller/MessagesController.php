@@ -113,7 +113,23 @@ class MessagesController extends AppController {
     }
 
     public function viewMessages() {
-        $this->set("messages", $this->Message->find("all", array("conditions" => array("type != 'reply'"))));
+		$perPage = 2;
+		$page = (!isset($this->params["url"]["page"])) ? 1 : $this->params["url"]["page"];
+		$offset = (intval($page) - 1) * $perPage;
+		$sort = $this->params["url"]["sort_by"] ?? "date_desc";
+		$replies = $this->Message->find("list", array("conditions" => array("type = 'reply'"), "fields" => array("id", "reply_to")));
+		$messages = $this->Message->find("all", array("conditions" => array("type != 'reply'", isset($this->params["url"]["type"]) ? "type IN " . str_replace(['[', ']'], ['(', ')'], urldecode($this->params["url"]["type"])) : ""), "limit" => $perPage, "offset" => $offset, "order" => str_replace("_", " ", $sort)));
+		for ($i = 0; $i < count($messages); $i++) {
+			if (in_array($messages[$i]["Message"]["id"], $replies)) {
+				$messages[$i]["Message"]["replied"] = true;
+				$messages[$i]["Message"]["reply"] = $this->Message->find("first", array("conditions" => array("id" => array_search($messages[$i]["Message"]["id"], $replies))))["Message"]["message"];
+			} else {
+				$messages[$i]["Message"]["replied"] = false;
+			}
+		}
+		$this->set("count", ceil(count($this->Message->find("all", array("conditions" => array("type != 'reply'", isset($this->params["url"]["type"]) ? "type IN " . str_replace(['[', ']'], ['(', ')'], urldecode($this->params["url"]["type"])) : "")))) / $perPage));
+		$this->set("messages", $messages);
+		$this->set("page", $page);
     }
 
     public function replyToMessage() {

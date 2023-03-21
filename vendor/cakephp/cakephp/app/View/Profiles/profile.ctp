@@ -17,5 +17,7 @@
     <a href="holidays-form"><?=__("request_holidays");?></a>
     <a href="sick-leave-form"><?=__("request_sick_leave");?></a>
     <a href="get-contract"><?=__("get_contract");?></a>
+    <a href="marketing-materials"><?=__("marketing_materials");?></a>
+	<a href="payslips"><?=__("payslips");?></a>
     <a href="regulations-of-loyalty-program-<?=$this->Session->read("language")?>"><?=__("rules_loyalty_program")?></a>
 </div>

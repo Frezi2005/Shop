@@ -20,6 +20,7 @@
 
 App::uses("AppController", "Controller");
 
+
 /**
  * Static content controller
  *
@@ -90,7 +91,7 @@ class CustomersController extends AppController {
 		}
 	}
 
-	//Site responsible for managing the registration 
+	//Site responsible for managing the registration
 
 	public function register() {
 		$this->autoRender = false;
@@ -142,7 +143,7 @@ class CustomersController extends AppController {
 		$this->redirect("/home");
 	}
 
-	//Site responsible for managing the login 
+	//Site responsible for managing the login
 
 	public function login() {
 		$this->autoRender = false;
@@ -164,7 +165,7 @@ class CustomersController extends AppController {
 		}
 	}
 
-	//Site responsible for activating customers account from link sent to their email 
+	//Site responsible for activating customers account from link sent to their email
 
 	public function activateCustomerAccount() {
 		$this->autoRender = false;
@@ -202,7 +203,7 @@ class CustomersController extends AppController {
 		if ($changePasswordData["newPasswordConfirm"] == $changePasswordData["newPassword"]) {
 			$user = $this->User->find("first", array("conditions" => array("id" => $this->Session->read("userUUID"))));
 			if ($user) {
-				$this->User->updateAll(array("password" => "'".$this->SecurityUtils->encrypt($changePasswordData["newPassword"])."'"), array("id" => $this->Session->read("userUUID")));
+				$this->User->updateAll(array("password" => "'" . $this->SecurityUtils->encrypt($changePasswordData["newPassword"]) . "'"), array("id" => $this->Session->read("userUUID")));
 				$this->Session->write("changePassword", true);
 				$log = $this->User->getDataSource()->getLog(false, false);
 				$this->Log($log);
@@ -297,7 +298,7 @@ class CustomersController extends AppController {
 
 		$privileges = [];
 
-		for($i = 0; $i < count($links); $i++) {
+		for ($i = 0; $i < count($links); $i++) {
 			$privileges[$links[$i]] = $this->CheckPrivileges->check($links[$i], $this->Session->read("userUUID"));
 		}
 
@@ -378,7 +379,7 @@ class CustomersController extends AppController {
 		$this->autoRender = false;
 		$data = $this->request["data"]["updatePasswordForm"];
 		if ($data["password"] == $data["passwordConfirm"]) {
-			$this->User->updateAll(array("password" => "'".$this->SecurityUtils->encrypt($data["password"])."'"), array("id" => $data["id"]));
+			$this->User->updateAll(array("password" => "'" . $this->SecurityUtils->encrypt($data["password"]) . "'"), array("id" => $data["id"]));
 			$this->Session->write("changePassword", true);
 			$this->Session->write("loggedIn", true);
 			$this->Session->write("loggedModal", true);
@@ -401,11 +402,27 @@ class CustomersController extends AppController {
 	public function updateEmployee() {
 		$this->autoRender = false;
 		$data = $this->params["url"];
-		$this->User->updateAll(array("name" => "'".$data["name"]."'", "surname" => "'".$data["surname"]."'", "email" => "'".$data["email"]."'", "salary" => $data["salary"], "bonus_amount" => $data["bonus_amount"], "holiday_amount" => $data["holiday_amount"]), array("id" => $data["id"]));
+		$this->User->updateAll(array("name" => "'" . $data["name"] . "'", "surname" => "'" . $data["surname"] . "'", "email" => "'" . $data["email"] . "'", "salary" => $data["salary"], "bonus_amount" => $data["bonus_amount"], "holiday_amount" => $data["holiday_amount"]), array("id" => $data["id"]));
 	}
 
 	public function monitorEmployeesWorktime() {
-		$this->set("employees", $this->User->find("all", array("conditions" => array("is_employee" => 1, "is_deleted" => 0))));
+		$this->loadModel("Timeshift");
+		$timeshifts = $this->Timeshift->find("all", array(
+			"joins" => array(
+				array(
+					"table" => "users",
+					"alias" => "User",
+					"type" => "INNER",
+					"conditions" => array(
+						"Timeshift.user_id = User.id",
+					),
+				),
+			),
+			"conditions" => array("MONTH(Timeshift.date)" => date("m")),
+			"group" => "Timeshift.user_id",
+			"fields" => array("Timeshift.user_id", "SUM(Timeshift.hours) as hours", "User.name", "User.surname"),
+		));
+		$this->set("employees", $timeshifts);
 	}
 
 	public function holidaysForm() {
@@ -416,8 +433,8 @@ class CustomersController extends AppController {
 		$this->autoRender = false;
 		$this->loadModel("Holiday");
 		$data = $this->request["data"]["requestHolidaysForm"];
-		$startDate = $data["start"]["year"]."-".$data["start"]["month"]."-".$data["start"]["day"];
-		$endDate = $data["end"]["year"]."-".$data["end"]["month"]."-".$data["end"]["day"];
+		$startDate = $data["start"]["year"] . "-" . $data["start"]["month"] . "-" . $data["start"]["day"];
+		$endDate = $data["end"]["year"] . "-" . $data["end"]["month"] . "-" . $data["end"]["day"];
 		$this->Holiday->save(array(
 			"id" => CakeText::uuid(),
 			"user_id" => $this->Session->read("userUUID"),
@@ -521,7 +538,7 @@ class CustomersController extends AppController {
 	}
 
 	public function fireEmployeeForm() {
-		$employees = $this->User->find("list", array("conditions" => array("is_employee" => 1, "id != '".$this->Session->read("userUUID")."'"), "fields" => array("id", "email")));
+		$employees = $this->User->find("list", array("conditions" => array("is_employee" => 1, "id != '" . $this->Session->read("userUUID") . "'"), "fields" => array("id", "email")));
 		$this->set("employees", $employees);
 	}
 
@@ -544,19 +561,19 @@ class CustomersController extends AppController {
 			$month1 = date('m', $ts1);
 			$month2 = date('m', $ts2);
 			$diff = (($year2 - $year1) * 12) + ($month2 - $month1);
-			switch($diff) {
+			switch ($diff) {
 				case $diff > 0 && $diff < 6:
-					$date = date('Y-m-d', strtotime(date('Y-m-d', strtotime('+ 1 weekdays')).'+ 14 days'));
+					$date = date('Y-m-d', strtotime(date('Y-m-d', strtotime('+ 1 weekdays')) . '+ 14 days'));
 					break;
 				case $diff >= 6 && $diff < 36:
-					$date = date('Y-m-d', strtotime(date('Y-m-d', strtotime('first day of next month')).'+ 1 months'));
+					$date = date('Y-m-d', strtotime(date('Y-m-d', strtotime('first day of next month')) . '+ 1 months'));
 					break;
 				case $diff >= 36:
-					$date = date('Y-m-d', strtotime(date('Y-m-d', strtotime('first day of next month')).'+ 3 months'));
+					$date = date('Y-m-d', strtotime(date('Y-m-d', strtotime('first day of next month')) . '+ 3 months'));
 					break;
 			}
 
-			$date = date('Y-m-d', strtotime(date('Y-m-d', strtotime($date)).'- 1 days'));
+			$date = date('Y-m-d', strtotime(date('Y-m-d', strtotime($date)) . '- 1 days'));
 			$this->Notice->save(array(
 				"id" => CakeText::uuid(),
 				"user_id" => $normal ? $this->Session->read("userUUID") : $this->request["data"]["fireEmployeeForm"]["employees"],
@@ -572,7 +589,7 @@ class CustomersController extends AppController {
 	}
 
 	public function extendContractRequestForm() {
-		$employees = $this->User->find("list", array("conditions" => array("is_employee" => 1, "id != '".$this->Session->read("userUUID")."'", "contract_end > NOW() AND contract_end < DATE_ADD(NOW(), INTERVAL 1 MONTH)"), "fields" => array("id", "email")));
+		$employees = $this->User->find("list", array("conditions" => array("is_employee" => 1, "id != '" . $this->Session->read("userUUID") . "'", "contract_end > NOW() AND contract_end < DATE_ADD(NOW(), INTERVAL 1 MONTH)"), "fields" => array("id", "email")));
 		$this->loadModel("Notice");
 		foreach (array_keys($employees) as $k) {
 			if ($this->Notice->find("count", array("conditions" => array("user_id" => $k)))) {
@@ -585,11 +602,17 @@ class CustomersController extends AppController {
 	public function extendContractRequest() {
 		$this->autoRender = false;
 		$this->loadModel("ContractExtend");
-		$this->ContractExtend->save(array(
-			"id" => CakeText::uuid(),
-			"user_id" => $this->request["data"]["extendContractRequestForm"]["employees"],
-			"extend" => $this->request["data"]["extendContractRequestForm"]["extend"],
-		));
+		try {
+			$this->ContractExtend->save(array(
+				"id" => CakeText::uuid(),
+				"user_id" => $this->request["data"]["extendContractRequestForm"]["employees"],
+				"extend" => $this->request["data"]["extendContractRequestForm"]["extend"],
+			));
+			$this->Session->write("contractExtensionRequestSent", true);
+		} catch (Exception $e) {
+			$this->Session->write("contractExtensionRequestSent", false);
+		}
+
 		$this->redirect("/extend-contract-request-form");
 	}
 
@@ -604,7 +627,8 @@ class CustomersController extends AppController {
 		$user = $this->User->find("first", array("conditions" => array("id" => $this->params["url"]["user_id"])));
 		if ($user) {
 			$this->ContractExtend->deleteAll(array("user_id" => $this->params["url"]["user_id"]));
-			return $this->User->updateAll(array("contract_end" => "'".$this->params["url"]["date"]."'"), array("id" => $this->params["url"]["user_id"]));
+
+			return $this->User->updateAll(array("contract_end" => "'" . $this->params["url"]["date"] . "'"), array("id" => $this->params["url"]["user_id"]));
 		}
 	}
 
@@ -616,5 +640,61 @@ class CustomersController extends AppController {
 
 	public function buyGift() {
 		$this->autoRender = false;
+		$this->loadModel("Gift");
+		if (empty($this->params["url"]["user_id"])) {
+			throw new Exception('User not logged', 401);
+		}
+		$gift = $this->Gift->find("first", array("conditions" => array("id" => $this->params["url"]["id"])))["Gift"];
+		$user = $this->User->find("first", array("conditions" => array("id" => $this->params["url"]["user_id"], "total_points >= " . intval($gift["points"]))))["User"];
+		if ($user) {
+			$this->User->updateAll(array("total_points" => intval($user["total_points"]) - intval($gift["points"])), array("id" => $this->params["url"]["user_id"]));
+			$this->Gift->updateAll(array("amount" => intval($gift["amount"]) - 1), array("id" => $this->params["url"]["id"]));
+			return 1;
+		} else {
+			throw new Exception('Not enoguh points', 402);
+		}
+	}
+
+	public function manageBudget() {
+		$this->loadModel("Budget");
+		$years = $this->Budget->find("all", array("group" => "year", "fields" => array("year")));
+		for ($i = 0; $i < count($years); $i++) {
+			$years[$i] = $years[$i]["Budget"]["year"];
+		}
+		$this->set("years", $years);
+	}
+
+	public function getBudget() {
+		$this->autoRender = false;
+		$this->loadModel("Budget");
+		return json_encode([$this->Budget->find("all", array("conditions" => array("year" => $this->params["url"]["year"]), "fields" => ("SUM(amount) as sum"))), $this->Budget->find("all", array("conditions" => array("year" => $this->params["url"]["year"]), "fields" => array("amount", "type", "date", "from")))]);
+	}
+
+	public function workHours() {
+
+	}
+
+	public function addTimeshift() {
+		$this->autoRender = false;
+		$this->loadModel("Timeshift");
+		$this->Timeshift->save(array(
+			"id" => CakeText::uuid(),
+			"user_id" => $this->params["url"]["user_id"],
+			"date" => $this->params["url"]["date"],
+			"hours" => strtotime($this->params["url"]["end"]) - strtotime($this->params["url"]["start"]),
+			"start" => strtotime($this->params["url"]["start"]),
+			"end" => strtotime($this->params["url"]["end"])
+		));
+	}
+
+	public function getEmployeeTimeshifts() {
+		$this->autoRender = false;
+		$this->loadModel("Timeshift");
+		return json_encode($this->Timeshift->find("all", array("conditions" => array("`date` BETWEEN '" . $this->params["url"]["start_date"] . "' AND '" . $this->params["url"]["end_date"] . "'", "user_id" => $this->params["url"]["user_id"]), "fields" => array("date", "hours", "start", "end"))));
+	}
+
+	public function payslips() {
+		$user = $this->User->find("first", array("conditions" => array("id" => $this->Session->read("userUUID"))))["User"];
+		$this->set("employee", $user);
 	}
 }
