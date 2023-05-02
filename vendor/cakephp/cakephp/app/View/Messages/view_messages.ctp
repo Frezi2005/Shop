@@ -4,7 +4,7 @@
     echo $this->Html->script("view_messages");
 
     echo "<div id='messages' class='offset-1 col-xxl-6 col-xl-6 col-lg-5 col-10 float-start my-4'>";
-	echo "Pokaż wiadomości z odpowiedziami: <input type='checkbox' id='showReplied'>";
+//	echo "Pokaż wiadomości z odpowiedziami: <input type='checkbox' id='showReplied'>";
 	echo "<select id='messageType' multiple='true'>";
         echo "<option value='Opinion'>".__("opinion")."</option>";
         echo "<option value='Complaint'>".__("complaint")."</option>";
@@ -20,8 +20,10 @@
     $i = 0;
     foreach ($messages as $message) {
         echo "<div class='float-start col-12 m-3'>";
-            echo "<div class='message' data-bs-toggle='collapse' href='#message$i' role='button' aria-expanded='false' aria-controls='message$i'>";
-                echo "<b>".$message["Message"]["email"]."(".__(strtolower(str_replace(" ", "_", $message["Message"]["type"])))."):</b>";
+            echo "<div class='message' data-bs-toggle='collapse' href='#message$i'
+						role='button' aria-expanded='false' aria-controls='message$i'>";
+                echo "<b>".$message["Message"]["email"]."(".
+					__(strtolower(str_replace(" ", "_", $message["Message"]["type"])))."):</b>";
                 if ($message["Message"]["replied"]) {
                     echo "<span> ✔️</span>";
                 }
@@ -33,7 +35,8 @@
             }
             if ($message["Message"]["replied"]) {
                 echo "<div class='collapse' id='message$i'>";
-                    echo "<p class='pt-3 px-3 mb-0'><b>".ucfirst(__("reply")).":</b> <br/>".$message["Message"]["reply"]."</p>";
+                    echo "<p class='pt-3 px-3 mb-0'><b>".ucfirst(__("reply")).":</b> <br/>".
+						$message["Message"]["reply"]."</p>";
                     echo "<p class='px-3 text-secondary'>".$message["Message"]["date"]."<br/>";
                 echo "</div>";
             }
@@ -53,10 +56,12 @@
 	echo "</div>";
 
     if ($this->Session->read("messageSent") == true) {
-        echo "<script>Swal.fire({icon: \"success\",text: '".__("message_sent_successfully")."',showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
+        echo "<script>Swal.fire({icon: \"success\",text: '".__("message_sent_successfully").
+			"',showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
         $_SESSION["messageSent"] = null;
     } else if ($this->Session->read("messageSent") === false) {
-        echo "<script>Swal.fire({icon: \"error\",text: '".__("message_sent_unsuccessfully")."',showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
+        echo "<script>Swal.fire({icon: \"error\",text: '".__("message_sent_unsuccessfully").
+			"',showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
         $_SESSION["messageSent"] = null;
     }
 

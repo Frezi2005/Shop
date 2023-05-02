@@ -3,6 +3,7 @@
 App::uses("Component", "Controller");
 
 class PasswordHashingComponent extends Component {
+	//Function responsible for hashing specified password
     public function encrypt($password) {
         $cipher = "AES-256-CBC";
         $iv = hash("ADLER32", $cipher).hash("CRC32B", $cipher);

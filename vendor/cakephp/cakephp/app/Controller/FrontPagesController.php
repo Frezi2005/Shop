@@ -41,9 +41,15 @@ class FrontPagesController extends AppController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
-		if (strpos($_SERVER["REQUEST_URI"], "privacy-policy-and-cookies") !== false || strpos($_SERVER["REQUEST_URI"], "terms-of-service") !== false) {
+		if (
+			strpos($_SERVER["REQUEST_URI"], "privacy-policy-and-cookies") !== false ||
+			strpos($_SERVER["REQUEST_URI"], "terms-of-service") !== false) {
 			if (substr($_SERVER["REQUEST_URI"], -3) != Configure::read("Config.language")) {
-				$this->redirect("/" . str_replace("/Shop/vendor/cakephp/cakephp/", "", substr($_SERVER["REQUEST_URI"], 0, -3)) . Configure::read("Config.language"));
+				$this->redirect(
+					"/" .
+					str_replace("/Shop/vendor/cakephp/cakephp/", "", substr($_SERVER["REQUEST_URI"], 0, -3)) .
+					Configure::read("Config.language")
+				);
 			}
 		}
 	}
@@ -89,126 +95,189 @@ class FrontPagesController extends AppController {
 		}
 	}
 
+	//Home page
 	public function home() {
 		// $this->SecurityUtils = $this->Components->load("PasswordHashing");
 		// debug($this->SecurityUtils->encrypt("test12345"));
 		$this->loadModel("Product");
-		$this->set("randomProducts", $this->Product->find("all", array("order" => "rand()", "limit" => 4, "fields" => array("id", "name", "price"))));
+		$this->set("randomProducts",
+			$this->Product->find("all",
+				array(
+					"order" => "rand()",
+					"limit" => 4,
+					"fields" => array(
+						"id",
+						"name",
+						"price"
+					)
+				)
+			)
+		);
 	}
 
+
+	//Registration page
 	public function registerPage()
 	{
 
 	}
 
+	//Login page
 	public function loginPage() {
 
 	}
 
+	//Function responsible for returning all subcategories
 	public function getSubCategories() {
 		$this->autoRender = false;
 		$this->loadModel("SubCategory");
 		$subCategories = [];
-		$subCategories[$this->params["url"]["category-id"]] = $this->SubCategory->find("all", array("conditions" => array("category_id" => $this->params["url"]["category-id"])));
+		$subCategories[$this->params["url"]["category-id"]] = $this->SubCategory->find("all",
+			array(
+				"conditions" => array(
+					"category_id" => $this->params["url"]["category-id"]
+				)
+			)
+		);
 		return json_encode($subCategories);
 	}
 
+	//Function responsibe for changing the language
 	public function changeLanguage() {
 		$this->autoRender = false;
 		$this->Session->write("language", $this->params["url"]["lang"]);
 	}
 
+	//About us page
 	public function aboutUs() {
 
 	}
 
+
+	//Cooperation page
 	public function cooperation() {
 
 	}
 
+	//Contact page
 	public function contact() {
 		if (isset($this->params["url"]["template"])) {
 			$this->set("template", $this->params["url"]["template"]);
 		}
 	}
 
+	//Partnership page
 	public function partnership() {
 
 	}
 
+	//Polish terms of service page
 	public function termsOfServicePol() {
 
 	}
 
+	//English terms of service page
 	public function termsOfServiceEng() {
 
 	}
 
+	//Polish privacy policy and cookies page
 	public function privacyPolicyAndCookiesPol() {
 
 	}
 
+	//English privacy policy and cookies page
 	public function privacyPolicyAndCookiesEng() {
 
 	}
 
+	//Site for generating hashed password
 	public function generateHashedPassword() {
 		$this->autoRender = false;
 		$this->SecurityUtils = $this->Components->load("PasswordHashing");
 		debug($this->SecurityUtils->encrypt($this->params["url"]["p"]));
 	}
 
+	//Register employee page
 	public function registerEmployeePage() {
 
 	}
 
+	//Site map
 	public function siteMap() {
 		$this->layout = false;
 		$this->RequestHandler->respondAs('xml');
 	}
 
+	//Function responsible for creating a RODO cookie
 	public function createRodoCookie() {
 		$this->autoRender = false;
 		$this->Cookie->write("rodo_accepted", true, false, "6 months");
 		//$this->set("rodoCookie", $this->Cookie->read("rodo_accepted"));
 	}
 
+	//Error testing page
 	public function errorTest() {
 		$this->autoRender = false;
 		throw new ForbiddenException();
 	}
 
+
+	//Gifts catalog page
 	public function giftsCatalog() {
 		$this->loadModel("Gifts");
 		$this->set("gifts", $this->Gifts->find("all"));
 	}
 
+	//Remove employee page
 	public function removeEmployeePage() {
 		$this->loadModel("User");
-		$employees = $this->User->find("all", array("conditions" => array("is_employee" => 1, "is_deleted" => 0, "is_admin" => 0), "fields" => array("id", "name", "surname", "email")));
+		$employees = $this->User->find("all",
+			array(
+				"conditions" => array(
+					"is_employee" => 1,
+					"is_deleted" => 0,
+					"is_admin" => 0
+				),
+				"fields" => array(
+					"id",
+					"name",
+					"surname",
+					"email"
+				)
+			)
+		);
 		$arr = [];
 		for ($i = 0; $i < count($employees); $i++) {
-			$arr[$employees[$i]["User"]["id"]] = $employees[$i]["User"]["name"] . " " . $employees[$i]["User"]["surname"] . " - " . $employees[$i]["User"]["email"];
+			$arr[$employees[$i]["User"]["id"]] =
+				$employees[$i]["User"]["name"] . " " .
+				$employees[$i]["User"]["surname"] . " - " .
+				$employees[$i]["User"]["email"];
 		}
 		$this->set("employees", $arr);
 	}
 
+	//Ask for account page
 	public function askForAccount() {
 		$this->Session->write("orderInfo", $this->request["data"]["orderForm"]);
 	}
 
+	//Forgot password page
 	public function forgotPasswordPage() {
 
 	}
 
+	//Polish regulations for loyalty program page
 	public function regulationsOfLoyaltyProgramPol() {
 
 	}
 
+	//English regulations of loyalty program page
 	public function regulationsOfLoyaltyProgramEng() {
 
 	}
 
+	//Marketing materials page
 	public function marketingMaterials() {
 
 	}

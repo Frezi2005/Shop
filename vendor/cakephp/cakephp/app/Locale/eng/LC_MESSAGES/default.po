@@ -969,3 +969,9 @@ msgstr "Marketing materials"
 
 msgid "payslips"
 msgstr "Payslips"
+
+msgid "payouts"
+msgstr "Payouts"
+
+msgid "not_enough_funds"
+msgstr "Not enough funds in budget!"

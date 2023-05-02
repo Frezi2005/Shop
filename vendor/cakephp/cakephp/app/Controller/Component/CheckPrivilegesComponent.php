@@ -3,6 +3,7 @@
 App::uses("Component", "Controller");
 
 class CheckPrivilegesComponent extends Component {
+	//Function responsible for checking if specificer user can or can't enter specific page
     public function check($site, $userID) {
         $user = ClassRegistry::init('User');
         foreach (Configure::read("hierarchy") as $key => $val) {

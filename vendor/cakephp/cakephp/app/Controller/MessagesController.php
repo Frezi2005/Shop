@@ -84,6 +84,7 @@ class MessagesController extends AppController {
 		}
 	}
 
+	//Function responsible for saving sent message to database
     public function saveMessage() {
         $this->autoRender = false;
         $this->loadModel("User");
@@ -93,16 +94,27 @@ class MessagesController extends AppController {
 			$this->redirect("/contact");
 		}
 
-        $email = $this->Session->read("loggedIn") ? $this->User->find("first", array("conditions" => array("id" => $this->Session->read("userUUID")), "fields" => array("email")))["User"]["email"] : $data["from"];
+        $email = $this->Session->read("loggedIn") ? $this->User->find("first",
+			array(
+				"conditions" => array(
+					"id" => $this->Session->read("userUUID")
+				),
+				"fields" => array(
+					"email"
+				)
+			)
+		)["User"]["email"] : $data["from"];
         try {
-            $this->Message->save(array(
-                "id" => CakeText::UUID(),
-                "email" => $email,
-                "message" => $data["message"],
-                "type" => $data["messageType"],
-				"reply_to" => null,
-				"reply_by" => null
-            ));
+            $this->Message->save(
+				array(
+					"id" => CakeText::UUID(),
+					"email" => $email,
+					"message" => $data["message"],
+					"type" => $data["messageType"],
+					"reply_to" => null,
+					"reply_by" => null
+				)
+			);
         } catch (Exception $e) {
             $this->Log($e);
             $this->Session->write("contactEmailSent", false);
@@ -112,28 +124,73 @@ class MessagesController extends AppController {
 		$this->redirect("/home");
     }
 
+	//View messages page
     public function viewMessages() {
 		$perPage = 2;
 		$page = (!isset($this->params["url"]["page"])) ? 1 : $this->params["url"]["page"];
 		$offset = (intval($page) - 1) * $perPage;
 		$sort = $this->params["url"]["sort_by"] ?? "date_desc";
-		$replies = $this->Message->find("list", array("conditions" => array("type = 'reply'"), "fields" => array("id", "reply_to")));
-		$messages = $this->Message->find("all", array("conditions" => array("type != 'reply'", isset($this->params["url"]["type"]) ? "type IN " . str_replace(['[', ']'], ['(', ')'], urldecode($this->params["url"]["type"])) : ""), "limit" => $perPage, "offset" => $offset, "order" => str_replace("_", " ", $sort)));
+		$replies = $this->Message->find("list",
+			array(
+				"conditions" => array(
+					"type = 'reply'"
+				),
+				"fields" => array(
+					"id",
+					"reply_to"
+				)
+			)
+		);
+		$messages = $this->Message->find("all",
+			array(
+				"conditions" => array(
+					"type != 'reply'",
+					(isset($this->params["url"]["type"]) && urldecode($this->params["url"]["type"]) != "[]") ?
+						"type IN " . str_replace(['[', ']'], ['(', ')'], urldecode($this->params["url"]["type"])) :
+						""
+				),
+				"limit" => $perPage,
+				"offset" => $offset,
+				"order" => str_replace("_", " ", $sort)
+			)
+		);
 		for ($i = 0; $i < count($messages); $i++) {
 			if (in_array($messages[$i]["Message"]["id"], $replies)) {
 				$messages[$i]["Message"]["replied"] = true;
-				$messages[$i]["Message"]["reply"] = $this->Message->find("first", array("conditions" => array("id" => array_search($messages[$i]["Message"]["id"], $replies))))["Message"]["message"];
+				$messages[$i]["Message"]["reply"] = $this->Message->find("first",
+					array(
+						"conditions" => array(
+							"id" => array_search($messages[$i]["Message"]["id"], $replies)
+						)
+					)
+				)["Message"]["message"];
 			} else {
 				$messages[$i]["Message"]["replied"] = false;
 			}
 		}
-		$this->set("count", ceil(count($this->Message->find("all", array("conditions" => array("type != 'reply'", isset($this->params["url"]["type"]) ? "type IN " . str_replace(['[', ']'], ['(', ')'], urldecode($this->params["url"]["type"])) : "")))) / $perPage));
+		$this->set("count", ceil(count($this->Message->find("all",
+			array(
+				"conditions" => array(
+					"type != 'reply'",
+					(isset($this->params["url"]["type"]) && urldecode($this->params["url"]["type"]) != "[]") ?
+						"type IN " . str_replace(['[', ']'], ['(', ')'], urldecode($this->params["url"]["type"])) :
+						""
+				)
+			)
+		)) / $perPage));
 		$this->set("messages", $messages);
 		$this->set("page", $page);
     }
 
+	//Page for replying to user messages
     public function replyToMessage() {
-        $message = $this->Message->find("first", array("conditions" => array("id" => $this->params["url"]["id"])))["Message"];
+        $message = $this->Message->find("first",
+			array(
+				"conditions" => array(
+					"id" => $this->params["url"]["id"]
+				)
+			)
+		)["Message"];
 		$this->set("id", $this->params["url"]["id"]);
 		$this->set("email", $message["email"]);
         $this->set("message", $message["message"]);

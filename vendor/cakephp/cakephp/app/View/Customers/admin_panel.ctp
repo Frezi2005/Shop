@@ -44,11 +44,12 @@
 
         echo "</div>";
         echo "<div class='col'>";
-        
+
         if ($privileges["admin-privileges"] && count($employees) > 0) {
             echo "<select id='usersSelect'>";
             for ($i = 0; $i < count($employees); $i++) {
-                echo "<option value='".$employees[$i]["User"]["id"]."'>".$employees[$i]["User"]["name"]." ".$employees[$i]["User"]["surname"].": ".$employees[$i]["User"]["email"]."</option>";
+                echo "<option value='".$employees[$i]["User"]["id"]."'>".$employees[$i]["User"]["name"]." ".
+					$employees[$i]["User"]["surname"].": ".$employees[$i]["User"]["email"]."</option>";
             }
             echo "</select>";
             echo "<button id='grantAdmin'>".__("grant_admin")."</button>";
@@ -57,7 +58,8 @@
         if ($privileges["remove-customer"] && count($customers) > 0) {
             echo "<select id='customersSelect'>";
             for ($i = 0; $i < count($customers); $i++) {
-                echo "<option value='".$customers[$i]["User"]["id"]."'>".$customers[$i]["User"]["name"]." ".$customers[$i]["User"]["surname"].": ".$customers[$i]["User"]["email"]."</option>";
+                echo "<option value='".$customers[$i]["User"]["id"]."'>".$customers[$i]["User"]["name"]." ".
+					$customers[$i]["User"]["surname"].": ".$customers[$i]["User"]["email"]."</option>";
             }
             echo "</select>";
             echo "<button id='deleteCustomer'>".__("delete_customer")."</button>";
@@ -70,5 +72,6 @@
         <a href="view-contract-extension-requests"><?=__("view_contract_extensions_requests");?></a>
         <a href="manage-budget"><?=__("manage_budget");?></a>
         <a href="work-hours"><?=__("work_hours");?></a>
+		<a href="payouts"><?=__("payouts");?></a>
     </div>
 </div>

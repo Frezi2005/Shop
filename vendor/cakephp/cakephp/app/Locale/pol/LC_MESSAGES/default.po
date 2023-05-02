@@ -975,3 +975,9 @@ msgstr "Materiały marketingowe"
 
 msgid "payslips"
 msgstr "Paski płac"
+
+msgid "payouts"
+msgstr "Wypłaty"
+
+msgid "not_enough_funds"
+msgstr "Nie ma wystarczająco funduszy!"

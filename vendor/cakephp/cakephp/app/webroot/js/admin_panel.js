@@ -1,7 +1,9 @@
 $(() => {
     $("#grantAdmin").click(function() {
         $.ajax({
-            url: "http://localhost/Shop/vendor/cakephp/cakephp/grant-admin-privileges?id="+$("select#usersSelect").val()+"&admin=1",
+            url: `http://localhost/Shop/vendor/cakephp/cakephp/grant-admin-privileges?
+				id=${$("select#usersSelect").val()}
+				&admin=1`,
             success: function(result) {
                 Swal.fire({
                     title: lang.success,
@@ -18,7 +20,7 @@ $(() => {
 
     $("#deleteCustomer").click(function() {
         $.ajax({
-            url: "http://localhost/Shop/vendor/cakephp/cakephp/remove-customer?id="+$("select#customersSelect").val(),
+            url: `http://localhost/Shop/vendor/cakephp/cakephp/remove-customer?id=${$("select#customersSelect").val()}`,
             success: function(result) {
                 Swal.fire({
                     title: lang.success,

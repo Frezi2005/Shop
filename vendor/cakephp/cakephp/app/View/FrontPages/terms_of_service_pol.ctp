@@ -133,8 +133,8 @@
 		Usługobiorcy w plikach cookies.</p>
 	<p>Zakres, cele, sposób oraz zasady przetwarzania danych dostępne są w załącznikach do Regulaminu: &#8222;<a
 			href="https://alphatech.pl/rodo/">Obowiązek informacyjny RODO</a>&#8221; oraz w &#8222;<a
-			href="https://alphatech.pl/privacy-policy-and-cookies/">Polityce prywatności</a>&#8222;, stanowiących integralną
-		część Regulaminu.</p>
+			href="https://alphatech.pl/privacy-policy-and-cookies/">Polityce prywatności</a>&#8222;, stanowiących
+		integralną część Regulaminu.</p>
 	<ul>
 		<li><em>Dane zbierane podczas rejestracji:</em><br>Nazwa użytkownika, imię i nazwisko, adres e-mail<p>W
 				przypadku Usługobiorców zalogowanych (posiadających konto w Serwisie), w plikach cookies zapisywanych na

@@ -33,7 +33,7 @@
 			numerem KRS: 0000213998, NIP: 5341895377, o kapitale zakładowym 207.000 zł, adres
 			elektroniczny: kamil.wan05@gmail.com (dalej: „Organizator”).</li>
 		<li>3. Produkt – produkty oferowane przez Organizatora za pośrednictwem Platformy Zakupowej.</li>
-		4. Program Lojalnościowy – program lojalnościowy skierowany do Uczestników, organizowany
+		<li>4. Program Lojalnościowy – program lojalnościowy skierowany do Uczestników, organizowany
 		przez Organizatora zgodnie z niniejszym Regulaminem.</li>
 		<li>5. Punkty – punkty przyznawane Uczestnikowi biorącemu udział w Programie Lojalnościowym
 			i umożliwiające otrzymanie nagrody na warunkach określonych w Regulaminie.</li>
@@ -120,17 +120,17 @@
 	</ul>
 	<h3>§ 6. Dane osobowe</h3>
 	<ul>
-		</li>1. Administratorem danych osobowych Uczestników jest Organizator.</li>
-		</li>2. Państwa dane osobowe będą przetwarzane w celu uczestnictwa w Programie Lojalnościowym.</li>
-		</li>3. Podstawą prawną przetwarzania danych jest Państwa zgoda (art. 6 ust. 1 pkt. a RODO).</li>
+		<li>1. Administratorem danych osobowych Uczestników jest Organizator.</li>
+		<li>2. Państwa dane osobowe będą przetwarzane w celu uczestnictwa w Programie Lojalnościowym.</li>
+		<li>3. Podstawą prawną przetwarzania danych jest Państwa zgoda (art. 6 ust. 1 pkt. a RODO).
 		Podanie danych jest dobrowolne, jednak niezbędne do wzięcia udziału w Programie
 		Lojalnościowym.</li>
-		</li>4. W celu uzyskania dodatkowych informacji dotyczących przetwarzania przez nas danych
+		<li>4. W celu uzyskania dodatkowych informacji dotyczących przetwarzania przez nas danych
 		osobowych mogą Państwo skontaktować się za pomocą adresu e-mail rodo@AlphaTech.pl.</li>
-		</li>5. Dostęp do Państwa danych będą mieć nasi pracownicy oraz pracownicy podmiotów
+		<li>5. Dostęp do Państwa danych będą mieć nasi pracownicy oraz pracownicy podmiotów
 		współpracujących z AlphaTech Sp. z o.o. obsługujących systemy informatyczne.</li>
-		</li>6. Państwa dane będą przechowywane przez trzy lata od zakończenia Programu Lojalnościowego.</li>
-		</li>7. Przysługuje Państwu prawo do:
+		<li>6. Państwa dane będą przechowywane przez trzy lata od zakończenia Programu Lojalnościowego.</li>
+		<li>7. Przysługuje Państwu prawo do:
 		<ul>
 			<li>1) żądania dostępu do danych osobowych, ich sprostowania, usunięcia lub ograniczenia, a
 				także prawo do wniesienia sprzeciwu wobec przetwarzania oraz o przeniesienia danych.</li>
@@ -141,7 +141,7 @@
 				przetwarzania przez nas Państwa danych osobowych.</li>
 		</ul>
 		</li>
-		</li>8. Państwa dane nie będą wykorzystywane do profilowania, ani podejmowania
+		<li>8. Państwa dane nie będą wykorzystywane do profilowania, ani podejmowania
 		zautomatyzowanych decyzji.</li>
 	</ul>
 	<h3>§ 7. Warunki rezygnacji i wypowiedzenia programu lojalnościowego</h3>

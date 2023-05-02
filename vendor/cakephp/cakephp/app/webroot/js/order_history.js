@@ -4,7 +4,9 @@ $(function() {
         var ids = JSON.parse($(this).find("input[type=hidden]").val());
         var html = "";
         for (var i = 0; i < ids.length; i++) {
-            html += `<img class='${(i > 0) ? 'd-lg-inline d-none' : ''}' src="app/webroot/img/${checkImage(ids[i])}.jpg"/>`;
+            html += `
+				<img class='${(i > 0) ? 'd-lg-inline d-none' : ''}' src="app/webroot/img/${checkImage(ids[i])}.jpg"/>
+			`;
         }
         $(this).find("span.images").append(html);
         $(this).find(".fa-search").each(function() {
@@ -14,13 +16,35 @@ $(function() {
 				var products = JSON.parse(JSON.parse(fields).Orders.products);
 				if (products.length) {
 					for (let i = 0; i < products.length; i++) {
-						html += `<img style='height: 100px' src='app/webroot/img/${products[i].id}.jpg'><p>${products[i].count} * ${products[i].name.replaceAll('+', ' ')} - ${(Math.round(((products[i].count * parseFloat(products[i].price.toString().replace(/[^\.\d]*/gm, ''))) + Number.EPSILON) * 100) / 100)} ${JSON.parse(fields).Orders.currency}</p>`;
+						html += `
+							<img style='height: 100px' src='app/webroot/img/${products[i].id}.jpg'>
+							<p>
+								${products[i].count} *
+								${products[i].name.replaceAll('+', ' ')} -
+								${
+									(Math.round(
+										((
+											products[i].count *
+											parseFloat(products[i].price.toString().replace(/[^\.\d]*/gm, ''))) +
+											Number.EPSILON) * 100) / 100)
+								}
+								${JSON.parse(fields).Orders.currency}
+							</p>
+						`;
 					}
 				} else {
 					html = `<h4>${lang.no_order_products}🤔</h4>`;
 				}
                 Swal.fire({
-                    html: html += `<p>${JSON.parse(fields).Orders.order_points} ${JSON.parse(fields).Orders.order_points == 1 ? lang.order_points.slice(0, -1) : lang.order_points}</p>`,
+                    html: html += `
+						<p>
+							${JSON.parse(fields).Orders.order_points}
+							${JSON.parse(fields).Orders.order_points == 1 ?
+								lang.order_points.slice(0, -1) :
+								lang.order_points
+							}
+						</p>
+					`,
                     showConfirmButton: true
                 });
             });
@@ -44,6 +68,9 @@ $(function() {
 	$('input#priceMax').val(urlParams.get('priceMax'));
 	$('input#dateMin').val(urlParams.get('dateMin'));
 	$('input#dateMax').val(urlParams.get('dateMax'));
+	$('select#paymentMethod').val(urlParams.get('payment'));
+	$('select#currency').val(urlParams.get('currency'));
+	$('select#sortHistory').val(urlParams.get('sort'));
 
 	$("select#sortHistory").find("[value='" + urlParams.get("sort_by") + "']").attr("selected", true);
 
@@ -53,7 +80,13 @@ $(function() {
     });
 
     $("button#filter").click(function() {
-        location.replace(`${window.location.origin}${window.location.pathname}?priceMin=${$("input#priceMin").val()}&priceMax=${$("input#priceMax").val()}&dateMin=${$("input#dateMin").val()}&dateMax=${$("input#dateMax").val()}&payment=${$("select#paymentMethod").val()}&currency=${$("select#currency").val()}`);
+		urlParams.set('priceMin', $("input#priceMin").val());
+		urlParams.set('priceMax', $("input#priceMax").val());
+		urlParams.set('dateMin', $("input#dateMin").val());
+		urlParams.set('dateMax', $("input#dateMax").val());
+		urlParams.set('payment', $("select#paymentMethod").val());
+		urlParams.set('currency', $("select#currency").val());
+		location.replace("http://localhost/Shop/vendor/cakephp/cakephp/order-history?" + urlParams.toString());
     });
 
     function checkImage(id) {

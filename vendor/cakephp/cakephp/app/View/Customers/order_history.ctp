@@ -21,7 +21,25 @@
 				$date = explode(" ", $order["Orders"]["order_date"])[0];
 				$hours = explode(" ", $order["Orders"]["order_date"])[1];
 				$fields = urlencode(str_replace("&", "&amp;", $fields));
-				echo "<div class='order'><input type='hidden' value='{$ids}'/><input type='hidden' value='{$fields}' class='fields'/><span class='images'></span><span>".__($order["Orders"]["delivery_type"])."</span><span>".$date." <span class='d-md-inline d-none'>".substr($hours, 0, -3)."</span></span><span>{$order["Orders"]["total_price"]}</span><span>{$order["Orders"]["currency"]}</span><span><i class='fas fa-search' title='".__("preview")."'></i><a href='invoice?products=$fields' target='_blank' title='".__("invoice")."'><i class='fas fa-file-invoice'></i></a></span></div>";
+				echo "
+					<div class='order'>
+						<input type='hidden' value='{$ids}'/>
+						<input type='hidden' value='{$fields}' class='fields'/>
+						<span class='images'></span>
+						<span>".__($order["Orders"]["delivery_type"])."</span>
+						<span>".$date."
+							<span class='d-md-inline d-none'>".substr($hours, 0, -3)."</span>
+						</span>
+						<span>{$order["Orders"]["total_price"]}</span>
+						<span>{$order["Orders"]["currency"]}</span>
+						<span>
+							<i class='fas fa-search' title='".__("preview")."'></i>
+							<a href='invoice?products=$fields' target='_blank' title='".__("invoice")."'>
+								<i class='fas fa-file-invoice'></i>
+							</a>
+						</span>
+					</div>
+				";
 			}
 
 			if ($count > 1) {
@@ -49,12 +67,20 @@ echo "</div>";
 						<option value="date_desc">${!${''} = __("date_descending")}</option>
 					</select>
 					<div class="row">
-						<div class="col-lg-12 col-6 float-start"><input type="number" class="col-12" id="priceMin" placeholder="${!${''} = __("price_min")}"></div>
-						<div class="col-lg-12 col-6 float-start"><input type="number" class="col-12" id="priceMax" placeholder="${!${''} = __("price_max")}"></div>
+						<div class="col-lg-12 col-6 float-start">
+							<input type="number" class="col-12" id="priceMin" placeholder="${!${''} = __("price_min")}">
+						</div>
+						<div class="col-lg-12 col-6 float-start">
+							<input type="number" class="col-12" id="priceMax" placeholder="${!${''} = __("price_max")}">
+						</div>
 					</div>
 					<div class="row">
-						<div class="col-lg-12 col-6 float-start"><input type="text" class="col-12" id="dateMin" placeholder="${!${''} = __("date_min")}"></div>
-						<div class="col-lg-12 col-6 float-start"><input type="text" class="col-12" id="dateMax" placeholder="${!${''} = __("date_max")}"></div>
+						<div class="col-lg-12 col-6 float-start">
+							<input type="text" class="col-12" id="dateMin" placeholder="${!${''} = __("date_min")}">
+						</div>
+						<div class="col-lg-12 col-6 float-start">
+							<input type="text" class="col-12" id="dateMax" placeholder="${!${''} = __("date_max")}">
+						</div>
 					</div>
 					<p>${!${''} = __("payment_method")}</p>
 					<select id="paymentMethod">
@@ -74,7 +100,9 @@ echo "</div>";
 					</select>
 					<button id="filter" class="col-12">${!${''} = __("filter")}</button>
 				</div>
-			<div class="col-10 offset-1 text-center filters-dropdown" data-open="false"><i class="fas fa-angle-right mx-2 filter-dropdown-arrow"></i>${!${''} = __("filters")}</div>
+			<div class="col-10 offset-1 text-center filters-dropdown" data-open="false">
+				<i class="fas fa-angle-right mx-2 filter-dropdown-arrow"></i>${!${''} = __("filters")}
+			</div>
 		EOD;
     ?>
 

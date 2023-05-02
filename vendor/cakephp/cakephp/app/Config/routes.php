@@ -35,7 +35,6 @@
 	Router::connect("/return-products-count", array("controller" => "products", "action" => "returnProductsCount"));
 	Router::connect("/inventory", array("controller" => "products", "action" => "inventory"));
 	Router::connect("/order", array("controller" => "products", "action" => "order"));
-	Router::connect("/insert-order-to-db", array("controller" => "products", "action" => "insertOrderToDB"));
 	Router::connect("/delivery-form", array("controller" => "products", "action" => "deliveryForm"));
 	Router::connect("/add-products-from-delivery", array("controller" => "products", "action" => "addProductsFromDelivery"));
 	Router::connect("/remove-products-form", array("controller" => "products", "action" => "removeProductsForm"));
@@ -128,6 +127,8 @@
 	Router::connect("/add-timeshift", array("controller" => "customers", "action" => "addTimeshift"));
 	Router::connect("/get-employee-timeshifts", array("controller" => "customers", "action" => "getEmployeeTimeshifts"));
 	Router::connect("/payslips", array("controller" => "customers", "action" => "payslips"));
+	Router::connect("/payouts", array("controller" => "customers", "action" => "payouts"));
+	Router::connect("/handle-payouts", array("controller" => "customers", "action" => "handlePayouts"));
 
 	Router::connect("/send-email-from-customer", array("controller" => "mails", "action" => "sendEmailFromCustomer"));
 	Router::connect("/send-forgot-password-email", array("controller" => "mails", "action" => "sendForgotPasswordEmail"));

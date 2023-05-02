@@ -2,8 +2,6 @@ $(() => {
 
     let params = new URLSearchParams(window.location.search);
 
-    $("select#sort").find("[value='" + params.get("sort_by") + "']").attr("selected", true);
-    
     $("#sort").change(function() {
         params.set("sort_by", $(this).val());
         location.replace("http://localhost/Shop/vendor/cakephp/cakephp/invoices?" + params.toString());
@@ -13,6 +11,9 @@ $(() => {
 	$('input#priceMax').val(params.get('priceMax'));
 	$('input#dateMin').val(params.get('dateMin'));
 	$('input#dateMax').val(params.get('dateMax'));
+	$('select#paymentMethod').val(params.get('payment'));
+	$('select#currency').val(params.get('currency'));
+	$('select#sort').val(params.get('sort_by'));
 
     $("#filter").click(function () {
         params.set('priceMin', $("input#priceMin").val());

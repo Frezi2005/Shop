@@ -11,7 +11,12 @@ $(() => {
             e.preventDefault();
             Swal.fire({
                 icon: 'error',
-                text: `${lang.you_have_only} ${+$("#holidays span").text()} ${lang.days_left} ${getBusinessDatesCount(start, end)}!`,
+                text: `
+                	${lang.you_have_only}
+                	${+$("#holidays span").text()}
+                	${lang.days_left}
+                	${getBusinessDatesCount(start, end)}
+                !`,
                 showConfirmButton: true,
                 timer: 5000,
                 timerProgressBar: true

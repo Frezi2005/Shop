@@ -86,7 +86,15 @@ $(function() {
                     if (data.length > 0) {
                         $("div.searchResults").css("display", "block");
                         for (product of data) {
-                            $("div.innerSearchResults").append(`<a href='product?product_id=${product["Products"].id}'><p title='${product["Products"].name}'><img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/${(product["Products"].imgExists) ? product["Products"].id : 'noimg'}.jpg'/>${product["Products"].name}</p></a>`);
+                            $("div.innerSearchResults").append(
+								`<a href='product?product_id=${product["Products"].id}'>
+									<p title='${product["Products"].name}'>
+										<img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/
+											${(product["Products"].imgExists) ? product["Products"].id : 'noimg'}.jpg'/>
+										${product["Products"].name}
+									</p>
+								</a>
+							`);
                         }
                     } else {
                         $("div.searchResults").css("display", "none");
@@ -117,7 +125,12 @@ $(function() {
 
     $(".productOnMainPage").each(function() {
         var cur = $(this);
-        cur.prepend("<a href='" + cur.parent().attr("href") + "'><img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/"+cur.parent().attr("href").replace("product?product_id=", "")+".jpg" + "'/></a>")
+        cur.prepend(`
+			<a href='${cur.parent().attr("href")}'>
+				<img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/
+					${cur.parent().attr("href").replace("product?product_id=", "")}.jpg'/>
+			</a>
+		`)
     });
 
     if (window.history.length == 1) {
@@ -141,7 +154,9 @@ $(function() {
 
     $(".searchBtn").click(function() {
 		if ($("input.searchInput").val().length > 0) {
-			window.location.replace("http://localhost/Shop/vendor/cakephp/cakephp/products-list?q=" + $("input.searchInput").val());
+			window.location.replace(`http://localhost/Shop/vendor/cakephp/cakephp/products-list?
+			q=${$("input.searchInput").val()}
+		`);
 		}
 	});
 
@@ -179,7 +194,8 @@ $(function() {
     })
 
     $(".productOnMainPage .price").each(function() {
-        $(this).text((parseFloat($(this).text()) * localStorage.getItem("rate")).toFixed(2) + ' ' + localStorage.getItem("currency"));
+        $(this).text((parseFloat($(this).text()) * localStorage.getItem("rate")).toFixed(2) + ' ' +
+			localStorage.getItem("currency"));
     });
 
     var closed = true;

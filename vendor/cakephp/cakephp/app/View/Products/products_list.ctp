@@ -7,7 +7,9 @@
     <span id="breadcrumbs">
         <?php
             if (isset($categoryName)) {
-                echo "<a href='products-list?category={$categoryId}'>".__($categoryName)."</a> <i class='fas fa-angle-right'></i> <a href='products-list?sub_category={$subCategoryId}'>".__($subCategoryName)."</a>"; 
+                echo "<a href='products-list?category={$categoryId}'>".__($categoryName).
+					"</a> <i class='fas fa-angle-right'></i> <a href='products-list?sub_category={$subCategoryId}'>".
+					__($subCategoryName)."</a>";
             }
         ?>
     </span>
@@ -30,8 +32,10 @@
                     <option value="name_desc">$nameDescending</option>
                 </select>
                 <div class="buttons offset-1 col-5 float-start">
-                    <button data-page-change="-1" id='page-prev' class="page-change col-lg-5 col-12 float-start">$prev</button>
-                    <button data-page-change="1" id='page-next' class="page-change offset-xl-2 offset-lg-1 col-lg-5 col-12 mt-lg-0 mt-2 float-start">$next</button>
+                    <button data-page-change="-1" id='page-prev'
+                    class="page-change col-lg-5 col-12 float-start">$prev</button>
+                    <button data-page-change="1" id='page-next'
+                    class="page-change offset-xl-2 offset-lg-1 col-lg-5 col-12 mt-lg-0 mt-2 float-start">$next</button>
                 </div>
             </div>
             PAG;
@@ -44,7 +48,23 @@
     <?php
         $index = $isCategory ? "ProductsJoin" : "Product";
         foreach ($products as $product) {
-            echo "<div class=\"product\"><a href=\"product?product_id=".$product[$index]["id"]."\" class='col-6'><div class=\"image\"><img src=\"app/webroot/img/".$product[$index]["id"].".jpg\"/></div><div class=\"namePriceAmount col-6\"><div class=\"first col-11\"><a href=\"product?product_id=".$product[$index]["id"]."\">".$product[$index]["name"]."</a></div><div class=\"details col-11\"><span class=\"price col-12\">".$product[$index]["price"]." USD</span><span class=\"count col-12\">".__("available").": ".$product[$index]["product_count"]."</span></div></div></a></div>";
+            echo "
+			<div class=\"product\">
+				<a href=\"product?product_id=".$product[$index]["id"]."\" class='col-6'>
+					<div class=\"image\">
+						<img src=\"app/webroot/img/".$product[$index]["id"].".jpg\"/>
+					</div>
+					<div class=\"namePriceAmount col-6\">
+						<div class=\"first col-11\">
+							<a href=\"product?product_id=".$product[$index]["id"]."\">".$product[$index]["name"]."</a>
+						</div>
+						<div class=\"details col-11\">
+							<span class=\"price col-12\">".$product[$index]["price"]." USD</span>
+							<span class=\"count col-12\">".__("available").": ".$product[$index]["product_count"]."</span>
+						</div>
+					</div>
+				</a>
+			</div>";
         }
         echo "<input type=\"hidden\" id=\"subCategoryId\" value=\"$subCategoryId\">";
     ?>

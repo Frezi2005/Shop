@@ -28,8 +28,8 @@
 			activity, having its seat or place of business on
 			territory of the Republic of Poland, having an account on the Purchasing Platform at the address
 			www.alphatech.com. </li>
-		<li> 2. Organizer - AlphaTech sp.z o.o. with headquarters at ul. Marii Konopnickiej 13, 43-100 Tychy, entered into the
-			number
+		<li> 2. Organizer - AlphaTech sp.z o.o. with headquarters at ul. Marii Konopnickiej 13, 43-100 Tychy, entered
+			into the number
 			to the register of entrepreneurs of the National Court Register by the District Court for the Capital City
 			of
 			Tychy in Tychy, 12th Commercial Division of the National Court Register, under

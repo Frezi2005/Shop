@@ -18,7 +18,8 @@
 </div>
 <?php
     if ($this->Session->read("userNotFound")) {
-        echo "<script>Swal.fire({icon: \"error\",text: '".__("user_not_found")."',showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
+        echo "<script>Swal.fire({icon: \"error\",text: '".__("user_not_found").
+			"',showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
         $_SESSION["userNotFound"] = false;
     }
 ?>

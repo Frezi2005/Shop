@@ -15,7 +15,8 @@
                 echo "<h3 class='mb-3'>".$gift["Gifts"]["name"]."</h3>";
                 echo "<p>".__("price").": ". "<b>".$gift["Gifts"]["points"]."</b></p>";
                 echo "<p>".__("quantity").": ". "<b>".$gift["Gifts"]["amount"]."</b></p>";
-                echo "<button data-gift-id='".$gift["Gifts"]["id"]."' class='buyGift btn btn-outline-dark my-2'>".__("buy_for_points")."</button>";
+                echo "<button data-gift-id='".$gift["Gifts"]["id"]."' class='buyGift btn btn-outline-dark my-2'>".
+					__("buy_for_points")."</button>";
                 echo "</div>";
                 echo "</div>";
             }

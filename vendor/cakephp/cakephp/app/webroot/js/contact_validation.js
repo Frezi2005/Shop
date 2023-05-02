@@ -7,7 +7,10 @@ $(() => {
             text += lang.recaptcha_error;
         }
 
-        if ($("input#contactFormFrom").val().length == 0 || !/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/.test($("input#contactFormFrom").val())) {
+        if (
+			$("input#contactFormFrom").val().length == 0 ||
+			!/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/.test($("input#contactFormFrom").val())
+		) {
             e.preventDefault();
             text += lang.email_error;
         }

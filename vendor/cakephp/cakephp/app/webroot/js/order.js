@@ -21,9 +21,11 @@ $(function() {
 		history.back();
 	}
 
-    $('#sum').text(lang.sum + ': ' + (Math.round((sum + Number.EPSILON) * 100) / 100) + ' ' + localStorage.getItem("currency"));
+    $('#sum').text(lang.sum + ': ' + (Math.round((sum + Number.EPSILON) * 100) / 100) + ' ' +
+		localStorage.getItem("currency"));
     $('input#orderFormCart').val(JSON.stringify(cart));
     $('input#orderFormPrice').val(sum);
+	$('input#orderFormExchangeRate').val(localStorage.getItem('rate'));
 
     $('input[type=submit]').click(function() {
         if (isCart) {
@@ -86,7 +88,11 @@ $(function() {
 				var numberRe = /^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/gmi;
 				var cvvRe = /\d{3}/gmi;
 
-				if (!numberRe.test($('#cardNumber').val().replace(/\s/gm, '')) || !cvvRe.test($('#cvv').val()) || !/[a-z]{2,}/gmi.test($('#name').val()) || !/[a-z]{3,}/gmi.test($('#surname').val())) {
+				if (
+					!numberRe.test($('#cardNumber').val().replace(/\s/gm, '')) ||
+					!cvvRe.test($('#cvv').val()) || !/[a-z]{2,}/gmi.test($('#name').val()) ||
+					!/[a-z]{3,}/gmi.test($('#surname').val())
+				) {
 					e.preventDefault();
 					Swal.fire({
 						title: 'Oops...',
@@ -148,7 +154,24 @@ $(function() {
                 break;
             case 'bank_transfer':
                 $('div#paymentInfo').css('display', 'block');
-                $('div#info').html(`<div id='imgGrid'><img src='app/webroot/img/ing.jpg'/><img src='app/webroot/img/mbank.jpg'/><img src='app/webroot/img/pko.jpg'/><img src='app/webroot/img/santander.jpg'/><img src='app/webroot/img/credit_agricole.jpg'/><img src='app/webroot/img/millenium.jpg'/><img src='app/webroot/img/bnp_paribas.jpg'/><img src='app/webroot/img/deutsche_bank.jpg'/><img src='app/webroot/img/toyota_bank.jpg'/><img src='app/webroot/img/getin_bank.jpg'/><img src='app/webroot/img/alior_bank.jpg'/><img src='app/webroot/img/noble_bank.jpg'/><img src='app/webroot/img/pko_sa.jpg'/><img src='app/webroot/img/bos_bank.jpg'/></div>`);
+                $('div#info').html(`
+					<div id='imgGrid'>
+						<img src='app/webroot/img/ing.jpg'/>
+						<img src='app/webroot/img/mbank.jpg'/>
+						<img src='app/webroot/img/pko.jpg'/>
+						<img src='app/webroot/img/santander.jpg'/>
+						<img src='app/webroot/img/credit_agricole.jpg'/>
+						<img src='app/webroot/img/millenium.jpg'/>
+						<img src='app/webroot/img/bnp_paribas.jpg'/>
+						<img src='app/webroot/img/deutsche_bank.jpg'/>
+						<img src='app/webroot/img/toyota_bank.jpg'/>
+						<img src='app/webroot/img/getin_bank.jpg'/>
+						<img src='app/webroot/img/alior_bank.jpg'/>
+						<img src='app/webroot/img/noble_bank.jpg'/>
+						<img src='app/webroot/img/pko_sa.jpg'/>
+						<img src='app/webroot/img/bos_bank.jpg'/>
+					</div>
+				`);
                 break;
             case '':
                 $('div#paymentInfo').css('display', 'none');

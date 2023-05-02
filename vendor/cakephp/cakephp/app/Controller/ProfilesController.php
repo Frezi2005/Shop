@@ -83,8 +83,15 @@ class ProfilesController extends AppController {
 		}
 	}
 
+	//Profile page
 	public function profile() {
-		$user = $this->User->find("first", array("conditions" => array("id" => $this->Session->read("userUUID"))))["User"];
+		$user = $this->User->find("first",
+			array(
+				"conditions" => array(
+					"id" => $this->Session->read("userUUID")
+				)
+			)
+		)["User"];
 		$this->set("name", $user["name"]);
 		$this->set("surname", $user["surname"]);
 		$this->set("email", $user["email"]);
@@ -92,6 +99,7 @@ class ProfilesController extends AppController {
 		$this->set("total_points", $user["total_points"]);
 	}
 
+	//Function for updating users address
 	public function changeAddress() {
 		$this->loadModel("Users");
 		$this->autoRender = false;
@@ -108,6 +116,7 @@ class ProfilesController extends AppController {
 		$this->redirect("/");
 	}
 
+	//Change address page
 	public function changeAddressForm() {
 		$countries = ["pol" => [], "eng" => []];
 		foreach (json_decode(file_get_contents("../webroot/files/countries.json"), true) as $country) {
@@ -117,22 +126,51 @@ class ProfilesController extends AppController {
 		ksort($countries[$this->Session->read("language") ?? "eng"]);
 		$countries["pol"] = array_merge(["Polska" => "Polska"], $countries["pol"]);
 		$countries["eng"] = array_merge(["Poland" => "Poland"], $countries["eng"]);
-		$countries[$this->Session->read("language") ?? "eng"] = array("" => __("choose")) + $countries[$this->Session->read("language") ?? "eng"];
+		$countries[$this->Session->read("language") ?? "eng"] =
+			array("" => __("choose")) +
+			$countries[$this->Session->read("language") ?? "eng"];
 		$this->set("countries", $countries[$this->Session->read("language") ?? "eng"]);
 	}
 
+	//Change email page
 	public function changeEmailForm() {
 		$this->loadModel("User");
-		$this->set("email", $this->User->find("first", array("conditions" => array("id" => $this->Session->read("userUUID")), "fields" => array("email")))["User"]["email"]);
+		$this->set("email", $this->User->find("first",
+			array(
+				"conditions" => array(
+					"id" => $this->Session->read("userUUID")
+				),
+				"fields" => array(
+					"email"
+				)
+			)
+		)["User"]["email"]);
 	}
 
+	//Function for sending an email with a link to change it
 	public function sendChangeEmail() {
 		$this->autoRender = false;
 		$this->loadModel("User");
 		$this->SecurityUtils = $this->Components->load("PasswordHashing");
 		$changeEmailData = $this->request["data"]["changeEmailForm"];
-		$user = $this->User->find("first", array("conditions" => array("email" => $changeEmailData["currentEmail"], "password" => $this->SecurityUtils->encrypt($changeEmailData["password"]))));
-		$this->User->updateAll(array("email_change_creation_date" => "'" . date("Y-m-d H:i:s") . "'", "email_change_expiration_date" => "'" . date("Y-m-d H:i:s", strtotime("+1 hours")) . "'", "new_email" => "'" . $changeEmailData["newEmail"] . "'"), array("password" => $this->SecurityUtils->encrypt($changeEmailData["password"])));
+		$user = $this->User->find("first",
+			array(
+				"conditions" => array(
+					"email" => $changeEmailData["currentEmail"],
+					"password" => $this->SecurityUtils->encrypt($changeEmailData["password"])
+				)
+			)
+		);
+		$this->User->updateAll(
+			array(
+				"email_change_creation_date" => "'" . date("Y-m-d H:i:s") . "'",
+				"email_change_expiration_date" => "'" . date("Y-m-d H:i:s", strtotime("+1 hours")) . "'",
+				"new_email" => "'" . $changeEmailData["newEmail"] . "'"
+			),
+			array(
+				"password" => $this->SecurityUtils->encrypt($changeEmailData["password"])
+			)
+		);
 		$this->Session->write("data", $changeEmailData);
 		if ($user) {
 
@@ -192,6 +230,7 @@ class ProfilesController extends AppController {
 		}
 	}
 
+	//Function for changing users email
 	public function changeEmail() {
 		$this->loadModel("Users");
 		$user = $this->Users->find("first", array("conditions" => array("id" => $this->params["url"]["id"])));
@@ -199,6 +238,7 @@ class ProfilesController extends AppController {
 		die;
 	}
 
+	//Change password page
 	public function changePasswordForm() {
 
 	}

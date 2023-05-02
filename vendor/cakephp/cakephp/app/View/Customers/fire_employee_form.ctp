@@ -10,7 +10,8 @@
     echo $this->Form->end(__("fire"));
 
     if ($this->Session->read("noticeExistsError")) {
-        echo "<script>Swal.fire({icon: 'error',text: '".__("employee_already_fire")."',showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
+        echo "<script>Swal.fire({icon: 'error',text: '".__("employee_already_fire").
+			"',showConfirmButton: true,timer: 5000,timerProgressBar: true});</script>";
         $_SESSION["noticeExistsError"] = false;
     }
 

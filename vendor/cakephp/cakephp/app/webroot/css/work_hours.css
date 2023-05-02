@@ -1,8 +1,14 @@
+#calendar {
+	border-collapse: collapse !important;
+	margin: 20px;
+}
+
 #calendar th {
-    text-align: center;
+    text-align: left;
     border-bottom: 2px solid black;
-    padding: 20px;
     background-color: rgb(189, 189, 189);
+	border: 1px solid #bbbbbb !important;
+	padding: 10px 0 10px 5px;
 }
 
 .other-month {
@@ -14,12 +20,31 @@
     transition: all .1s ease-in-out;
     height: 120px;
     width: 150px;
+	border: 1px solid #bbbbbb !important;
 }
 
-.event {
-    background-color: #7cf0ff !important;
+#calendar td span {
+	display: inline-block;
+	width: 100%;
+	margin: 0 5px;
+	text-align: left;
+	font-size: 20px;
 }
 
 #calendar td:hover {
     background-color: rgb(156, 156, 156) !important;
+}
+
+#selects {
+	height: 25px !important;
+	padding: 0 !important;
+}
+
+#content > div select {
+	padding: 15px;
+	border-radius: 0;
+	border: 0;
+	outline: none;
+	text-transform: capitalize;
+	font-weight: bold;
 }

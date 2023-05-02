@@ -11,11 +11,29 @@
     <?php
 
         echo $this->Form->create("contactForm", array("url" => "/save-message"));
-        echo $this->Form->input("messageType", array("options" => array("Opinion" => __("opinion"), "Complaint" => __("complaint"), "Cooperative offer" => __("cooperative_offer"), "Media contact" => __("media_contact"), "Other" => __("other")), "label" => __("message_type")));
+        echo $this->Form->input("messageType",
+			array(
+				"options" => array(
+					"Opinion" => __("opinion"),
+					"Complaint" => __("complaint"),
+					"Cooperative offer" => __("cooperative_offer"),
+					"Media contact" => __("media_contact"),
+					"Other" => __("other")
+				),
+				"label" => __("message_type")
+			)
+		);
         if (!isset($_SESSION["loggedIn"])) {
             echo $this->Form->input("from", array("type" => "email", "label" => false, "placeholder" => __("from")));
         }
-        echo $this->Form->input("message", array("type" => "textarea", "label" => false, "placeholder" => __("message"), "value" => isset($template) ? $template : ""));
+        echo $this->Form->input("message",
+			array(
+				"type" => "textarea",
+				"label" => false,
+				"placeholder" => __("message"),
+				"value" => isset($template) ? $template : ""
+			)
+		);
         echo "<div class='g-recaptcha' data-sitekey='6LfVFXUfAAAAAElmtQKXvt_3HFLJvNE2Mi4UR3IY'></div>";
         echo $this->Form->end(__("send"));
     ?>
