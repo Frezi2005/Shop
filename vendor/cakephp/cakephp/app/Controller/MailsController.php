@@ -190,7 +190,7 @@ class MailsController extends AppController {
 									\"email\": \"kamil.wan05@gmail.com\"
 								}
 							],
-							\"subject\": \"Forgot password from AlphaTech\"
+							\"subject\": \"" . __("forgot_password_subject") . "\"
 						}
 					],
 					\"from\": {
@@ -261,7 +261,7 @@ class MailsController extends AppController {
 								\"email\": \"" . $data["email"] . "\"
 							}
 						],
-						\"subject\": \"Reply from AlphaTech\"
+						\"subject\": \"" . __("reply_subject") . "\"
 					}
 				],
 				\"from\": {
@@ -318,7 +318,7 @@ class MailsController extends AppController {
 				<img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/$id.jpg' style='width: 70%;
 					margin: auto; display: block'/>
 				<h3 style='text-align: center'>$name</h3>
-				<p style='text-align: center'>Now only " . (floatval($price) * 0.8) . " USD!</p>
+				<p style='text-align: center'>" . __("now_only") . " " . (floatval($price) * 0.8) . " USD!</p>
 				<p style='text-align: center'>
 					<a href='https://twitter.com/AlphaTech0' target='_blank' style='color: black; text-decoration: none'>
 						<i class='fab fa-twitter'></i> Twitter

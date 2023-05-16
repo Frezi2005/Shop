@@ -1,3 +1,4 @@
+//Function for counting business days between 2 dates
 function getBusinessDatesCount(startDate, endDate) {
     let count = 0;
     const curDate = new Date(startDate.getTime());
@@ -15,6 +16,7 @@ $(function() {
     //     window.history.back();
     // })
 
+	//Rodo handling
     $("button#accept").click(() => {
         $.get("create-rodo-cookie");
         $("div#rodo").css("display", "none");
@@ -26,6 +28,7 @@ $(function() {
         $("div#rodo").css("display", "block");
     }
 
+	//Showing subcategories on categories hover
     $(".categoriesList > .category").each(function() {
         var categoriesDiv = $(this).children().next();
         $(this).mouseover(function() {
@@ -61,6 +64,7 @@ $(function() {
         changeLanguage(languageSelect.val());
     })
 
+	//Function for changing the language
     function changeLanguage(lang) {
         $.ajax({
             url: "http://localhost/Shop/vendor/cakephp/cakephp/change-language?lang=" + lang,
@@ -86,6 +90,7 @@ $(function() {
                     if (data.length > 0) {
                         $("div.searchResults").css("display", "block");
                         for (product of data) {
+							console.log(product);
                             $("div.innerSearchResults").append(
 								`<a href='product?product_id=${product["Products"].id}'>
 									<p title='${product["Products"].name}'>

@@ -74,5 +74,12 @@ const lang = {
 	successfully: "successfully",
 	holiday_couldnt_be: "Unfortunately the holiday couldn't be",
 	gift_bought: "Gift has been bought!",
-	gift_error: "Something went wrong when buying the gift, please try again later!"
+	gift_error: "Something went wrong when buying the gift, please try again later!",
+	inc: "Income",
+	exp: "Expense",
+	hours_sum: "Total hours",
+	no_employees_hours: "There are no employee's timeshifts in this month and year",
+	not_enoguh_funds: "Not enough funds in budget!",
+	valid_hours: "Please input valid hours!",
+	timeshift_in_other_month: "You can't add a timeshift in other month."
 }

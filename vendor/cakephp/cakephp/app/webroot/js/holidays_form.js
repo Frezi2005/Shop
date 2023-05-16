@@ -1,4 +1,5 @@
 $(() => {
+	//Validating holidays form
     $("form").submit((e) => {
         let arr = [];
         $("form .date select").each(function () {

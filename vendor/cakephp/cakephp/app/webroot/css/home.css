@@ -116,6 +116,16 @@ div.contact a:first-of-type::after {
     left: 30px;
     font-size: 25px;
     color: white;
+	width: 450px;
+}
+
+.slider-img {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 100px;
+	mix-blend-mode: multiply;
+	height: 80%;
 }
 
 .line-through {

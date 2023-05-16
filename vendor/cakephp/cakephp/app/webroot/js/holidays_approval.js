@@ -2,6 +2,7 @@ $(() => {
     var pending = JSON.parse($("#pending").val().replaceAll("'", "\""));
     var html = '';
 
+    //Formatting array
     for (const [key, value] of Object.entries(pending)) {
         value.Holiday.name = value.User.name;
         value.Holiday.surname = value.User.surname;
@@ -13,6 +14,7 @@ $(() => {
     pending = Object.values(pending);
     var holiday;
 
+    //Creating table html
     for (let i = 0; i < pending.length; i++) {
         holiday = pending[i].Holiday;
         html += `
@@ -49,6 +51,7 @@ $(() => {
         </tbody>
     `);
 
+    //Processing aprroving and rejecting holidays
     $("#table button").click(function() {
         var ids = $(this).parent().siblings().last().children();
         var holidayId = ids.first().text();

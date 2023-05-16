@@ -1,0 +1,37 @@
+#budget {
+    background-color: #fff;
+}
+
+#years {
+    padding: 15px;
+    outline: none;
+    border: none;
+    border-radius: none;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+h3, #years {
+	height: 60px;
+	line-height: 60px;
+}
+
+div.pagination > * {
+	height: 50px;
+	line-height: 50px;
+	padding: 5px;
+	cursor: pointer;
+	font-size: 25px;
+}
+
+i {
+	cursor: pointer;
+}
+
+div.pagination .bold {
+	font-weight: bold;
+}
+
+.page-prev, .page-next {
+	cursor: pointer;
+}

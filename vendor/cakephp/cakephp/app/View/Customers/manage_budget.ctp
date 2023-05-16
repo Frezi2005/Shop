@@ -1,8 +1,10 @@
 <?php
 
     echo $this->Html->script("manage_budget");
+    echo $this->Html->css("manage_budget");
 
-    echo "<select id='years'>";
+	echo '<div class="col-7 m-5 float-start">';
+    echo "<select id='years' class='float-start'>";
     echo "<option value='' selected='selected'>---</option>";
     foreach ($years as $year) {
         echo "<option value='".$year."'>".$year."</option>";
@@ -11,7 +13,25 @@
 
 ?>
 
-<p id="sum"></p>
-<table id="budget">
-
+<h3 class="mx-3 float-start">
+    <p>
+		<?=__("budget");?>:
+		<span id="sum"></span>
+	</p>
+</h3>
+<table id="budget" class="table">
+    <thead>
+        <tr>
+            <td><?=__("type");?></td>
+            <td><?=__("price");?></td>
+            <td><?=__("date");?></td>
+            <td><?=__("where_from");?></td>
+        </tr>
+    </thead>
+    <tbody></tbody>
 </table>
+<div class="pagination">
+
+</div>
+</div>
+

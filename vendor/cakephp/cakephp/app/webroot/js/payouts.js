@@ -11,7 +11,7 @@ $(() => {
 				if (result == -1) {
 					Swal.fire({
 						icon: 'error',
-						text: 'Not enough funds in budget!'
+						text: lang.not_enoguh_funds
 					});
 				} else {
 					location.reload();

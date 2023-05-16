@@ -19,12 +19,14 @@
 			echo $this->Html->script("https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js");
 			echo $this->Html->css("layout");
 			echo $this->Html->script("product");
+			echo $this->Html->script("date");
 			echo $this->Html->script("main");
 			echo $this->Html->script("config");
 
 			echo $this->fetch("meta");
 			echo $this->fetch("css");
 			echo $this->fetch("script");
+			echo "<title>" . $this->fetch('title') . "</title>";
 		?>
 	</head>
 	<body>

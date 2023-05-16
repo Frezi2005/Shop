@@ -1,4 +1,5 @@
 $(() => {
+    //Accepting the contract extend request
     $("#table button.accept").click(function() {
         let userId = $(this).parent().siblings().first().text();
         let extendDate = $(this).siblings().last().val();
@@ -12,6 +13,7 @@ $(() => {
         });
     })
 
+    //Denying the contract extend request
     $("#table button.deny").click(function() {
         let userId = $(this).parent().siblings().first().text();
         $.ajax({

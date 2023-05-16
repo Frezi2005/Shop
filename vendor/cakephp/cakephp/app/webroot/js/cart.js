@@ -1,9 +1,11 @@
 $(function() {
+	//Checking if any items are in the cart, if not then go back to previous page
     var cart = (JSON.parse(localStorage.getItem("cart")) == null) ?
 		history.back() :
 		JSON.parse(localStorage.getItem("cart"));
     var sum = 0;
 
+	//Generating products html in cart
     for (var i = 0; i < cart.length; i++) {
         sum += parseInt(cart[i].count) * parseFloat(cart[i].price);
         $(".products").append(`
@@ -26,12 +28,14 @@ $(function() {
         history.back();
     }
 
+	//Appending products costs sum to html
     $(".products").append(`
 		<span class="m-2">
-			Total: ${Math.round((sum + Number.EPSILON) * 100) / 100} ${localStorage.getItem("currency")}
+			${lang.total}: ${Math.round((sum + Number.EPSILON) * 100) / 100} ${localStorage.getItem("currency")}
 		</span>
 	`);
 
+	//Remove product and order products functionality
     $(".trashIcon").each(function () {
         $(this).click(function () {
             removeFromCart($(this).data("product-id"));

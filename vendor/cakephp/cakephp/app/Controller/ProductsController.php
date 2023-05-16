@@ -444,6 +444,7 @@ class ProductsController extends AppController {
 			}
 		}
 
+		asort($formatted);
 		$this->set("subCategoriesIds", $formatted);
 	}
 
@@ -694,5 +695,17 @@ class ProductsController extends AppController {
 				"id" => $data["id"]
 			)
 		);
+	}
+
+	public function discountRandomProducts() {
+		$this->autoRender = false;
+		$this->Product->updateAll(
+			array(
+				"discount_value" => 0
+			)
+		);
+		foreach (array_rand($this->Product->find("list", array("fields" => "id")), 3) as $id) {
+			$this->Product->updateAll(array("discount_value" => 25), array("id" => $id));
+		}
 	}
 }

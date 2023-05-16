@@ -2,6 +2,7 @@ const PRICE_LIMIT = 1000000;
 const MAX_DIFF_PRODUCTS = 20;
 
 $(function (){
+    //Converting price based on currency
 	$("#productPrice").text((parseFloat($("#productPrice").text().replace(/[^\d]*/, '')) * localStorage
 		.getItem("rate")).toFixed(2) + ' ' + localStorage.getItem("currency"));
 	$("#productTaxPrice").text((parseFloat($("#productTaxPrice").text().replace(/[^\d]*/, '')) * localStorage
@@ -22,6 +23,7 @@ $(function (){
 		);
     });
 
+    //Buy now functionality
     $("#buyNowBtn").click(function() {
 		var amount = $("input#productAmount").val();
         if (parseInt(amount) * parseFloat($("#productTaxPrice").text().replace(/[^\d]*/, '')) > PRICE_LIMIT) {
@@ -75,6 +77,7 @@ $(function (){
 
     $("select#sortProductsList").find("[value='" + urlParams.get("sort_by") + "']").attr("selected", true);
 
+    //Pagination
     $("button.page-change").click(function() {
         urlParams.set("page", (page + parseInt($(this).data("page-change")) > 0 ? page +
 			parseInt($(this).data("page-change")) : 1))
@@ -92,20 +95,15 @@ $(function (){
     });
 
     if ($("#productName").length > 0) {
-        $("div#productImg").append(`
-			<img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/
-				${checkImage($("#productId").val())}.jpg'/>
-		`)
-    }
-
-    function checkImage(id) {
-        var img = new Image();
-        img.src = `http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/${id}.jpg`;
-        return (img.height != 0) ? id : 'noimg';
+        $("div#productImg").append(
+			`<img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/${$("#productId").val()}.jpg' `+
+			`onerror="this.src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/noimg.jpg'/>"`
+		)
     }
 
     displayAmount(items);
     displayItemsInCartGUI(items);
+    //Translating descriptions
 	if ($('select.languageSelect').find(":selected").val() == 'pol') {
 		$.ajax({
 			url: `https://api-free.deepl.com/v2/translate?

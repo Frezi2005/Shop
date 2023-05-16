@@ -1,5 +1,6 @@
 $(() => {
 
+	//Handling of sortin and filters default values
     let params = new URLSearchParams(window.location.search);
 
     $("#sort").change(function() {
@@ -13,7 +14,7 @@ $(() => {
 	$('input#dateMax').val(params.get('dateMax'));
 	$('select#paymentMethod').val(params.get('payment'));
 	$('select#currency').val(params.get('currency'));
-	$('select#sort').val(params.get('sort_by'));
+	$('select#sort').val(params.get('sort_by') ?? 'order_date-desc');
 
     $("#filter").click(function () {
         params.set('priceMin', $("input#priceMin").val());

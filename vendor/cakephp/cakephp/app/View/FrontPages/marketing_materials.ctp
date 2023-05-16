@@ -5,4 +5,4 @@
 
 ?>
 <img width="400px" id="flyer" src="../cakephp/app/webroot/img/flyer-<?=$this->Session->read("language");?>.png" alt="">
-<button class="btn btn-primary">Pobierz</button>
+<button class="btn btn-primary"><?=__("download");?></button>

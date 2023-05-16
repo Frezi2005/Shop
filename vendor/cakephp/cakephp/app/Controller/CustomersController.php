@@ -374,24 +374,18 @@ class CustomersController extends AppController {
 				break;
 		}
 
-		$price = (isset($this->params["url"]["priceMin"])
-			&& isset($this->params["url"]["priceMax"])
-			&& !empty($this->params["url"]["priceMin"])
+		$price = (!empty($this->params["url"]["priceMin"])
 			&& !empty($this->params["url"]["priceMax"])) ?
 			"total_price BETWEEN {$this->params["url"]["priceMin"]} AND {$this->params["url"]["priceMax"]}"
 			: "total_price LIKE '%'";
-		$date = (isset($this->params["url"]["dateMin"])
-			&& isset($this->params["url"]["dateMax"])
-			&& !empty($this->params["url"]["dateMin"])
+		$date = (!empty($this->params["url"]["dateMin"])
 			&& !empty($this->params["url"]["dateMax"])) ?
 			"order_date BETWEEN '{$this->params["url"]["dateMin"]}' AND '{$this->params["url"]["dateMax"]}'"
 			: "order_date LIKE '%'";
-		$payment = (isset($this->params["url"]["payment"])
-			&& !empty($this->params["url"]["payment"])) ?
+		$payment = (!empty($this->params["url"]["payment"])) ?
 			"payment_method = '{$this->params["url"]["payment"]}'"
 			: "payment_method LIKE '%'";
-		$currency = (isset($this->params["url"]["currency"])
-			&& !empty($this->params["url"]["currency"])) ?
+		$currency = (!empty($this->params["url"]["currency"])) ?
 			"currency = '{$this->params["url"]["currency"]}'"
 			: "currency LIKE '%'";
 		$perPage = 10;
@@ -413,20 +407,21 @@ class CustomersController extends AppController {
 		$this->set("orders", $orders);
 		$this->set("count",
 			ceil(
-				count($this->Orders->find("all",
+				count(
+					$this->Orders->find("all",
 					array(
-						"conditions" => array(
-							"user_id" => $this->Session->read("userUUID"),
-							"order_date > now() - INTERVAL 2 year",
-							$price,
-							$payment,
-							$currency,
-							$date
-						),
-						"order" => array($sort_by)
+							"conditions" => array(
+								"user_id" => $this->Session->read("userUUID"),
+								"order_date > now() - INTERVAL 2 year",
+								$price,
+								$payment,
+								$currency,
+								$date
+							),
+							"order" => array($sort_by)
+						)
 					)
-				)
-			) / $perPage
+				) / $perPage
 			)
 		);
 		$this->set("page", $page);
@@ -541,9 +536,13 @@ class CustomersController extends AppController {
 						),
 					),
 				),
-				"conditions" => array("MONTH(Timeshift.date)" => date("m")),
-				"group" => "Timeshift.user_id",
-				"fields" => array("Timeshift.user_id", "SUM(Timeshift.hours) as hours", "User.name", "User.surname"),
+				"conditions" => array(
+					"MONTH(Timeshift.date)" => !empty($this->params["url"]["month"]) ?
+						$this->params["url"]["month"] : intval(date("m")),
+					"YEAR(Timeshift.date)" => !empty($this->params["url"]["year"]) ?
+						$this->params["url"]["year"] : intval(date("Y"))
+				),
+				"fields" => array("Timeshift.user_id", "Timeshift.start", "Timeshift.end", "User.name", "User.surname"),
 			)
 		);
 		$this->set("employees", $timeshifts);
@@ -936,10 +935,16 @@ class CustomersController extends AppController {
 	//Site responsible for managing and viewing the budget
 	public function manageBudget() {
 		$this->loadModel("Budget");
-		$years = $this->Budget->find("all", array("group" => "year", "fields" => array("year")));
+		$years = $this->Budget->find("all",
+			array(
+				"group" => "year",
+				"fields" => array("year"),
+			)
+		);
 		for ($i = 0; $i < count($years); $i++) {
 			$years[$i] = $years[$i]["Budget"]["year"];
 		}
+
 		$this->set("years", $years);
 	}
 
@@ -947,6 +952,8 @@ class CustomersController extends AppController {
 	public function getBudget() {
 		$this->autoRender = false;
 		$this->loadModel("Budget");
+		$page = (isset($this->params["url"]["page"])) ? $this->params["url"]["page"] : 1;
+
 		return json_encode([
 			$this->BudgetComponent->getBudgetIncome($this->params['url']['year']),
 			$this->Budget->find("all",
@@ -962,8 +969,30 @@ class CustomersController extends AppController {
 					),
 					"order" => array(
 						"date DESC"
-					)
+					),
+					"limit" => 14,
+					"offset" => (intval($page) - 1) * 14
 				)
+			),
+			ceil(
+				count(
+					$this->Budget->find("all",
+						array(
+							"conditions" => array(
+								"year" => $this->params["url"]["year"]
+							),
+							"fields" => array(
+								"ROUND(amount, 2) as amount",
+								"type",
+								"date",
+								"from"
+							),
+							"order" => array(
+								"date DESC"
+							),
+						)
+					),
+				) / 14
 			)
 		]);
 	}

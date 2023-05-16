@@ -113,6 +113,21 @@ class FrontPagesController extends AppController {
 				)
 			)
 		);
+		$this->set("discountedProducts",
+			$this->Product->find("all",
+				array(
+					"fields" => array(
+						"id",
+						"name",
+						"price",
+						"discount_value"
+					),
+					"conditions" => array(
+						"discount_value > 0"
+					)
+				)
+			)
+		);
 	}
 
 
@@ -226,6 +241,18 @@ class FrontPagesController extends AppController {
 	//Gifts catalog page
 	public function giftsCatalog() {
 		$this->loadModel("Gifts");
+		$this->loadModel("User");
+		$this->set("userPoints",
+			$this->User->find(
+				"first",
+				array(
+					"conditions" => array(
+						"id" => $this->Session->read("userUUID")
+					),
+					"fields" => "total_points"
+				)
+			)["User"]["total_points"]
+		);
 		$this->set("gifts", $this->Gifts->find("all"));
 	}
 

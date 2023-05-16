@@ -1,4 +1,5 @@
 $(function() {
+	//Delivery form validation
     $("form").submit(function(e) {
         if ($("#deliveryFormProducts :selected").length == 0) {
             Swal.fire({
@@ -8,7 +9,7 @@ $(function() {
                 confirmButtonText: 'Ok'
             });
             e.preventDefault();
-        } 
+        }
 
         if (+$("#deliveryFormCount").val() == 0) {
             Swal.fire({

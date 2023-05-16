@@ -193,7 +193,7 @@ class ProfilesController extends AppController {
 									\"email\": \"kamil.wan05@gmail.com\"
 								}
 							],
-							\"subject\": \"Change email\"
+							\"subject\": \"" . __("change_email_subject") . "\"
 						}
 					],
 					\"from\": {

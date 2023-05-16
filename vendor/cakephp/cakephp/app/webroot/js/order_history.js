@@ -4,9 +4,8 @@ $(function() {
         var ids = JSON.parse($(this).find("input[type=hidden]").val());
         var html = "";
         for (var i = 0; i < ids.length; i++) {
-            html += `
-				<img class='${(i > 0) ? 'd-lg-inline d-none' : ''}' src="app/webroot/img/${checkImage(ids[i])}.jpg"/>
-			`;
+            html += ` <img class='${(i > 0) ? 'd-lg-inline d-none' : ''}' src="app/webroot/img/${ids[i]}.jpg" `+
+				`onerror="this.src='app/webroot/img/noimg.jpg'"/>`;
         }
         $(this).find("span.images").append(html);
         $(this).find(".fa-search").each(function() {
@@ -17,7 +16,8 @@ $(function() {
 				if (products.length) {
 					for (let i = 0; i < products.length; i++) {
 						html += `
-							<img style='height: 100px' src='app/webroot/img/${products[i].id}.jpg'>
+							<img style='height: 100px' src='app/webroot/img/${products[i].id}.jpg' `+
+							`onerror="this.src='app/webroot/img/noimg.jpg'">
 							<p>
 								${products[i].count} *
 								${products[i].name.replaceAll('+', ' ')} -
@@ -70,7 +70,7 @@ $(function() {
 	$('input#dateMax').val(urlParams.get('dateMax'));
 	$('select#paymentMethod').val(urlParams.get('payment'));
 	$('select#currency').val(urlParams.get('currency'));
-	$('select#sortHistory').val(urlParams.get('sort'));
+	$('select#sortHistory').val(urlParams.get('sort') ?? 'date_desc');
 
 	$("select#sortHistory").find("[value='" + urlParams.get("sort_by") + "']").attr("selected", true);
 
@@ -88,12 +88,6 @@ $(function() {
 		urlParams.set('currency', $("select#currency").val());
 		location.replace("http://localhost/Shop/vendor/cakephp/cakephp/order-history?" + urlParams.toString());
     });
-
-    function checkImage(id) {
-        var img = new Image();
-        img.src = `http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/${id}.jpg`;
-        return (img.height != 0) ? id : 'noimg';
-    }
 
 	$(".filter-dropdown-arrow").click(function() {
 		if ($("#filters").data("open")) {

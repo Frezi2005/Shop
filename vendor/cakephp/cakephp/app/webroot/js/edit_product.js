@@ -1,4 +1,5 @@
 $(function() {
+	//Generating inputs for all correct fields
     function generateInputs(p_id, product) {
         let html = '';
         let { id, shop_id, tax, image, product_count, ...rest } = product;
@@ -14,6 +15,7 @@ $(function() {
         generateInputs($(this).val(), $(this).find(":selected").data("product"));
     });
 
+	//Handling editing the specific product
     $("#editProduct").click(function() {
         const inputs = $("#inputs input");
         $.ajax({

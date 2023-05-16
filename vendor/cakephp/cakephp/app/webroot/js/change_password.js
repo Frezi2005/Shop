@@ -1,6 +1,7 @@
 $(() => {
     var form = $("#changePasswordFormChangePasswordFormForm");
 
+	//Change password form validation
     form.submit(function(e) {
         var text = '';
         var password = $("#changePasswordFormNewPassword").val();

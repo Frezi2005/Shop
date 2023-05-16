@@ -1,4 +1,5 @@
 $(function() {
+	//Login form validation
     $("#loginUserFormLoginPageForm").submit(function(e) {
         var email = $("#loginUserFormEmail").val();
         var password = $("#loginUserFormPassword").val();

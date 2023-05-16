@@ -1,6 +1,7 @@
 $(() => {
     var params = new URLSearchParams(window.location.search);
 
+	//Filtering and pagination support
     $("#filter").click(function() {
         params.set("type", encodeURI(JSON.stringify($("#messageType").val())))
 		params.set("page", 1);
@@ -11,7 +12,7 @@ $(() => {
 	var urlParams = new URLSearchParams(queryString);
 	var page = parseInt((urlParams.get("page") != null) ? urlParams.get("page") : 1);
 
-	$("select#sort").find("[value='" + urlParams.get("sort_by") + "']").attr("selected", true);
+	$("select#sort").val(urlParams.get("sort_by") ?? 'date_desc');
 
 	$("select#sort").change(function() {
 		urlParams.set('sort_by', $(this).val())

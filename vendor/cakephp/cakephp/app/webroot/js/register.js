@@ -1,6 +1,7 @@
 $(function() {
     var form = $("form#registerUserFormRegisterPageForm");
 
+    //Registration validation
     form.submit(function(e) {
         var name = $("input#registerUserFormName").val();
         var surname = $("input#registerUserFormSurname").val();

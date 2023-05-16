@@ -44,6 +44,7 @@
 	Router::connect("/invoice", array("controller" => "products", "action" => "invoice"));
 	Router::connect("/edit-product-form", array("controller" => "products", "action" => "editProductForm"));
 	Router::connect("/edit-product", array("controller" => "products", "action" => "editProduct"));
+	Router::connect("/discount-random-products", array("controller" => "products", "action" => "discountRandomProducts"));
 
 	Router::connect("/profile", array("controller" => "profiles", "action" => "profile"));
 	Router::connect("/change-email-form", array("controller" => "profiles", "action" => "changeEmailForm"));

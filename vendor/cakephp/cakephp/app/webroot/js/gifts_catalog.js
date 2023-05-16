@@ -1,5 +1,5 @@
 $(() => {
-
+	//Handling buying gifts
     $("button.buyGift").each(function() {
         $(this).click(function() {
             const giftId = $(this).data("gift-id");

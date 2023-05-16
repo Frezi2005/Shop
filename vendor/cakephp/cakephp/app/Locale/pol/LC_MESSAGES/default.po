@@ -981,3 +981,36 @@ msgstr "Wypłaty"
 
 msgid "not_enough_funds"
 msgstr "Nie ma wystarczająco funduszy!"
+
+msgid "date"
+msgstr "Data"
+
+msgid "where_from"
+msgstr "Źródło pochodzenia"
+
+msgid "budget"
+msgstr "Budżet"
+
+msgid "forgot_password_subject"
+msgstr "Zapomniałem hasła z AlphaTech"
+
+msgid "reply_subject"
+msgstr "Odpowiedź na wiadomość z AlphaTech"
+
+msgid "special_offer_subject"
+msgstr "Oferta specjalna z AlphaTech!"
+
+msgid "change_email_subject"
+msgstr "Zmiana emaila z AlphaTech"
+
+msgid "payout"
+msgstr "Wypłać"
+
+msgid "new_contract_date"
+msgstr "Nowa data końca umowy"
+
+msgid "user_with_password_not_found"
+msgstr "Użytkownik z dokładnie takim hasłem nie został znaleziony w naszej bazie danych!"
+
+msgid "passwords_dont_match"
+msgstr "Hasła się nie zgadzają!"

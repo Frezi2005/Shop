@@ -22,5 +22,5 @@
 //			<input type='checkbox' data-user-id='{$employee["User"]["id"]}' " . ($payed ? "disabled" : "") . "/></p>";
 		debug($employee);
 	}
-	echo "<button id='pay'>Payout</button>";
+	echo "<button id='pay'>" . __("payout") . "</button>";
 ?>

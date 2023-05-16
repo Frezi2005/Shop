@@ -29,6 +29,7 @@ $(() => {
 
         var text = '';
 
+        //Form validation
         if ($("#addProductFormImage").get(0).files.length === 0) {
             e.preventDefault();
             text += lang.no_file_selected;
@@ -53,7 +54,5 @@ $(() => {
                 timerProgressBar: true
             });
         }
-
     });
-
 });

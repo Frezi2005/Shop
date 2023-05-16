@@ -74,6 +74,13 @@ const lang = {
 	successfully: "pomyślnie",
 	holiday_couldnt_be: "Niestety nie daliśmy rady urlopu",
 	gift_bought: "Prezent został kupiony!",
-	gift_error: "Nie udało się kupić prezentu, proszę spróbować później!"
+	gift_error: "Nie udało się kupić prezentu, proszę spróbować później!",
+	inc: "Wpływ",
+	exp: "Koszt",
+	hours_sum: "Suma godzin",
+	no_employees_hours: "Nie ma żadnych godzin pracy na wybrany miesiąc i rok",
+	not_enoguh_funds: "Nie ma wystarczająco środków w budżecie!",
+	valid_hours: "Proszę wpisać prawidłowe godziny!",
+	timeshift_in_other_month: "Nie możesz dodać zmiany w innym miesiącu."
 }
 

@@ -1,4 +1,5 @@
 $(function() {
+    //Deleting account
     $("#delAccount").click(function(e) {
         e.preventDefault();
         Swal.fire({

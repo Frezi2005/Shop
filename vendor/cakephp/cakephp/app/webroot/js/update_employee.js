@@ -1,4 +1,5 @@
 $(function() {
+    //Generating all necesarry inputs
     function generateInputs(id, employee) {
         let html = `<input type="hidden" value="${employee.id}"/>`;
         delete employee.id;
@@ -13,6 +14,7 @@ $(function() {
         generateInputs($(this).val(), $(this).find(":selected").data("employee"));
     });
 
+    //Updating employee data
     $("#updateEmployee").click(function() {
         const inputs = $("#inputs input");
         console.log(inputs);

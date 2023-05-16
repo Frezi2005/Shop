@@ -4,6 +4,7 @@ $(() => {
 
     let userId = $("#userId").val();
 
+	//Generating month and year selects
     for (let i = 0; i < 12; i++) {
         months += `
 			<option value='${String(i + 1).padStart(2, '0')}' ${new Date().getMonth() == i ?
@@ -13,6 +14,27 @@ $(() => {
 		`;
     }
 
+	var language = $('#lang').val();
+	var weekDaysArr = {
+		'eng': [
+			'Mon.',
+			'Tue.',
+			'Wed.',
+			'Thu.',
+			'Fri.',
+			'Sat.',
+			'Sun.'
+		],
+		'pol': [
+			'Pon.',
+			'Wt.',
+			'Śr.',
+			'Czw.',
+			'Pt.',
+			'Sob.',
+			'Niedz.'
+		]
+	}
 	for (let i = new Date().getFullYear() - 5; i <= new Date().getFullYear() + 5; i++) {
 		years += `<option value='${i}' ${new Date().getFullYear() == i ? 'selected=\'selected\'' : ''}'>${i}</option>`;
 	}
@@ -20,30 +42,17 @@ $(() => {
 	$("#months").append(months);
 	$("#years").append(years);
 
-	$('#hours').html(`<h3>Suma godzin: ${generateCalendar($("#years").val(), $("#months").val())}</h3>`);
+	$('#hours').html(`<h3>${lang.hours_sum}: ${generateCalendar($("#years").val(), $("#months").val())}</h3>`);
 
     $("#months, #years").change(function() {
-        $('#hours').html(`<h3>Suma godzin: ${generateCalendar($("#years").val(), $("#months").val())}</h3>`);
+        $('#hours').html(`<h3>${lang.hours_sum}: ${generateCalendar($("#years").val(), $("#months").val())}</h3>`);
     });
 
-	function timeToUnix(s) {
-		return moment(`${moment().format('YYYY-MM-DD')} ${s.replaceAll('-', '').padStart(5, '0')}:00`).format("X")
-	}
-
-	function differenceBetweenTwoHours(s, e) {
-		let hours = ~~((new Date((typeof e === 'string' ? timeToUnix(e) : e) * 1000) -
-			new Date(((typeof s === 'string' ? timeToUnix(s) : s) * 1000) -
-			((((typeof s === 'string' ? timeToUnix(s) : s) * 1000) > ((typeof e === 'string' ? timeToUnix(e) : e) *
-			1000)) ? 1000 * 60 * 60 * 24 : 0))) / 1000);
-		return {
-			hours: ~~(hours / 60 / 60),
-			minutes: (hours - ~~(hours / 60 / 60) * 3600) / 60 ,
-			whole: hours / 60 / 60
-		};
-	}
-
+	//Function responsible for generating the calendar html and events. Also it adds click listeners for each of the cells
 	function generateCalendar(year, month) {
+		let hourSymbol = language == 'eng' ? 'h' : 'g'
         let date = new Date(`${year}-${month}-01`);
+		//Generating first and last day to have correct days at the start and end of the month
         let firstDay = new Date(date.getFullYear(), date.getMonth());
         let lastDay = new Date(new Date(
 				date.getFullYear(),
@@ -54,8 +63,8 @@ $(() => {
         lastDay = new Date(date.setDate(lastDay.getDate() + 7 - lastDay.getDay()));
         let weeks = getWeeksBetween(firstDay, lastDay);
         let days;
-		console.log(`${firstDay.getFullYear()}-${String(firstDay.getMonth() + 1).padStart(2, '0')}-${String(firstDay.getDate()).padStart(2, '0')}`);
 
+		//Getting current users timeshifts
         $.ajax({
             url: 'http://localhost/Shop/vendor/cakephp/cakephp/get-employee-timeshifts'+
                 `?start_date=${firstDay.getFullYear()}-${String(firstDay.getMonth() + 1).padStart(2, '0')}-`+
@@ -71,6 +80,7 @@ $(() => {
 
 		let sum = 0;
 
+		//Generating and displaying days with timeshifts
         for (let i = 0; i < weeks.length; i++) {
             html += '<tr>';
             for (let j = 0; j < weeks[i].length; j++) {
@@ -87,7 +97,7 @@ $(() => {
 					+timeshift_date?.Timeshift.end
 				);
 				if (timeshift_date && new Date(timeshift_date.Timeshift.date).getMonth() + 1 == month) {
-					sum += +timeshift_date.Timeshift.hours;
+					sum += difference.whole * 60 * 60;
 				}
 				html += `
 					<td class='border align-baseline text-center
@@ -98,7 +108,7 @@ $(() => {
 							${new Date(weeks[i][j].date).getDate()}
 						</span><br/>
 						${timeshift_date ?
-							'<h2>'+difference.hours+'h '+difference.minutes+'m</h2><h6>'+start+' - '+end+'</h6>'
+							'<h2>'+difference.hours+hourSymbol+' '+difference.minutes+'m</h2><h6>'+start+' - '+end+'</h6>'
 							: ''}
 					</td>
 				`;
@@ -106,10 +116,18 @@ $(() => {
             html += '</tr>';
         }
 
+		var weekDays = '';
+
+		for (let i = 0; i < 7; i++) {
+			weekDays += `<th>${weekDaysArr[language][i]}</th>`;
+		}
+
+		$('#calendar #weekDays').html(weekDays);
         $("#calendar tbody").html(html);
 
+		//Adding a timeshift
         $("#calendar td:not(#selects)").click(function() {
-            let date = $(this).text();
+            let date = `${year}-${month}-${$(this).text().replace(/\s/g, "").padStart(2, '0')}`;
 			if (
 				new Date(date).getMonth() == new Date().getMonth() &&
 				new Date(date).getFullYear() == new Date().getFullYear()
@@ -142,7 +160,7 @@ $(() => {
 						Swal.fire({
 							icon: 'error',
 							title: 'Oops...',
-							text: 'Please input valid hours.'
+							text: lang.valid_hours
 						});
 					} else {
 						$.ajax({
@@ -162,14 +180,15 @@ $(() => {
 				Swal.fire({
 					icon: 'error',
 					title: 'Oops...',
-					text: 'You can\'t add a timeshift in other month.'
+					text: lang.timeshift_in_other_month
 				});
 			}
         });
 
-		return `${~~(sum / 60 / 60)}h ${(sum - ~~(sum / 60 / 60) * 3600) / 60}m`;
+		return `${~~(sum / 60 / 60)}${hourSymbol} ${(sum - ~~(sum / 60 / 60) * 3600) / 60}m`;
     }
 
+	//Function responsible for returning all weeks between 2 dates
     function getWeeksBetween(start, end) {
         let weeks = [];
         let dates = [];

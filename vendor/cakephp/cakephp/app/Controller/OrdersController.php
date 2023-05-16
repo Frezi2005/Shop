@@ -249,29 +249,23 @@ class OrdersController extends AppController {
 					),
 					"conditions" => array(
 						(
-							isset($params["priceMin"]) &&
-							isset($params["priceMax"]) &&
 							!empty($params["priceMin"]) &&
 							!empty($params["priceMax"])
 						) ?
 							"total_price BETWEEN " . $params["priceMin"] . " AND " . $params["priceMax"] :
 							"total_price LIKE '%'",
 						(
-							isset($params["dateMin"]) &&
-							isset($params["dateMax"]) &&
 							!empty($params["dateMin"]) &&
 							!empty($params["dateMax"])
 						) ?
 							"order_date BETWEEN '" . $params["dateMin"] . "' AND '" . $params["dateMax"] . "'":
 							"order_date LIKE '%'",
 						(
-							isset($params["payment"]) &&
 							!empty($params["payment"])
 						) ?
 							"payment_method = '" . $params["payment"] . "'" :
 							"payment_method LIKE '%'",
 						(
-							isset($params["currency"]) &&
 							!empty($params["currency"])
 						) ?
 							"currency = '" . $params["currency"] . "'" :

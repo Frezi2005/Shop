@@ -1,4 +1,5 @@
 $(() => {
+    //Granting admin privileges to specific employee
     $("#grantAdmin").click(function() {
         $.ajax({
             url: `http://localhost/Shop/vendor/cakephp/cakephp/grant-admin-privileges?
@@ -18,6 +19,7 @@ $(() => {
         });
     });
 
+    //Deleting specific customer
     $("#deleteCustomer").click(function() {
         $.ajax({
             url: `http://localhost/Shop/vendor/cakephp/cakephp/remove-customer?id=${$("select#customersSelect").val()}`,

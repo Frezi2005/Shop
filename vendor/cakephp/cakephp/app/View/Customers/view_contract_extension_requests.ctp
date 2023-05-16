@@ -12,7 +12,7 @@
                         echo "<td>".$contract["ContractExtend"]["user_id"]."</td>";
                         echo "<td>".($contract["ContractExtend"]["extend"] ? "true" : "false")."</td>";
                         echo "<td><button class='btn btn-success accept' data-method='approve'>".__("submit").
-							"</button><input type='date' placeholder='Nowa data końca umowy'/></td>";
+							"</button><input type='date' placeholder='" . __("new_contract_date") . "'/></td>";
                         echo "<td><button class='btn btn-primary deny' data-method='reject'>".__("reject").
 							"</button></td>";
                     echo "</tr>";

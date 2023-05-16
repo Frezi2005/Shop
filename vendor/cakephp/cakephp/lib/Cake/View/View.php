@@ -540,7 +540,10 @@ class View extends CakeObject {
 			}
 		}
 		$this->viewVars['title_for_layout'] = $title;
-		$this->Blocks->set('title', $title);
+		$re = '/[a-z\-]*(?=(\/|\?|))/';
+		$str = str_replace("/Shop/vendor/cakephp/cakephp/", "", $this->request->here());
+		preg_match($re, $str, $matches, PREG_OFFSET_CAPTURE, 0);
+		$this->Blocks->set('title', ucfirst(str_replace("-", " ", $matches[0][0])));
 
 		$this->_currentType = static::TYPE_LAYOUT;
 		$this->Blocks->set('content', $this->_render($layoutFileName));

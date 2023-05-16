@@ -975,3 +975,36 @@ msgstr "Payouts"
 
 msgid "not_enough_funds"
 msgstr "Not enough funds in budget!"
+
+msgid "date"
+msgstr "Date"
+
+msgid "where_from"
+msgstr "source"
+
+msgid "budget"
+msgstr "Budget"
+
+msgid "forgot_password_subject"
+msgstr "Forgot password from AlphaTech"
+
+msgid "reply_subject"
+msgstr "Reply from AlphaTech"
+
+msgid "special_offer_subject"
+msgstr "Special offer from AlphaTech!"
+
+msgid "change_email_subject"
+msgstr "Change email from AlphaTech"
+
+msgid "payout"
+msgstr "Payout"
+
+msgid "new_contract_date"
+msgstr "The new contract end date"
+
+msgid "user_with_password_not_found"
+msgstr "User with that exact password has not been found in our database!"
+
+msgid "passwords_dont_match"
+msgstr "Passwords don't match!"

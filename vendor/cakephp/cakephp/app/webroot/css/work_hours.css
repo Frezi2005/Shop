@@ -1,13 +1,14 @@
 #calendar {
 	border-collapse: collapse !important;
 	margin: 20px;
+	border: 1px solid #bbbbbb;
 }
 
 #calendar th {
-    text-align: left;
-    border-bottom: 2px solid black;
-    background-color: rgb(189, 189, 189);
-	border: 1px solid #bbbbbb !important;
+    text-align: center;
+    background-color: #97cbff;
+	border-top: 1px solid #bbbbbb;
+	border-bottom: 1px solid #bbbbbb;
 	padding: 10px 0 10px 5px;
 }
 
@@ -32,7 +33,7 @@
 }
 
 #calendar td:hover {
-    background-color: rgb(156, 156, 156) !important;
+    background-color: #b0ffb8 !important;
 }
 
 #selects {
@@ -40,11 +41,17 @@
 	padding: 0 !important;
 }
 
+#selects select {
+	background-color: #e6e6e6;
+}
+
 #content > div select {
-	padding: 15px;
+	padding: 10px;
 	border-radius: 0;
 	border: 0;
 	outline: none;
 	text-transform: capitalize;
 	font-weight: bold;
+	text-align: center;
+	font-size: 25px;
 }
