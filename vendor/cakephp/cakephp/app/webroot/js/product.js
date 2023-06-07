@@ -19,7 +19,7 @@ $(function (){
 			$("input#productAmount").val(),
 			$("#productId").val(),
 			$("#productName").text(),
-			$("#productPrice").text()
+			$("#productTaxPrice").text()
 		);
     });
 
@@ -106,11 +106,10 @@ $(function (){
     //Translating descriptions
 	if ($('select.languageSelect').find(":selected").val() == 'pol') {
 		$.ajax({
-			url: `https://api-free.deepl.com/v2/translate?
-				auth_key=0ab1f56e-efa3-908b-f6c3-aef8ec8eab6f:fx&
-				text=${$(`p#description`).text()}&
-				target_lang=PL
-			`,
+			url: `https://api-free.deepl.com/v2/translate?`+
+				`auth_key=0ab1f56e-efa3-908b-f6c3-aef8ec8eab6f:fx&`+
+				`text=${$(`p#description`).text()}&`+
+				`target_lang=PL`,
 			success: function (result) {
 				$('p#description').text(result.translations[0].text);
 			}
@@ -131,6 +130,10 @@ function greyOutAddButtons() {
 
 var items = (JSON.parse(localStorage.getItem("cart")) == null) ?
 	[] : JSON.parse(localStorage.getItem("cart"));
+for (let item of items) {
+	item.price = parseFloat((item.originalPrice * localStorage.getItem("rate")).toFixed(2));
+}
+localStorage.setItem("cart", JSON.stringify(items));
 function updateCart(amount, id, name, price, add = true, modal = true) {
     if (items[items.findIndex(x => x.id == id)]) {
         if (
@@ -172,6 +175,7 @@ function updateCart(amount, id, name, price, add = true, modal = true) {
             items.push({
                     id: id,
                     name: name,
+					originalPrice: parseFloat($('#originalPriceWithTax').val()),
                     price: parseFloat(price.replace(/[^\d]*/, '')),
                     count: parseInt(amount),
                     max_amount: parseInt($("#productAmount").attr("max"))
@@ -195,6 +199,7 @@ function updateCart(amount, id, name, price, add = true, modal = true) {
                 items.push({
                         id: id,
                         name: name,
+						originalPrice: parseFloat($('#originalPriceWithTax').val()),
                         price: parseFloat(price.replace(/[^\d]*/, '')),
                         count: parseInt(amount),
                         max_amount: parseInt($("#productAmount").attr("max"))
@@ -287,7 +292,7 @@ function displayItemsInCartGUI(cart) {
 						<i class='fas fa-minus substractProduct'></i>
 						<i class='fas fa-plus addProduct'></i>
 						<span class='price'>
-							${(cart[i].price).toFixed(2)}
+							${Number(cart[i].price).toFixed(2)}
 							${localStorage.getItem("currency")}
 						</span>
 						<i class='fas fa-trash-alt deleteProduct' data-product-id='${cart[i].id}'></i>

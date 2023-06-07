@@ -4,7 +4,7 @@
 ?>
 
 <div class="productsList offset-1 col-xxl-6 col-xl-6 col-lg-5 col-10 float-start">
-    <span id="breadcrumbs">
+    <span id="breadcrumbs" class="mb-3">
         <?php
             if (isset($categoryName)) {
                 echo "<a href='products-list?category={$categoryId}'>".__($categoryName).

@@ -52,6 +52,11 @@ class FrontPagesController extends AppController {
 				);
 			}
 		}
+//		$this->CheckPrivileges = $this->Components->load("CheckPrivileges");
+//		var_dump($this->CheckPrivileges->check($_SERVER["REQUEST_URI"], $this->Session->read("userUUID")));
+//		if (!$this->CheckPrivileges->check($_SERVER["REQUEST_URI"], $this->Session->read("userUUID"))) {
+//			throw new ForbiddenException();
+//		}
 	}
 
 /**

@@ -91,6 +91,9 @@
 	Router::connect("/list-employees", array("controller" => "customers", "action" => "listEmployees"));
 	Router::connect("/admin-panel", array("controller" => "customers", "action" => "adminPanel"));
 	Router::connect("/grant-admin-privileges", array("controller" => "customers", "action" => "grantAdminPrivileges"));
+	Router::connect("/revoke-admin-privileges", array("controller" => "customers", "action" => "revokeAdminPrivileges"));
+	Router::connect("/grant-admin-privileges-form", array("controller" => "customers", "action" => "grantAdminPrivilegesForm"));
+	Router::connect("/revoke-admin-privileges-form", array("controller" => "customers", "action" => "revokeAdminPrivilegesForm"));
 	Router::connect("/order-history", array("controller" => "customers", "action" => "orderHistory"));
 	Router::connect("/delete-account", array("controller" => "customers", "action" => "deleteAccount"));
 	Router::connect("/remove-employee", array("controller" => "customers", "action" => "removeEmployee"));

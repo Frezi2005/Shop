@@ -2,6 +2,7 @@
 	echo $this->Html->script("monitor_employees_worktime");
 	echo $this->Html->css("monitor_employees_worktime");
 
+	echo "<div class='float-start offset-1 col-xxl-6 col-xl-6 col-lg-5 col-10 my-3'>";
 	echo "<h3 id='date'>" . date("F Y") . "</h3>";
 	echo "<input type='hidden' id='lang' value='" . $_SESSION["language"] . "'/>";
 	echo "<select id='year'>";
@@ -17,5 +18,8 @@
 	echo "</select>";
 	echo "<input type='hidden' id='employees' value='" . json_encode($employees) . "'/>";
 	echo "<div id='timeshifts'></div>";
+	echo "<div id='timeshifts'></div>";
+	echo "<div class='pagination'></div>";
+	echo "</div>";
 
 ?>

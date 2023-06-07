@@ -3,7 +3,7 @@
     echo $this->Html->script("manage_budget");
     echo $this->Html->css("manage_budget");
 
-	echo '<div class="col-7 m-5 float-start">';
+	echo '<div class="offset-1 col-xxl-6 col-xl-6 col-lg-5 col-10 my-5 float-start">';
     echo "<select id='years' class='float-start'>";
     echo "<option value='' selected='selected'>---</option>";
     foreach ($years as $year) {

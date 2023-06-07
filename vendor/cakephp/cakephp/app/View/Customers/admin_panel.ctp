@@ -39,21 +39,27 @@
             echo "<a href='holidays-approval-form'>".__("holidays_approval_form")."</a>";
         }
 
+		if ($privileges["remove-products-form"]) {
+			echo "<a href='remove-products-form'>".__("remove_products_form")."</a>";
+		}
+
+		if ($privileges["edit-product-form"]) {
+			echo "<a href='edit-product-form'>".__("edit_product_form")."</a>";
+		}
+
+		if ($privileges["grant-admin-privileges-form"]) {
+			echo "<a href='grant-admin-privileges-form'>".__("grant_admin")."</a>";
+		}
+
+		if ($privileges["revoke-admin-privileges-form"]) {
+			echo "<a href='revoke-admin-privileges-form'>".__("revoke_admin")."</a>";
+		}
+
         echo "<a href='invoices'>".__("invoices")."</a>";
         echo "<a href='view-messages'>".__("view_messages")."</a>";
 
         echo "</div>";
         echo "<div class='col'>";
-
-        if ($privileges["admin-privileges"] && count($employees) > 0) {
-            echo "<select id='usersSelect'>";
-            for ($i = 0; $i < count($employees); $i++) {
-                echo "<option value='".$employees[$i]["User"]["id"]."'>".$employees[$i]["User"]["name"]." ".
-					$employees[$i]["User"]["surname"].": ".$employees[$i]["User"]["email"]."</option>";
-            }
-            echo "</select>";
-            echo "<button id='grantAdmin'>".__("grant_admin")."</button>";
-        }
 
         if ($privileges["remove-customer"] && count($customers) > 0) {
             echo "<select id='customersSelect'>";

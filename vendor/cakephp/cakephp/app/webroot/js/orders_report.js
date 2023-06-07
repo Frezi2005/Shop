@@ -10,25 +10,25 @@ $(function() {
 
         var text = '';
 
-        // if (!price_valiadtion(priceMin)) {
-        //     text += lang.price_min_error;
-        //     e.preventDefault();
-        // }
+        if (!price_valiadtion(priceMin)) {
+            text += lang.price_min_error;
+            e.preventDefault();
+        }
 
-        // if (!price_valiadtion(priceMax)) {
-        //     text += lang.price_max_error;
-        //     e.preventDefault();
-        // }
+        if (!price_valiadtion(priceMax)) {
+            text += lang.price_max_error;
+            e.preventDefault();
+        }
 
-        // if (!date_validation(dateMin)) {
-        //     text += lang.date_min_error;
-        //     e.preventDefault();
-        // }
+        if (!date_validation(dateMin)) {
+            text += lang.date_min_error;
+            e.preventDefault();
+        }
 
-        // if (!date_validation(dateMax)) {
-        //     text += lang.date_max_error;
-        //     e.preventDefault();
-        // }
+        if (!date_validation(dateMax)) {
+            text += lang.date_max_error;
+            e.preventDefault();
+        }
 
         if (text != '') {
             Swal.fire({
@@ -38,14 +38,14 @@ $(function() {
                 confirmButtonText: 'Ok'
             });
         } else {
-            $.getJSON(`http://localhost/Shop/vendor/cakephp/cakephp/get-orders?
-            	priceMin=${priceMin}&
-            	priceMax=${priceMax}&
-            	dateMin=${dateMin}&
-            	dateMax=${dateMax}&
-            	payment=${payment}&
-            	currency=${currency}
-            `, function(data) {
+            $.getJSON(`http://localhost/Shop/vendor/cakephp/cakephp/get-orders?`+
+            	`priceMin=${priceMin}&`+
+            	`priceMax=${priceMax}&`+
+            	`dateMin=${dateMin}&`+
+            	`dateMax=${dateMax}&`+
+            	`payment=${payment}&`+
+            	`currency=${currency}`,
+			function(data) {
                 if (data.length) {
                     var file = Object.keys(data[0].Orders).toString().replaceAll(",", ";") + "%0A";
                     for (var i = 0; i < data.length; i++) {

@@ -632,7 +632,7 @@ msgid "index"
 msgstr "L.p."
 
 msgid "product_name"
-msgstr "Nazwa produktu"
+msgstr "Produkt"
 
 msgid "product_status"
 msgstr "Status produktu"
@@ -1014,3 +1014,189 @@ msgstr "Użytkownik z dokładnie takim hasłem nie został znaleziony w naszej b
 
 msgid "passwords_dont_match"
 msgstr "Hasła się nie zgadzają!"
+
+msgid "remove_products_form"
+msgstr "Usuwanie produktów"
+
+msgid "edit_product_form"
+msgstr "Edycja produktu"
+
+msgid "no_contract_extension_requests"
+msgstr "Nie ma wniosków o przedłużenie umowy"
+
+msgid "revoke_admin"
+msgstr "Odstąp uprawnienia administratora"
+
+msgid "admin_panel"
+msgstr "Panel administratora"
+
+msgid "extend_contract_request_form"
+msgstr "Formularz wniosku o przedłużenie umowy"
+
+msgid "fire_employee_form"
+msgstr "Formularz zwalniania pracownika"
+
+msgid "get_contract"
+msgstr "Pobierz kontrakt"
+
+msgid "grant_admin_privileges_form"
+msgstr "Formularz nadawania uprawnień administratora"
+
+msgid "holidays_approval_form"
+msgstr "Formularz zatwierdzenia urlopu"
+
+msgid "holidays_form"
+msgstr "Formularz urlopowy"
+
+msgid "list_employees"
+msgstr "Lista pracowników"
+
+msgid "manage_budget"
+msgstr "Zarządzanie budżetem"
+
+msgid "monitor_employees_worktime"
+msgstr "Monitorowanie czas pracy pracowników"
+
+msgid "notice_form"
+msgstr "Formularz zawiadomienia"
+
+msgid "order_history"
+msgstr "Historia zamówień"
+
+msgid "orders_report"
+msgstr "Raport zamówień"
+
+msgid "payouts"
+msgstr "Wypłaty"
+
+msgid "payslips"
+msgstr "Paski wypłat"
+
+msgid "revoke_admin_privileges_form"
+msgstr "Formularz cofnięcia uprawnień administratora"
+
+msgid "settings"
+msgstr "Ustawienia"
+
+msgid "sick_leave_form"
+msgstr "Formularz zwolnienia chorobowego"
+
+msgid "update_employee_page"
+msgstr "Zaktualizuj dane pracownika"
+
+msgid "update_password_page"
+msgstr "Zmień hasło"
+
+msgid "view_contract_extension_requests"
+msgstr "Zobacz prośby o przedłużenie umowy"
+
+msgid "view_holidays"
+msgstr "lista urlopów"
+
+msgid "view_sick_leave"
+msgstr "Lista zwolnień lekarskich"
+
+msgid "work_hours"
+msgstr "Godziny pracy"
+
+msgid "about_us"
+msgstr "O nas"
+
+msgid "ask_for_account"
+msgstr "Poprosze o konto"
+
+msgid "contact"
+msgstr "Kontakt"
+
+msgid "cooperation"
+msgstr "Kooperacja"
+
+msgid "forgot_password_page"
+msgstr "Zapomniałem hasła"
+
+msgid "gifts_catalog"
+msgstr "Katalog prezentów"
+
+msgid "home"
+msgstr "Strona główna"
+
+msgid "login_page"
+msgstr "Strona logowania"
+
+msgid "marketing_materials"
+msgstr "Materiały marketingowe"
+
+msgid "partnership"
+msgstr "Współpraca"
+
+msgid "privacy_policy_and_cookies"
+msgstr "Polityka prywatności i ciasteczka"
+
+msgid "register_employee_page"
+msgstr "Zarejestruj pracownika"
+
+msgid "register_page"
+msgstr "Strona rejestracji"
+
+msgid "regulations_of_loyalty_program"
+msgstr "Regulamin programu lojalnościowego"
+
+msgid "remove_employee_page"
+msgstr "Usuń pracownika"
+
+msgid "terms_of_service"
+msgstr "Warunki usługi"
+
+msgid "reply_to_message"
+msgstr "Odpowiedz na wiadomość"
+
+msgid "view_messages"
+msgstr "Przeglądaj wiadomości"
+
+msgid "invoices"
+msgstr "Faktury"
+
+msgid "add_product_to_database"
+msgstr "Dodaj produkt do bazy"
+
+msgid "cart"
+msgstr "Koszyk"
+
+msgid "delivery_form"
+msgstr "Formularz dostawy"
+
+msgid "edit_product_form"
+msgstr "Edytuj produkt"
+
+msgid "inventory"
+msgstr "Spis"
+
+msgid "invoice"
+msgstr "Faktura"
+
+msgid "order"
+msgstr "Zamówienie"
+
+msgid "product"
+msgstr "Produkt"
+
+msgid "products_list"
+msgstr "Lista produktów"
+
+msgid "remove_products_form"
+msgstr "Usuń produkty"
+
+msgid "update_image_form"
+msgstr "Zaktualizuj zdjęcia produktu"
+
+msgid "change_address_form"
+msgstr "Formularz zmiany adresu"
+
+msgid "change_email_form"
+msgstr "Zmień e-mail"
+
+msgid "change_password_form"
+msgstr "Formularz zmiany hasła"
+
+msgid "profile"
+msgstr "Profil"

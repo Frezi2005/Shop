@@ -216,5 +216,5 @@ EOD;
 
 
     $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
-    $pdf->Output($name." ".$surname." - ".date('Y-m-d').".pdf", 'D');
+    $pdf->Output($name." ".$surname." - ".date('Y-m-d', $date).".pdf", 'D');
 ?>

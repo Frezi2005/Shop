@@ -44,6 +44,7 @@ const lang = {
 	name_and_description_error: "Name and description must be filled!\n",
 	success: "Success",
 	admin_granted: "Admin privileges granted!",
+	admin_revoked: "Admin privileges revoked!",
 	customer_removed: "Customer account has been removed!",
 	message_error: "Your message is either too long or too short.\n",
 	atleast_one_product: "You have to select at least one product!",

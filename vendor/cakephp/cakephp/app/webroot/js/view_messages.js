@@ -25,7 +25,7 @@ $(() => {
 	});
 
 	$(".pagination .fas").click(function() {
-		if (page + $(this).data("page") != 0 && page + $(this).data("page") <= $(".pagination p").length) {
+		if (page + $(this).data("page") != 0 && page + $(this).data("page") <= $(".pagination").data("count")) {
 			urlParams.set("page", (page + parseInt($(this).data("page")) > 0 ? page + parseInt($(this).data("page")) : 1))
 			location.replace("http://localhost/Shop/vendor/cakephp/cakephp/view-messages?" + urlParams.toString());
 		}

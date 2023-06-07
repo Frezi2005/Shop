@@ -7,6 +7,9 @@
     <div class="outer m-4">
         <table id="contractExtensions">
             <?php
+				if (!count($contractExtensions)) {
+					echo "<h3>" . __("no_contract_extension_requests") . "</h3>";
+				}
                 foreach ($contractExtensions as $contract) {
                     echo "<tr>";
                         echo "<td>".$contract["ContractExtend"]["user_id"]."</td>";

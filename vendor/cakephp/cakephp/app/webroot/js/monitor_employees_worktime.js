@@ -1,5 +1,7 @@
 $(() => {
 	var params = new URLSearchParams(window.location.search);
+	let page = parseInt((params.get("page") != null) ? params.get("page") : 1);
+	let perPage = 18;
 	let year = params.get("year") ?? new Date().getFullYear()
 	let month = params.get("month") ?? +(new Date().getMonth()) + 1
 	$("#year").val(year);
@@ -34,11 +36,38 @@ $(() => {
 		})
 	}
 
+	let pages = Math.ceil(timeshifts.length / perPage);
+	timeshifts = timeshifts.slice((page - 1) * perPage, (page - 1) * perPage + perPage);
+
 	for (let timeshift of timeshifts) {
 		$("#timeshifts").append(`<p>${timeshift.name} ${timeshift.surname} (${timeshift.user_id}) - <b>${timeshift.sum}</b></p>`);
 	}
 
 	if (timeshifts.length == 0) {
 		$("#timeshifts").html(`<h3>${lang.no_employees_hours}</h3>`);
+	}
+
+	if (pages > 1) {
+		let paginationHtml = "<i class='fas fa-angle-left page-prev' data-page='-1'></i>";
+		for (let i = page - 2; i <= page + 2; i++) {
+			paginationHtml += (i > 0 && i <= pages) ?
+				((i == page) ? `<p class='bold'>${i}</p>` : `<p>${i}</p>`) :
+				"";
+		}
+		paginationHtml += "<i class='fas fa-angle-right page-next' data-page='1'></i>";
+		$(".pagination").html(paginationHtml);
+
+		$(".pagination p:not(.bold)").click(function() {
+			params.set("page", $(this).text());
+			location.replace("http://localhost/Shop/vendor/cakephp/cakephp/monitor-employees-worktime?" + params.toString());
+		});
+
+
+		$(".pagination .fas").click(function() {
+			if (page + $(this).data("page") != 0 && page + $(this).data("page") <= pages) {
+				params.set("page", (page + parseInt($(this).data("page")) > 0 ? page + parseInt($(this).data("page")) : 1))
+				location.replace("http://localhost/Shop/vendor/cakephp/cakephp/monitor-employees-worktime?" + params.toString());
+			}
+		});
 	}
 });

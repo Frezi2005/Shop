@@ -26,6 +26,7 @@
 			echo $this->fetch("meta");
 			echo $this->fetch("css");
 			echo $this->fetch("script");
+			echo $this->Html->meta('logo.ico', 'http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/logo.ico', ['type' => 'icon']);
 			echo "<title>" . $this->fetch('title') . "</title>";
 		?>
 	</head>
@@ -50,19 +51,19 @@
 						<i class="fas fa-bars"></i>
 					</p>
 					<div class="hoverMenu">
-						<i class="fas fa-xmark close"></i>
+						<p class="close">X</p>
 						<div class="logInLink navLink float-start col-3">
 							<i class="fas fa-user"></i>
 							<span><?php echo ($this->Session->read("loggedIn") == true) ? "<a href='profile'>".__("profile")."</a>" : "<a href='login'>".__("log_in")."</a>"?></span>
 							<div class="logInModal">
 								<?php
-								if ($this->Session->read("loggedIn") != true) {
-									echo "<a href='register'>".__("register")."</a>";
-								} else {
-									echo "<a href='settings'>".__("settings")."</a>";
-									echo "<hr>";
-									echo "<a href='logout'>".__("logout")."</a>";
-								}
+									if ($this->Session->read("loggedIn") != true) {
+										echo "<a href='register'>".__("register")."</a>";
+									} else {
+										echo "<a href='settings'>".__("settings")."</a>";
+										echo "<hr>";
+										echo "<a href='logout'>".__("logout")."</a>";
+									}
 								?>
 							</div>
 						</div>
@@ -79,13 +80,13 @@
 						<div class="select float-start col-3">
 							<select class="languageSelect">
 								<?php
-								if ($this->Session->read("language") == "eng") {
-									echo "<option value='eng'>".__("eng")."</option>";
-									echo "<option value='pol'>".__("pol")."</option>";
-								} else {
-									echo "<option value='pol'>".__("pol")."</option>";
-									echo "<option value='eng'>".__("eng")."</option>";
-								}
+									if ($this->Session->read("language") == "eng") {
+										echo "<option value='eng'>".__("eng")."</option>";
+										echo "<option value='pol'>".__("pol")."</option>";
+									} else {
+										echo "<option value='pol'>".__("pol")."</option>";
+										echo "<option value='eng'>".__("eng")."</option>";
+									}
 								?>
 							</select>
 						</div>
@@ -94,6 +95,7 @@
 								<option value="USD">USD</option>
 								<option value="PLN">PLN</option>
 								<option value="EUR">EUR</option>
+								<option value="GBP">GBP</option>
 							</select>
 						</div>
 					</div>

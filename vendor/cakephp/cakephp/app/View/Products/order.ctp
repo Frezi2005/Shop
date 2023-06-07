@@ -18,7 +18,7 @@
             echo $this->Form->input("countries",
 				array(
 					"options" => $countries,
-					"label" => __("countries"),
+					"label" => __("country"),
 					"required" => true,
 					"value" => isset($userInfo) ? $userInfo["country"] : ""
 				)

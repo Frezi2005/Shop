@@ -44,6 +44,7 @@ const lang = {
 	name_and_description_error: "Nazwa i opis musi być zapełniony!\n",
 	success: "Sukces",
 	admin_granted: "Prawa administratora nadane!",
+	admin_revoked: "Prawa administratora odstąpione!",
 	customer_removed: "Konto klienta zostało usunięte!",
 	message_error: "Twoja wiadomość jest za krótka lub za długa!\n",
 	atleast_one_product: "Musisz zaznaczyć conajmniej jeden produkt!",

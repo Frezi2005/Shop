@@ -1,9 +1,11 @@
 $(function() {
 	//Checking if any items are in the cart, if not then go back to previous page
     var cart = (JSON.parse(localStorage.getItem("cart")) == null) ?
-		history.back() :
+		location.replace(document.referrer) :
 		JSON.parse(localStorage.getItem("cart"));
     var sum = 0;
+
+	console.log(cart);
 
 	//Generating products html in cart
     for (var i = 0; i < cart.length; i++) {
@@ -24,9 +26,11 @@ $(function() {
 		`);
     }
 
+	console.log(sum);
+
     if (!sum || sum == null) {
-        history.back();
-    }
+		location.replace(document.referrer);
+	}
 
 	//Appending products costs sum to html
     $(".products").append(`

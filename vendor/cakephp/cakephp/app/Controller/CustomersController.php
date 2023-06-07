@@ -46,9 +46,12 @@ class CustomersController extends AppController {
 		App::uses('CakeText', 'Utility');
 		$this->loadModel("User");
 		$this->SecurityUtils = $this->Components->load("PasswordHashing");
-		$this->CheckPrivileges = $this->Components->load("CheckPrivileges");
 		$this->BudgetComponent = $this->Components->load("Budget");
 		App::uses("CakeEmail", "Network/Email");
+//		$this->CheckPrivileges = $this->Components->load("CheckPrivileges");
+//		if (!$this->CheckPrivileges->check($_SERVER["REQUEST_URI"], $this->Session->read("userUUID"))) {
+//			throw new ForbiddenException();
+//		}
 	}
 
 /**
@@ -131,7 +134,7 @@ class CustomersController extends AppController {
 					"holiday_amount" => null,
 					"is_employee" => 0,
 					"shop_id" => null,
-					"role" => null,
+					"role" => 0,
 					"department" => null,
 					"email_change_creation_date" => null,
 					"email_change_expiration_date" => null,
@@ -278,7 +281,7 @@ class CustomersController extends AppController {
 				"holiday_amount" => $employee["holidayAmount"],
 				"is_employee" => 1,
 				"shop_id" => null,
-				"role" => null,
+				"role" => 1,
 				"department" => null,
 				"email_change_creation_date" => null,
 				"email_change_expiration_date" => null,
@@ -324,9 +327,12 @@ class CustomersController extends AppController {
 			"add-product-to-database",
 			"delivery-form",
 			"update-employee-page",
-			"admin-privileges",
 			"remove-customer",
-			"holidays-approval-form"
+			"holidays-approval-form",
+			"remove-products-form",
+			"edit-product-form",
+			"grant-admin-privileges-form",
+			"revoke-admin-privileges-form"
 		];
 
 		$privileges = [];
@@ -347,6 +353,17 @@ class CustomersController extends AppController {
 		$userId = $this->params["url"]["id"];
 		$this->User->updateAll(
 			array("is_admin" => (isset($this->params["url"]["admin"])) ? 1 : 0),
+			array("id" => $userId)
+		);
+	}
+
+	//Site reponsible for revoking selected user admin privileges
+
+	public function revokeAdminPrivileges() {
+		$this->autoRender = false;
+		$userId = $this->params["url"]["id"];
+		$this->User->updateAll(
+			array("is_admin" => (isset($this->params["url"]["admin"])) ? 0 : 1),
 			array("id" => $userId)
 		);
 	}
@@ -524,6 +541,9 @@ class CustomersController extends AppController {
 	//Site responsible for monitoring employees worktime
 	public function monitorEmployeesWorktime() {
 		$this->loadModel("Timeshift");
+		$perPage = 10;
+		$page = (!isset($this->params["url"]["page"])) ? 1 : $this->params["url"]["page"];
+		$offset = (intval($page) - 1) * $perPage;
 		$timeshifts = $this->Timeshift->find("all",
 			array(
 				"joins" => array(
@@ -1167,5 +1187,15 @@ class CustomersController extends AppController {
 //				"from" => "handlePayouts"
 //			)
 //		);
+	}
+
+	public function grantAdminPrivilegesForm() {
+		$employees = $this->User->find("all", array("conditions" => array("is_employee" => 1, "is_admin" => 0)));
+		$this->set("employees", $employees);
+	}
+
+	public function revokeAdminPrivilegesForm() {
+		$employees = $this->User->find("all", array("conditions" => array("is_employee" => 1, "is_admin" => 1)));
+		$this->set("employees", $employees);
 	}
 }

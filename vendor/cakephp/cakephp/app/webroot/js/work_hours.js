@@ -3,18 +3,18 @@ $(() => {
 	let years = '';
 
     let userId = $("#userId").val();
+	var language = $('#lang').val();
 
 	//Generating month and year selects
     for (let i = 0; i < 12; i++) {
         months += `
 			<option value='${String(i + 1).padStart(2, '0')}' ${new Date().getMonth() == i ?
 				'selected=\'selected\'' : ''}'>
-				${new Date(`2022-${String(i + 1).padStart(2, '0')}-01`).toLocaleString('default', { month: 'long' })}
+				${new Date(`2022-${String(i + 1).padStart(2, '0')}-01`).toLocaleString(language == 'eng' ? 'en-US' : 'pl-PL', { month: 'long' })}
 			</option>
 		`;
     }
 
-	var language = $('#lang').val();
 	var weekDaysArr = {
 		'eng': [
 			'Mon.',
@@ -42,6 +42,12 @@ $(() => {
 	$("#months").append(months);
 	$("#years").append(years);
 
+	let monthAndYear = JSON.parse(localStorage.getItem('workHours'));
+	if (monthAndYear != null) {
+		$("#months").val(monthAndYear[1]);
+		$("#years").val(monthAndYear[0]);
+	}
+
 	$('#hours').html(`<h3>${lang.hours_sum}: ${generateCalendar($("#years").val(), $("#months").val())}</h3>`);
 
     $("#months, #years").change(function() {
@@ -50,6 +56,7 @@ $(() => {
 
 	//Function responsible for generating the calendar html and events. Also it adds click listeners for each of the cells
 	function generateCalendar(year, month) {
+		localStorage.setItem('workHours', JSON.stringify([year, month]));
 		let hourSymbol = language == 'eng' ? 'h' : 'g'
         let date = new Date(`${year}-${month}-01`);
 		//Generating first and last day to have correct days at the start and end of the month

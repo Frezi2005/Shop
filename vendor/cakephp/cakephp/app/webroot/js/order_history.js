@@ -74,10 +74,10 @@ $(function() {
 
 	$("select#sortHistory").find("[value='" + urlParams.get("sort_by") + "']").attr("selected", true);
 
-    $("select#sortHistory").change(function() {
-		urlParams.set('sort', $(this).val())
-        location.replace("http://localhost/Shop/vendor/cakephp/cakephp/order-history?"+urlParams.toString());
-    });
+    // $("select#sortHistory").change(function() {
+	// 	urlParams.set('sort', $(this).val())
+    //     location.replace("http://localhost/Shop/vendor/cakephp/cakephp/order-history?"+urlParams.toString());
+    // });
 
     $("button#filter").click(function() {
 		urlParams.set('priceMin', $("input#priceMin").val());
@@ -86,6 +86,7 @@ $(function() {
 		urlParams.set('dateMax', $("input#dateMax").val());
 		urlParams.set('payment', $("select#paymentMethod").val());
 		urlParams.set('currency', $("select#currency").val());
+		urlParams.set('sort', $("select#sortHistory").val())
 		location.replace("http://localhost/Shop/vendor/cakephp/cakephp/order-history?" + urlParams.toString());
     });
 
@@ -110,7 +111,7 @@ $(function() {
 
 
 	$(".pagination .fas").click(function() {
-		if (page + $(this).data("page") != 0 && page + $(this).data("page") <= $(".pagination p").length) {
+		if (page + $(this).data("page") != 0 && page + $(this).data("page") <= $(".pagination").data("count")) {
 			urlParams.set("page", (page + parseInt($(this).data("page")) > 0 ? page + parseInt($(this).data("page")) : 1))
 			location.replace("http://localhost/Shop/vendor/cakephp/cakephp/order-history?" + urlParams.toString());
 		}

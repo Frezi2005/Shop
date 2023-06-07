@@ -158,6 +158,7 @@ $(function() {
     })
 
     $(".searchBtn").click(function() {
+		$("input.searchInput").focus();
 		if ($("input.searchInput").val().length > 0) {
 			window.location.replace(`http://localhost/Shop/vendor/cakephp/cakephp/products-list?
 			q=${$("input.searchInput").val()}
@@ -192,10 +193,12 @@ $(function() {
 
     $(".menu i").click(function() {
         $(".hoverMenu").css("right", "0px");
+		$("body").css("overflow-y", "hidden");
     })
 
-    $("p.close").click(function() {
+    $(".close").click(function() {
         $(".hoverMenu").css("right", "-100%");
+		$("body").css("overflow-y", "auto");
     })
 
     $(".productOnMainPage .price").each(function() {

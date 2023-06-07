@@ -112,7 +112,7 @@ div.contact a:first-of-type::after {
 
 .img-text {
     position: absolute;
-    top: 110px;
+    top: 40%;
     left: 30px;
     font-size: 25px;
     color: white;
@@ -123,9 +123,9 @@ div.contact a:first-of-type::after {
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
-	right: 100px;
+	right: 20px;
 	mix-blend-mode: multiply;
-	height: 80%;
+	width: 30%;
 }
 
 .line-through {
@@ -135,5 +135,26 @@ div.contact a:first-of-type::after {
 @media (min-width: 1400px) {
 	div.products > div:first-of-type {
 		padding-left: 25px;
+	}
+}
+
+@media (max-width: 1400px) {
+	.img-text {
+		font-size: 20px;
+	}
+}
+
+@media (max-width: 1230px) {
+	.img-text {
+		top: 75%;
+		text-align: center;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	.slider-img {
+		transform: translate(-50%, -50%);
+		left: 50%;
+		top: 25%;
 	}
 }

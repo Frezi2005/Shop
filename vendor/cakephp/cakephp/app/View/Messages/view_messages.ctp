@@ -44,7 +44,7 @@
         $i++;
     }
 	if ($count > 1) {
-		echo "<div class='pagination'>";
+		echo "<div class='pagination' data-count='$count'>";
 		echo "<i class='fas fa-angle-left page-prev' data-page='-1'></i>";
 		for ($i = $page - 2; $i <= $page + 2; $i++) {
 			echo ($i > 0 && $i <= $count) ? (($i == $page) ? "<p class='bold'>$i</p>" : "<p>$i</p>") : "";

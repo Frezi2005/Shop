@@ -44,6 +44,12 @@ class AppController extends Controller {
         $categories = $this->Category->find("all");
         $subCategories = [];
         $allCategories = [];
+
+		$this->CheckPrivileges = $this->Components->load("CheckPrivileges");
+		if (!$this->CheckPrivileges->check($_SERVER["REQUEST_URI"], $this->Session->read("userUUID"))) {
+			throw new ForbiddenException();
+		}
+
         foreach ($categories as $category) {
             $sc = $this->SubCategory->find("all", array(
                 "conditions" => array(

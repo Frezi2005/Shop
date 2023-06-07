@@ -4,7 +4,9 @@
 ?>
 <div class="productContainer offset-1 col-xxl-6 col-xl-6 col-lg-5 col-10">
     <h3 id="productName" class="col-12"><?php echo $product["name"]; ?></h3>
-    <div id="productImg" class="col-xxl-6 col-xl-6 col-lg-12 col-12 float-start"></div>
+    <div id="productImg" class="col-xxl-6 col-xl-6 col-lg-12 col-12 float-start">
+		<img src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/<?=$product["id"];?>.jpg' onerror="this.src='http://localhost/Shop/vendor/cakephp/cakephp/app/webroot/img/noimg.jpg'"/>
+	</div>
     <div class="col-xxl-6 col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 float-start">
         <p id="description" class=""><?=__("description")?>: <?php echo $product["description"];?></p>
         <p id="priceWithoutTax"><?=__("netto_price")?>:
@@ -15,6 +17,7 @@
 				<span id="productTaxPrice"><?php echo $product["price"] + $product["tax"]; ?> USD</span>
 			</sup>
 		</p>
+		<input type="hidden" id="originalPriceWithTax" value="<?php echo $product["price"] + $product["tax"]; ?>"/>
         <input type="hidden" id="productId" value="<?php echo $product["id"];?>">
         <?php
             if ($product["product_count"] > 0) {

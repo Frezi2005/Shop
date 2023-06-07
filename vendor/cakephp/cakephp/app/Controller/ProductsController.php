@@ -472,6 +472,9 @@ class ProductsController extends AppController {
 	//Inventory page
 	public function inventory() {
 		$this->loadModel("User");
+		$page = (isset($this->params["url"]["page"])) ? $this->params["url"]["page"] : 1;
+		$perPage = 10;
+		$offset = (intval($page) - 1) * $perPage;
 		$isEmployee = $this->User->find("first",
 			array(
 				"conditions" => array(
@@ -483,7 +486,22 @@ class ProductsController extends AppController {
 		if (!$isEmployee) {
 			throw new UnauthorizedException();
 		}
-		$this->set("products", $this->Product->find("all"));
+		$this->set("products",
+			$this->Product->find("all",
+				array(
+					"limit" => $perPage,
+					"offset" => $offset
+				)
+			)
+		);
+		$this->set("count",
+			ceil(
+				count(
+					$this->Product->find("all")
+				) / $perPage
+			)
+		);
+		$this->set("page", $page);
 	}
 
 	//Order page

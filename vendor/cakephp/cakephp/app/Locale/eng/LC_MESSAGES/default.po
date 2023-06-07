@@ -464,7 +464,7 @@ msgid "address_change_alert"
 msgstr "Your address has been changed!"
 
 msgid "product_name"
-msgstr "Product name"
+msgstr "Product"
 
 msgid "description"
 msgstr "Description"
@@ -1008,3 +1008,189 @@ msgstr "User with that exact password has not been found in our database!"
 
 msgid "passwords_dont_match"
 msgstr "Passwords don't match!"
+
+msgid "remove_products_form"
+msgstr "Remove products form"
+
+msgid "edit_product_form"
+msgstr "Edit product form"
+
+msgid "no_contract_extension_requests"
+msgstr "There are none contract extension requests"
+
+msgid "revoke_admin"
+msgstr "Revoke admin privileges"
+
+msgid "admin_panel"
+msgstr "Admin panel"
+
+msgid "extend_contract_request_form"
+msgstr "Extend contract request form"
+
+msgid "fire_employee_form"
+msgstr "Fire employee form"
+
+msgid "get_contract"
+msgstr "Get contract"
+
+msgid "grant_admin_privileges_form"
+msgstr "Grant admin privileges form"
+
+msgid "holidays_approval_form"
+msgstr "Holidays approval form"
+
+msgid "holidays_form"
+msgstr "Holidays form"
+
+msgid "list_employees"
+msgstr "List employees"
+
+msgid "manage_budget"
+msgstr "Manage budget"
+
+msgid "monitor_employees_worktime"
+msgstr "Monitor employees worktime"
+
+msgid "notice_form"
+msgstr "Notice form"
+
+msgid "order_history"
+msgstr "Order history"
+
+msgid "orders_report"
+msgstr "Orders report"
+
+msgid "payouts"
+msgstr "Payouts"
+
+msgid "payslips"
+msgstr "Payslips"
+
+msgid "revoke_admin_privileges_form"
+msgstr "Revoke admin privileges form"
+
+msgid "settings"
+msgstr "Settings"
+
+msgid "sick_leave_form"
+msgstr "Sick leave form"
+
+msgid "update_employee_page"
+msgstr "Update employee page"
+
+msgid "update_password_page"
+msgstr "Update password page"
+
+msgid "view_contract_extension_requests"
+msgstr "View contract extension requests"
+
+msgid "view_holidays"
+msgstr "View holidays"
+
+msgid "view_sick_leave"
+msgstr "View sick leave"
+
+msgid "work_hours"
+msgstr "Work hours"
+
+msgid "about_us"
+msgstr "About us"
+
+msgid "ask_for_account"
+msgstr "Ask for account"
+
+msgid "contact"
+msgstr "Contact"
+
+msgid "cooperation"
+msgstr "Cooperation"
+
+msgid "forgot_password_page"
+msgstr "Forgot password page"
+
+msgid "gifts_catalog"
+msgstr "Gifts catalog"
+
+msgid "home"
+msgstr "Home"
+
+msgid "login_page"
+msgstr "Login page"
+
+msgid "marketing_materials"
+msgstr "Marketing materials"
+
+msgid "partnership"
+msgstr "Partnership"
+
+msgid "privacy_policy_and_cookies"
+msgstr "Privacy policy and cookies"
+
+msgid "register_employee_page"
+msgstr "Register employee page"
+
+msgid "register_page"
+msgstr "Register page"
+
+msgid "regulations_of_loyalty_program"
+msgstr "Regulations of loyalty program"
+
+msgid "remove_employee_page"
+msgstr "Remove employee page"
+
+msgid "terms_of_service"
+msgstr "Terms of service"
+
+msgid "reply_to_message"
+msgstr "Reply to message"
+
+msgid "view_messages"
+msgstr "View messages"
+
+msgid "invoices"
+msgstr "Invoices"
+
+msgid "add_product_to_database"
+msgstr "Add product to database"
+
+msgid "cart"
+msgstr "Cart"
+
+msgid "delivery_form"
+msgstr "Delivery form"
+
+msgid "edit_product_form"
+msgstr "Edit product form"
+
+msgid "inventory"
+msgstr "Inventory"
+
+msgid "invoice"
+msgstr "Invoice"
+
+msgid "order"
+msgstr "Order"
+
+msgid "product"
+msgstr "Product"
+
+msgid "products_list"
+msgstr "Products list"
+
+msgid "remove_products_form"
+msgstr "Remove products form"
+
+msgid "update_image_form"
+msgstr "Update image form"
+
+msgid "change_address_form"
+msgstr "Change address form"
+
+msgid "change_email_form"
+msgstr "Change email form"
+
+msgid "change_password_form"
+msgstr "Change password form"
+
+msgid "profile"
+msgstr "Profile"
